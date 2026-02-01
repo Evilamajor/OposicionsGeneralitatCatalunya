@@ -2,74 +2,59 @@ import { NavLink } from 'react-router-dom';
 
 /**
  * Barra lateral de navegació per al temari d'oposicions.
- * En aquesta fase només es mostren els blocs actius:
- * - Procediment Administratiu
- * - Funció Pública
  *
- * Estructura de navegació:
- * Bloc → Secció → Subtema
+ * Estructura actual:
+ * - Procediment Administratiu
+ *    · Vista general del temari
+ *    · Flashcards
+ *    · Casos pràctics
+ *    · Links i referències
+ *
+ * (Altres blocs es poden afegir més endavant)
  */
 const BarraLateral = () => {
   return (
-    <nav style={{ width: '240px', padding: '1rem', borderRight: '1px solid #ddd' }}>
+    <nav
+      style={{
+        width: '240px',
+        padding: '1rem',
+        borderRight: '1px solid #ddd',
+      }}
+    >
       <h3>Temari</h3>
 
       <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
 
         {/* Procediment Administratiu */}
         <li>
-          <NavLink to="/procediment-administratiu">
+          <NavLink to="/procediment">
             Procediment Administratiu
           </NavLink>
 
-          <ul style={{ listStyleType: 'none', paddingLeft: '1rem' }}>
+          <ul style={{ listStyleType: 'none', paddingLeft: '1rem', marginTop: '0.5rem' }}>
             <li>
-              <NavLink to="/procediment-administratiu/seccio1">
-                Secció 1
+              <NavLink to="/procediment/flashcards">
+                Secció 1 · Flashcards
               </NavLink>
+            </li>
 
-              <ul style={{ listStyleType: 'none', paddingLeft: '1rem' }}>
-                <li>
-                  <NavLink to="/procediment-administratiu/seccio1/subtema1">
-                    Subtema 1
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/procediment-administratiu/seccio1/subtema2">
-                    Subtema 2
-                  </NavLink>
-                </li>
-              </ul>
+            <li>
+              <NavLink to="/procediment/casos">
+                Secció 2 · Casos pràctics
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink to="/procediment/materials">
+                Secció 3 · Links i referències
+              </NavLink>
             </li>
           </ul>
         </li>
 
-        {/* Funció Pública */}
-        <li style={{ marginTop: '1rem' }}>
-          <NavLink to="/funcio-publica">
-            Funció Pública
-          </NavLink>
-
-          <ul style={{ listStyleType: 'none', paddingLeft: '1rem' }}>
-            <li>
-              <NavLink to="/funcio-publica/seccio1">
-                Secció 1
-              </NavLink>
-
-              <ul style={{ listStyleType: 'none', paddingLeft: '1rem' }}>
-                <li>
-                  <NavLink to="/funcio-publica/seccio1/subtema1">
-                    Subtema 1
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/funcio-publica/seccio1/subtema2">
-                    Subtema 2
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
-          </ul>
+        {/* Altres blocs (placeholder) */}
+        <li style={{ marginTop: '1.5rem', color: '#999' }}>
+          Funció Pública (pendent)
         </li>
 
       </ul>
