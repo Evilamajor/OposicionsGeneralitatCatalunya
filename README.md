@@ -1,1 +1,1 @@
-# OposicionsGeneralitatCatalunya
+# Oposicions Generalitat de Catalunya
