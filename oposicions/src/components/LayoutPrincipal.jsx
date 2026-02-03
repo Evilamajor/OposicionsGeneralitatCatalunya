@@ -1,15 +1,39 @@
-import { Outlet } from 'react-router-dom';
-import BarraLateral from './BarraLateral.jsx';
+import { NavLink, Outlet } from 'react-router-dom';
+import temari from '../data/temari';
 
-/**
- * Component de disposició principal (layout) que mostra una barra lateral persistent
- * i una àrea de contingut principal. Utilitza Outlet per renderitzar rutes filles.
- */
 const LayoutPrincipal = () => {
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
-      <BarraLateral />
-      <main style={{ flex: 1, padding: '1rem' }}>
+      {/* Barra lateral */}
+      <aside
+        style={{
+          width: '300px',
+          borderRight: '1px solid #ddd',
+          padding: '1rem',
+          overflowY: 'auto',
+        }}
+      >
+        <h3>Temari C1</h3>
+
+        {temari.map((bloc) => (
+          <div key={bloc.id} style={{ marginBottom: '1rem' }}>
+            <strong>{bloc.titol}</strong>
+
+            <ul style={{ paddingLeft: '1rem' }}>
+              {bloc.temes.map((tema) => (
+                <li key={tema.id}>
+                  <NavLink to={`/${bloc.id}/${tema.id}`}>
+                    Tema {tema.numero} · {tema.titol}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </aside>
+
+      {/* Contingut principal */}
+      <main style={{ flex: 1 }}>
         <Outlet />
       </main>
     </div>

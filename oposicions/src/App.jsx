@@ -1,49 +1,26 @@
 import { Routes, Route } from 'react-router-dom';
 import LayoutPrincipal from './components/LayoutPrincipal.jsx';
 
-// Procediment Administratiu – vistes principals
-import ProcedimentAdministratiu from './blocs/procedimentAdministratiu/index.jsx';
-import ProcedimentApartat from './blocs/procedimentAdministratiu/apartat.jsx';
-import ProcedimentFlashcards from './blocs/procedimentAdministratiu/flashcards.jsx';
-import ProcedimentCasos from './blocs/procedimentAdministratiu/casos.jsx';
-import ProcedimentMaterials from './blocs/procedimentAdministratiu/materials.jsx';
+import Home from './pages/Home.jsx';
+import Tema from './pages/Tema.jsx';
+
+import SeccioExplicacio from './pages/seccions/SeccioExplicacio.jsx';
+import SeccioFlashcards from './pages/seccions/SeccioFlashcards.jsx';
+import SeccioCasos from './pages/seccions/SeccioCasos.jsx';
+import SeccioLinks from './pages/seccions/SeccioLinks.jsx';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<LayoutPrincipal />}>
+        <Route index element={<Home />} />
 
-        {/* Pàgina d'inici */}
-        <Route
-          index
-          element={<div>Benvingut a la plataforma d’estudi d’oposicions.</div>}
-        />
-
-        {/* Procediment Administratiu */}
-        <Route path="procediment">
-          {/* Índex del temari */}
-          <Route index element={<ProcedimentAdministratiu />} />
-
-          {/* Apartats del temari */}
-          <Route path="apartat/:id" element={<ProcedimentApartat />} />
-
-          {/* Modes d’estudi */}
-          <Route path="flashcards" element={<ProcedimentFlashcards />} />
-          <Route path="casos" element={<ProcedimentCasos />} />
-          <Route path="materials" element={<ProcedimentMaterials />} />
+        <Route path=":blocId/:temaId" element={<Tema />}>
+          <Route index element={<SeccioExplicacio />} />
+          <Route path="flashcards" element={<SeccioFlashcards />} />
+          <Route path="casos" element={<SeccioCasos />} />
+          <Route path="links" element={<SeccioLinks />} />
         </Route>
-
-        {/* Altres blocs (preparats, però no desenvolupats) */}
-        <Route
-          path="funcio-publica"
-          element={<div>Funció Pública (pendent de desenvolupament)</div>}
-        />
-
-        <Route
-          path="contractacio-publica"
-          element={<div>Contractació Pública (pendent de desenvolupament)</div>}
-        />
-
       </Route>
     </Routes>
   );
