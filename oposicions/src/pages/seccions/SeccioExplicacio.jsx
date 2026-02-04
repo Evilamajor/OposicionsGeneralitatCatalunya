@@ -1,21 +1,17 @@
 import { useParams } from 'react-router-dom';
 import mapaBlocs from '../../blocs/mapaBlocs';
 
-/**
- * SeccioExplicacio.jsx
- *
- * Secció d’explicació teòrica d’un tema concret.
- *
- * El contingut real depèn de:
- *   blocId → temaId → explicacio
- * definit a src/blocs/mapaBlocs.js
- */
 const SeccioExplicacio = () => {
   const { blocId, temaId } = useParams();
 
-  const Component = mapaBlocs?.[blocId]?.[temaId]?.explicacio;
+  // 🔧 NORMALITZACIÓ CRÍTICA
+  // Accepta: "5", "tema5", "tema-5", "tema-05"
+  const temaNum = temaId.replace(/\D/g, ''); // ← EXTREU NOMÉS EL NÚMERO
 
-  if (!Component) {
+  const tema = mapaBlocs?.[blocId]?.[temaNum];
+  const tipusExplicacio = tema?.explicacio;
+
+  if (tipusExplicacio !== 'html') {
     return (
       <section>
         <h3>Explicació</h3>
@@ -26,9 +22,17 @@ const SeccioExplicacio = () => {
     );
   }
 
+  const temaFolder = `tema-${temaNum.padStart(2, '0')}`;
+  const htmlSrc = `/content/${blocId}/${temaFolder}/explicacio.html`;
+
   return (
     <section>
-      <Component />
+      <h3>Explicació</h3>
+      <iframe
+        src={htmlSrc}
+        title="Explicació del tema"
+        style={{ width: '100%', height: '80vh', border: 'none' }}
+      />
     </section>
   );
 };

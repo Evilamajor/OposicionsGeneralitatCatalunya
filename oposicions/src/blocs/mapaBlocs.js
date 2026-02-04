@@ -3,20 +3,30 @@ import ProcedimentFlashcards from './procedimentAdministratiu/flashcards.jsx';
 import ProcedimentCasos from './procedimentAdministratiu/casos.jsx';
 import ProcedimentMaterials from './procedimentAdministratiu/materials.jsx';
 
-/**
- * Mapa que relaciona:
- * blocId → temaId → secció → component
- *
- * Només cal omplir els temes que existeixen.
- * La resta poden quedar buits o amb placeholders.
- */
 const mapaBlocs = {
-  bloc2: {
-    tema7: {
+  'dret-administratiu-general': {
+    '5': {
+      titol: 'Acte administratiu',
+      explicacio: 'html',
+      flashcards: 'html',
+      casos: 'html',
+      materials: 'html',
+    },
+
+    '6': {
+      titol: 'Nul·litat i anul·labilitat',
+      explicacio: 'html',
+      flashcards: 'html',
+      casos: 'html',
+      materials: 'html',
+    },
+
+    '7': {
+      titol: 'Procediment administratiu comú',
       explicacio: ProcedimentExplicacio,
       flashcards: ProcedimentFlashcards,
       casos: ProcedimentCasos,
-      links: ProcedimentMaterials,
+      materials: ProcedimentMaterials,
     },
   },
 };
