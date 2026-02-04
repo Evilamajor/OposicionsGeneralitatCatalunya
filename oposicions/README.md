@@ -14,3 +14,26 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+---
+
+## Project dev notes (local additions)
+
+- Quick dev commands (run inside `oposicions/`):
+
+```bash
+npm install
+npm run dev    # starts Vite with HMR
+npm run build  # production build
+npm run preview  # preview build
+```
+
+- Where to add content:
+	- App & routes: `oposicions/src/App.jsx`
+	- Data (blocks & topics): `oposicions/src/data.js`
+	- Static explanation pages (root-relative): `oposicions/public/explicacio*.html`
+
+- Notes for contributors:
+	- When adding a new topic, add its `{ id, label, filename }` entry to `oposicions/src/data.js` and place the corresponding HTML file into `oposicions/public/`.
+	- Start the dev server and open `/` to verify the sidebar route and topic preview.
+	- Keep UI changes minimal and prefer existing patterns (`.jsx` functional components and global CSS files).

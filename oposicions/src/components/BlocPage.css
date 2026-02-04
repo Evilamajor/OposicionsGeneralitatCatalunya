@@ -1,0 +1,84 @@
+/* =========================
+   BlocPage – layout vertical
+========================= */
+.bloc-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* =========================
+   Seccions del bloc (a dalt)
+========================= */
+.bloc-seccions {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #eef2f7;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.bloc-seccions h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #1a3a52;
+  font-size: 1.25rem;
+}
+
+/* Llista de seccions com pestanyes */
+.seccions-list {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.seccio-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background: transparent;
+  color: #5a6b7d;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-bottom: 2px solid transparent;
+  transition: all 150ms ease;
+}
+
+.seccio-link:hover {
+  color: #1a3a52;
+}
+
+.seccio-link.active {
+  color: #0052cc;
+  border-bottom-color: #0052cc;
+}
+
+/* =========================
+   Contingut del bloc (a sota)
+========================= */
+.bloc-contingut {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #eef2f7;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.preview-card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #1a3a52;
+  font-size: 1.1rem;
+}
+
+.preview-placeholder {
+  color: #3a4556;
+  line-height: 1.6;
+}
+
+.preview-empty {
+  color: #7a8a9e;
+  text-align: center;
+  padding: 2rem 1rem;
+}
