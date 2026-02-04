@@ -1,29 +1,16 @@
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import LayoutPrincipal from './components/LayoutPrincipal.jsx';
+import BlocList from './components/BlocList';
+import BlocPage from './components/BlocPage';
 
-import Home from './pages/Home.jsx';
-import Tema from './pages/Tema.jsx';
-
-import SeccioExplicacio from './pages/seccions/SeccioExplicacio.jsx';
-import SeccioFlashcards from './pages/seccions/SeccioFlashcards.jsx';
-import SeccioCasos from './pages/seccions/SeccioCasos.jsx';
-import SeccioLinks from './pages/seccions/SeccioLinks.jsx';
-
-function App() {
+// The top-level component defines the application routes.  It
+// renders a list of blocks on the root path and a page for a
+// specific block on the `/bloc/:blocId` path.
+export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<LayoutPrincipal />}>
-        <Route index element={<Home />} />
-
-        <Route path=":blocId/:temaId" element={<Tema />}>
-          <Route index element={<SeccioExplicacio />} />
-          <Route path="flashcards" element={<SeccioFlashcards />} />
-          <Route path="casos" element={<SeccioCasos />} />
-          <Route path="links" element={<SeccioLinks />} />
-        </Route>
-      </Route>
+      <Route path="/" element={<BlocList />} />
+      <Route path="/bloc/:blocId" element={<BlocPage />} />
     </Routes>
   );
 }
-
-export default App;
