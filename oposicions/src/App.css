@@ -33,27 +33,6 @@
   color: #0b2545;
 }
 
-.sidebar-toggle {
-  background: transparent;
-  border: none;
-  padding: 6px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: #3a4556;
-}
-
-.sidebar-toggle:focus {
-  outline: 2px solid #0052cc;
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-.sidebar-toggle:hover {
-  opacity: 0.7;
-}
-
 /* =========================
    Sidebar esquerra
 ========================= */
@@ -63,12 +42,6 @@
   box-sizing: border-box;
   border-right: 1px solid #eef2f7;
   background: #ffffff;
-  transition: width 200ms ease, transform 200ms ease;
-}
-
-.sidebar.collapsed {
-  width: 64px;
-  padding-left: 0.5rem;
 }
 
 /* =========================
@@ -148,26 +121,9 @@
 .sidebar-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 8px;
   margin-bottom: 1rem;
-}
-
-.icon-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #3a4556;
-}
-
-.icon-btn:focus {
-  outline: 2px solid #0052cc;
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-.icon-btn:hover {
-  opacity: 0.7;
 }
 
 /* =========================
@@ -301,11 +257,4 @@
     grid-column: 1 / -1;
     order: 3;
   }
-}
-
-/* =========================
-   Sidebar col·lapsada
-========================= */
-.sidebar-collapsed .sidebar {
-  transform: translateX(-100%);
 }

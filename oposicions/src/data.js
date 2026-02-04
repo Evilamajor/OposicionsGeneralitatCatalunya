@@ -6,9 +6,9 @@ export const blocks = [
     id: 'bloc-1',
     title: 'Bloc I · Marc institucional',
     topics: [
-      { id: 'tema-01', label: 'Tema 1 · La Constitució espanyola de 1978', filename: 'tema01.html' },
-      { id: 'tema-02', label: 'Tema 2 · L’Estatut d’autonomia de Catalunya', filename: 'tema02.html' },
-      { id: 'tema-03', label: 'Tema 3 · Institucions de la Generalitat i de la Unió Europea', filename: 'tema03.html' },
+      { id: 'tema-1', label: 'Tema 1 · La Constitució espanyola de 1978', filename: 'tema01.html' },
+      { id: 'tema-2', label: 'Tema 2 · L\'Estatut d\'autonomia de Catalunya', filename: 'tema02.html' },
+      { id: 'tema-3', label: 'Tema 3 · Institucions de la Generalitat i de la Unió Europea', filename: 'tema03.html' },
     ],
   },
   {
@@ -16,7 +16,7 @@ export const blocks = [
     title: 'Bloc II · Dret administratiu general',
     topics: [
       { id: 'tema-04', label: 'Tema 4 · Fonts del dret administratiu', filename: 'tema04.html' },
-      { id: 'tema-05', label: 'Tema 5 · L’acte administratiu', filename: 'tema05.html' },
+      { id: 'tema-05', label: 'Tema 5 · L\'acte administratiu', filename: 'tema05.html' },
       { id: 'tema-06', label: 'Tema 6 · Nul·litat i anul·labilitat dels actes administratius', filename: 'tema06.html' },
       { id: 'tema-07', label: 'Tema 7 · El procediment administratiu comú', filename: 'tema07.html' },
       { id: 'tema-08', label: 'Tema 8 · Revisió dels actes en via administrativa', filename: 'tema08.html' },
@@ -28,7 +28,7 @@ export const blocks = [
     topics: [
       { id: 'tema-09', label: 'Tema 9 · Òrgans administratius i competències', filename: 'tema09.html' },
       { id: 'tema-10', label: 'Tema 10 · Funcionament del sector públic i relacions interadministratives', filename: 'tema10.html' },
-      { id: 'tema-11', label: 'Tema 11 · Responsabilitat patrimonial de l’Administració', filename: 'tema11.html' },
+      { id: 'tema-11', label: 'Tema 11 · Responsabilitat patrimonial de l\'Administració', filename: 'tema11.html' },
       { id: 'tema-12', label: 'Tema 12 · Administració electrònica', filename: 'tema12.html' },
     ],
   },
@@ -54,9 +54,9 @@ export const blocks = [
     id: 'bloc-6',
     title: 'Bloc VI · Funció pública',
     topics: [
-      { id: 'tema-19', label: 'Tema 19 · L’empleat públic', filename: 'tema19.html' },
+      { id: 'tema-19', label: 'Tema 19 · L\'empleat públic', filename: 'tema19.html' },
       { id: 'tema-20', label: 'Tema 20 · Drets, deures i situacions administratives', filename: 'tema20.html' },
-      { id: 'tema-21', label: 'Tema 21 · Règim disciplinari del personal al servei de l’Administració', filename: 'tema21.html' },
+      { id: 'tema-21', label: 'Tema 21 · Règim disciplinari del personal al servei de l\'Administració', filename: 'tema21.html' },
     ],
   },
   {

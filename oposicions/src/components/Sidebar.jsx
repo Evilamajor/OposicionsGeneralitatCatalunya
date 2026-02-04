@@ -2,7 +2,7 @@ import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { blocks as allBlocks } from '../data';
 
-export default function Sidebar({ collapsed = false, onToggle }) {
+export default function Sidebar() {
   const [expandedBlocId, setExpandedBlocId] = useState(null);
   const navigate = useNavigate();
   const { blocId: activeBlockId } = useParams();
@@ -16,51 +16,13 @@ export default function Sidebar({ collapsed = false, onToggle }) {
 
   return (
     <aside
-      className={`sidebar ${collapsed ? 'collapsed' : ''}`}
+      className="sidebar"
       aria-label="Sidebar"
       id="sidebar"
     >
       {/* Header */}
       <div className="sidebar-header">
         <h3 className="sidebar-title">Blocs</h3>
-        <div className="sidebar-actions">
-          <button
-            className="icon-btn"
-            onClick={onToggle}
-            aria-label="Toggle sidebar"
-          >
-            {collapsed ? (
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M6 6h12v12H6z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                />
-              </svg>
-            ) : (
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M3 6h18M3 12h18M3 18h18"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            )}
-          </button>
-        </div>
       </div>
 
       {/* Navigation */}
@@ -125,9 +87,9 @@ export default function Sidebar({ collapsed = false, onToggle }) {
                     {bloc.topics.map((t) => (
                       <li key={t.id}>
                         <NavLink
-                          to={`/bloc/${bloc.id}`}
+                          to={`/bloc/${bloc.id}/${t.id}/legislacio`}
                           onClick={() =>
-                            navigate(`/bloc/${bloc.id}`)
+                            navigate(`/bloc/${bloc.id}/${t.id}/legislacio`)
                           }
                         >
                           <span
