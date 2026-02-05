@@ -18,8 +18,9 @@ export default function App() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<WelcomePanel />} />
-          <Route path="/bloc/:blocId" element={<BlocPage />} />
           <Route path="/bloc/:blocId/:temaId/:seccio" element={<BlocPage />} />
+          <Route path="/bloc/:blocId/:temaId" element={<BlocPage />} />
+          <Route path="/bloc/:blocId" element={<BlocPage />} />
         </Routes>
       </main>
     </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { blocks } from '../data';
+import NotesEditor from './NotesEditor';
 // a src/components/BlocPage.jsx
 import './BlocPage.css';
 
@@ -80,7 +81,7 @@ export default function BlocPage() {
               onChange={(e) => {
                 const selectedTemaId = e.target.value;
                 if (selectedTemaId) {
-                  window.location.href = `/bloc/${blocId}/${selectedTemaId}/legislacio`;
+                  window.location.href = `/bloc/${blocId}/${selectedTemaId}`;
                 }
               }}
               className="tema-select"
@@ -116,13 +117,15 @@ export default function BlocPage() {
       {/* 🔹 Content area (below) */}
       <div className="bloc-contingut">
         {!temaId ? (
-          <div className="preview-empty">
-            Selecciona un tema per veure el contingut.
-          </div>
+          <NotesEditor 
+            storageKey={`notes_bloc_${blocId}`}
+            title={`🧱 Notes personals del bloc – ${bloc.title}`}
+          />
         ) : !seccio ? (
-          <div className="preview-empty">
-            Selecciona una secció per veure el contingut.
-          </div>
+          <NotesEditor 
+            storageKey={`notes_bloc_${blocId}_tema_${temaId}`}
+            title={`📘 Notes personals del tema – ${tema?.label}`}
+          />
         ) : (
           <div className="preview-card">
             <h3>
