@@ -4,6 +4,8 @@ import { blocks } from '../data';
 import NotesEditor from './NotesEditor';
 // a src/components/BlocPage.jsx
 import './BlocPage.css';
+import BlocDiagram from './BlocDiagram';
+
 
 
 /**
@@ -12,7 +14,7 @@ import './BlocPage.css';
 const SECCIONS = [
   { id: 'legislacio', label: 'Legislació' },
   { id: 'contingut', label: 'Contingut' },
-  { id: 'flashcards', label: 'Flashcards' },
+  { id: 'powerpoint', label: 'PowerPoint' },
   { id: 'casos', label: 'Casos pràctics' },
   { id: 'materials', label: 'Materials' },
 ];
@@ -66,37 +68,8 @@ export default function BlocPage() {
 
   return (
     <section className="bloc-page">
-      {/* 🔹 Tema selection (at top) */}
-      <div className="bloc-seccions">
-        <h2>{bloc.title}</h2>
-
-        {bloc.topics && bloc.topics.length > 0 && (
-          <div className="temes-list">
-            <label htmlFor="tema-select" className="tema-label">
-              Tema:
-            </label>
-            <select
-              id="tema-select"
-              value={temaId || ''}
-              onChange={(e) => {
-                const selectedTemaId = e.target.value;
-                if (selectedTemaId) {
-                  window.location.href = `/bloc/${blocId}/${selectedTemaId}`;
-                }
-              }}
-              className="tema-select"
-            >
-              <option value="">— Selecciona un tema —</option>
-              {bloc.topics.map((t) => (
-                <option key={t.id} value={t.id}>
-                  {t.label}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
-
-        {temaId && tema && (
+      {temaId && tema && (
+        <div className="bloc-seccions">
           <ul className="seccions-list">
             {SECCIONS.map((sec) => (
               <li key={sec.id}>
@@ -111,16 +84,15 @@ export default function BlocPage() {
               </li>
             ))}
           </ul>
-        )}
-      </div>
+        </div>
+      )}
 
-      {/* 🔹 Content area (below) */}
+      {/* 🔹 Content area */}
       <div className="bloc-contingut">
         {!temaId ? (
-          <NotesEditor 
-            storageKey={`notes_bloc_${blocId}`}
-            title={`🧱 Notes personals del bloc – ${bloc.title}`}
-          />
+          <div className="bloc-diagram-container">
+            <BlocDiagram blocId={blocId} blocTitle={bloc.title} />
+          </div>
         ) : !seccio ? (
           <NotesEditor 
             storageKey={`notes_bloc_${blocId}_tema_${temaId}`}

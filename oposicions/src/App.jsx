@@ -10,7 +10,7 @@ export default function App() {
   return (
     <div className="app-layout">
       <header className="app-header">
-        <h1 className="app-title">Administratiu Generalitat de Catalunya</h1>
+        <h1 className="app-title">ADMINISTRATIU GENERALITAT DE CATALUNYA</h1>
       </header>
 
       <Sidebar />
