@@ -17,6 +17,7 @@ const SECCIONS = [
   { id: 'powerpoint', label: 'PowerPoint' },
   { id: 'casos', label: 'Casos pràctics' },
   { id: 'materials', label: 'Materials' },
+  { id: 'chatgpt', label: 'ChatGPT' },
 ];
 
 export default function BlocPage() {
@@ -24,6 +25,7 @@ export default function BlocPage() {
   const [htmlContent, setHtmlContent] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [tabsVisible, setTabsVisible] = useState(!seccio);
 
   const bloc = blocks.find((b) => b.id === blocId);
   const tema = bloc?.topics?.find((t) => t.id === temaId);
@@ -31,6 +33,11 @@ export default function BlocPage() {
   if (!bloc) {
     return <p>Bloc no trobat.</p>;
   }
+
+  // Collapse tabs when a section is selected
+  useEffect(() => {
+    setTabsVisible(!seccio);
+  }, [seccio]);
 
   // Load HTML content when blocId, temaId, or seccio changes
   useEffect(() => {
@@ -70,14 +77,30 @@ export default function BlocPage() {
     <section className="bloc-page">
       {temaId && tema && (
         <div className="bloc-seccions">
-          <ul className="seccions-list">
+          {seccio && (
+            <button
+              className="tabs-toggle"
+              onClick={() => setTabsVisible((v) => !v)}
+              aria-expanded={tabsVisible}
+              aria-controls="seccions-tabs"
+            >
+              {tabsVisible ? 'Amagar seccions' : 'Mostrar seccions'}
+              <span className={`toggle-chevron ${tabsVisible ? 'open' : ''}`} aria-hidden="true">&#9662;</span>
+            </button>
+          )}
+          <ul
+            id="seccions-tabs"
+            className={`seccions-list ${!tabsVisible && seccio ? 'seccions-hidden' : ''}`}
+            role="tablist"
+          >
             {SECCIONS.map((sec) => (
-              <li key={sec.id}>
+              <li key={sec.id} role="presentation">
                 <NavLink
                   to={`/bloc/${blocId}/${temaId}/${sec.id}`}
                   className={({ isActive }) =>
                     `seccio-link ${isActive ? 'active' : ''}`
                   }
+                  role="tab"
                 >
                   {sec.label}
                 </NavLink>
@@ -100,10 +123,6 @@ export default function BlocPage() {
           />
         ) : (
           <div className="preview-card">
-            <h3>
-              {bloc.title} · {tema?.label} · {seccioActual?.label}
-            </h3>
-
             {loading && <p className="loading">Carregant...</p>}
             {error && (
               <p className="error">

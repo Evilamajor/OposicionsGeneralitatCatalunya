@@ -22,3 +22,18 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# ──────────────────────────────────────────────
+# Private / local-only content
+# ──────────────────────────────────────────────
+# Folders for personal study resources (links, notes, credentials)
+# that must NEVER be committed to the public repository.
+private/
+_private/
+
+# Environment and secret files
+.env
+.env.*
+!.env.example
+*.secret
+*.local.html

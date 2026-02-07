@@ -32,11 +32,61 @@
   height: calc(100vh - 120px);
 }
 
+/* Toggle button for collapsible tabs */
+.tabs-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 4px 10px;
+  margin-bottom: 0.5rem;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.tabs-toggle:hover {
+  color: #1f2933;
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.tabs-toggle:focus-visible {
+  outline: 2px solid #0052cc;
+  outline-offset: 2px;
+}
+
+.toggle-chevron {
+  display: inline-block;
+  font-size: 10px;
+  transition: transform 200ms ease;
+  transform: rotate(-90deg);
+}
+
+.toggle-chevron.open {
+  transform: rotate(0deg);
+}
+
 /* Llista de seccions com pestanyes */
 .seccions-list {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  transition: opacity 200ms ease, max-height 200ms ease;
+  max-height: 200px;
+  overflow: hidden;
+  opacity: 1;
+}
+
+.seccions-list.seccions-hidden {
+  max-height: 0;
+  opacity: 0;
+  margin: 0;
+  pointer-events: none;
 }
 
 .seccio-link {

@@ -37,3 +37,20 @@ npm run preview  # preview build
 	- When adding a new topic, add its `{ id, label, filename }` entry to `oposicions/src/data.js` and place the corresponding HTML file into `oposicions/public/`.
 	- Start the dev server and open `/` to verify the sidebar route and topic preview.
 	- Keep UI changes minimal and prefer existing patterns (`.jsx` functional components and global CSS files).
+
+---
+
+## Private content
+
+This is a **public repository**. Some study resources (personal ChatGPT
+conversation links, restricted PDFs, private notes) are intentionally kept
+out of version control.
+
+- Public HTML files may contain placeholder text such as
+  *"Encara no s'han afegit converses."* where private links would go.
+- A local `private/` folder (git-ignored) is available for personal resources.
+  See `private/README.md` for details.
+- Environment files (`.env`) are also excluded. Use `.env.example` as a
+  template if needed.
+
+**Never commit passwords, tokens, private URLs, or account-restricted links.**
