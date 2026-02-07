@@ -70,3 +70,25 @@ export const blocks = [
     ],
   },
 ];
+
+// Annexos – continguts complementaris (separats dels blocs oficials)
+export const annexos = [
+  {
+    id: 'annex-1',
+    label: 'Annex I · Català',
+    topics: [
+      { id: 'catala-general', label: 'Català general' },
+      { id: 'catala-juridic', label: 'Català jurídic' },
+    ],
+  },
+  {
+    id: 'annex-2',
+    label: 'Annex II · Cultura general',
+    topics: [
+      { id: 'historia', label: 'Història catalana' },
+      { id: 'art', label: 'Art català' },
+      { id: 'literatura', label: 'Literatura catalana' },
+      { id: 'filosofia', label: 'Filosofia i pensament' },
+    ],
+  },
+];

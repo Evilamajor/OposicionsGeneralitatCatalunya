@@ -1,11 +1,13 @@
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { blocks as allBlocks } from '../data';
+import { blocks as allBlocks, annexos } from '../data';
 
 export default function Sidebar() {
   const [expandedBlocId, setExpandedBlocId] = useState(null);
+  const [expandedAnnexId, setExpandedAnnexId] = useState(null);
   const navigate = useNavigate();
   const { blocId: activeBlockId } = useParams();
+  const location = useLocation();
 
   // Auto-expand the current bloc when navigating
   useEffect(() => {
@@ -13,6 +15,14 @@ export default function Sidebar() {
       setExpandedBlocId(activeBlockId);
     }
   }, [activeBlockId]);
+
+  // Auto-expand the current annex when navigating
+  useEffect(() => {
+    const match = location.pathname.match(/^\/annexos\/([^/]+)/);
+    if (match) {
+      setExpandedAnnexId(match[1]);
+    }
+  }, [location.pathname]);
 
   return (
     <aside
@@ -101,6 +111,91 @@ export default function Sidebar() {
                           <span className="topic-label">
                             {t.label}
                           </span>
+                        </NavLink>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {/* Divider */}
+      <div className="sidebar-divider" />
+
+      {/* ANNEXOS Section */}
+      <div className="sidebar-header">
+        <h3 className="sidebar-title">Annexos</h3>
+      </div>
+
+      <nav>
+        <ul>
+          {annexos.map((annex) => (
+            <li key={annex.id} className="sidebar-block">
+              <div className="bloc-header">
+                <button
+                  className={`bloc-toggle ${
+                    expandedAnnexId === annex.id ? 'expanded' : ''
+                  }`}
+                  onClick={() =>
+                    setExpandedAnnexId(
+                      expandedAnnexId === annex.id ? null : annex.id
+                    )
+                  }
+                  aria-expanded={expandedAnnexId === annex.id}
+                  aria-label={`${
+                    expandedAnnexId === annex.id ? 'Collapse' : 'Expand'
+                  } ${annex.label}`}
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="chevron"
+                  >
+                    <path
+                      d="M9 6l6 6-6 6"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+
+                <NavLink
+                  to={`/annexos/${annex.id}`}
+                  className={({ isActive }) =>
+                    isActive ? 'active' : ''
+                  }
+                  onClick={() => {
+                    navigate(`/annexos/${annex.id}`);
+                    setExpandedAnnexId(annex.id);
+                  }}
+                >
+                  <span className="bloc-title">{annex.label}</span>
+                </NavLink>
+              </div>
+
+              {expandedAnnexId === annex.id &&
+                annex.topics &&
+                annex.topics.length > 0 && (
+                  <ul className="topic-list">
+                    {annex.topics.map((t) => (
+                      <li key={t.id}>
+                        <NavLink
+                          to={`/annexos/${annex.id}/${t.id}`}
+                          onClick={() =>
+                            navigate(`/annexos/${annex.id}/${t.id}`)
+                          }
+                        >
+                          <span className="topic-dot" aria-hidden>
+                            •
+                          </span>
+                          <span className="topic-label">{t.label}</span>
                         </NavLink>
                       </li>
                     ))}

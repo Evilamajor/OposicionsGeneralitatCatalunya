@@ -17,12 +17,23 @@
 ========================= */
 .app-header {
   grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header-sidebar-area {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+}
+
+.header-content-area {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 14px 16px;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
 }
 
 .app-title {
@@ -31,6 +42,39 @@
   letter-spacing: 0.08em;
   margin: 0;
   color: #1f2933;
+}
+
+/* =========================
+   Inici link (header)
+========================= */
+.inici-link {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 150ms ease;
+}
+
+.inici-link:hover {
+  color: #1f2933;
+}
+
+/* =========================
+   Welcome panel (home image)
+========================= */
+.welcome-panel {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 24px 24px;
+}
+
+.welcome-image {
+  max-width: 700px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
 
 /* =========================
@@ -235,12 +279,29 @@
 }
 
 /* =========================
+   Sidebar divider (BLOCS / ANNEXOS)
+========================= */
+.sidebar-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 16px 0;
+}
+
+/* =========================
    Responsive
 ========================= */
 @media (max-width: 720px) {
   .app-layout {
     grid-template-columns: 1fr;
     grid-template-rows: 48px auto 1fr;
+  }
+
+  .app-header {
+    grid-template-columns: 1fr;
+  }
+
+  .header-sidebar-area {
+    display: none;
   }
 
   .sidebar {

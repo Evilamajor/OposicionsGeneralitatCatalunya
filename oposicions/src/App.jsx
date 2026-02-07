@@ -1,16 +1,22 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 
 import './App.css';
 
 import Sidebar from './components/Sidebar';
 import BlocPage from './components/BlocPage';
+import AnnexPage from './components/AnnexPage';
 import WelcomePanel from './components/WelcomePanel';
 
 export default function App() {
   return (
     <div className="app-layout">
       <header className="app-header">
-        <h1 className="app-title">ADMINISTRATIU GENERALITAT DE CATALUNYA</h1>
+        <div className="header-sidebar-area">
+          <Link to="/" className="inici-link">Inici</Link>
+        </div>
+        <div className="header-content-area">
+          <h1 className="app-title">ADMINISTRATIU GENERALITAT DE CATALUNYA</h1>
+        </div>
       </header>
 
       <Sidebar />
@@ -21,6 +27,8 @@ export default function App() {
           <Route path="/bloc/:blocId/:temaId/:seccio" element={<BlocPage />} />
           <Route path="/bloc/:blocId/:temaId" element={<BlocPage />} />
           <Route path="/bloc/:blocId" element={<BlocPage />} />
+          <Route path="/annexos/:annexId/:topicId" element={<AnnexPage />} />
+          <Route path="/annexos/:annexId" element={<AnnexPage />} />
         </Routes>
       </main>
     </div>
