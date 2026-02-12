@@ -71,4 +71,12 @@ export const blocks = [
   },
 ];
 
+// Annexos – materials complementaris (no formen part del temari oficial)
+// TODO: add topics/sub-items to each annex when content is ready
+export const annexos = [
+  { id: 'annex-a', title: 'Bloc A · Català' },
+  { id: 'annex-b', title: 'Bloc B · Anglès' },
+  { id: 'annex-c', title: 'Bloc C · SQL' },
+  { id: 'annex-d', title: 'Bloc D · Data Science' },
+];
 

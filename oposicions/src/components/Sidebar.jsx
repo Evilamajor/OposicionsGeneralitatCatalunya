@@ -1,9 +1,10 @@
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { blocks as allBlocks } from '../data';
+import { blocks as allBlocks, annexos } from '../data';
 
 export default function Sidebar() {
   const [expandedBlocId, setExpandedBlocId] = useState(null);
+  const [annexosOpen, setAnnexosOpen] = useState(false);
   const navigate = useNavigate();
   const { blocId: activeBlockId } = useParams();
 
@@ -110,6 +111,58 @@ export default function Sidebar() {
           ))}
         </ul>
       </nav>
+
+      {/* Divider between BLOCS and ANNEXOS */}
+      <div className="sidebar-divider" />
+
+      {/* ANNEXOS section */}
+      <div className="sidebar-header">
+        <button
+          className={`bloc-toggle ${annexosOpen ? 'expanded' : ''}`}
+          onClick={() => setAnnexosOpen(!annexosOpen)}
+          aria-expanded={annexosOpen}
+          aria-label={`${annexosOpen ? 'Collapse' : 'Expand'} Annexos`}
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="chevron"
+          >
+            <path
+              d="M9 6l6 6-6 6"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+        <h3 className="sidebar-title" style={{ marginBottom: 0, cursor: 'pointer' }} onClick={() => setAnnexosOpen(!annexosOpen)}>Annexos</h3>
+      </div>
+
+      {annexosOpen && (
+        <nav>
+          <ul>
+            {annexos.map((annex) => (
+              <li key={annex.id} className="sidebar-block">
+                <div className="bloc-header">
+                  {/* TODO: add expand/collapse when annex topics are defined */}
+                  <NavLink
+                    to={`/annex/${annex.id}`}
+                    className={({ isActive }) => (isActive ? 'active' : '')}
+                  >
+                    <span className="bloc-title">{annex.title}</span>
+                  </NavLink>
+                </div>
+                {/* TODO: render annex topics here when content is available */}
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
     </aside>
   );
 }

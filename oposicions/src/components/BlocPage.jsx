@@ -2,9 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { blocks } from '../data';
 import NotesEditor from './NotesEditor';
+import BlocDiagram from './BlocDiagram';
+import BlocPresentationViewer from './BlocPresentationViewer';
 // a src/components/BlocPage.jsx
 import './BlocPage.css';
-import BlocDiagram from './BlocDiagram';
+
+/**
+ * Mapping of bloc IDs to their presentation PDF URLs
+ * Supports Blocs I-VII (bloc-1 through bloc-7)
+ * 
+ * NOTE: Some files have typos in original upload:
+ * - bloc-3: "presetaciobloc3.pdf" (should be "presentacio" but file exists with typo)
+ * - bloc-5: "presetaciobloc5.pdf" (should be "presentacio" but file exists with typo)
+ */
+const BLOC_PDF_MAP = {
+  'bloc-1': '/content/bloc-1/presentaciobloc1.pdf',
+  'bloc-2': '/content/bloc-2/presentaciobloc2.pdf',
+  'bloc-3': '/content/bloc-3/presetaciobloc3.pdf',  // ⚠️ Typo in filename: "presetacio" not "presentacio"
+  'bloc-4': '/content/bloc-4/presentaciobloc4.pdf',
+  'bloc-5': '/content/bloc-5/presetaciobloc5.pdf',  // ⚠️ Typo in filename: "presetacio" not "presentacio"
+  'bloc-6': '/content/bloc-6/presentaciobloc6.pdf',
+  'bloc-7': '/content/bloc-7/presentaciobloc7.pdf',
+};
 
 
 
@@ -29,6 +48,21 @@ export default function BlocPage() {
 
   const bloc = blocks.find((b) => b.id === blocId);
   const tema = bloc?.topics?.find((t) => t.id === temaId);
+
+  // Debug logging for bloc selection
+  useEffect(() => {
+    console.group('🎯 BlocPage Debug Info');
+    console.log('📍 Route param blocId:', blocId);
+    console.log('📋 Bloc found:', bloc?.title || 'NOT FOUND');
+    console.log('📊 Mapped PDF URL:', BLOC_PDF_MAP[blocId] || 'UNDEFINED - Check mapping!');
+    console.table({
+      'Requested blocId': blocId,
+      'Bloc exists': !!bloc,
+      'PDF mapped': !!BLOC_PDF_MAP[blocId],
+      'Has temaId': !!temaId,
+    });
+    console.groupEnd();
+  }, [blocId, bloc]);
 
   if (!bloc) {
     return <p>Bloc no trobat.</p>;
@@ -113,9 +147,39 @@ export default function BlocPage() {
       {/* 🔹 Content area */}
       <div className="bloc-contingut">
         {!temaId ? (
-          <div className="bloc-diagram-container">
-            <BlocDiagram blocId={blocId} blocTitle={bloc.title} />
-          </div>
+          (() => {
+            const pdfUrl = BLOC_PDF_MAP[blocId];
+            if (!pdfUrl) {
+              console.error(`❌ PDF not mapped for blocId: ${blocId}`);
+              return (
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: 'calc(100vh - 120px)',
+                  color: '#ff6b6b',
+                  textAlign: 'center',
+                  flexDirection: 'column',
+                  gap: '1rem',
+                }}>
+                  <p style={{ fontSize: '16px', fontWeight: 'bold' }}>
+                    ⚠️ PDF not mapped for this bloc
+                  </p>
+                  <p style={{ fontSize: '12px', color: '#a0a0a0' }}>
+                    blocId: <code style={{ background: '#2a2a2a', padding: '4px 8px', borderRadius: '4px' }}>{blocId}</code>
+                  </p>
+                </div>
+              );
+            }
+            // Add cache-busting version param
+            const pdfUrlWithVersion = `${pdfUrl}?v=1`;
+            return (
+              <BlocPresentationViewer
+                pdfUrl={pdfUrlWithVersion}
+                title={`Presentació · ${bloc.title}`}
+              />
+            );
+          })()
         ) : !seccio ? (
           <NotesEditor 
             storageKey={`notes_bloc_${blocId}_tema_${temaId}`}

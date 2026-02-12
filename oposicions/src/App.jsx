@@ -5,6 +5,7 @@ import './App.css';
 import Sidebar from './components/Sidebar';
 import BlocPage from './components/BlocPage';
 import WelcomePanel from './components/WelcomePanel';
+import AnnexPage from './components/AnnexPage';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/bloc/:blocId/:temaId/:seccio" element={<BlocPage />} />
           <Route path="/bloc/:blocId/:temaId" element={<BlocPage />} />
           <Route path="/bloc/:blocId" element={<BlocPage />} />
+          <Route path="/annex/:annexId" element={<AnnexPage />} />
         </Routes>
       </main>
     </div>
