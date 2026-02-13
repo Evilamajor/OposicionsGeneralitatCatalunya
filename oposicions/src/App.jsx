@@ -5,6 +5,7 @@ import './App.css';
 import Sidebar from './components/Sidebar';
 
 import WelcomePanel from './components/WelcomePanel';
+import BlocPage from './components/BlocPage';
 import AnnexPage from './components/AnnexPage';
 
 export default function App() {
