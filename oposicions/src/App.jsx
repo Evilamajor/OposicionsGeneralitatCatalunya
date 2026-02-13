@@ -3,7 +3,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 
 import Sidebar from './components/Sidebar';
-import BlocPage from './components/BlocPage';
+
 import WelcomePanel from './components/WelcomePanel';
 import AnnexPage from './components/AnnexPage';
 
@@ -25,7 +25,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<WelcomePanel />} />
           <Route path="/bloc/:blocId/:temaId/:seccio" element={<BlocPage />} />
-          <Route path="/bloc/:blocId/:temaId" element={<BlocPage />} />
+           
           <Route path="/bloc/:blocId" element={<BlocPage />} />
           <Route path="/annex/:annexId" element={<AnnexPage />} />
         </Routes>
