@@ -38,6 +38,7 @@ export default function BlocPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [sectionsVisible, setSectionsVisible] = useState(true);
+  const [activeView, setActiveView] = useState('presentacio'); // 'presentacio' or 'esquema'
 
   // Find current bloc
   const bloc = blocks.find((b) => b.id === blocId);
@@ -97,31 +98,41 @@ export default function BlocPage() {
     
     return (
       <div className="bloc-page">
-        {/* Bloc header */}
-        <div className="bloc-seccions">
-          <h2>{bloc.title}</h2>
-          <p style={{ color: '#6b7280', fontSize: '14px', margin: '0.5rem 0 0 0' }}>
-            Selecciona un tema de la barra lateral per veure el contingut.
-          </p>
-        </div>
-
-        {/* Presentation viewer (if PDF exists) */}
+        {/* View toggle buttons */}
         {pdfUrl && (
-          <div style={{ marginTop: '1rem' }}>
-            <BlocPresentationViewer 
-              pdfUrl={pdfUrl} 
-              title={`Presentació ${bloc.title}`}
-            />
+          <div className="view-toggle-container">
+            <button
+              className={`view-toggle-btn ${activeView === 'presentacio' ? 'active' : ''}`}
+              onClick={() => setActiveView('presentacio')}
+            >
+              Presentació
+            </button>
+            <button
+              className={`view-toggle-btn ${activeView === 'esquema' ? 'active' : ''}`}
+              onClick={() => setActiveView('esquema')}
+            >
+              Esquema
+            </button>
           </div>
         )}
 
-        {/* Bloc diagram */}
-        <div className="bloc-diagram-container">
-          <BlocDiagram blocId={blocId} blocTitle={bloc.title} />
-        </div>
+        {/* Presentation viewer (if PDF exists and active) */}
+        {pdfUrl && activeView === 'presentacio' && (
+          <BlocPresentationViewer 
+            pdfUrl={pdfUrl} 
+            title={`Presentació ${bloc.title}`}
+          />
+        )}
+
+        {/* Bloc diagram (when active or no PDF) */}
+        {(activeView === 'esquema' || !pdfUrl) && (
+          <div className="bloc-diagram-container">
+            <BlocDiagram blocId={blocId} blocTitle={bloc.title} />
+          </div>
+        )}
 
         {/* Notes editor */}
-        <div style={{ marginTop: '1rem' }}>
+        <div className="notes-section">
           <NotesEditor 
             storageKey={`notes-${blocId}`}
             title={`Notes del ${bloc.title}`}
@@ -213,7 +224,7 @@ export default function BlocPage() {
 
       {/* Notes editor for this tema */}
       {temaId && (
-        <div style={{ marginTop: '1rem' }}>
+        <div className="notes-section">
           <NotesEditor 
             storageKey={`notes-${blocId}-${temaId}`}
             title={`Notes de ${tema.label}`}
