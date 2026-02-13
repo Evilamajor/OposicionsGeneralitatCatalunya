@@ -1,14 +1,14 @@
 /* =========================
-   BlocPage – layout vertical
+   BlocPage – layout vertical (full width)
 ========================= */
 .bloc-page {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   min-height: 100vh;
-  max-width: 1100px;
-  margin: 0 auto;
+  width: 100%;
   padding: 24px;
+  box-sizing: border-box;
 }
 
 /* =========================
@@ -170,7 +170,7 @@
 
 /* =========================
    Contingut del bloc (a sota)
-   CANONICAL LAYOUT CONTAINER
+   CANONICAL LAYOUT CONTAINER (full width)
 ========================= */
 .bloc-contingut {
   background: #ffffff;
@@ -179,8 +179,7 @@
   flex: 1;
   overflow-y: auto;
   min-height: 50vh;
-  max-width: 900px;
-  margin: 0 auto;
+  width: 100%;
   padding: 24px;
   box-sizing: border-box;
 }
@@ -213,21 +212,25 @@
   text-align: center;
 }
 
-/* HTML content area */
+/* HTML content area – canonical full-width wrapper for injected HTML */
 .html-content {
-  color: #4b5563 !important;
+  color: #4b5563;
   line-height: 1.7;
   font-size: 14px;
   width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
   display: block;
   overflow: visible;
   box-sizing: border-box;
 }
 
-/* Override inline styles from HTML files */
-.html-content body {
-  margin: 0 !important;
-  padding: 0 !important;
+/* Ensure no child element re-introduces centering */
+.html-content > * {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .html-content * {

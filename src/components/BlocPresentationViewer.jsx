@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
+import pdfjsWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 import "./BlocPresentationViewer.css";
 
-/* WORKER CORRECTE PER VITE */
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.mjs",
-  import.meta.url
-).toString();
+/* WORKER CONFIGURATION FOR VITE */
+pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 export default function BlocPresentationViewer({
   pdfUrl,
