@@ -7,6 +7,7 @@ import Sidebar from './components/Sidebar';
 import WelcomePanel from './components/WelcomePanel';
 import BlocPage from './components/BlocPage';
 import AnnexPage from './components/AnnexPage';
+import SchemaViewer from './components/SchemaViewer';
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<WelcomePanel />} />
+          <Route path="/bloc/:blocId/:temaId/esquemes/:schemaName" element={<SchemaViewer />} />
           <Route path="/bloc/:blocId/:temaId/:seccio" element={<BlocPage />} />
            
           <Route path="/bloc/:blocId" element={<BlocPage />} />

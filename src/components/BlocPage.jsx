@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams, NavLink } from 'react-router-dom';
 import { blocks } from '../data';
-import BlocDiagram from './BlocDiagram';
 import BlocPresentationViewer from './BlocPresentationViewer';
 import NotesEditor from './NotesEditor';
+import SchemaList from './SchemaList';
+import AutoavaluacioSection from './AutoavaluacioSection';
+import TopicDataProjects from './TopicDataProjects';
 import './BlocPage.css';
 
 /**
@@ -24,12 +26,12 @@ const PRESENTATION_MAP = {
  */
 const SECTIONS = [
   { id: 'legislacio', label: 'Legislació' },
-  { id: 'contingut', label: 'Contingut' },
-  { id: 'casos', label: 'Casos' },
-  { id: 'chatgpt', label: 'ChatGPT' },
-  { id: 'flashcards', label: 'Flashcards' },
+  { id: 'esquemes', label: 'Esquemes' },
+  { id: 'powerpoints', label: 'PowerPoints' },
+  { id: 'pdfs', label: 'PDFs' },
+  { id: 'projectes-dades', label: 'Projectes de dades' },
+  { id: 'autoavaluacio', label: 'Autoavaluació' },
   { id: 'materials', label: 'Materials' },
-  { id: 'powerpoint', label: 'PowerPoint' },
 ];
 
 export default function BlocPage() {
@@ -38,7 +40,6 @@ export default function BlocPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [sectionsVisible, setSectionsVisible] = useState(true);
-  const [activeView, setActiveView] = useState('presentacio'); // 'presentacio' or 'esquema'
 
   // Find current bloc
   const bloc = blocks.find((b) => b.id === blocId);
@@ -49,6 +50,38 @@ export default function BlocPage() {
   // Load HTML content when tema and section are selected
   useEffect(() => {
     if (!blocId || !temaId || !seccio) {
+      setHtmlContent('');
+      setLoading(false);
+      setError(null);
+      return;
+    }
+
+    // Handle esquemes section separately (uses SchemaList component)
+    if (seccio === 'esquemes') {
+      setHtmlContent('');
+      setLoading(false);
+      setError(null);
+      return;
+    }
+
+    // Show placeholder for PDFs section
+    if (seccio === 'pdfs') {
+      setHtmlContent('<div style="padding: 2rem; text-align: center; color: #666;"><p>Contingut en preparació</p></div>');
+      setLoading(false);
+      setError(null);
+      return;
+    }
+
+    // Handle autoavaluacio section separately (uses AutoavaluacioSection component)
+    if (seccio === 'autoavaluacio') {
+      setHtmlContent('');
+      setLoading(false);
+      setError(null);
+      return;
+    }
+
+    // Handle projectes-dades section separately (uses TopicDataProjects component)
+    if (seccio === 'projectes-dades') {
       setHtmlContent('');
       setLoading(false);
       setError(null);
@@ -98,36 +131,17 @@ export default function BlocPage() {
     
     return (
       <div className="bloc-page">
-        {/* View toggle buttons */}
-        {pdfUrl && (
-          <div className="view-toggle-container">
-            <button
-              className={`view-toggle-btn ${activeView === 'presentacio' ? 'active' : ''}`}
-              onClick={() => setActiveView('presentacio')}
-            >
-              Presentació
-            </button>
-            <button
-              className={`view-toggle-btn ${activeView === 'esquema' ? 'active' : ''}`}
-              onClick={() => setActiveView('esquema')}
-            >
-              Esquema
-            </button>
-          </div>
-        )}
-
-        {/* Presentation viewer (if PDF exists and active) */}
-        {pdfUrl && activeView === 'presentacio' && (
+        {/* Presentation viewer */}
+        {pdfUrl ? (
           <BlocPresentationViewer 
             pdfUrl={pdfUrl} 
             title={`Presentació ${bloc.title}`}
           />
-        )}
-
-        {/* Bloc diagram (when active or no PDF) */}
-        {(activeView === 'esquema' || !pdfUrl) && (
-          <div className="bloc-diagram-container">
-            <BlocDiagram blocId={blocId} blocTitle={bloc.title} />
+        ) : (
+          <div className="bloc-contingut">
+            <div className="preview-empty">
+              <p>No hi ha presentació disponible per aquest bloc.</p>
+            </div>
           </div>
         )}
 
@@ -219,6 +233,18 @@ export default function BlocPage() {
             className="html-content"
             dangerouslySetInnerHTML={{ __html: htmlContent }}
           />
+        )}
+
+        {!loading && !error && !htmlContent && seccio === 'esquemes' && (
+          <SchemaList blocId={blocId} temaId={temaId} />
+        )}
+
+        {!loading && !error && !htmlContent && seccio === 'autoavaluacio' && (
+          <AutoavaluacioSection blocId={blocId} temaId={temaId} />
+        )}
+
+        {!loading && !error && !htmlContent && seccio === 'projectes-dades' && (
+          <TopicDataProjects blocId={blocId} temaId={temaId} />
         )}
       </div>
 

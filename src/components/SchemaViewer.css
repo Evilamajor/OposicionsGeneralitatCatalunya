@@ -1,0 +1,147 @@
+.schema-viewer-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #f9f9f9;
+}
+
+/* Header */
+.schema-viewer-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: white;
+  border-bottom: 2px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.back-button {
+  padding: 0.5rem 1rem;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  background: #e8e8e8;
+  border-color: #bbb;
+}
+
+.schema-viewer-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+/* Content */
+.schema-viewer-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow: auto;
+}
+
+.schema-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.schema-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: white;
+  object-fit: contain;
+}
+
+/* Error */
+.schema-error {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.schema-error h3 {
+  color: #d32f2f;
+  margin-bottom: 1rem;
+}
+
+.schema-error p {
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.error-path {
+  font-family: monospace;
+  font-size: 0.9rem;
+  background: #f5f5f5;
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+  word-break: break-all;
+}
+
+.error-hint {
+  font-size: 0.85rem;
+  color: #888;
+  font-style: italic;
+}
+
+.error-hint code {
+  background: #fff3cd;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+/* Debug info */
+.schema-debug {
+  padding: 0.5rem 2rem;
+  background: #e3f2fd;
+  border-top: 1px solid #90caf9;
+  text-align: center;
+}
+
+.schema-debug small {
+  color: #1976d2;
+  font-family: monospace;
+  font-size: 0.85rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .schema-viewer-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .schema-viewer-title {
+    font-size: 1.2rem;
+  }
+
+  .schema-viewer-content {
+    padding: 1rem;
+  }
+
+  .schema-error {
+    padding: 2rem 1rem;
+  }
+
+  .schema-debug {
+    padding: 0.5rem 1rem;
+  }
+}
