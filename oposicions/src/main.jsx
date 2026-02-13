@@ -6,10 +6,9 @@ import { pdfjs } from 'react-pdf';
 import App from './App.jsx';
 import './index.css';
 
-pdfjs.GlobalWorkerOptions.workerSrc = `${new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString()}?v=${pdfjs.version}`;
+const pdfWorkerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url);
+pdfWorkerSrc.searchParams.set('v', pdfjs.version);
+pdfjs.GlobalWorkerOptions.workerSrc = pdfWorkerSrc.href;
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
