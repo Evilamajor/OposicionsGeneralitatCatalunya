@@ -105,11 +105,6 @@ export default function BlocPage() {
           </p>
         </div>
 
-        {/* Bloc diagram */}
-        <div className="bloc-diagram-container">
-          <BlocDiagram blocId={blocId} blocTitle={bloc.title} />
-        </div>
-
         {/* Presentation viewer (if PDF exists) */}
         {pdfUrl && (
           <div style={{ marginTop: '1rem' }}>
@@ -119,6 +114,11 @@ export default function BlocPage() {
             />
           </div>
         )}
+
+        {/* Bloc diagram */}
+        <div className="bloc-diagram-container">
+          <BlocDiagram blocId={blocId} blocTitle={bloc.title} />
+        </div>
 
         {/* Notes editor */}
         <div style={{ marginTop: '1rem' }}>
