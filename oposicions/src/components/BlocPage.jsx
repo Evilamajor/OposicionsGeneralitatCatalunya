@@ -9,6 +9,22 @@ import TopicDataProjects from './TopicDataProjects';
 import './BlocPage.css';
 
 /**
+ * Sanitize HTML loaded from content files.
+ * These files are full HTML documents (<!DOCTYPE>, <html>, <head>, <body>).
+ * When injected via dangerouslySetInnerHTML, their <style> tags apply globally
+ * and the body { max-width: 900px; margin: 0 auto } rule constrains the page.
+ * This function extracts only the <body> inner content, stripping all
+ * document-level wrappers and <style> tags to prevent layout interference.
+ */
+function sanitizeHtmlContent(rawHtml) {
+  // Extract content between <body> and </body> tags
+  const bodyMatch = rawHtml.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+  const content = bodyMatch ? bodyMatch[1] : rawHtml;
+  // Remove any remaining <style> tags that might appear in the body
+  return content.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');
+}
+
+/**
  * Mapping of bloc IDs to their presentation PDF files
  */
 const PRESENTATION_MAP = {
@@ -101,7 +117,7 @@ export default function BlocPage() {
         return res.text();
       })
       .then((html) => {
-        setHtmlContent(html);
+        setHtmlContent(sanitizeHtmlContent(html));
         setLoading(false);
       })
       .catch((err) => {
