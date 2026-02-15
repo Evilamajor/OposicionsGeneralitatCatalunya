@@ -1,9 +1,10 @@
 import { useParams, Link } from 'react-router-dom';
 import { annexos } from '../data';
+import ComingSoon from './ComingSoon';
 
 /**
- * Placeholder page for Annexos.
- * TODO: implement full content pages when annex materials are ready.
+ * AnnexPage — renders annex content or a standardized placeholder.
+ * When real content is added, replace <ComingSoon /> with the actual viewer.
  */
 export default function AnnexPage() {
   const { annexId } = useParams();
@@ -20,16 +21,14 @@ export default function AnnexPage() {
   }
 
   return (
-    <div style={{ padding: '2rem', maxWidth: 640 }}>
+    <div style={{ padding: '2rem', maxWidth: 720 }}>
       <h2>{annex.title}</h2>
-      <p style={{ color: '#6b7280', marginTop: '1rem' }}>
-        🚧 Contingut en preparació — <em>coming soon</em>.
-      </p>
-      <p style={{ color: '#9ca3af', fontSize: 13, marginTop: '0.5rem' }}>
-        Aquesta secció d'annexos conté materials complementaris que no formen part
-        del temari oficial però són útils per a la preparació.
-      </p>
-      {/* TODO: render annex topics / content when available */}
+      {annex.description && (
+        <p style={{ color: '#6b7280', fontSize: '0.92rem', marginTop: '0.25rem' }}>
+          {annex.description}
+        </p>
+      )}
+      <ComingSoon sectionName={annex.title} />
     </div>
   );
 }

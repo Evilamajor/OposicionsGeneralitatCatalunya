@@ -1,3 +1,4 @@
+import ComingSoon from './ComingSoon';
 import './AutoavaluacioSection.css';
 
 /**
@@ -52,15 +53,7 @@ export default function AutoavaluacioSection({ blocId, temaId }) {
       </div>
 
       {!hasAvailableResources && (
-        <div className="autoavaluacio-placeholder">
-          <div className="placeholder-icon">📚</div>
-          <p className="placeholder-text">
-            Contingut d'autoavaluació en preparació.
-          </p>
-          <p className="placeholder-subtext">
-            Aviat podràs accedir a flashcards, preguntes i qüestionaris.
-          </p>
-        </div>
+        <ComingSoon sectionName="Autoavaluació" hint="Aviat podràs accedir a flashcards, preguntes i qüestionaris." />
       )}
 
       <div className="autoavaluacio-resources">

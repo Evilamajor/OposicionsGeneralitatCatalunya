@@ -10,6 +10,12 @@
   background: #f6f7f9;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: grid-template-columns 300ms ease;
+}
+
+/* Collapsed state — sidebar column shrinks to 0 */
+.app-layout.sidebar-collapsed {
+  grid-template-columns: 0px 1fr;
 }
 
 /* =========================
@@ -21,12 +27,25 @@
   grid-template-columns: 260px 1fr;
   background: #fafbfc;
   border-bottom: 1px solid #e5e7eb;
+  transition: grid-template-columns 300ms ease;
+}
+
+.sidebar-collapsed .app-header {
+  grid-template-columns: 0px 1fr;
 }
 
 .header-sidebar-area {
   display: flex;
   align-items: center;
   padding: 14px 16px;
+  overflow: hidden;
+  transition: padding 300ms ease, opacity 200ms ease;
+}
+
+.sidebar-collapsed .header-sidebar-area {
+  padding: 14px 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .header-content-area {
@@ -87,6 +106,65 @@
   border-right: 1px solid #e5e7eb;
   background: #fafbfc;
   overflow-y: auto;
+  overflow-x: hidden;
+  width: 260px;
+  min-width: 0;
+  transition: width 300ms ease, padding 300ms ease, opacity 200ms ease, border-color 200ms ease;
+}
+
+.sidebar-collapsed .sidebar {
+  width: 0;
+  padding: 12px 0;
+  opacity: 0;
+  pointer-events: none;
+  border-color: transparent;
+}
+
+/* =========================
+   Floating sidebar toggle button
+========================= */
+.sidebar-toggle-btn {
+  position: fixed;
+  left: 260px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  width: 28px;
+  height: 48px;
+  border: 1px solid #e2e8f0;
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  background: #fff;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 0 8px rgba(0,0,0,.06);
+  transition: left 300ms ease, background 150ms ease, color 150ms ease;
+}
+
+.sidebar-toggle-btn:hover {
+  background: #eef2ff;
+  color: #3b6ea5;
+}
+
+.sidebar-toggle-btn:focus-visible {
+  outline: 2px solid #3b6ea5;
+  outline-offset: 2px;
+}
+
+/* Chevron rotation when collapsed (points right = "open") */
+.sidebar-toggle-chevron {
+  transition: transform 300ms ease;
+}
+
+.sidebar-collapsed .sidebar-toggle-btn {
+  left: 0;
+}
+
+.sidebar-collapsed .sidebar-toggle-chevron {
+  transform: rotate(180deg);
 }
 
 /* =========================
@@ -283,8 +361,16 @@
 ========================= */
 .sidebar-divider {
   height: 1px;
-  background: #e5e7eb;
-  margin: 16px 0;
+  background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
+  margin: 20px 12px;
+}
+
+/* Annexos section – subtle visual distinction */
+.annexos-title {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
 }
 
 /* =========================
@@ -296,7 +382,15 @@
     grid-template-rows: 48px auto 1fr;
   }
 
+  .app-layout.sidebar-collapsed {
+    grid-template-columns: 1fr;
+  }
+
   .app-header {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar-collapsed .app-header {
     grid-template-columns: 1fr;
   }
 
@@ -309,6 +403,26 @@
     order: 2;
     border-right: none;
     border-bottom: 1px solid #e5e7eb;
+    width: 100%;
+  }
+
+  .sidebar-collapsed .sidebar {
+    width: 100%;
+    height: 0;
+    padding: 0;
+    border-bottom: none;
+  }
+
+  .sidebar-toggle-btn {
+    left: 0;
+    top: auto;
+    bottom: 16px;
+    transform: none;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .sidebar-collapsed .sidebar-toggle-btn {
+    left: 0;
   }
 
   .main-content {

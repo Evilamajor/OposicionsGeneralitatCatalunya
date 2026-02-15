@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams, NavLink } from 'react-router-dom';
 import { blocks } from '../data';
-import BlocPresentationViewer from './BlocPresentationViewer';
 import NotesEditor from './NotesEditor';
 import SchemaList from './SchemaList';
 import AutoavaluacioSection from './AutoavaluacioSection';
 import TopicDataProjects from './TopicDataProjects';
+import SlideDeck from './SlideDeck';
+import ComingSoon from './ComingSoon';
 import './BlocPage.css';
 
 /**
@@ -25,16 +26,18 @@ function sanitizeHtmlContent(rawHtml) {
 }
 
 /**
- * Mapping of bloc IDs to their presentation PDF files
+ * Mapping of bloc IDs to their slide-deck markdown presentations.
+ * Every bloc has a presentacio.md in public/content/<blocId>/.
+ * Legacy PDF files (presentacioblocX.pdf) are no longer used.
  */
-const PRESENTATION_MAP = {
-  'bloc-1': '/content/bloc-1/presentaciobloc1.pdf',
-  'bloc-2': '/content/bloc-2/presentaciobloc2.pdf',
-  'bloc-3': '/content/bloc-3/presetaciobloc3.pdf', // Note: typo in filename
-  'bloc-4': '/content/bloc-4/presentaciobloc4.pdf',
-  'bloc-5': '/content/bloc-5/presentaciobloc5.pdf',
-  'bloc-6': '/content/bloc-6/presentaciobloc6.pdf',
-  'bloc-7': '/content/bloc-7/presentaciobloc7.pdf',
+const SLIDE_MD_MAP = {
+  'bloc-1': '/content/bloc-1/presentacio.md',
+  'bloc-2': '/content/bloc-2/presentacio.md',
+  'bloc-3': '/content/bloc-3/presentacio.md',
+  'bloc-4': '/content/bloc-4/presentacio.md',
+  'bloc-5': '/content/bloc-5/presentacio.md',
+  'bloc-6': '/content/bloc-6/presentacio.md',
+  'bloc-7': '/content/bloc-7/presentacio.md',
 };
 
 /**
@@ -80,9 +83,17 @@ export default function BlocPage() {
       return;
     }
 
-    // Show placeholder for PDFs section
+    // PowerPoints section — rendered via SlideDeck component below
+    if (seccio === 'powerpoints') {
+      setHtmlContent('');
+      setLoading(false);
+      setError(null);
+      return;
+    }
+
+    // PDFs section — no HTML content; rendered via ComingSoon component below
     if (seccio === 'pdfs') {
-      setHtmlContent('<div style="padding: 2rem; text-align: center; color: #666;"><p>Contingut en preparació</p></div>');
+      setHtmlContent('');
       setLoading(false);
       setError(null);
       return;
@@ -141,29 +152,24 @@ export default function BlocPage() {
     );
   }
 
-  // If only bloc is selected (no tema), show bloc overview
+  // If only bloc is selected (no tema), show bloc overview with SlideDeck
   if (!temaId) {
-    const pdfUrl = PRESENTATION_MAP[blocId];
-    
+    const mdUrl = SLIDE_MD_MAP[blocId];
+
     return (
       <div className="bloc-page">
-        {/* Presentation viewer */}
-        {pdfUrl ? (
-          <BlocPresentationViewer 
-            pdfUrl={pdfUrl} 
-            title={`Presentació ${bloc.title}`}
-          />
+        {/* Slide-deck presentation (replaces legacy PDF viewer) */}
+        {mdUrl ? (
+          <SlideDeck mdUrl={mdUrl} title={bloc.title} />
         ) : (
           <div className="bloc-contingut">
-            <div className="preview-empty">
-              <p>No hi ha presentació disponible per aquest bloc.</p>
-            </div>
+            <ComingSoon sectionName={`Presentació ${bloc.title}`} />
           </div>
         )}
 
         {/* Notes editor */}
         <div className="notes-section">
-          <NotesEditor 
+          <NotesEditor
             storageKey={`notes-${blocId}`}
             title={`Notes del ${bloc.title}`}
           />
@@ -228,6 +234,18 @@ export default function BlocPage() {
           </div>
         )}
 
+        {/* Fallback for sections with no dedicated component and no fetched content */}
+        {!loading && !error && !htmlContent && seccio === 'pdfs' && (
+          <ComingSoon sectionName="PDFs" />
+        )}
+
+        {/* Slide deck for powerpoints section */}
+        {!loading && !error && !htmlContent && seccio === 'powerpoints' && (
+          SLIDE_MD_MAP[blocId]
+            ? <SlideDeck mdUrl={SLIDE_MD_MAP[blocId]} title={bloc.title} />
+            : <ComingSoon sectionName="PowerPoints" />
+        )}
+
         {loading && (
           <div className="loading">
             <p>Carregant contingut...</p>
@@ -235,13 +253,10 @@ export default function BlocPage() {
         )}
 
         {error && (
-          <div className="error">
-            <h3>Error carregant contingut</h3>
-            <p>{error}</p>
-            <p style={{ fontSize: '13px', marginTop: '0.5rem' }}>
-              Ruta: <code>/content/{blocId}/{temaId}/{seccio}.html</code>
-            </p>
-          </div>
+          <ComingSoon
+            sectionName={SECTIONS.find(s => s.id === seccio)?.label}
+            hint={`Fitxer esperat: /content/${blocId}/${temaId}/${seccio}.html`}
+          />
         )}
 
         {!loading && !error && htmlContent && (

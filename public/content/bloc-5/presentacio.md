@@ -4,32 +4,207 @@ theme: default
 paginate: true
 ---
 
-| **Àmbit**        | **Norma principal**                 | **Funció**                                |
-| ---------------- | ----------------------------------- | ----------------------------------------- |
-| **Estatal**   | Constitució, LOFCA                  | Principis generals, autonomia financera   |
-|  **Estatal**   | Llei general tributària             | Recaudació i gestió d’ingressos           |
-| **Estatal**   | Tribunal de Comptes                 | Control extern suprem                     |
-|  **Autonòmic** | Decret legislatiu 3/2002            | Llei marc de finances públiques catalanes |
-|  **Autonòmic** | Llei de pressupostos anual          | Normativa específica de cada exercici     |
-|  **Autonòmic** | Llei 18/2010 Sindicatura de Comptes | Control extern autonòmic                  |
+# Gestió Econòmica i Pressupostària
+## Planificació, Execució i Control
 
-## 1.2 Normativa aplicable a la gestió econòmica i pressupostària
+---
 
-### Àmbit estatal
+# Fases i Normatives
+## Estructura general del Bloc 5
 
-- Constitució Espanyola: principis del sistema pressupostari i financer.
--[Llei Orgànica 8/1980](https://portaljuridic.gencat.cat/eli/es/l/2003/12/17/58), de finançament de les comunitats autònomes.
-- Llei general tributària (gestió d’ingressos públics).
-- Tribunal de Comptes: control extern suprem de comptes i gestió econòmica.
+| Fase | Contingut | Tema | Normativa |
+|------|-----------|------|-----------|
+| Planificació | Concepte, principis, estructura | 16 | CE 31, 134, 135 · LOFCA · LO 2/2012 · DL 3/2002 |
+| Execució | A-D-O-P, modificacions, tresoreria | 17 | DL 3/2002 · LO 2/2012 · Tresoreria i endeutament |
+| Control | Intervenció, sindicatura, responsabilitats | 18 | DL 3/2002 · Sindicatura · Tribunal · LO 2/2012 |
 
-### Àmbit autonòmic
+---
 
-- Decret legislatiu 3/2002, text refós de la Llei de finances públiques de Catalunya.
-- Lleis de pressupostos anuals de la Generalitat (p. ex. Llei 2/2023).
-- Llei 18/2010, de la Sindicatura de Comptes de Catalunya.
+# Planificació del Pressupost
 
-### Control extern
+## Concepte
 
-- Control extern de la Generalitat per la Sindicatura de Comptes de Catalunya.
-- Fiscalització i responsabilitat comptable pel Tribunal de Comptes de l’Estat.
+- Defineix objectius i quantifica recursos
+- Projecte de llei de pressupostos
+- Rang de llei
+- Principi d’estabilitat
+
+## Normativa
+
+- CE 31, 134, 135
+- LOFCA
+- LO 2/2012
+- DL 3/2002 (Títol II)
+
+> **Idea clau**  
+> El pressupost és una llei de planificació política sotmesa a estabilitat.
+
+---
+
+# Principis Pressupostaris
+
+## Anualitat
+Exercici = any natural
+
+## Unitat
+Un únic pressupost consolidat
+
+## Universalitat
+Inclou tots els ingressos i despeses
+
+## Especialitat
+- Qualitativa  
+- Quantitativa  
+- Temporal  
+
+## Unitat de Caixa
+Centralització de fons
+
+---
+
+# Estructura Pressupostària
+
+## Classificació de despeses
+
+| Capítol | Contingut |
+|----------|-----------|
+| I | Personal |
+| II | Béns corrents |
+| III | Interessos |
+| IV | Transferències corrents |
+| VI | Inversions reals |
+| VII | Transferències capital |
+| VIII | Actius financers |
+| IX | Passius financers |
+
+## Classificació d’ingressos
+
+| Capítol | Contingut |
+|----------|-----------|
+| I | Impostos directes |
+| II | Impostos indirectes |
+| III | Taxes |
+| IV | Transferències |
+| V | Patrimonials |
+| VI-IX | Operacions financeres |
+
+**Econòmica = naturalesa**  
+**Orgànica = centre gestor**  
+**Programa = finalitat**
+
+---
+
+# Cicle de Planificació
+
+1. Definició d’objectius polítics  
+2. Marc d’estabilitat (LO 2/2012)  
+3. Elaboració projecte  
+4. Aprovació parlamentària  
+
+---
+
+# Execució de la Despesa
+
+## Concepte
+
+- Aplicació efectiva dels crèdits aprovats
+- Gestió administrativa de la despesa i ingressos
+- Sense crèdit suficient → nul·litat
+- Despeses limitatives
+- Ingressos estimatius
+
+## Fases
+
+1. Autorització  
+2. Disposició  
+3. Reconeixement de l’obligació  
+4. Pagament  
+
+---
+
+# Modificacions de Crèdit
+
+| Tipus | Aplicació |
+|--------|------------|
+| Transferència | Moviment entre partides |
+| Generació | Ingressos afectats |
+| Ampliació | Crèdit ampliable |
+| Incorporació | Romanents |
+| Crèdit extraordinari | Nova despesa |
+| Suplement | Insuficiència |
+
+> **No poden vulnerar:**
+> - Estabilitat pressupostària
+> - Límit de despesa
+
+---
+
+# Ingressos, Tresoreria i Endeutament
+
+## Ingressos
+- Reconeixement del dret  
+- Liquidació  
+- Recaptació  
+
+## Tresoreria
+- Unitat de caixa  
+- Custòdia de fons  
+- Execució de pagaments  
+- Gestió de liquiditat  
+
+## Endeutament
+- Préstecs  
+- Deute públic  
+- Deute de Tresoreria  
+- Autorització  
+- LO 2/2012 i límit de deute  
+
+---
+
+# Control Intern i Extern
+
+## Control Intern
+
+Òrgan: Intervenció General
+
+- Funció interventora: control previ de legalitat  
+- Control financer permanent: verificació posterior  
+- Auditoria pública: avaluació sistemàtica  
+
+## Control Extern
+
+- Sindicatura de Comptes  
+- Tribunal de Comptes  
+
+---
+
+# Comptabilitat i Responsabilitats
+
+## Comptabilitat pública
+
+- Registrar execució pressupostària  
+- Determinar resultat pressupostari  
+- Elaborar el Compte General  
+
+## Responsabilitats
+
+- Responsabilitat comptable  
+- Responsabilitat disciplinària  
+- Responsabilitat penal  
+
+## Estabilitat
+
+- Objectiu d’estabilitat  
+- Regla de despesa  
+- Límit de deute  
+- Pla econòmic-financer  
+
+---
+
+# Flux Final
+
+Execució despesa (A-D-O-P)  
+→ Registre comptable  
+→ Compte General  
+→ Fiscalització externa
 

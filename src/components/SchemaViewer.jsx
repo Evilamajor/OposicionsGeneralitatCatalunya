@@ -63,10 +63,12 @@ export default function SchemaViewer() {
         )}
       </div>
 
-      {/* Debug info */}
-      <div className="schema-debug">
-        <small>Ruta de la imatge: {imagePath}</small>
-      </div>
+      {/* Debug info — hidden in production */}
+      {import.meta.env.DEV && (
+        <div className="schema-debug">
+          <small>Ruta de la imatge: {imagePath}</small>
+        </div>
+      )}
     </div>
   );
 }

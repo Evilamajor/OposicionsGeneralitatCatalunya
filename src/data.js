@@ -71,12 +71,33 @@ export const blocks = [
   },
 ];
 
+// ---------------------------------------------------------------------------
 // Annexos – materials complementaris (no formen part del temari oficial)
-// TODO: add topics/sub-items to each annex when content is ready
+// ---------------------------------------------------------------------------
+// NOTE: SQL and Data Science are now integrated inside Bloc V projects.
+// Their content folders are preserved but no longer appear in UI navigation.
+// ---------------------------------------------------------------------------
 export const annexos = [
-  { id: 'annex-a', title: 'Bloc A · Català' },
-  { id: 'annex-b', title: 'Bloc B · Anglès' },
-  { id: 'annex-c', title: 'Bloc C · SQL' },
-  { id: 'annex-d', title: 'Bloc D · Data Science' },
+  {
+    id: 'annex-a',
+    title: 'Català jurídic i administratiu',
+    description: 'Llengua catalana aplicada a l\'àmbit jurídic i administratiu',
+  },
+  {
+    id: 'annex-b',
+    title: 'Business English (administrative focus)',
+    description: 'Anglès tècnic i administratiu per a la gestió pública',
+  },
 ];
+
+// ---------------------------------------------------------------------------
+// Sidebar configuration – single source of truth for navigation structure.
+// Edit this object to add, remove, or reorder sidebar sections.
+// ---------------------------------------------------------------------------
+export const sidebarConfig = {
+  blocsHeader: 'Blocs',
+  annexosHeader: 'Annexos',
+  blocks,       // re-export for convenience
+  annexos,      // re-export for convenience
+};
 

@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import ComingSoon from './ComingSoon';
 import './SchemaList.css';
 
 /**
@@ -28,7 +29,7 @@ export default function SchemaList({ blocId, temaId }) {
   if (diagrams.length === 0) {
     return (
       <div className="schema-list-container">
-        <p className="no-schemas">No hi ha esquemes disponibles per aquest tema.</p>
+        <ComingSoon sectionName="Esquemes" />
       </div>
     );
   }

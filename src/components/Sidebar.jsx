@@ -1,8 +1,10 @@
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { blocks as allBlocks, annexos } from '../data';
+import { sidebarConfig } from '../data';
 
-export default function Sidebar() {
+const { blocks: allBlocks, annexos, blocsHeader, annexosHeader } = sidebarConfig;
+
+export default function Sidebar({ collapsed, onToggle }) {
   const [expandedBlocId, setExpandedBlocId] = useState(null);
   const [annexosOpen, setAnnexosOpen] = useState(false);
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ export default function Sidebar() {
     >
       {/* Header */}
       <div className="sidebar-header">
-        <h3 className="sidebar-title">Blocs</h3>
+        <h3 className="sidebar-title">{blocsHeader}</h3>
       </div>
 
       {/* Navigation */}
@@ -74,6 +76,7 @@ export default function Sidebar() {
                   onClick={() => {
                     navigate(`/bloc/${bloc.id}`);
                     setExpandedBlocId(bloc.id);
+                    if (onToggle && !collapsed) onToggle(); // auto-collapse on nav
                   }}
                 >
                   <span className="bloc-title">{bloc.title}</span>
@@ -140,7 +143,7 @@ export default function Sidebar() {
             />
           </svg>
         </button>
-        <h3 className="sidebar-title" style={{ marginBottom: 0, cursor: 'pointer' }} onClick={() => setAnnexosOpen(!annexosOpen)}>Annexos</h3>
+        <h3 className="sidebar-title annexos-title" style={{ marginBottom: 0, cursor: 'pointer' }} onClick={() => setAnnexosOpen(!annexosOpen)}>{annexosHeader}</h3>
       </div>
 
       {annexosOpen && (

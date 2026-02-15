@@ -1,0 +1,42 @@
+/* ==========================================================
+   ComingSoon — standardized "content not yet available" card
+   ========================================================== */
+
+.coming-soon {
+  max-width: 520px;
+  margin: 3rem auto;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.coming-soon-icon {
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.coming-soon-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 0.75rem;
+}
+
+.coming-soon-body {
+  font-size: 0.92rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.coming-soon-hint {
+  font-size: 0.82rem;
+  color: #9ca3af;
+  margin: 1rem 0 0;
+  font-style: italic;
+}

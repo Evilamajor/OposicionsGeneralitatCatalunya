@@ -184,6 +184,14 @@
   box-sizing: border-box;
 }
 
+/* When SlideDeck sits inside bloc-contingut, remove padding and let it fill */
+.bloc-contingut:has(.slidedeck) {
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+}
+
 /* Reusable content card */
 .content-card {
   background: #ffffff;

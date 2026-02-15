@@ -1,4 +1,5 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import { useState, useEffect, useCallback } from 'react';
 
 import './App.css';
 
@@ -10,8 +11,23 @@ import AnnexPage from './components/AnnexPage';
 import SchemaViewer from './components/SchemaViewer';
 
 export default function App() {
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const location = useLocation();
+
+  // Auto-collapse when navigating into a bloc or annex
+  useEffect(() => {
+    const isContentRoute = /^\/(bloc|annex)\//.test(location.pathname);
+    if (isContentRoute) {
+      setSidebarCollapsed(true);
+    }
+  }, [location.pathname]);
+
+  const toggleSidebar = useCallback(() => {
+    setSidebarCollapsed((prev) => !prev);
+  }, []);
+
   return (
-    <div className="app-layout">
+    <div className={`app-layout ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
       <header className="app-header">
         <div className="header-sidebar-area">
           <Link to="/" className="inici-link">Inici</Link>
@@ -21,7 +37,29 @@ export default function App() {
         </div>
       </header>
 
-      <Sidebar />
+      <Sidebar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />
+
+      {/* Floating sidebar toggle */}
+      <button
+        className="sidebar-toggle-btn"
+        onClick={toggleSidebar}
+        aria-label={sidebarCollapsed ? 'Obrir barra lateral' : 'Tancar barra lateral'}
+        title={sidebarCollapsed ? 'Obrir navegació' : 'Tancar navegació'}
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="sidebar-toggle-chevron"
+        >
+          <path d="M15 6l-6 6 6 6" />
+        </svg>
+      </button>
 
       <main className="main-content">
         <Routes>
