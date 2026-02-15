@@ -1,0 +1,103 @@
+/* =========================
+   AccordionItem – reusable collapsible
+========================= */
+.accordion-item {
+  background: #f5f6f8;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.accordion-item + .accordion-item {
+  margin-top: 10px;
+}
+
+.accordion-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Header / toggle */
+.accordion-item-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1f2933;
+  transition: background-color 0.15s ease;
+}
+
+.accordion-item-header:hover {
+  background: #eef0f3;
+}
+
+/* Chevron */
+.accordion-item-chevron {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  color: #6b7280;
+  transition: transform 0.2s ease;
+  width: 14px;
+  text-align: center;
+}
+
+/* Panel with animated max-height */
+.accordion-item-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.25s ease;
+  opacity: 0;
+}
+
+.accordion-item--open .accordion-item-panel {
+  max-height: 3000px; /* generous upper bound for long articles */
+  opacity: 1;
+}
+
+/* Inner content */
+.accordion-item-content {
+  padding: 4px 18px 18px;
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.7;
+}
+
+.accordion-item-content p {
+  margin: 0 0 10px;
+}
+
+.accordion-item-content ul {
+  margin: 6px 0;
+  padding-left: 1.4rem;
+}
+
+.accordion-item-content a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.accordion-item-content a:hover {
+  text-decoration: underline;
+}
+
+/* Article structured content */
+.article-content h4 {
+  margin-top: 1.5rem;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.exam-key {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #eef2ff;
+  border-left: 4px solid #3b82f6;
+  border-radius: 6px;
+}

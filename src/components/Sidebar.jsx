@@ -88,12 +88,16 @@ export default function Sidebar({ collapsed, onToggle }) {
                 bloc.topics &&
                 bloc.topics.length > 0 && (
                   <ul className="topic-list">
-                    {bloc.topics.map((t) => (
+                    {bloc.topics.map((t) => {
+                      // All blocs now have legislació as shared section,
+                      // so first topic-specific section is always esquemes
+                      const firstSection = 'esquemes';
+                      return (
                       <li key={t.id}>
                         <NavLink
-                          to={`/bloc/${bloc.id}/${t.id}/legislacio`}
+                          to={`/bloc/${bloc.id}/${t.id}/${firstSection}`}
                           onClick={() =>
-                            navigate(`/bloc/${bloc.id}/${t.id}/legislacio`)
+                            navigate(`/bloc/${bloc.id}/${t.id}/${firstSection}`)
                           }
                         >
                           <span
@@ -107,7 +111,8 @@ export default function Sidebar({ collapsed, onToggle }) {
                           </span>
                         </NavLink>
                       </li>
-                    ))}
+                      );
+                    })}
                   </ul>
                 )}
             </li>

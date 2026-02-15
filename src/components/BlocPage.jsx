@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useParams, NavLink } from 'react-router-dom';
+import { useParams, NavLink, useNavigate } from 'react-router-dom';
 import { blocks } from '../data';
 import NotesEditor from './NotesEditor';
 import SchemaList from './SchemaList';
 import AutoavaluacioSection from './AutoavaluacioSection';
+import PlataformaPSCP from './PlataformaPSCP';
+import FitxesEstudi from './FitxesEstudi';
 import TopicDataProjects from './TopicDataProjects';
 import SlideDeck from './SlideDeck';
 import ComingSoon from './ComingSoon';
@@ -41,24 +43,54 @@ const SLIDE_MD_MAP = {
 };
 
 /**
- * Available sections for each tema
+ * Available sections for each tema.
+ * Order: shared sections are interleaved with topic-specific ones so
+ * the tab bar keeps a logical reading order for all blocs.
  */
 const SECTIONS = [
   { id: 'legislacio', label: 'Legislació' },
   { id: 'esquemes', label: 'Esquemes' },
   { id: 'powerpoints', label: 'PowerPoints' },
-  { id: 'pdfs', label: 'PDFs' },
-  { id: 'projectes-dades', label: 'Projectes de dades' },
+  { id: 'fitxes', label: 'Fitxes d\'estudi' },
   { id: 'autoavaluacio', label: 'Autoavaluació' },
   { id: 'materials', label: 'Materials' },
 ];
 
+/**
+ * Bloc V has an additional section for Data Science projects.
+ * This is added dynamically in the section list rendering.
+ */
+const BLOC5_EXTRA_SECTIONS = [
+  { id: 'projectes', label: 'Projectes de dades' },
+];
+
+/**
+ * Sections that are transversal (shared at bloc level) for specific blocs.
+ * Following the Bloc IV model, all blocs share: legislació, fitxes d'estudi (plataforma), materials.
+ * All other sections remain per-tema.
+ */
+const BLOC_SHARED_SECTIONS = {
+  'bloc-1': new Set(['legislacio', 'fitxes', 'materials']),
+  'bloc-2': new Set(['legislacio', 'fitxes', 'materials']),
+  'bloc-3': new Set(['legislacio', 'fitxes', 'materials']),
+  'bloc-4': new Set(['legislacio', 'fitxes', 'materials']),
+  'bloc-5': new Set(['legislacio', 'fitxes', 'materials', 'projectes']),
+  'bloc-6': new Set(['legislacio', 'fitxes', 'materials']),
+  'bloc-7': new Set(['legislacio', 'fitxes', 'materials']),
+};
+
+/** Check whether a section is shared (transversal) for a given bloc */
+const isShared = (blocId, sectionId) =>
+  BLOC_SHARED_SECTIONS[blocId]?.has(sectionId) ?? false;
+
 export default function BlocPage() {
   const { blocId, temaId, seccio } = useParams();
+  const navigate = useNavigate();
   const [htmlContent, setHtmlContent] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [sectionsVisible, setSectionsVisible] = useState(true);
+  const [topicsNavOpen, setTopicsNavOpen] = useState(false);
 
   // Find current bloc
   const bloc = blocks.find((b) => b.id === blocId);
@@ -66,8 +98,50 @@ export default function BlocPage() {
   // Find current tema
   const tema = bloc?.topics?.find((t) => t.id === temaId);
 
-  // Load HTML content when tema and section are selected
+  // ── Redirect: if navigating to a shared section via a tema URL, go to bloc-level URL
   useEffect(() => {
+    if (blocId && temaId && seccio && isShared(blocId, seccio)) {
+      navigate(`/bloc/${blocId}/${seccio}`, { replace: true });
+    }
+  }, [blocId, temaId, seccio, navigate]);
+
+  // Load HTML content when section is selected
+  useEffect(() => {
+    // ── Bloc-level shared section (no temaId) ──
+    const isBlocLevel = !temaId && seccio && isShared(blocId, seccio);
+
+    if (isBlocLevel) {
+      // Fitxes d'estudi rendered by component, no fetch needed
+      if (seccio === 'fitxes') {
+        setHtmlContent('');
+        setLoading(false);
+        setError(null);
+        return;
+      }
+
+      // Projectes rendered by TopicDataProjects component, no fetch needed
+      if (seccio === 'projectes') {
+        setHtmlContent('');
+        setLoading(false);
+        setError(null);
+        return;
+      }
+
+      // Fetch shared content at bloc level
+      const contentUrl = `/content/${blocId}/${seccio}.html`;
+      setLoading(true);
+      setError(null);
+      fetch(contentUrl)
+        .then((res) => {
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return res.text();
+        })
+        .then((html) => { setHtmlContent(sanitizeHtmlContent(html)); setLoading(false); })
+        .catch((err) => { console.error(err); setError(err.message); setLoading(false); });
+      return;
+    }
+
+    // ── Standard tema-level section ──
     if (!blocId || !temaId || !seccio) {
       setHtmlContent('');
       setLoading(false);
@@ -91,14 +165,6 @@ export default function BlocPage() {
       return;
     }
 
-    // PDFs section — no HTML content; rendered via ComingSoon component below
-    if (seccio === 'pdfs') {
-      setHtmlContent('');
-      setLoading(false);
-      setError(null);
-      return;
-    }
-
     // Handle autoavaluacio section separately (uses AutoavaluacioSection component)
     if (seccio === 'autoavaluacio') {
       setHtmlContent('');
@@ -107,8 +173,8 @@ export default function BlocPage() {
       return;
     }
 
-    // Handle projectes-dades section separately (uses TopicDataProjects component)
-    if (seccio === 'projectes-dades') {
+    // Handle fitxes section separately (uses PlataformaPSCP / FitxesEstudi component)
+    if (seccio === 'fitxes') {
       setHtmlContent('');
       setLoading(false);
       setError(null);
@@ -152,7 +218,130 @@ export default function BlocPage() {
     );
   }
 
-  // If only bloc is selected (no tema), show bloc overview with SlideDeck
+  // Build the full section list for this bloc
+  const allSections = blocId === 'bloc-5'
+    ? [...SECTIONS, ...BLOC5_EXTRA_SECTIONS]
+    : SECTIONS;
+
+  // ── Bloc-level shared section view (e.g. /bloc/bloc-4/legislacio) ──
+  // temaId is undefined, seccio is defined, and section is shared for this bloc
+  const isBlocSharedView = !temaId && seccio && isShared(blocId, seccio);
+
+  if (isBlocSharedView) {
+    const sharedSections = allSections.filter((s) => isShared(blocId, s.id));
+
+    return (
+      <div className="bloc-page">
+        {/* Shared section tabs */}
+        <div className="bloc-seccions">
+          <h2>{bloc.title} — Seccions comunes</h2>
+
+          <div className="seccions-list">
+            {sharedSections.map((section) => (
+              <NavLink
+                key={section.id}
+                to={`/bloc/${blocId}/${section.id}`}
+                className={({ isActive }) =>
+                  `seccio-link ${isActive ? 'active' : ''}`
+                }
+              >
+                {section.label}
+              </NavLink>
+            ))}
+          </div>
+        </div>
+
+        {/* Collapsible topic quick-nav */}
+        {bloc.topics && bloc.topics.length > 0 && (
+          <div className="bloc-topics-nav">
+            <button
+              className="topics-nav-toggle"
+              onClick={() => setTopicsNavOpen(!topicsNavOpen)}
+              aria-expanded={topicsNavOpen}
+            >
+              <span className={`topics-nav-chevron ${topicsNavOpen ? 'open' : ''}`}>›</span>
+              <span>Seccions específiques per tema</span>
+            </button>
+            {topicsNavOpen && (
+              <div className="topics-nav-grid">
+                {bloc.topics.map((t) => (
+                  <NavLink
+                    key={t.id}
+                    to={`/bloc/${blocId}/${t.id}/esquemes`}
+                    className="topic-nav-card"
+                  >
+                    {t.label}
+                  </NavLink>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Content area */}
+        <div className="bloc-contingut">
+          {seccio === 'legislacio' && (
+            <>
+              {loading && <div className="loading"><p>Carregant contingut...</p></div>}
+              {error && (
+                <ComingSoon
+                  sectionName="Legislació"
+                  hint={`Fitxer esperat: /content/${blocId}/legislacio.html`}
+                />
+              )}
+              {!loading && !error && htmlContent && (
+                <div className="html-content" dangerouslySetInnerHTML={{ __html: htmlContent }} />
+              )}
+              {!loading && !error && !htmlContent && (
+                <ComingSoon
+                  sectionName={`Legislació (comú ${bloc.title})`}
+                  hint={`Fitxer esperat: /content/${blocId}/legislacio.html`}
+                />
+              )}
+            </>
+          )}
+
+          {seccio === 'fitxes' && blocId === 'bloc-4' && <PlataformaPSCP />}
+          {seccio === 'fitxes' && blocId !== 'bloc-4' && <FitxesEstudi blocId={blocId} />}
+
+          {seccio === 'projectes' && blocId === 'bloc-5' && (
+            <TopicDataProjects blocId={blocId} temaId={temaId} />
+          )}
+
+          {seccio === 'materials' && (
+            <>
+              {loading && <div className="loading"><p>Carregant contingut...</p></div>}
+              {error && (
+                <ComingSoon
+                  sectionName="Materials"
+                  hint={`Fitxer esperat: /content/${blocId}/materials.html`}
+                />
+              )}
+              {!loading && !error && htmlContent && (
+                <div className="html-content" dangerouslySetInnerHTML={{ __html: htmlContent }} />
+              )}
+              {!loading && !error && !htmlContent && (
+                <ComingSoon
+                  sectionName={`Materials (comú ${bloc.title})`}
+                  hint={`Fitxer esperat: /content/${blocId}/materials.html`}
+                />
+              )}
+            </>
+          )}
+        </div>
+
+        {/* Notes editor */}
+        <div className="notes-section">
+          <NotesEditor
+            storageKey={`notes-${blocId}`}
+            title={`Notes del ${bloc.title}`}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  // ── Bloc overview (no tema, no seccio) — show SlideDeck ──
   if (!temaId) {
     const mdUrl = SLIDE_MD_MAP[blocId];
 
@@ -212,17 +401,23 @@ export default function BlocPage() {
 
         {/* Section links */}
         <div className={`seccions-list ${!sectionsVisible ? 'seccions-hidden' : ''}`}>
-          {SECTIONS.map((section) => (
-            <NavLink
-              key={section.id}
-              to={`/bloc/${blocId}/${temaId}/${section.id}`}
-              className={({ isActive }) => 
-                `seccio-link ${isActive ? 'active' : ''}`
-              }
-            >
-              {section.label}
-            </NavLink>
-          ))}
+          {allSections.map((section) => {
+            // Shared sections link to bloc-level URL (no temaId)
+            const url = isShared(blocId, section.id)
+              ? `/bloc/${blocId}/${section.id}`
+              : `/bloc/${blocId}/${temaId}/${section.id}`;
+            return (
+              <NavLink
+                key={section.id}
+                to={url}
+                className={({ isActive }) =>
+                  `seccio-link ${isActive ? 'active' : ''}${isShared(blocId, section.id) ? ' seccio-shared' : ''}`
+                }
+              >
+                {section.label}
+              </NavLink>
+            );
+          })}
         </div>
       </div>
 
@@ -232,11 +427,6 @@ export default function BlocPage() {
           <div className="preview-empty">
             <p>Selecciona una secció per veure el contingut.</p>
           </div>
-        )}
-
-        {/* Fallback for sections with no dedicated component and no fetched content */}
-        {!loading && !error && !htmlContent && seccio === 'pdfs' && (
-          <ComingSoon sectionName="PDFs" />
         )}
 
         {/* Slide deck for powerpoints section */}
@@ -274,7 +464,15 @@ export default function BlocPage() {
           <AutoavaluacioSection blocId={blocId} temaId={temaId} />
         )}
 
-        {!loading && !error && !htmlContent && seccio === 'projectes-dades' && (
+        {!loading && !error && !htmlContent && seccio === 'fitxes' && blocId === 'bloc-4' && (
+          <PlataformaPSCP />
+        )}
+
+        {!loading && !error && !htmlContent && seccio === 'fitxes' && blocId !== 'bloc-4' && (
+          <FitxesEstudi blocId={blocId} />
+        )}
+
+        {!loading && !error && !htmlContent && seccio === 'projectes' && blocId === 'bloc-5' && (
           <TopicDataProjects blocId={blocId} temaId={temaId} />
         )}
       </div>
