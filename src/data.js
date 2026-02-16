@@ -69,6 +69,11 @@ export const blocks = [
       { id: 'tema-25', label: 'Tema 25 · Atenció a la ciutadania i qualitat dels serveis públics', filename: 'tema25.html' },
     ],
   },
+  {
+    id: 'business-english',
+    title: 'Business English',
+    topics: [],
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -83,11 +88,7 @@ export const annexos = [
     title: 'Català jurídic i administratiu',
     description: 'Llengua catalana aplicada a l\'àmbit jurídic i administratiu',
   },
-  {
-    id: 'annex-b',
-    title: 'Business English (administrative focus)',
-    description: 'Anglès tècnic i administratiu per a la gestió pública',
-  },
+
 ];
 
 // ---------------------------------------------------------------------------

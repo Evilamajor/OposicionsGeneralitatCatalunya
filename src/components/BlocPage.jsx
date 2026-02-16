@@ -6,6 +6,7 @@ import SchemaList from './SchemaList';
 import AutoavaluacioSection from './AutoavaluacioSection';
 import PlataformaPSCP from './PlataformaPSCP';
 import FitxesEstudi from './FitxesEstudi';
+import BusinessEnglishFitxes from './BusinessEnglishFitxes';
 import TopicDataProjects from './TopicDataProjects';
 import SlideDeck from './SlideDeck';
 import ComingSoon from './ComingSoon';
@@ -77,6 +78,7 @@ const BLOC_SHARED_SECTIONS = {
   'bloc-5': new Set(['legislacio', 'fitxes', 'materials', 'projectes']),
   'bloc-6': new Set(['legislacio', 'fitxes', 'materials']),
   'bloc-7': new Set(['legislacio', 'fitxes', 'materials']),
+  'business-english': new Set(['fitxes', 'materials']),
 };
 
 /** Check whether a section is shared (transversal) for a given bloc */
@@ -102,6 +104,13 @@ export default function BlocPage() {
   useEffect(() => {
     if (blocId && temaId && seccio && isShared(blocId, seccio)) {
       navigate(`/bloc/${blocId}/${seccio}`, { replace: true });
+    }
+  }, [blocId, temaId, seccio, navigate]);
+
+  // ── Business English: redirect overview to fitxes (no slide-deck) ──
+  useEffect(() => {
+    if (blocId === 'business-english' && !temaId && !seccio) {
+      navigate('/bloc/business-english/fitxes', { replace: true });
     }
   }, [blocId, temaId, seccio, navigate]);
 
@@ -302,7 +311,8 @@ export default function BlocPage() {
           )}
 
           {seccio === 'fitxes' && blocId === 'bloc-4' && <PlataformaPSCP />}
-          {seccio === 'fitxes' && blocId !== 'bloc-4' && <FitxesEstudi blocId={blocId} />}
+          {seccio === 'fitxes' && blocId === 'business-english' && <BusinessEnglishFitxes />}
+          {seccio === 'fitxes' && blocId !== 'bloc-4' && blocId !== 'business-english' && <FitxesEstudi blocId={blocId} />}
 
           {seccio === 'projectes' && blocId === 'bloc-5' && (
             <TopicDataProjects blocId={blocId} temaId={temaId} />
@@ -468,7 +478,11 @@ export default function BlocPage() {
           <PlataformaPSCP />
         )}
 
-        {!loading && !error && !htmlContent && seccio === 'fitxes' && blocId !== 'bloc-4' && (
+        {!loading && !error && !htmlContent && seccio === 'fitxes' && blocId === 'business-english' && (
+          <BusinessEnglishFitxes />
+        )}
+
+        {!loading && !error && !htmlContent && seccio === 'fitxes' && blocId !== 'bloc-4' && blocId !== 'business-english' && (
           <FitxesEstudi blocId={blocId} />
         )}
 

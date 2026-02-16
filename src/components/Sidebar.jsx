@@ -4,6 +4,10 @@ import { sidebarConfig } from '../data';
 
 const { blocks: allBlocks, annexos, blocsHeader, annexosHeader } = sidebarConfig;
 
+// Separate Business English from the numbered blocs for independent rendering
+const blocksOnly = allBlocks.filter((b) => b.id !== 'business-english');
+const businessEnglish = allBlocks.find((b) => b.id === 'business-english');
+
 export default function Sidebar({ collapsed, onToggle }) {
   const [expandedBlocId, setExpandedBlocId] = useState(null);
   const [annexosOpen, setAnnexosOpen] = useState(false);
@@ -31,7 +35,7 @@ export default function Sidebar({ collapsed, onToggle }) {
       {/* Navigation */}
       <nav>
         <ul>
-          {allBlocks.map((bloc) => (
+          {blocksOnly.map((bloc) => (
             <li key={bloc.id} className="sidebar-block">
               <div className="bloc-header">
                 {/* Expand / collapse button */}
@@ -120,7 +124,31 @@ export default function Sidebar({ collapsed, onToggle }) {
         </ul>
       </nav>
 
-      {/* Divider between BLOCS and ANNEXOS */}
+      {/* Business English – standalone section */}
+      {businessEnglish && (
+        <>
+          <div className="sidebar-divider" />
+          <nav>
+            <ul>
+              <li className="sidebar-block">
+                <div className="bloc-header">
+                  <NavLink
+                    to={`/bloc/${businessEnglish.id}`}
+                    className={({ isActive }) => (isActive ? 'active' : '')}
+                    onClick={() => {
+                      if (onToggle && !collapsed) onToggle();
+                    }}
+                  >
+                    <span className="bloc-title">{businessEnglish.title}</span>
+                  </NavLink>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </>
+      )}
+
+      {/* Divider between Business English and ANNEXOS */}
       <div className="sidebar-divider" />
 
       {/* ANNEXOS section */}

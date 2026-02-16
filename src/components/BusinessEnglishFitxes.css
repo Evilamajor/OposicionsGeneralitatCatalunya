@@ -1,0 +1,142 @@
+/* BusinessEnglishFitxes – card grid following PlataformaPSCP style */
+
+/* Header */
+.be-fitxes-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.be-fitxes-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2933;
+  margin: 0 0 0.75rem 0;
+}
+
+.be-fitxes-subtitle {
+  font-size: 1.05rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Cards grid */
+.be-fitxes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Card */
+.be-fitxes-card {
+  background: white;
+  border: 2px solid #b3d4fc;
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.be-fitxes-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(25, 118, 210, 0.12);
+  border-color: #64b5f6;
+}
+
+/* Clickable card */
+.be-fitxes-card--clickable {
+  cursor: pointer;
+}
+
+.be-fitxes-card--clickable::after {
+  content: 'Obrir fitxa →';
+  display: block;
+  text-align: right;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #1976d2;
+  margin-top: 0.5rem;
+}
+
+/* Card icon */
+.be-fitxes-card-icon {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+
+/* Card title */
+.be-fitxes-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1565c0;
+  margin: 0;
+  text-align: center;
+}
+
+/* Card body */
+.be-fitxes-card-body {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.7;
+}
+
+/* Section inside card */
+.be-fitxes-section {
+  margin-bottom: 1rem;
+}
+
+.be-fitxes-section:last-child {
+  margin-bottom: 0;
+}
+
+.be-fitxes-section-heading {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1976d2;
+  margin: 0 0 0.45rem 0;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #e3f2fd;
+}
+
+/* List */
+.be-fitxes-card-body ul {
+  margin: 0.35rem 0 0 0;
+  padding-left: 1.4rem;
+  list-style: none;
+}
+
+.be-fitxes-card-body ul li {
+  position: relative;
+  padding-left: 0.2rem;
+  margin-bottom: 0.4rem;
+  line-height: 1.55;
+}
+
+.be-fitxes-card-body ul li::before {
+  content: '▸';
+  position: absolute;
+  left: -1.2rem;
+  color: #1976d2;
+  font-weight: 700;
+}
+
+.be-fitxes-card-body ul li strong {
+  color: #283593;
+}
+
+.be-fitxes-item-content {
+  color: #555;
+  font-size: 0.92rem;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 700px) {
+  .be-fitxes-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -10,6 +10,7 @@ import BlocPage from './components/BlocPage';
 import AnnexPage from './components/AnnexPage';
 import SchemaViewer from './components/SchemaViewer';
 import DiagramViewer from './components/DiagramViewer';
+import BusinessEnglishFitxaPage from './components/business-english/BusinessEnglishFitxaPage';
 
 export default function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -65,6 +66,8 @@ export default function App() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<WelcomePanel />} />
+          <Route path="/bloc/business-english/fitxes/:fitxaId/:seccio" element={<BusinessEnglishFitxaPage />} />
+          <Route path="/bloc/business-english/fitxes/:fitxaId" element={<BusinessEnglishFitxaPage />} />
           <Route path="/bloc/:blocId/:temaId/esquemes/:schemaName" element={<SchemaViewer />} />
           <Route path="/bloc/:blocId/fitxes/:fitxaId" element={<DiagramViewer />} />
           <Route path="/bloc/:blocId/:temaId/:seccio" element={<BlocPage />} />

@@ -85,7 +85,7 @@ export const annexos = [
   },
   {
     id: 'annex-b',
-    title: 'Business English (administrative focus)',
+    title: 'Business English',
     description: 'Anglès tècnic i administratiu per a la gestió pública',
   },
 ];
