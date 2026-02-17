@@ -1,0 +1,86 @@
+[
+  {
+    "id": "meetings-opening",
+    "title": "Getting the ball rolling",
+    "category": "Meetings",
+    "type": "external",
+    "url": "https://aprenentatge.recursos.uoc.edu/continguts/PID_00257629/index.html"
+  },
+  {
+    "id": "meetings-main",
+    "title": "Getting down to business",
+    "category": "Meetings",
+    "type": "external",
+    "url": "https://materials.campus.uoc.edu/continguts/PID_00262772/index.html"
+  },
+  {
+    "id": "meetings-closing",
+    "title": "Wrapping it up",
+    "category": "Meetings",
+    "type": "external",
+    "url": "https://aprenentatge.recursos.uoc.edu/continguts/PID_00262773/index.html"
+  },
+  {
+    "id": "presentation-intro",
+    "title": "The introduction to a presentation",
+    "category": "Presentations",
+    "type": "external",
+    "url": "https://materials.campus.uoc.edu/continguts/PID_00262774/index.html"
+  },
+  {
+    "id": "presentation-body",
+    "title": "The body of a presentation",
+    "category": "Presentations",
+    "type": "external",
+    "url": "https://materials.campus.uoc.edu/continguts/PID_00262778/index.html"
+  },
+  {
+    "id": "presentation-end",
+    "title": "The end of a presentation",
+    "category": "Presentations",
+    "type": "external",
+    "url": "https://materials.campus.uoc.edu/continguts/PID_00262775/index.html"
+  },
+  {
+    "id": "telephone",
+    "title": "Telephone English",
+    "category": "Communication",
+    "type": "external",
+    "url": "https://aprenentatge.recursos.uoc.edu/continguts/PID_00262776/index.html"
+  },
+  {
+    "id": "video-conference",
+    "title": "Video conference and discussions",
+    "category": "Communication",
+    "type": "external",
+    "url": "https://aprenentatge.recursos.uoc.edu/continguts/PID_00262779/index.html"
+  },
+  {
+    "id": "visitors",
+    "title": "Visitors and guests",
+    "category": "Professional interaction",
+    "type": "external",
+    "url": "https://aprenentatge.recursos.uoc.edu/continguts/PID_00262781/index.html"
+  },
+  {
+    "id": "internal-correspondence",
+    "title": "Internal correspondence",
+    "category": "Writing",
+    "type": "external",
+    "url": "https://materials.campus.uoc.edu/continguts/PID_00262780/index.html"
+  },
+  {
+    "id": "invitations",
+    "title": "Invitations, suggestions and complaints",
+    "category": "Writing",
+    "type": "external",
+    "url": "https://materials.campus.uoc.edu/continguts/PID_00262777/index.html"
+  },
+  {
+    "id": "opening-closing",
+    "title": "Opening and closing",
+    "category": "Writing",
+    "type": "external",
+    "url": "https://materials.campus.uoc.edu/continguts/PID_00262783/index.html"
+  }
+]

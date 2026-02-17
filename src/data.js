@@ -88,7 +88,18 @@ export const annexos = [
     title: 'Català jurídic i administratiu',
     description: 'Llengua catalana aplicada a l\'àmbit jurídic i administratiu',
   },
-
+  {
+    id: 'cultura-catalana',
+    title: 'Cultura catalana',
+    description: 'Context històric, literari i artístic de Catalunya',
+    route: '/annexos/cultura-catalana',
+  },
+  {
+    id: 'business-english',
+    title: 'Business English',
+    description: 'Business English communication skills',
+    route: '/bloc/business-english/fitxes',
+  },
 ];
 
 // ---------------------------------------------------------------------------

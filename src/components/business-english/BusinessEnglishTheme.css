@@ -1,0 +1,359 @@
+/* =========================================================
+   Business English — Shared Design System
+   Minimal, consistent, professional.
+   ========================================================= */
+
+/* ── Section containers ── */
+.be-section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.8rem;
+  border: 1px solid #e6ebf2;
+}
+
+/* ── Framework container (navigation only) ── */
+.be-framework-container {
+  background: white;
+  border: 1px solid #e6ebf2;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+/* ── Content container (material viewer / catalogue) ── */
+.be-content-container {
+  background: white;
+  border: 1px solid #e6ebf2;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+/* ── Sub-block inside navigation ── */
+.be-nav-block {
+  /* no extra styles needed, just a grouping wrapper */
+}
+
+/* ── Sub-headings inside navigation ── */
+.be-nav-subheading {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.4rem 0;
+}
+
+/* ── Specific nav divider inside framework ── */
+.be-specific-nav {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e6ebf2;
+}
+
+/* ── Placeholder text (coming-soon content areas) ── */
+.be-placeholder-text {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── Collapsible headers ── */
+.be-collapsible-header {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1e293b;
+  cursor: pointer;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  background: #f1f5f9;
+  user-select: none;
+  transition: background 0.2s ease;
+}
+
+.be-collapsible-header:hover {
+  background: #e6edf7;
+}
+
+/* ── Layer 2 tabs ── */
+.be-layer2-tabs {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.be-layer2-tab {
+  cursor: pointer;
+  color: #1e293b;
+  padding: 0.3rem 0.2rem;
+  border-radius: 6px;
+}
+
+/* ── Layer 3 tabs ── */
+.be-layer3-tabs {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.8rem;
+  padding-left: 1rem;
+  border-left: 2px solid #e6ebf2;
+  flex-wrap: wrap;
+}
+
+.be-layer3-tab {
+  cursor: pointer;
+  color: #64748b;
+  text-decoration: none;
+  padding: 0.3rem 0.2rem;
+  border-radius: 6px;
+}
+
+.be-layer2-tab.active,
+.be-layer3-tab.active {
+  background: #dbe5ff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  color: #1e293b;
+}
+
+/* ── Tab navigation (shared by Common + Specific) ── */
+.be-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.6rem 0;
+  margin-top: 0.5rem;
+  border-bottom: 1px solid #e6ebf2;
+  animation: beFadeIn 0.2s ease-in;
+}
+
+.be-tab {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  color: #64748b;
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  user-select: none;
+  transition: all 0.15s ease;
+  border: none;
+  background: transparent;
+}
+
+.be-tab:hover {
+  color: #1e293b;
+  background: #f1f5f9;
+}
+
+.be-tab.active {
+  background: #dbe5ff;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+/* ── Fitxa title area ── */
+.be-fitxa-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* ── Iframe ── */
+.be-iframe {
+  width: 100%;
+  height: 80vh;
+  border: 1px solid #e6ebf2;
+  border-radius: 10px;
+}
+
+/* ── Fallback panel ── */
+.be-fallback {
+  background: #f7f9fc;
+  border: 1px solid #e6ebf2;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  max-width: 520px;
+  margin: 2rem auto;
+}
+
+.be-fallback-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.be-fallback p {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.6;
+}
+
+.be-fallback-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 10px 22px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  background: #2a5db0;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 150ms, transform 150ms;
+}
+
+.be-fallback-link:hover {
+  background: #224b92;
+  transform: translateY(-1px);
+}
+
+/* ── Content block (used inside specific tabs) ── */
+.be-content-block {
+  padding: 1rem 0 0 0;
+}
+
+.be-content-block p {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── Loading / error ── */
+.be-loading,
+.be-error {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #64748b;
+  font-size: 1rem;
+}
+
+.be-error-detail {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+}
+
+/* ── Category headings (fitxes list) ── */
+.be-category-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #2a5db0;
+  margin: 0 0 0.8rem 0;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #e6ebf2;
+}
+
+.be-category-icon {
+  font-size: 1.15rem;
+}
+
+/* ── Card grid ── */
+.be-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+/* ── Cards ── */
+.be-card {
+  padding: 1.1rem 1.3rem;
+  border-radius: 10px;
+  background: white;
+  border: 1px solid #e6ebf2;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.be-card:hover {
+  transform: translateY(-3px);
+  border-color: #b4c6e7;
+}
+
+.be-card:focus-visible {
+  outline: 2px solid #2a5db0;
+  outline-offset: 2px;
+}
+
+.be-card-badge {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #2a5db0;
+  letter-spacing: 0.02em;
+}
+
+.be-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── Page header (list view) ── */
+.be-page-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.be-page-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.4rem 0;
+}
+
+.be-page-subtitle {
+  font-size: 0.98rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── Category section spacing ── */
+.be-category {
+  margin-top: 2rem;
+}
+
+.be-category:first-of-type {
+  margin-top: 0.5rem;
+}
+
+/* ── Animation ── */
+@keyframes beFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .be-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .be-iframe {
+    height: 65vh;
+    border-radius: 8px;
+  }
+
+  .be-tabs {
+    gap: 0.3rem;
+  }
+
+  .be-section {
+    padding: 1rem;
+  }
+}

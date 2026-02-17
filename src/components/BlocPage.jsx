@@ -6,7 +6,8 @@ import SchemaList from './SchemaList';
 import AutoavaluacioSection from './AutoavaluacioSection';
 import PlataformaPSCP from './PlataformaPSCP';
 import FitxesEstudi from './FitxesEstudi';
-import BusinessEnglishFitxes from './BusinessEnglishFitxes';
+import BusinessEnglishFitxes from './business-english/BusinessEnglishFitxes';
+import './business-english/BusinessEnglishTheme.css';
 import TopicDataProjects from './TopicDataProjects';
 import SlideDeck from './SlideDeck';
 import ComingSoon from './ComingSoon';
@@ -66,6 +67,15 @@ const BLOC5_EXTRA_SECTIONS = [
 ];
 
 /**
+ * Business English uses its own section ids and English-only labels.
+ */
+const BUSINESS_ENGLISH_SECTIONS = [
+  { id: 'fitxes',     label: 'Fitxes' },
+  { id: 'vocabulary', label: 'Vocabulary' },
+  { id: 'grammar',    label: 'Grammar' },
+];
+
+/**
  * Sections that are transversal (shared at bloc level) for specific blocs.
  * Following the Bloc IV model, all blocs share: legislació, fitxes d'estudi (plataforma), materials.
  * All other sections remain per-tema.
@@ -78,7 +88,7 @@ const BLOC_SHARED_SECTIONS = {
   'bloc-5': new Set(['legislacio', 'fitxes', 'materials', 'projectes']),
   'bloc-6': new Set(['legislacio', 'fitxes', 'materials']),
   'bloc-7': new Set(['legislacio', 'fitxes', 'materials']),
-  'business-english': new Set(['fitxes', 'materials']),
+  'business-english': new Set(['fitxes', 'vocabulary', 'grammar']),
 };
 
 /** Check whether a section is shared (transversal) for a given bloc */
@@ -93,6 +103,7 @@ export default function BlocPage() {
   const [error, setError] = useState(null);
   const [sectionsVisible, setSectionsVisible] = useState(true);
   const [topicsNavOpen, setTopicsNavOpen] = useState(false);
+  const [fitxesKey, setFitxesKey] = useState(0);
 
   // Find current bloc
   const bloc = blocks.find((b) => b.id === blocId);
@@ -107,7 +118,7 @@ export default function BlocPage() {
     }
   }, [blocId, temaId, seccio, navigate]);
 
-  // ── Business English: redirect overview to fitxes (no slide-deck) ──
+  // ── Business English: redirect overview to cards ──
   useEffect(() => {
     if (blocId === 'business-english' && !temaId && !seccio) {
       navigate('/bloc/business-english/fitxes', { replace: true });
@@ -122,6 +133,14 @@ export default function BlocPage() {
     if (isBlocLevel) {
       // Fitxes d'estudi rendered by component, no fetch needed
       if (seccio === 'fitxes') {
+        setHtmlContent('');
+        setLoading(false);
+        setError(null);
+        return;
+      }
+
+      // Vocabulary / grammar rendered by component, no fetch needed
+      if (['vocabulary', 'grammar'].includes(seccio)) {
         setHtmlContent('');
         setLoading(false);
         setError(null);
@@ -237,14 +256,81 @@ export default function BlocPage() {
   const isBlocSharedView = !temaId && seccio && isShared(blocId, seccio);
 
   if (isBlocSharedView) {
-    const sharedSections = allSections.filter((s) => isShared(blocId, s.id));
+    // Business English uses its own sections; other blocs filter from SECTIONS
+    const sharedSections = blocId === 'business-english'
+      ? BUSINESS_ENGLISH_SECTIONS
+      : allSections.filter((s) => isShared(blocId, s.id));
 
+    const sectionHeading = blocId === 'business-english'
+      ? 'Business English — Common sections'
+      : `${bloc.title} — Seccions comunes`;
+
+    const isBeCollapsible = blocId === 'business-english';
+
+    /* ── Business English: two-container layout ── */
+    if (isBeCollapsible) {
+      const commonSectionsNav = (
+        <div className="be-nav-block">
+          <h3 className="be-nav-subheading">Common sections</h3>
+          <div className="be-tabs">
+            {sharedSections.map((section) => (
+              <NavLink
+                key={section.id}
+                to={`/bloc/${blocId}/${section.id}`}
+                className={({ isActive }) =>
+                  `be-tab ${isActive ? 'active' : ''}`
+                }
+                onClick={
+                  section.id === 'fitxes'
+                    ? () => setFitxesKey((k) => k + 1)
+                    : undefined
+                }
+              >
+                {section.label}
+              </NavLink>
+            ))}
+          </div>
+        </div>
+      );
+
+      return (
+        <div className="bloc-page">
+          {seccio === 'fitxes' ? (
+            /* Fitxes: BusinessEnglishFitxes owns both containers */
+            <BusinessEnglishFitxes key={fitxesKey} />
+          ) : (
+            /* Vocabulary / Grammar: simple framework + content */
+            <>
+              <div className="be-framework-container">
+                {commonSectionsNav}
+              </div>
+              <div className="bloc-contingut">
+                {seccio === 'vocabulary' && (
+                  <ComingSoon sectionName="Vocabulary" hint="Vocabulary lists and exercises — coming soon." />
+                )}
+                {seccio === 'grammar' && (
+                  <ComingSoon sectionName="Grammar" hint="Grammar reference and practice — coming soon." />
+                )}
+              </div>
+            </>
+          )}
+
+          <div className="notes-section">
+            <NotesEditor
+              storageKey={`notes-${blocId}`}
+              title={`Notes del ${bloc.title}`}
+            />
+          </div>
+        </div>
+      );
+    }
+
+    /* ── Generic shared-section layout (non-BE blocs) ── */
     return (
       <div className="bloc-page">
         {/* Shared section tabs */}
         <div className="bloc-seccions">
-          <h2>{bloc.title} — Seccions comunes</h2>
-
+          <h2>{sectionHeading}</h2>
           <div className="seccions-list">
             {sharedSections.map((section) => (
               <NavLink
@@ -311,8 +397,7 @@ export default function BlocPage() {
           )}
 
           {seccio === 'fitxes' && blocId === 'bloc-4' && <PlataformaPSCP />}
-          {seccio === 'fitxes' && blocId === 'business-english' && <BusinessEnglishFitxes />}
-          {seccio === 'fitxes' && blocId !== 'bloc-4' && blocId !== 'business-english' && <FitxesEstudi blocId={blocId} />}
+          {seccio === 'fitxes' && blocId !== 'bloc-4' && <FitxesEstudi blocId={blocId} />}
 
           {seccio === 'projectes' && blocId === 'bloc-5' && (
             <TopicDataProjects blocId={blocId} temaId={temaId} />
@@ -478,11 +563,7 @@ export default function BlocPage() {
           <PlataformaPSCP />
         )}
 
-        {!loading && !error && !htmlContent && seccio === 'fitxes' && blocId === 'business-english' && (
-          <BusinessEnglishFitxes />
-        )}
-
-        {!loading && !error && !htmlContent && seccio === 'fitxes' && blocId !== 'bloc-4' && blocId !== 'business-english' && (
+        {!loading && !error && !htmlContent && seccio === 'fitxes' && blocId !== 'bloc-4' && (
           <FitxesEstudi blocId={blocId} />
         )}
 

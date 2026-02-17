@@ -10,15 +10,20 @@ import BlocPage from './components/BlocPage';
 import AnnexPage from './components/AnnexPage';
 import SchemaViewer from './components/SchemaViewer';
 import DiagramViewer from './components/DiagramViewer';
-import BusinessEnglishFitxaPage from './components/business-english/BusinessEnglishFitxaPage';
+import ForumPage from './pages/ForumPage';
+import CulturaCatalanaPage from './pages/CulturaCatalanaPage';
+import HistoriaCatalanaPage from './pages/HistoriaCatalanaPage';
+import LiteraturaCatalanaPage from './pages/LiteraturaCatalanaPage';
+import ArtsPage from './pages/ArtsPage';
+import AgendaCulturalPage from './pages/AgendaCulturalPage';
 
 export default function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const location = useLocation();
 
-  // Auto-collapse when navigating into a bloc or annex
+  // Auto-collapse when navigating into a bloc, annex, or forum
   useEffect(() => {
-    const isContentRoute = /^\/(bloc|annex)\//.test(location.pathname);
+    const isContentRoute = /^\/(bloc|annex|forum|annexos)/.test(location.pathname);
     if (isContentRoute) {
       setSidebarCollapsed(true);
     }
@@ -66,14 +71,18 @@ export default function App() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<WelcomePanel />} />
-          <Route path="/bloc/business-english/fitxes/:fitxaId/:seccio" element={<BusinessEnglishFitxaPage />} />
-          <Route path="/bloc/business-english/fitxes/:fitxaId" element={<BusinessEnglishFitxaPage />} />
           <Route path="/bloc/:blocId/:temaId/esquemes/:schemaName" element={<SchemaViewer />} />
           <Route path="/bloc/:blocId/fitxes/:fitxaId" element={<DiagramViewer />} />
           <Route path="/bloc/:blocId/:temaId/:seccio" element={<BlocPage />} />
           <Route path="/bloc/:blocId/:seccio" element={<BlocPage />} />
           <Route path="/bloc/:blocId" element={<BlocPage />} />
           <Route path="/annex/:annexId" element={<AnnexPage />} />
+          <Route path="/annexos/cultura-catalana" element={<CulturaCatalanaPage />} />
+          <Route path="/annexos/cultura-catalana/historia" element={<HistoriaCatalanaPage />} />
+          <Route path="/annexos/cultura-catalana/literatura" element={<LiteraturaCatalanaPage />} />
+          <Route path="/annexos/cultura-catalana/arts" element={<ArtsPage />} />
+          <Route path="/annexos/cultura-catalana/agenda" element={<AgendaCulturalPage />} />
+          <Route path="/forum" element={<ForumPage />} />
         </Routes>
       </main>
     </div>

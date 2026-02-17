@@ -1,0 +1,179 @@
+/* CulturaCatalanaPage – main landing & subpage shared styles */
+
+.cultura-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── Header ── */
+.cultura-header {
+  text-align: center;
+}
+
+.cultura-title {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #1f2933;
+  margin: 0 0 0.4rem 0;
+}
+
+.cultura-subtitle {
+  font-size: 1.05rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Cards grid ── */
+.cultura-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Card */
+.cultura-card {
+  background: #fff;
+  border: 2px solid #e0e7ef;
+  border-radius: 16px;
+  padding: 1.75rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
+}
+
+.cultura-card:hover {
+  border-color: #90caf9;
+  box-shadow: 0 8px 22px rgba(25, 118, 210, 0.12);
+  transform: translateY(-4px);
+}
+
+.cultura-card-icon {
+  font-size: 2.25rem;
+}
+
+.cultura-card-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1565c0;
+  margin: 0;
+}
+
+.cultura-card-desc {
+  font-size: 0.92rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.cultura-card-arrow {
+  align-self: flex-end;
+  font-size: 1.1rem;
+  color: #1976d2;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.cultura-card:hover .cultura-card-arrow {
+  opacity: 1;
+}
+
+/* ── Subpage layout ── */
+.cultura-subpage {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cultura-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: background 150ms, border-color 150ms;
+  align-self: flex-start;
+}
+
+.cultura-back:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.cultura-subpage-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cultura-subpage-icon {
+  font-size: 2rem;
+}
+
+.cultura-subpage-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #1f2933;
+  margin: 0;
+}
+
+.cultura-subpage-desc {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.cultura-placeholder {
+  background: #fafbfc;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  max-width: 520px;
+  margin: 1rem auto;
+}
+
+.cultura-placeholder-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.cultura-placeholder-text {
+  color: #6b7280;
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .cultura-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cultura-page,
+  .cultura-subpage {
+    padding: 1rem;
+  }
+}

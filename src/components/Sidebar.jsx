@@ -4,9 +4,8 @@ import { sidebarConfig } from '../data';
 
 const { blocks: allBlocks, annexos, blocsHeader, annexosHeader } = sidebarConfig;
 
-// Separate Business English from the numbered blocs for independent rendering
+// Filter out Business English from blocs – it now lives under ANNEXOS
 const blocksOnly = allBlocks.filter((b) => b.id !== 'business-english');
-const businessEnglish = allBlocks.find((b) => b.id === 'business-english');
 
 export default function Sidebar({ collapsed, onToggle }) {
   const [expandedBlocId, setExpandedBlocId] = useState(null);
@@ -124,31 +123,7 @@ export default function Sidebar({ collapsed, onToggle }) {
         </ul>
       </nav>
 
-      {/* Business English – standalone section */}
-      {businessEnglish && (
-        <>
-          <div className="sidebar-divider" />
-          <nav>
-            <ul>
-              <li className="sidebar-block">
-                <div className="bloc-header">
-                  <NavLink
-                    to={`/bloc/${businessEnglish.id}`}
-                    className={({ isActive }) => (isActive ? 'active' : '')}
-                    onClick={() => {
-                      if (onToggle && !collapsed) onToggle();
-                    }}
-                  >
-                    <span className="bloc-title">{businessEnglish.title}</span>
-                  </NavLink>
-                </div>
-              </li>
-            </ul>
-          </nav>
-        </>
-      )}
-
-      {/* Divider between Business English and ANNEXOS */}
+      {/* Divider between BLOCS and ANNEXOS */}
       <div className="sidebar-divider" />
 
       {/* ANNEXOS section */}
@@ -185,20 +160,48 @@ export default function Sidebar({ collapsed, onToggle }) {
             {annexos.map((annex) => (
               <li key={annex.id} className="sidebar-block">
                 <div className="bloc-header">
-                  {/* TODO: add expand/collapse when annex topics are defined */}
                   <NavLink
-                    to={`/annex/${annex.id}`}
+                    to={annex.route || `/annex/${annex.id}`}
                     className={({ isActive }) => (isActive ? 'active' : '')}
                   >
                     <span className="bloc-title">{annex.title}</span>
                   </NavLink>
                 </div>
-                {/* TODO: render annex topics here when content is available */}
               </li>
             ))}
           </ul>
         </nav>
       )}
+
+      {/* Divider before FÒRUM */}
+      <div className="sidebar-divider" />
+
+      {/* FÒRUM – standalone top-level section */}
+      <div className="sidebar-header">
+        <NavLink
+          to="/forum"
+          className={({ isActive }) => `sidebar-forum-link${isActive ? ' active' : ''}`}
+          onClick={() => { if (onToggle && !collapsed) onToggle(); }}
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="sidebar-forum-icon"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <h3 className="sidebar-title" style={{ marginBottom: 0 }}>Fòrum</h3>
+        </NavLink>
+      </div>
     </aside>
   );
 }
