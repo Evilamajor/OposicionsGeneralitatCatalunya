@@ -18,7 +18,7 @@ export default function ComingSoon({ sectionName, hint }) {
       <span className="coming-soon-icon" aria-hidden="true">🚧</span>
 
       <p className="coming-soon-title">
-        Contingut en preparació
+        Contingut en preparació — coming soon
         {sectionName && <> — <strong>{sectionName}</strong></>}
       </p>
 

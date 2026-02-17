@@ -4,8 +4,10 @@ import { sidebarConfig } from '../data';
 
 const { blocks: allBlocks, annexos, blocsHeader, annexosHeader } = sidebarConfig;
 
-// Filter out Business English from blocs – it now lives under ANNEXOS
+// Filter out Business English from blocs – rendered as its own top-level section
 const blocksOnly = allBlocks.filter((b) => b.id !== 'business-english');
+const businessEnglish = annexos.find((a) => a.id === 'business-english');
+const annexosOnly = annexos.filter((a) => a.id !== 'business-english');
 
 export default function Sidebar({ collapsed, onToggle }) {
   const [expandedBlocId, setExpandedBlocId] = useState(null);
@@ -126,6 +128,21 @@ export default function Sidebar({ collapsed, onToggle }) {
       {/* Divider between BLOCS and ANNEXOS */}
       <div className="sidebar-divider" />
 
+      {/* Business English – standalone top-level section */}
+      {businessEnglish && (
+        <div className="sidebar-header">
+          <NavLink
+            to={businessEnglish.route || '/bloc/business-english/fitxes'}
+            className={({ isActive }) => `sidebar-forum-link${isActive ? ' active' : ''}`}
+            onClick={() => { if (onToggle && !collapsed) onToggle(); }}
+          >
+            <h3 className="sidebar-title" style={{ marginBottom: 0 }}>Business English</h3>
+          </NavLink>
+        </div>
+      )}
+
+      <div className="sidebar-divider" />
+
       {/* ANNEXOS section */}
       <div className="sidebar-header">
         <button
@@ -157,7 +174,7 @@ export default function Sidebar({ collapsed, onToggle }) {
       {annexosOpen && (
         <nav>
           <ul>
-            {annexos.map((annex) => (
+            {annexosOnly.map((annex) => (
               <li key={annex.id} className="sidebar-block">
                 <div className="bloc-header">
                   <NavLink

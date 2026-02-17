@@ -11,6 +11,7 @@ import './business-english/BusinessEnglishTheme.css';
 import TopicDataProjects from './TopicDataProjects';
 import SlideDeck from './SlideDeck';
 import ComingSoon from './ComingSoon';
+import SectionContainer from './SectionContainer';
 import './BlocPage.css';
 
 /**
@@ -50,12 +51,11 @@ const SLIDE_MD_MAP = {
  * the tab bar keeps a logical reading order for all blocs.
  */
 const SECTIONS = [
-  { id: 'legislacio', label: 'Legislació' },
-  { id: 'esquemes', label: 'Esquemes' },
-  { id: 'powerpoints', label: 'PowerPoints' },
   { id: 'fitxes', label: 'Fitxes d\'estudi' },
-  { id: 'autoavaluacio', label: 'Autoavaluació' },
+  { id: 'legislacio', label: 'Legislació' },
   { id: 'materials', label: 'Materials' },
+  { id: 'presentacio', label: 'Presentació' },
+  { id: 'casos-practics', label: 'Casos pràctics' },
 ];
 
 /**
@@ -63,7 +63,7 @@ const SECTIONS = [
  * This is added dynamically in the section list rendering.
  */
 const BLOC5_EXTRA_SECTIONS = [
-  { id: 'projectes', label: 'Projectes de dades' },
+  { id: 'projectes', label: 'Projectes' },
 ];
 
 /**
@@ -75,25 +75,32 @@ const BUSINESS_ENGLISH_SECTIONS = [
   { id: 'grammar',    label: 'Grammar' },
 ];
 
+const SECTION_ALIASES = {
+  powerpoints: 'presentacio',
+  autoavaluacio: 'casos-practics',
+};
+
+const normalizeSectionId = (sectionId) => SECTION_ALIASES[sectionId] || sectionId;
+
 /**
  * Sections that are transversal (shared at bloc level) for specific blocs.
  * Following the Bloc IV model, all blocs share: legislació, fitxes d'estudi (plataforma), materials.
  * All other sections remain per-tema.
  */
 const BLOC_SHARED_SECTIONS = {
-  'bloc-1': new Set(['legislacio', 'fitxes', 'materials']),
-  'bloc-2': new Set(['legislacio', 'fitxes', 'materials']),
-  'bloc-3': new Set(['legislacio', 'fitxes', 'materials']),
-  'bloc-4': new Set(['legislacio', 'fitxes', 'materials']),
-  'bloc-5': new Set(['legislacio', 'fitxes', 'materials', 'projectes']),
-  'bloc-6': new Set(['legislacio', 'fitxes', 'materials']),
-  'bloc-7': new Set(['legislacio', 'fitxes', 'materials']),
+  'bloc-1': new Set(['fitxes', 'legislacio', 'materials', 'presentacio', 'casos-practics']),
+  'bloc-2': new Set(['fitxes', 'legislacio', 'materials', 'presentacio', 'casos-practics']),
+  'bloc-3': new Set(['fitxes', 'legislacio', 'materials', 'presentacio', 'casos-practics']),
+  'bloc-4': new Set(['fitxes', 'legislacio', 'materials', 'presentacio', 'casos-practics']),
+  'bloc-5': new Set(['fitxes', 'legislacio', 'materials', 'presentacio', 'casos-practics', 'projectes']),
+  'bloc-6': new Set(['fitxes', 'legislacio', 'materials', 'presentacio', 'casos-practics']),
+  'bloc-7': new Set(['fitxes', 'legislacio', 'materials', 'presentacio', 'casos-practics']),
   'business-english': new Set(['fitxes', 'vocabulary', 'grammar']),
 };
 
 /** Check whether a section is shared (transversal) for a given bloc */
 const isShared = (blocId, sectionId) =>
-  BLOC_SHARED_SECTIONS[blocId]?.has(sectionId) ?? false;
+  BLOC_SHARED_SECTIONS[blocId]?.has(normalizeSectionId(sectionId)) ?? false;
 
 export default function BlocPage() {
   const { blocId, temaId, seccio } = useParams();
@@ -114,7 +121,7 @@ export default function BlocPage() {
   // ── Redirect: if navigating to a shared section via a tema URL, go to bloc-level URL
   useEffect(() => {
     if (blocId && temaId && seccio && isShared(blocId, seccio)) {
-      navigate(`/bloc/${blocId}/${seccio}`, { replace: true });
+      navigate(`/bloc/${blocId}/${normalizeSectionId(seccio)}`, { replace: true });
     }
   }, [blocId, temaId, seccio, navigate]);
 
@@ -127,28 +134,14 @@ export default function BlocPage() {
 
   // Load HTML content when section is selected
   useEffect(() => {
+    const normalizedSeccio = normalizeSectionId(seccio);
+
     // ── Bloc-level shared section (no temaId) ──
-    const isBlocLevel = !temaId && seccio && isShared(blocId, seccio);
+    const isBlocLevel = !temaId && normalizedSeccio && isShared(blocId, normalizedSeccio);
 
     if (isBlocLevel) {
       // Fitxes d'estudi rendered by component, no fetch needed
-      if (seccio === 'fitxes') {
-        setHtmlContent('');
-        setLoading(false);
-        setError(null);
-        return;
-      }
-
-      // Vocabulary / grammar rendered by component, no fetch needed
-      if (['vocabulary', 'grammar'].includes(seccio)) {
-        setHtmlContent('');
-        setLoading(false);
-        setError(null);
-        return;
-      }
-
-      // Projectes rendered by TopicDataProjects component, no fetch needed
-      if (seccio === 'projectes') {
+      if (['fitxes', 'vocabulary', 'grammar', 'projectes', 'presentacio', 'casos-practics'].includes(normalizedSeccio)) {
         setHtmlContent('');
         setLoading(false);
         setError(null);
@@ -156,7 +149,7 @@ export default function BlocPage() {
       }
 
       // Fetch shared content at bloc level
-      const contentUrl = `/content/${blocId}/${seccio}.html`;
+      const contentUrl = `/content/${blocId}/${normalizedSeccio}.html`;
       setLoading(true);
       setError(null);
       fetch(contentUrl)
@@ -170,7 +163,7 @@ export default function BlocPage() {
     }
 
     // ── Standard tema-level section ──
-    if (!blocId || !temaId || !seccio) {
+    if (!blocId || !temaId || !normalizedSeccio) {
       setHtmlContent('');
       setLoading(false);
       setError(null);
@@ -178,7 +171,7 @@ export default function BlocPage() {
     }
 
     // Handle esquemes section separately (uses SchemaList component)
-    if (seccio === 'esquemes') {
+    if (normalizedSeccio === 'esquemes') {
       setHtmlContent('');
       setLoading(false);
       setError(null);
@@ -186,7 +179,7 @@ export default function BlocPage() {
     }
 
     // PowerPoints section — rendered via SlideDeck component below
-    if (seccio === 'powerpoints') {
+    if (normalizedSeccio === 'presentacio') {
       setHtmlContent('');
       setLoading(false);
       setError(null);
@@ -194,7 +187,7 @@ export default function BlocPage() {
     }
 
     // Handle autoavaluacio section separately (uses AutoavaluacioSection component)
-    if (seccio === 'autoavaluacio') {
+    if (normalizedSeccio === 'casos-practics') {
       setHtmlContent('');
       setLoading(false);
       setError(null);
@@ -202,14 +195,14 @@ export default function BlocPage() {
     }
 
     // Handle fitxes section separately (uses PlataformaPSCP / FitxesEstudi component)
-    if (seccio === 'fitxes') {
+    if (normalizedSeccio === 'fitxes') {
       setHtmlContent('');
       setLoading(false);
       setError(null);
       return;
     }
 
-    const contentUrl = `/content/${blocId}/${temaId}/${seccio}.html`;
+    const contentUrl = `/content/${blocId}/${temaId}/${normalizedSeccio}.html`;
     
     setLoading(true);
     setError(null);
@@ -250,10 +243,11 @@ export default function BlocPage() {
   const allSections = blocId === 'bloc-5'
     ? [...SECTIONS, ...BLOC5_EXTRA_SECTIONS]
     : SECTIONS;
+  const normalizedSeccio = normalizeSectionId(seccio);
 
   // ── Bloc-level shared section view (e.g. /bloc/bloc-4/legislacio) ──
   // temaId is undefined, seccio is defined, and section is shared for this bloc
-  const isBlocSharedView = !temaId && seccio && isShared(blocId, seccio);
+  const isBlocSharedView = !temaId && normalizedSeccio && isShared(blocId, normalizedSeccio);
 
   if (isBlocSharedView) {
     // Business English uses its own sections; other blocs filter from SECTIONS
@@ -295,7 +289,7 @@ export default function BlocPage() {
 
       return (
         <div className="bloc-page">
-          {seccio === 'fitxes' ? (
+          {normalizedSeccio === 'fitxes' ? (
             /* Fitxes: BusinessEnglishFitxes owns both containers */
             <BusinessEnglishFitxes key={fitxesKey} />
           ) : (
@@ -305,10 +299,10 @@ export default function BlocPage() {
                 {commonSectionsNav}
               </div>
               <div className="bloc-contingut">
-                {seccio === 'vocabulary' && (
+                {normalizedSeccio === 'vocabulary' && (
                   <ComingSoon sectionName="Vocabulary" hint="Vocabulary lists and exercises — coming soon." />
                 )}
-                {seccio === 'grammar' && (
+                {normalizedSeccio === 'grammar' && (
                   <ComingSoon sectionName="Grammar" hint="Grammar reference and practice — coming soon." />
                 )}
               </div>
@@ -375,7 +369,7 @@ export default function BlocPage() {
 
         {/* Content area */}
         <div className="bloc-contingut">
-          {seccio === 'legislacio' && (
+          {normalizedSeccio === 'legislacio' && (
             <>
               {loading && <div className="loading"><p>Carregant contingut...</p></div>}
               {error && (
@@ -396,14 +390,14 @@ export default function BlocPage() {
             </>
           )}
 
-          {seccio === 'fitxes' && blocId === 'bloc-4' && <PlataformaPSCP />}
-          {seccio === 'fitxes' && blocId !== 'bloc-4' && <FitxesEstudi blocId={blocId} />}
+          {normalizedSeccio === 'fitxes' && blocId === 'bloc-4' && <PlataformaPSCP />}
+          {normalizedSeccio === 'fitxes' && blocId !== 'bloc-4' && <FitxesEstudi blocId={blocId} />}
 
-          {seccio === 'projectes' && blocId === 'bloc-5' && (
+          {normalizedSeccio === 'projectes' && blocId === 'bloc-5' && (
             <TopicDataProjects blocId={blocId} temaId={temaId} />
           )}
 
-          {seccio === 'materials' && (
+          {normalizedSeccio === 'materials' && (
             <>
               {loading && <div className="loading"><p>Carregant contingut...</p></div>}
               {error && (
@@ -422,6 +416,18 @@ export default function BlocPage() {
                 />
               )}
             </>
+          )}
+
+          {normalizedSeccio === 'presentacio' && (
+            <SectionContainer title="Presentació" isEmpty={!SLIDE_MD_MAP[blocId]}>
+              {SLIDE_MD_MAP[blocId] && <SlideDeck mdUrl={SLIDE_MD_MAP[blocId]} title={bloc.title} />}
+            </SectionContainer>
+          )}
+
+          {normalizedSeccio === 'casos-practics' && (
+            <SectionContainer title="Casos pràctics" isEmpty>
+              <AutoavaluacioSection blocId={blocId} temaId={temaId} />
+            </SectionContainer>
           )}
         </div>
 
@@ -518,17 +524,15 @@ export default function BlocPage() {
 
       {/* Content area */}
       <div className="bloc-contingut">
-        {!seccio && (
-          <div className="preview-empty">
-            <p>Selecciona una secció per veure el contingut.</p>
-          </div>
+        {!normalizedSeccio && (
+          <SectionContainer title={tema.label} isEmpty emptyMessage="Selecciona una secció per veure el contingut." />
         )}
 
-        {/* Slide deck for powerpoints section */}
-        {!loading && !error && !htmlContent && seccio === 'powerpoints' && (
+        {/* Slide deck for presentació section */}
+        {!loading && !error && !htmlContent && normalizedSeccio === 'presentacio' && (
           SLIDE_MD_MAP[blocId]
             ? <SlideDeck mdUrl={SLIDE_MD_MAP[blocId]} title={bloc.title} />
-            : <ComingSoon sectionName="PowerPoints" />
+            : <ComingSoon sectionName="Presentació" />
         )}
 
         {loading && (
@@ -539,8 +543,8 @@ export default function BlocPage() {
 
         {error && (
           <ComingSoon
-            sectionName={SECTIONS.find(s => s.id === seccio)?.label}
-            hint={`Fitxer esperat: /content/${blocId}/${temaId}/${seccio}.html`}
+            sectionName={SECTIONS.find(s => s.id === normalizedSeccio)?.label}
+            hint={`Fitxer esperat: /content/${blocId}/${temaId}/${normalizedSeccio}.html`}
           />
         )}
 
@@ -551,23 +555,23 @@ export default function BlocPage() {
           />
         )}
 
-        {!loading && !error && !htmlContent && seccio === 'esquemes' && (
+        {!loading && !error && !htmlContent && normalizedSeccio === 'esquemes' && (
           <SchemaList blocId={blocId} temaId={temaId} />
         )}
 
-        {!loading && !error && !htmlContent && seccio === 'autoavaluacio' && (
-          <AutoavaluacioSection blocId={blocId} temaId={temaId} />
+        {!loading && !error && !htmlContent && normalizedSeccio === 'casos-practics' && (
+          <SectionContainer title="Casos pràctics" isEmpty />
         )}
 
-        {!loading && !error && !htmlContent && seccio === 'fitxes' && blocId === 'bloc-4' && (
+        {!loading && !error && !htmlContent && normalizedSeccio === 'fitxes' && blocId === 'bloc-4' && (
           <PlataformaPSCP />
         )}
 
-        {!loading && !error && !htmlContent && seccio === 'fitxes' && blocId !== 'bloc-4' && (
+        {!loading && !error && !htmlContent && normalizedSeccio === 'fitxes' && blocId !== 'bloc-4' && (
           <FitxesEstudi blocId={blocId} />
         )}
 
-        {!loading && !error && !htmlContent && seccio === 'projectes' && blocId === 'bloc-5' && (
+        {!loading && !error && !htmlContent && normalizedSeccio === 'projectes' && blocId === 'bloc-5' && (
           <TopicDataProjects blocId={blocId} temaId={temaId} />
         )}
       </div>

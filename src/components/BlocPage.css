@@ -222,6 +222,27 @@
   text-align: center;
 }
 
+.section-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.section-container-title {
+  margin: 0;
+  color: #1f2933;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.section-container-empty {
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  color: #6b7280;
+  background: #f9fafb;
+}
+
 /* HTML content area – canonical full-width wrapper for injected HTML */
 .html-content {
   color: #4b5563;
