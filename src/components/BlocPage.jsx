@@ -111,6 +111,12 @@ export default function BlocPage() {
   // Find current tema
   const tema = bloc?.topics?.find((t) => t.id === temaId);
 
+  const temaNumberMatch = temaId?.match(/^tema-(\d+)$/);
+  const temaEsquemaPath =
+    blocId && temaId && temaNumberMatch
+      ? `/content/${blocId}/${temaId}/esquemaTema${temaNumberMatch[1]}.html`
+      : null;
+
   // ── Redirect: if navigating to a shared section via a tema URL, go to bloc-level URL
   useEffect(() => {
     if (blocId && temaId && seccio && isShared(blocId, seccio)) {
@@ -551,7 +557,20 @@ export default function BlocPage() {
           />
         )}
 
-        {!loading && !error && !htmlContent && seccio === 'esquemes' && (
+        {!loading && !error && !htmlContent && seccio === 'esquemes' && temaEsquemaPath && (
+          <iframe
+            src={temaEsquemaPath}
+            title={`Esquema ${temaId}`}
+            style={{
+              width: '100%',
+              minHeight: '1200px',
+              border: 'none',
+              borderRadius: '12px',
+            }}
+          />
+        )}
+
+        {!loading && !error && !htmlContent && seccio === 'esquemes' && !temaEsquemaPath && (
           <SchemaList blocId={blocId} temaId={temaId} />
         )}
 

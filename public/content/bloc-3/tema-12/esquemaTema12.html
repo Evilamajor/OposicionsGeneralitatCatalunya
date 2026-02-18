@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Esquema Tema 12</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.5; color: #1f2937; }
+    .subpoint { border: 1px solid #d1d5db; border-radius: 10px; padding: 16px; background: #ffffff; }
+    .idea-box { margin: 10px 0 14px; padding: 10px 12px; background: #eef2ff; border-left: 4px solid #4f46e5; border-radius: 8px; }
+    details { margin-top: 10px; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+    summary { cursor: pointer; font-weight: 600; padding: 10px 12px; background: #f9fafb; }
+    iframe { width: 100%; min-height: 420px; border: none; border-radius: 8px; background: #fff; display: block; }
+  </style>
+</head>
+<body>
+  <div class="subpoint">
+    <h3>1. Títol del punt</h3>
+    <div class="idea-box"><strong>Idea clau:</strong> síntesi clara i breu del punt.</div>
+    <details><summary>Preguntes</summary><iframe src="./preguntes/pregunta-punt1.html" loading="lazy"></iframe></details>
+    <details><summary>Diagrama</summary><iframe src="./diagrama/punt1.html" loading="lazy"></iframe></details>
+    <details><summary>Explicació</summary><iframe src="./esquemes/punt1.html" loading="lazy"></iframe></details>
+  </div>
+</body>
+</html><!DOCTYPE html>
+<html lang="ca"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Tema 12 - Esquema base</title><style>body{font-family:Arial,sans-serif;background:#f5f7fa;margin:0;padding:24px}.section-title{margin:0 0 16px;color:#1f2937}.module-block{background:#fff;border-radius:12px;padding:20px;box-shadow:0 4px 15px rgba(0,0,0,.08)}.idea-card{background:#f8fafc;border-left:4px solid #2563eb;border-radius:8px;padding:14px;margin-bottom:12px}.toggle-btn{border:none;background:#111827;color:#fff;border-radius:8px;padding:10px 14px;cursor:pointer;margin-bottom:12px}#preguntaContainer,#diagramaContainer,#explicacioContainer{margin-top:14px}#preguntaContainer{display:none}</style></head><body><h2 class="section-title">Tema 12 - Esquema modular</h2><section class="module-block"><div class="idea-card"><strong>Idea clau:</strong> punt base del bloc-3/tema-12 amb contingut modular carregat per seccions.</div><button id="togglePregunta" class="toggle-btn" type="button">Mostrar / amagar pregunta</button><div id="preguntaContainer"></div><div id="diagramaContainer"></div><div id="explicacioContainer"></div></section><script>async function loadSection(containerId,path){const container=document.getElementById(containerId);try{const response=await fetch(path);if(!response.ok)throw new Error(`HTTP ${response.status}`);container.innerHTML=await response.text();const scripts=container.querySelectorAll('script');scripts.forEach((oldScript)=>{const script=document.createElement('script');Array.from(oldScript.attributes).forEach((attr)=>script.setAttribute(attr.name,attr.value));script.textContent=oldScript.textContent;oldScript.replaceWith(script);});}catch(error){container.innerHTML=`<p>No s'ha pogut carregar: ${path}</p>`;console.error(error);}}const sectionsConfig={base:{pregunta:'/content/bloc-3/tema-12/preguntes/pregunta-base.html',diagrama:'/content/bloc-3/tema-12/diagrama/diagrama-base.html',explicacio:'/content/bloc-3/tema-12/esquemes/desenvolupament-base.html'}};const pointKey='base';const point=sectionsConfig[pointKey];document.getElementById('togglePregunta').addEventListener('click',()=>{const container=document.getElementById('preguntaContainer');container.style.display=container.style.display==='none'?'block':'none';});loadSection('preguntaContainer',point.pregunta);loadSection('diagramaContainer',point.diagrama);loadSection('explicacioContainer',point.explicacio);</script></body></html>

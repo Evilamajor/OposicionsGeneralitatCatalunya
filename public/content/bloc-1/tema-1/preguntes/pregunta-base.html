@@ -1,0 +1,20 @@
+<div class="question-box">
+  <h3>Pregunta base</h3>
+  <p>Quin és l'objectiu principal d'aquest apartat del tema?</p>
+  <label><input type="radio" name="respostaBase" value="a"> A) Recordar únicament definicions</label><br>
+  <label><input type="radio" name="respostaBase" value="b"> B) Relacionar conceptes i aplicació pràctica</label><br>
+  <label><input type="radio" name="respostaBase" value="c"> C) Memoritzar dades sense context</label>
+  <button id="mostrarResposta" type="button">Mostrar resposta</button>
+  <div id="respostaCorrecta" style="display:none; margin-top:10px;"><strong>Resposta correcta: B</strong>. Cal entendre el marc conceptual i com s'aplica.</div>
+</div>
+<script>
+(function () {
+  const trigger = document.getElementById('mostrarResposta');
+  const answer = document.getElementById('respostaCorrecta');
+  if (trigger && answer) {
+    trigger.addEventListener('click', () => {
+      answer.style.display = 'block';
+    });
+  }
+})();
+</script>

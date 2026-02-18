@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tema 13 · Esquemes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 24px;
+      color: #1f2937;
+    }
+
+    .subpoint {
+      margin-bottom: 40px;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .subpoint h3 {
+      margin: 0 0 14px;
+    }
+
+    .idea-box {
+      background: #f1f5ff;
+      padding: 12px;
+      border-left: 4px solid #4a6cf7;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+
+    .toggle {
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+      padding: 6px 0;
+      user-select: none;
+    }
+
+    .content-section {
+      display: none;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="subpoint">
+    <h3>1. Marc normatiu</h3>
+
+    <div class="idea-box">
+      <strong>Idea clau:</strong>
+      La contractació pública s’articula en un sistema jeràrquic de fonts normatives, des del marc constitucional fins al desplegament normatiu sectorial.
+    </div>
+
+    <div class="toggle" onclick="toggleSection('pregunta1')">▶ Preguntes</div>
+    <div id="pregunta1" class="content-section"></div>
+
+    <div class="toggle" onclick="toggleSection('diagrama1')">▶ Diagrama</div>
+    <div id="diagrama1" class="content-section"></div>
+
+    <div class="toggle" onclick="toggleSection('explicacio1')">▶ Explicació</div>
+    <div id="explicacio1" class="content-section"></div>
+  </div>
+
+  <script>
+    async function loadSection(containerId, path) {
+      const container = document.getElementById(containerId);
+
+      if (container.dataset.loaded === 'true') {
+        return;
+      }
+
+      const response = await fetch(path);
+      const html = await response.text();
+      container.innerHTML = html;
+      container.dataset.loaded = 'true';
+
+      const scripts = container.querySelectorAll('script');
+      scripts.forEach((oldScript) => {
+        const newScript = document.createElement('script');
+        if (oldScript.src) {
+          newScript.src = oldScript.src;
+        } else {
+          newScript.textContent = oldScript.textContent;
+        }
+        document.body.appendChild(newScript);
+        oldScript.remove();
+      });
+    }
+
+    const sectionPaths = {
+      1: {
+        pregunta: '/content/bloc-4/tema-13/preguntes/preguntamarcnormatiu.html',
+        diagrama: '/content/bloc-4/tema-13/diagrama/marcnormatiu.html',
+        explicacio: '/content/bloc-4/tema-13/esquemes/marcnormatiu.html',
+      },
+    };
+
+    async function toggleSection(id) {
+      const section = document.getElementById(id);
+
+      if (section.style.display === 'block') {
+        section.style.display = 'none';
+      } else {
+        section.style.display = 'block';
+
+        const match = id.match(/^(pregunta|diagrama|explicacio)(\d+)$/);
+        if (!match) return;
+
+        const [, type, pointNumber] = match;
+        const path = sectionPaths[pointNumber]?.[type];
+        if (path) {
+          try {
+            await loadSection(id, path);
+          } catch (error) {
+            section.innerHTML = `<p>No s'ha pogut carregar: ${path}</p>`;
+            console.error(error);
+          }
+        }
+      }
+    }
+
+    window.toggleSection = toggleSection;
+  </script>
+</body>
+</html>

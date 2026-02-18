@@ -1,0 +1,128 @@
+<div class="question-box">
+
+  <h3>🎯 Pregunta tipus test</h3>
+
+  <p><strong>L’Estat té competència exclusiva sobre:</strong></p>
+
+  <div class="option" onclick="checkAnswer('a')">a) Tota la contractació pública</div>
+  <div class="option" onclick="checkAnswer('b')">b) Només les bases del règim jurídic de la contractació</div>
+  <div class="option" onclick="checkAnswer('c')">c) Només els contractes SARA</div>
+  <div class="option" onclick="checkAnswer('d')">d) Només la contractació estatal</div>
+
+  <div id="feedback" class="feedback"></div>
+
+  <button onclick="resetQuestion()" class="reset-btn">Reset</button>
+
+</div>
+
+<style>
+.question-box {
+  background: #f8fff8;
+  border-left: 5px solid #2ecc71;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.option {
+  margin: 8px 0;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.option:hover {
+  background: #eef3ff;
+}
+
+.correct {
+  background: #d4f8d4;
+  font-weight: bold;
+}
+
+.incorrect {
+  background: #ffdede;
+  font-weight: bold;
+}
+
+.feedback {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f4f4f4;
+}
+
+.reset-btn {
+  margin-top: 15px;
+  padding: 6px 12px;
+  border: none;
+  background: #222;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+</style>
+
+<script>
+let answered = false;
+
+function checkAnswer(option) {
+  if (answered) return;
+
+  const feedback = document.getElementById("feedback");
+  const options = document.querySelectorAll(".option");
+
+  answered = true;
+
+  options.forEach(opt => opt.style.pointerEvents = "none");
+
+  if (option === "b") {
+    options[1].classList.add("correct");
+    feedback.innerHTML = `
+      <strong>✔ Resposta correcta: b)</strong><br>
+      L’article 149.1.18a CE atribueix a l’Estat la competència exclusiva
+      per establir les bases del règim jurídic de la contractació administrativa.
+    `;
+  } 
+  else if (option === "c") {
+    options[2].classList.add("incorrect");
+    feedback.innerHTML = `
+      <strong>✘ Incorrecte.</strong><br>
+      Els contractes SARA (Subjectes a Regulació Harmonitzada)
+      són aquells que superen determinats llindars econòmics
+      establerts per la normativa europea. No defineixen la competència
+      constitucional de l’Estat, sinó l'aplicació de normativa europea.
+    `;
+  }
+  else if (option === "a") {
+    options[0].classList.add("incorrect");
+    feedback.innerHTML = `
+      <strong>✘ Incorrecte.</strong><br>
+      L’Estat no té competència sobre tota la contractació pública,
+      sinó només sobre les bases del règim jurídic.
+      Les comunitats autònomes poden desenvolupar normativa pròpia
+      dins el marc bàsic estatal.
+    `;
+  }
+  else if (option === "d") {
+    options[3].classList.add("incorrect");
+    feedback.innerHTML = `
+      <strong>✘ Incorrecte.</strong><br>
+      La competència estatal no es limita a la contractació estatal,
+      sinó a fixar les bases aplicables a tot el sector públic.
+    `;
+  }
+}
+
+function resetQuestion() {
+  answered = false;
+  const feedback = document.getElementById("feedback");
+  const options = document.querySelectorAll(".option");
+
+  feedback.innerHTML = "";
+  options.forEach(opt => {
+    opt.classList.remove("correct", "incorrect");
+    opt.style.pointerEvents = "auto";
+  });
+}
+</script>
