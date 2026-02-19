@@ -1,0 +1,151 @@
+.reorder-exercise {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.reorder-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+
+.reorder-title {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #1e293b;
+}
+
+.reorder-instruction {
+  margin: 0.35rem 0 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.reorder-next {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #f3f4f6;
+  color: #4b5563;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  flex: 0 0 auto;
+  line-height: 1;
+}
+
+.reorder-next:hover {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+.reorder-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.reorder-slot {
+  min-height: 38px;
+  min-width: 90px;
+  padding: 0.5rem 0.75rem;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #475569;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+
+.reorder-slot.filled {
+  border-style: solid;
+  border-color: #94a3b8;
+  color: #1e293b;
+  background: #f8fafc;
+}
+
+.reorder-words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.reorder-word {
+  border: 1px solid #d1d5db;
+  background: #f3f4f6;
+  color: #374151;
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.reorder-word:hover {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+.reorder-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.reorder-btn {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+}
+
+.reorder-btn-check {
+  border: 1px solid #4b5563;
+  background: #4b5563;
+  color: #ffffff;
+}
+
+.reorder-btn-answers {
+  border: 1px solid #d1d5db;
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.reorder-btn-restart {
+  border: 1px solid #9ca3af;
+  background: #ffffff;
+  color: #4b5563;
+}
+
+.reorder-feedback {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.reorder-feedback.success {
+  color: #15803d;
+}
+
+.reorder-feedback.error {
+  color: #b91c1c;
+}
+
+.reorder-context-link {
+  align-self: flex-start;
+  margin-top: -0.2rem;
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.reorder-context-link:hover {
+  color: #475569;
+  text-decoration: underline;
+}

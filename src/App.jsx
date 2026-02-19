@@ -16,6 +16,8 @@ import HistoriaCatalanaPage from './pages/HistoriaCatalanaPage';
 import LiteraturaCatalanaPage from './pages/LiteraturaCatalanaPage';
 import ArtsPage from './pages/ArtsPage';
 import AgendaCulturalPage from './pages/AgendaCulturalPage';
+import InternalCorrespondencePractice from './components/business-english/InternalCorrespondencePractice';
+import InternalCorrespondenceContext from './components/business-english/InternalCorrespondenceContext';
 
 export default function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -82,6 +84,8 @@ export default function App() {
           <Route path="/annexos/cultura-catalana/literatura" element={<LiteraturaCatalanaPage />} />
           <Route path="/annexos/cultura-catalana/arts" element={<ArtsPage />} />
           <Route path="/annexos/cultura-catalana/agenda" element={<AgendaCulturalPage />} />
+          <Route path="/business-english/internal-correspondence/practice" element={<InternalCorrespondencePractice />} />
+          <Route path="/business-english/internal-correspondence/context/:section/:id" element={<InternalCorrespondenceContext />} />
           <Route path="/forum" element={<ForumPage />} />
         </Routes>
       </main>

@@ -133,7 +133,7 @@ export default function BusinessEnglishFitxes() {
                 className={`be-layer2-tab ${activeLayer2 === 'specific' ? 'active' : ''}`}
                 onClick={() => {
                   setActiveLayer2('specific');
-                  setActiveLayer3(null);
+                  setActiveLayer3('complementary');
                 }}
               >
                 Specific sections
@@ -168,12 +168,6 @@ export default function BusinessEnglishFitxes() {
                   onClick={() => setActiveLayer3('complementary')}
                 >
                   Complementary materials
-                </span>
-                <span
-                  className={`be-layer3-tab ${activeLayer3 === 'practice' ? 'active' : ''}`}
-                  onClick={() => setActiveLayer3('practice')}
-                >
-                  Practice
                 </span>
               </div>
             )}
@@ -275,12 +269,20 @@ export default function BusinessEnglishFitxes() {
           )}
 
           {activeLayer2 === 'specific' && activeLayer3 === 'complementary' && (
-            <p className="be-placeholder-text">Content in preparation.</p>
+            <div className="be-card-grid">
+              <NavLink
+                to="/business-english/internal-correspondence/practice"
+                className="be-card be-card-link"
+              >
+                <span className="be-card-badge">✉️ Internal Correspondence</span>
+                <h4 className="be-card-title">Sentence Reordering Practice</h4>
+                <p className="be-placeholder-text">
+                  Practice requesting information, giving information, and arranging meetings.
+                </p>
+              </NavLink>
+            </div>
           )}
 
-          {activeLayer2 === 'specific' && activeLayer3 === 'practice' && (
-            <p className="be-placeholder-text">Exercises and tasks will be added here.</p>
-          )}
         </div>
       )}
     </>
