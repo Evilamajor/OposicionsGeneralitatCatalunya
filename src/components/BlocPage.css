@@ -4,10 +4,10 @@
 .bloc-page {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
   min-height: 100vh;
   width: 100%;
-  padding: 24px;
+  padding: 28px;
   box-sizing: border-box;
 }
 
@@ -16,16 +16,17 @@
 ========================= */
 .bloc-seccions {
   background: #ffffff;
-  padding: 16px;
-  border-radius: 10px;
+  padding: 18px 20px;
+  border-radius: 12px;
   border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 16px rgba(17, 24, 39, 0.04);
 }
 
 .bloc-seccions h2 {
   margin-top: 0;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   color: #1f2933;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -94,8 +95,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 4px 10px;
-  margin-bottom: 0.5rem;
+  padding: 6px 12px;
+  margin-bottom: 0.85rem;
   font-size: 12px;
   font-weight: 500;
   color: #6b7280;
@@ -103,7 +104,7 @@
   border: 1px solid #e5e7eb;
   border-radius: 6px;
   cursor: pointer;
-  transition: all 150ms ease;
+  transition: all 0.2s ease;
 }
 
 .tabs-toggle:hover {
@@ -131,12 +132,14 @@
 /* Llista de seccions com pestanyes */
 .seccions-list {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.65rem;
   flex-wrap: wrap;
   transition: opacity 200ms ease, max-height 200ms ease;
   max-height: 200px;
   overflow: hidden;
   opacity: 1;
+  margin-top: 0.35rem;
+  margin-bottom: 0.25rem;
 }
 
 .seccions-list.seccions-hidden {
@@ -148,15 +151,15 @@
 
 .seccio-link {
   display: inline-block;
-  padding: 6px 12px;
-  border-radius: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
   background: transparent;
   color: #6b7280;
   text-decoration: none;
   font-weight: 500;
   font-size: 13px;
   border-bottom: 2px solid transparent;
-  transition: all 150ms ease;
+  transition: all 0.2s ease;
 }
 
 .seccio-link:hover {
@@ -168,6 +171,7 @@
   color: #0052cc;
   border-bottom-color: #0052cc;
   background: #eef2ff;
+  box-shadow: inset 0 0 0 1px rgba(59, 110, 165, 0.15);
 }
 
 /* =========================
@@ -176,14 +180,20 @@
 ========================= */
 .bloc-contingut {
   background: #ffffff;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid #e5e7eb;
   flex: 1;
   overflow-y: auto;
   min-height: 50vh;
   width: 100%;
-  padding: 24px;
+  padding: 28px;
   box-sizing: border-box;
+}
+
+.bloc-contingut iframe {
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.07);
 }
 
 /* When SlideDeck sits inside bloc-contingut, remove padding and let it fill */
@@ -254,8 +264,8 @@
 .html-content h5,
 .html-content h6 {
   color: #1f2933;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
+  margin-top: 1.8rem;
+  margin-bottom: 0.9rem;
   font-weight: 600;
 }
 

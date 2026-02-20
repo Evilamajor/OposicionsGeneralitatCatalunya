@@ -1,4 +1,4 @@
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { sidebarConfig } from '../data';
 
@@ -10,7 +10,6 @@ const blocksOnly = allBlocks.filter((b) => b.id !== 'business-english');
 export default function Sidebar({ collapsed, onToggle }) {
   const [expandedBlocId, setExpandedBlocId] = useState(null);
   const [annexosOpen, setAnnexosOpen] = useState(false);
-  const navigate = useNavigate();
   const { blocId: activeBlockId } = useParams();
 
   // Auto-expand the current bloc when navigating
@@ -70,20 +69,27 @@ export default function Sidebar({ collapsed, onToggle }) {
                   </svg>
                 </button>
 
-                {/* Bloc title (TEXT ONLY, no icon) */}
-                <NavLink
-                  to={`/bloc/${bloc.id}`}
-                  className={({ isActive }) =>
-                    isActive ? 'active' : ''
+                {/* Bloc title (toggle only, not navigable) */}
+                <div
+                  className={activeBlockId === bloc.id ? 'active' : ''}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() =>
+                    setExpandedBlocId(
+                      expandedBlocId === bloc.id ? null : bloc.id
+                    )
                   }
-                  onClick={() => {
-                    navigate(`/bloc/${bloc.id}`);
-                    setExpandedBlocId(bloc.id);
-                    if (onToggle && !collapsed) onToggle(); // auto-collapse on nav
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault();
+                      setExpandedBlocId(
+                        expandedBlocId === bloc.id ? null : bloc.id
+                      );
+                    }
                   }}
                 >
                   <span className="bloc-title">{bloc.title}</span>
-                </NavLink>
+                </div>
               </div>
 
               {/* Topics */}
@@ -99,9 +105,6 @@ export default function Sidebar({ collapsed, onToggle }) {
                       <li key={t.id}>
                         <NavLink
                           to={`/bloc/${bloc.id}/${t.id}/${firstSection}`}
-                          onClick={() =>
-                            navigate(`/bloc/${bloc.id}/${t.id}/${firstSection}`)
-                          }
                         >
                           <span
                             className="topic-dot"

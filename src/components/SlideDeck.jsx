@@ -3,7 +3,8 @@
  * and renders it as a navigable slide presentation with transitions.
  *
  * Props:
- *   @param {string} mdUrl — URL to the .md file (relative to public/)
+ *   @param {string} [mdUrl] — URL to the .md file (relative to public/)
+ *   @param {string} [deckConfigUrl] — URL to config.json for per-topic slides deck
  *   @param {string} [title] — optional deck label
  */
 import { useState, useEffect, useCallback, useRef } from 'react';
@@ -11,7 +12,7 @@ import parseMarkdownSlides from '../utils/parseMarkdownSlides';
 import Slide from './Slide';
 import './SlideDeck.css';
 
-export default function SlideDeck({ mdUrl, title }) {
+export default function SlideDeck({ mdUrl, deckConfigUrl, title }) {
   const [slides, setSlides] = useState([]);
   const [current, setCurrent] = useState(0);
   const [prevIndex, setPrevIndex] = useState(0);
@@ -20,34 +21,75 @@ export default function SlideDeck({ mdUrl, title }) {
   const [printMode, setPrintMode] = useState(false);
   const deckRef = useRef(null);
 
+  const buildFullUrl = useCallback((url) => {
+    const baseUrl = import.meta.env.BASE_URL || '/';
+    return url.startsWith('/')
+      ? `${baseUrl.replace(/\/$/, '')}${url}`
+      : `${baseUrl}${url}`;
+  }, []);
+
   /* ── Load & parse markdown ── */
   useEffect(() => {
+    if (!mdUrl && !deckConfigUrl) {
+      setSlides([]);
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
-    const baseUrl = import.meta.env.BASE_URL || '/';
-    const fullUrl = mdUrl.startsWith('/')
-      ? `${baseUrl.replace(/\/$/, '')}${mdUrl}`
-      : `${baseUrl}${mdUrl}`;
+    const loadDeck = async () => {
+      try {
+        let markdown = '';
 
-    fetch(fullUrl + '?v=' + Date.now())
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.text();
-      })
-      .then((md) => {
-        const parsed = parseMarkdownSlides(md);
+        if (deckConfigUrl) {
+          const configFullUrl = buildFullUrl(deckConfigUrl);
+          const configResponse = await fetch(`${configFullUrl}?v=${Date.now()}`);
+          if (!configResponse.ok) throw new Error(`HTTP ${configResponse.status}`);
+
+          const config = await configResponse.json();
+          const configDir = deckConfigUrl.replace(/\/config\.json$/, '');
+          const slideFiles = Array.isArray(config?.slides) ? config.slides : [];
+
+          const slideMarkdowns = await Promise.all(
+            slideFiles
+              .filter(Boolean)
+              .map(async (slideFile) => {
+                const slidePath = slideFile.startsWith('/')
+                  ? slideFile
+                  : `${configDir}/${slideFile}`;
+                const slideFullUrl = buildFullUrl(slidePath);
+                const slideResponse = await fetch(`${slideFullUrl}?v=${Date.now()}`);
+                if (!slideResponse.ok) {
+                  throw new Error(`No s'ha pogut carregar ${slideFile} (HTTP ${slideResponse.status})`);
+                }
+                return slideResponse.text();
+              }),
+          );
+
+          markdown = slideMarkdowns.join('\n\n---\n\n');
+        } else if (mdUrl) {
+          const fullUrl = buildFullUrl(mdUrl);
+          const response = await fetch(`${fullUrl}?v=${Date.now()}`);
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          markdown = await response.text();
+        }
+
+        const parsed = parseMarkdownSlides(markdown);
         setSlides(parsed);
         setCurrent(0);
         setPrevIndex(0);
         setLoading(false);
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error('SlideDeck load error:', err);
         setError(err.message);
         setLoading(false);
-      });
-  }, [mdUrl]);
+      }
+    };
+
+    loadDeck();
+  }, [mdUrl, deckConfigUrl, buildFullUrl]);
 
   /* ── Navigation ── */
   const total = slides.length;
