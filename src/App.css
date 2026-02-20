@@ -101,7 +101,7 @@
 ========================= */
 .sidebar {
   grid-column: 1 / 2;
-  padding: 12px;
+  padding: 16px 14px;
   box-sizing: border-box;
   border-right: 1px solid #e5e7eb;
   background: #fafbfc;
@@ -199,9 +199,9 @@
   display: inline-flex;
   gap: 0.5rem;
   align-items: center;
-  padding: 6px 4px;
+  padding: 7px 8px;
   border-radius: 6px;
-  transition: background 150ms ease;
+  transition: all 0.2s ease;
 }
 
 .sidebar a.active {
@@ -247,32 +247,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 /* =========================
    Blocs & temes (sidebar)
 ========================= */
 .sidebar-block {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.2rem;
+}
+
+.sidebar-block + .sidebar-block {
+  border-top: 1px solid #edf1f7;
+  padding-top: 0.6rem;
 }
 
 .bloc-header {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 0.3rem;
 }
 
 .bloc-toggle {
   background: transparent;
   border: none;
-  padding: 4px;
+  padding: 6px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   color: #6b7280;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
 .bloc-toggle:focus {
@@ -283,6 +291,7 @@
 
 .bloc-toggle:hover {
   color: #1f2933;
+  background: #f2f5fa;
 }
 
 .bloc-toggle .chevron {
@@ -298,11 +307,28 @@
   display: inline-flex;
   gap: 0.5rem;
   align-items: center;
-  padding: 8px 10px;
-  border-radius: 6px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.bloc-header > div[role="button"] {
+  flex: 1;
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 9px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .bloc-header a.active {
+  background: #eef2ff;
+  font-weight: 600;
+}
+
+.bloc-header > div[role="button"].active {
   background: #eef2ff;
   font-weight: 600;
 }
@@ -312,7 +338,16 @@
   background: #f3f4f6;
 }
 
+.bloc-header > div[role="button"]:hover {
+  background: #f3f4f6;
+}
+
 .bloc-header a:focus {
+  outline: 2px solid #0052cc;
+  outline-offset: 2px;
+}
+
+.bloc-header > div[role="button"]:focus-visible {
   outline: 2px solid #0052cc;
   outline-offset: 2px;
 }
@@ -320,21 +355,26 @@
 .bloc-title {
   font-weight: 600;
   color: #1f2933;
-  font-size: 13px;
+  font-size: 14px;
+  line-height: 1.45;
 }
 
 .sidebar-block .topic-list {
-  margin-left: 14px;
-  margin-top: 6px;
+  margin-left: 24px;
+  margin-top: 10px;
+  display: grid;
+  gap: 4px;
 }
 
 .topic-list li a {
   font-size: 13px;
-  padding: 5px 8px;
+  padding: 7px 10px;
   display: inline-flex;
   gap: 0.4rem;
   align-items: center;
-  border-radius: 4px;
+  border-radius: 7px;
+  line-height: 1.45;
+  transition: all 0.2s ease;
 }
 
 .topic-list li a:hover {
@@ -349,6 +389,7 @@
 .topic-label {
   color: #4b5563;
   font-size: 13px;
+  line-height: 1.45;
 }
 
 .topic-dot {
@@ -362,7 +403,7 @@
 .sidebar-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
-  margin: 20px 12px;
+  margin: 24px 10px;
 }
 
 /* Annexos section – subtle visual distinction */
@@ -382,13 +423,14 @@
   gap: 0.45rem;
   text-decoration: none;
   color: inherit;
-  padding: 2px 0;
+  padding: 6px 8px;
   border-radius: 6px;
-  transition: color 150ms;
+  transition: all 0.2s ease;
 }
 
 .sidebar-forum-link:hover {
   color: #1976d2;
+  background: #eef5ff;
 }
 
 .sidebar-forum-link.active {
@@ -406,6 +448,16 @@
   width: 16px;
   height: 16px;
   flex-shrink: 0;
+}
+
+/* ===== VISUAL REFINEMENT UPDATE ===== */
+.sidebar,
+.bloc-toggle,
+.bloc-header > div[role="button"],
+.bloc-header a,
+.topic-list li a,
+.sidebar-forum-link {
+  transition: all 0.2s ease;
 }
 
 /* =========================

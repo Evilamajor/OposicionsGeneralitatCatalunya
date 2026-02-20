@@ -76,7 +76,6 @@ export default function App() {
           <Route path="/bloc/:blocId/:temaId/esquemes/:schemaName" element={<SchemaViewer />} />
           <Route path="/bloc/:blocId/fitxes/:fitxaId" element={<DiagramViewer />} />
           <Route path="/bloc/:blocId/:temaId/:seccio" element={<BlocPage />} />
-          <Route path="/bloc/:blocId/:seccio" element={<BlocPage />} />
           <Route path="/bloc/:blocId" element={<BlocPage />} />
           <Route path="/annex/:annexId" element={<AnnexPage />} />
           <Route path="/annexos/cultura-catalana" element={<CulturaCatalanaPage />} />
