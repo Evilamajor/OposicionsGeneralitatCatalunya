@@ -10,6 +10,7 @@ import BlocPage from './components/BlocPage';
 import AnnexPage from './components/AnnexPage';
 import SchemaViewer from './components/SchemaViewer';
 import DiagramViewer from './components/DiagramViewer';
+import FullscreenDiagramViewer from './components/FullscreenDiagramViewer';
 import ForumPage from './pages/ForumPage';
 import CulturaCatalanaPage from './pages/CulturaCatalanaPage';
 import HistoriaCatalanaPage from './pages/HistoriaCatalanaPage';
@@ -27,7 +28,7 @@ export default function App() {
 
   // Auto-collapse when navigating into a bloc, annex, or forum
   useEffect(() => {
-    const isContentRoute = /^\/(bloc|annex|forum|annexos)/.test(location.pathname);
+    const isContentRoute = /^\/(bloc|annex|forum|annexos|diagram-viewer)/.test(location.pathname);
     if (isContentRoute) {
       setSidebarCollapsed(true);
     }
@@ -80,6 +81,7 @@ export default function App() {
           <Route path="/bloc/business-english/fitxes/:fitxaId" element={<BusinessEnglishFitxaPage />} />
           <Route path="/bloc/business-english/fitxes/:fitxaId/:seccio" element={<BusinessEnglishFitxaPage />} />
           <Route path="/bloc/:blocId/:temaId/esquemes/:schemaName" element={<SchemaViewer />} />
+          <Route path="/diagram-viewer/:blocId/:temaId/:punt" element={<FullscreenDiagramViewer />} />
           <Route path="/bloc/:blocId/fitxes/:fitxaId" element={<DiagramViewer />} />
           <Route path="/bloc/:blocId/:temaId/:seccio" element={<BlocPage />} />
           <Route path="/bloc/:blocId" element={<BlocPage />} />

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useParams, NavLink, useNavigate } from 'react-router-dom';
 import { blocks } from '../data';
 import NotesEditor from './NotesEditor';
@@ -8,6 +8,7 @@ import FitxesEstudi from './FitxesEstudi';
 import TopicDataProjects from './TopicDataProjects';
 import SlideDeck from './SlideDeck';
 import ComingSoon from './ComingSoon';
+import { initEsquemaDiagramRuntime } from '../utils/initEsquemaDiagramRuntime';
 import './BlocPage.css';
 
 const SLIDE_MD_MAP = {
@@ -21,12 +22,20 @@ const SLIDE_MD_MAP = {
 };
 
 const TOPIC_POWERPOINT_BLOCS = new Set(['bloc-1', 'bloc-2', 'bloc-3']);
+const SIMPLIFIED_BLOCS = new Set(['bloc-1', 'bloc-2', 'bloc-3']);
 
-const SECTIONS = [
+const EXTENDED_SECTIONS = [
   { id: 'esquemes', label: 'Esquemes' },
   { id: 'powerpoints', label: 'PowerPoints' },
   { id: 'fitxes', label: "Fitxes d'estudi" },
   { id: 'autoavaluacio', label: 'Autoavaluació' },
+  { id: 'legislacio', label: 'Legislació' },
+  { id: 'materials', label: 'Materials' },
+];
+
+const BASE_SECTIONS = [
+  { id: 'esquemes', label: 'Esquemes' },
+  { id: 'powerpoints', label: 'PowerPoints' },
   { id: 'legislacio', label: 'Legislació' },
   { id: 'materials', label: 'Materials' },
 ];
@@ -42,6 +51,10 @@ export default function BlocPage() {
 
   const bloc = blocks.find((b) => b.id === blocId);
   const tema = bloc?.topics?.find((t) => t.id === temaId);
+  const sections = useMemo(
+    () => (SIMPLIFIED_BLOCS.has(blocId) ? BASE_SECTIONS : EXTENDED_SECTIONS),
+    [blocId],
+  );
 
   const schemaPath =
     blocId && temaId
@@ -72,10 +85,10 @@ export default function BlocPage() {
       return;
     }
 
-    if (seccio && !SECTIONS.some((s) => s.id === seccio)) {
+    if (seccio && !sections.some((s) => s.id === seccio)) {
       navigate(`/bloc/${blocId}/${temaId}/esquemes`, { replace: true });
     }
-  }, [blocId, temaId, seccio, bloc, navigate]);
+  }, [blocId, temaId, seccio, bloc, navigate, sections]);
 
   useEffect(() => {
     setSectionsVisible(false);
@@ -151,6 +164,111 @@ export default function BlocPage() {
     }
 
     const container = esquemesContainerRef.current;
+
+    const normalizeSectionLabel = (text = '') => text
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+
+    const getSectionRank = (text = '') => {
+      const normalized = normalizeSectionLabel(text);
+      if (normalized.includes('explicacio')) return 0;
+      if (normalized.includes('diagrama')) return 1;
+      if (normalized.includes('preguntes')) return 2;
+      return Number.MAX_SAFE_INTEGER;
+    };
+
+    const reorderDetailsSections = () => {
+      const detailsByParent = new Map();
+      container.querySelectorAll('details > summary').forEach((summary) => {
+        const details = summary.parentElement;
+        const parent = details?.parentElement;
+        if (!details || !parent) return;
+        const rank = getSectionRank(summary.textContent || '');
+        if (rank === Number.MAX_SAFE_INTEGER) return;
+        if (!detailsByParent.has(parent)) {
+          detailsByParent.set(parent, []);
+        }
+        detailsByParent.get(parent).push({ details, rank });
+      });
+
+      detailsByParent.forEach((entries, parent) => {
+        entries
+          .sort((left, right) => left.rank - right.rank)
+          .forEach(({ details }) => parent.appendChild(details));
+      });
+    };
+
+    const reorderToggleSections = () => {
+      const toggleParents = new Set();
+      container.querySelectorAll('.toggle, .schema-toggle').forEach((toggle) => {
+        if (toggle.parentElement) {
+          toggleParents.add(toggle.parentElement);
+        }
+      });
+
+      toggleParents.forEach((parent) => {
+        const pairs = [];
+        Array.from(parent.children).forEach((child) => {
+          if (!(child.classList?.contains('toggle') || child.classList?.contains('schema-toggle'))) {
+            return;
+          }
+
+          const rank = getSectionRank(child.textContent || '');
+          if (rank === Number.MAX_SAFE_INTEGER) return;
+
+          const contentNode = child.nextElementSibling;
+          if (!contentNode) return;
+
+          pairs.push({
+            toggleNode: child,
+            contentNode,
+            rank,
+          });
+        });
+
+        pairs
+          .sort((left, right) => left.rank - right.rank)
+          .forEach(({ toggleNode, contentNode }) => {
+            parent.appendChild(toggleNode);
+            parent.appendChild(contentNode);
+          });
+      });
+    };
+
+    const unwrapDocumentMarkup = (node) => {
+      if (!node) return;
+      const htmlNode = node.querySelector(':scope > html') || node.querySelector('html');
+      if (!htmlNode) return;
+
+      const bodyNode = htmlNode.querySelector('body');
+      node.innerHTML = bodyNode ? bodyNode.innerHTML : htmlNode.innerHTML;
+    };
+
+    const sanitizeSectionNode = (node) => {
+      if (!node) return;
+      unwrapDocumentMarkup(node);
+
+      node.querySelectorAll('style').forEach((styleNode) => {
+        styleNode.remove();
+      });
+
+      node.querySelectorAll('script').forEach((scriptNode) => {
+        scriptNode.remove();
+      });
+    };
+
+    const sanitizeEsquemaSections = () => {
+      const sectionNodes = container.querySelectorAll(
+        ".schema-content, .content, [id$='-preguntes'], [id$='-diagrama'], [id$='-explicacio']",
+      );
+
+      sectionNodes.forEach((sectionNode) => {
+        sanitizeSectionNode(sectionNode);
+      });
+    };
+
     const scriptNodes = container.querySelectorAll('script');
 
     scriptNodes.forEach((oldScript) => {
@@ -161,7 +279,37 @@ export default function BlocPage() {
       newScript.textContent = oldScript.textContent;
       oldScript.replaceWith(newScript);
     });
-  }, [seccio, esquemesHtml]);
+
+    reorderDetailsSections();
+    reorderToggleSections();
+
+    sanitizeEsquemaSections();
+
+    let destroyDiagramRuntime = () => {};
+    if (SIMPLIFIED_BLOCS.has(blocId)) {
+      destroyDiagramRuntime = initEsquemaDiagramRuntime({
+        container,
+        blocId,
+        temaId,
+      });
+    }
+
+    const onSectionToggle = (event) => {
+      const toggleNode = event.target.closest('.toggle, .schema-toggle, summary');
+      if (!toggleNode) return;
+
+      requestAnimationFrame(() => {
+        sanitizeEsquemaSections();
+      });
+    };
+
+    container.addEventListener('click', onSectionToggle, true);
+
+    return () => {
+      container.removeEventListener('click', onSectionToggle, true);
+      destroyDiagramRuntime();
+    };
+  }, [seccio, esquemesHtml, blocId, temaId]);
 
   if (!bloc) {
     return (
@@ -203,12 +351,12 @@ export default function BlocPage() {
           <span>{sectionsVisible ? 'Amagar' : 'Mostrar'} seccions</span>
         </button>
 
-        <div className={`seccions-list ${!sectionsVisible ? 'seccions-hidden' : ''}`}>
-          {SECTIONS.map((section) => (
+        <div className={`seccions-list ${SIMPLIFIED_BLOCS.has(blocId) ? 'simplified-tabs' : ''} ${!sectionsVisible ? 'seccions-hidden' : ''}`}>
+          {sections.map((section) => (
             <NavLink
               key={section.id}
               to={`/bloc/${blocId}/${temaId}/${section.id}`}
-              className={({ isActive }) => `seccio-link ${isActive ? 'active' : ''}`}
+              className={({ isActive }) => `seccio-link ${SIMPLIFIED_BLOCS.has(blocId) ? 'simplified-tab-link' : ''} ${isActive ? 'active' : ''}`}
             >
               {section.label}
             </NavLink>
@@ -235,11 +383,13 @@ export default function BlocPage() {
               <p>{esquemesError}</p>
             </div>
           ) : (
-            <div
-              ref={esquemesContainerRef}
-              className="html-content"
-              dangerouslySetInnerHTML={{ __html: esquemesHtml }}
-            />
+            <div className="esquema-content-wrapper">
+              <div
+                ref={esquemesContainerRef}
+                className="html-content"
+                dangerouslySetInnerHTML={{ __html: esquemesHtml }}
+              />
+            </div>
           )
         )}
 

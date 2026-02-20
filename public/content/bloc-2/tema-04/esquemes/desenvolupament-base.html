@@ -36,6 +36,72 @@
 		border-radius: 8px;
 	}
 
+	.diagram-viewer {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.diagram-container {
+		width: 100%;
+		height: 600px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.diagram-controls {
+		display: flex;
+		gap: 8px;
+		flex-wrap: wrap;
+	}
+
+	.diagram-controls button {
+		border: 1px solid #cbd5e1;
+		background: #f8fafc;
+		color: #0f172a;
+		font-size: 0.9rem;
+		padding: 6px 10px;
+		border-radius: 8px;
+		cursor: pointer;
+	}
+
+	.diagram-controls button:hover {
+		background: #eef2ff;
+	}
+
+	.diagram-stage {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		min-height: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+		background: #ffffff;
+		border: 1px solid #dbe3ef;
+		border-radius: 10px;
+		cursor: grab;
+		touch-action: none;
+	}
+
+	.diagram-stage.is-dragging {
+		cursor: grabbing;
+	}
+
+	.diagram-stage img {
+		max-width: 100%;
+		max-height: 100%;
+		object-fit: contain;
+		display: block;
+		user-select: none;
+		-webkit-user-drag: none;
+		transform-origin: 0 0;
+		will-change: transform;
+		transition: transform 0.08s ease-out;
+	}
+
 	.esquema-modular h2 {
 		margin: 34px 0 16px;
 	}
@@ -278,13 +344,351 @@
 	</div>
 
 	<script>
+	function getCurrentBlocTema() {
+		const match = window.location.pathname.match(/\/bloc\/([^/]+)\/([^/]+)/);
+		if (match) {
+			return { blocId: match[1], temaId: match[2] };
+		}
+
+		return { blocId: 'bloc-2', temaId: 'tema-04' };
+	}
+
+	function executeEmbeddedScripts(container) {
+		container.querySelectorAll('script').forEach((oldScript) => {
+			const newScript = document.createElement('script');
+			if (oldScript.src) {
+				newScript.src = oldScript.src;
+			} else {
+				newScript.textContent = oldScript.textContent;
+			}
+			Array.from(oldScript.attributes).forEach((attribute) => {
+				if (attribute.name !== 'src') {
+					newScript.setAttribute(attribute.name, attribute.value);
+				}
+			});
+			oldScript.parentNode.replaceChild(newScript, oldScript);
+		});
+	}
+
+	async function loadExplicacio(pointNumber, container) {
+		if (!container || container.dataset.loaded === 'true') return;
+
+		const { blocId, temaId } = getCurrentBlocTema();
+		const htmlPath = `/content/${blocId}/${temaId}/esquemes/${pointNumber}.html`;
+
+		try {
+			const response = await fetch(htmlPath);
+			if (!response.ok) throw new Error('Not found');
+			const html = await response.text();
+			container.innerHTML = html;
+			container.dataset.loaded = 'true';
+		} catch {
+			container.innerHTML = 'En construcció';
+			container.dataset.loaded = 'true';
+		}
+	}
+
+	async function loadPreguntes(container) {
+		if (!container || container.dataset.loaded === 'true') return;
+
+		const { blocId, temaId } = getCurrentBlocTema();
+		const htmlPath = `/content/${blocId}/${temaId}/preguntes/1.html`;
+
+		try {
+			const response = await fetch(htmlPath);
+			if (!response.ok) throw new Error('Not found');
+			const html = await response.text();
+			container.innerHTML = html;
+			executeEmbeddedScripts(container);
+			container.dataset.loaded = 'true';
+		} catch {
+			container.innerHTML = 'En construcció';
+			container.dataset.loaded = 'true';
+		}
+	}
+
+	function setupDiagramViewer(container, imageSrc, altText) {
+		container.innerHTML = `
+			<div class="diagram-viewer">
+				<div class="diagram-controls">
+					<button type="button" data-action="zoom-in">+</button>
+					<button type="button" data-action="zoom-out">-</button>
+					<button type="button" data-action="reset">Reset</button>
+					<button type="button" data-action="fit">Fit</button>
+					<button type="button" data-action="open">Open</button>
+				</div>
+				<div class="diagram-container">
+					<div class="diagram-stage" data-role="viewport">
+						<img src="${imageSrc}" alt="${altText}" />
+					</div>
+				</div>
+			</div>
+		`;
+
+		const viewer = container.querySelector('.diagram-viewer');
+		const stage = viewer?.querySelector('[data-role="viewport"]');
+		const image = viewer?.querySelector('img');
+		if (!viewer || !stage || !image) {
+			container.innerHTML = 'En construcció';
+			return;
+		}
+
+		image.addEventListener('error', () => {
+			container.innerHTML = 'En construcció';
+		});
+
+		let zoom = 1;
+		let offset = { x: 0, y: 0 };
+		const minZoom = 1;
+		const maxZoom = 4;
+		let isDragging = false;
+		let dragStart = { x: 0, y: 0 };
+		let velocity = { x: 0, y: 0 };
+		let inertiaFrame = null;
+
+		const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+		const stopInertia = () => {
+			if (inertiaFrame) {
+				cancelAnimationFrame(inertiaFrame);
+				inertiaFrame = null;
+			}
+		};
+
+		const clampOffset = (x, y, currentZoom) => {
+			const containerRect = stage.getBoundingClientRect();
+			const imageWidth = image.clientWidth;
+			const imageHeight = image.clientHeight;
+			if (!containerRect.width || !containerRect.height || !imageWidth || !imageHeight) {
+				return { x, y };
+			}
+
+			const scaledWidth = imageWidth * currentZoom;
+			const scaledHeight = imageHeight * currentZoom;
+
+			const maxShiftX = Math.max(0, (scaledWidth - containerRect.width) / 2);
+			const maxShiftY = Math.max(0, (scaledHeight - containerRect.height) / 2);
+
+			return {
+				x: clamp(x, -maxShiftX, maxShiftX),
+				y: clamp(y, -maxShiftY, maxShiftY),
+			};
+		};
+
+		const render = () => {
+			image.style.transform = `translate(${offset.x}px, ${offset.y}px) scale(${zoom})`;
+		};
+
+		const applyOffset = (nextX, nextY) => {
+			offset = clampOffset(nextX, nextY, zoom);
+			render();
+		};
+
+		const handleFit = () => {
+			stopInertia();
+			zoom = 1;
+			offset = { x: 0, y: 0 };
+			render();
+		};
+
+		const scheduleFit = () => {
+			window.requestAnimationFrame(() => {
+				window.setTimeout(() => {
+					handleFit();
+				}, 0);
+			});
+		};
+
+		image.addEventListener('load', scheduleFit, { once: true });
+		if (image.complete) {
+			scheduleFit();
+		}
+
+		viewer.querySelector('[data-action="zoom-in"]').addEventListener('click', () => {
+			stopInertia();
+			zoom = clamp(zoom * 1.2, minZoom, maxZoom);
+			applyOffset(offset.x, offset.y);
+		});
+
+		viewer.querySelector('[data-action="zoom-out"]').addEventListener('click', () => {
+			stopInertia();
+			zoom = clamp(zoom / 1.2, minZoom, maxZoom);
+			applyOffset(offset.x, offset.y);
+		});
+
+		viewer.querySelector('[data-action="reset"]').addEventListener('click', scheduleFit);
+
+		viewer.querySelector('[data-action="fit"]').addEventListener('click', scheduleFit);
+
+		viewer.querySelector('[data-action="open"]').addEventListener('click', () => {
+			const { blocId, temaId } = getCurrentBlocTema();
+			const pointFromPath = imageSrc.match(/\/(\d+)\.png$/)?.[1];
+			if (!pointFromPath) return;
+			window.location.assign(`/diagram-viewer/${blocId}/${temaId}/${pointFromPath}`);
+		});
+
+		const onMouseDown = (event) => {
+			stopInertia();
+			isDragging = true;
+			dragStart = {
+				x: event.clientX - offset.x,
+				y: event.clientY - offset.y,
+			};
+			velocity = { x: 0, y: 0 };
+			stage.classList.add('is-dragging');
+		};
+
+		const onMouseMove = (event) => {
+			if (!isDragging) return;
+			const nextX = event.clientX - dragStart.x;
+			const nextY = event.clientY - dragStart.y;
+			const clamped = clampOffset(nextX, nextY, zoom);
+			velocity = {
+				x: clamped.x - offset.x,
+				y: clamped.y - offset.y,
+			};
+			offset = clamped;
+			render();
+		};
+
+		const onMouseUp = () => {
+			if (!isDragging) return;
+			isDragging = false;
+			stage.classList.remove('is-dragging');
+
+			const friction = 0.95;
+			const animate = () => {
+				velocity.x *= friction;
+				velocity.y *= friction;
+
+				if (Math.abs(velocity.x) < 0.1 && Math.abs(velocity.y) < 0.1) {
+					stopInertia();
+					return;
+				}
+
+				const next = clampOffset(offset.x + velocity.x, offset.y + velocity.y, zoom);
+				if (next.x === offset.x) {
+					velocity.x = 0;
+				}
+				if (next.y === offset.y) {
+					velocity.y = 0;
+				}
+
+				offset = next;
+				render();
+				inertiaFrame = requestAnimationFrame(animate);
+			};
+
+			inertiaFrame = requestAnimationFrame(animate);
+		};
+
+		const onWheel = (event) => {
+			event.preventDefault();
+			stopInertia();
+			const zoomIntensity = 0.1;
+			const nextZoom = clamp(zoom - event.deltaY * zoomIntensity * 0.01, minZoom, maxZoom);
+			if (nextZoom === zoom) return;
+			zoom = nextZoom;
+			applyOffset(offset.x, offset.y);
+		};
+
+		const onResize = () => {
+			applyOffset(offset.x, offset.y);
+		};
+
+		const resizeObserver = new ResizeObserver(() => {
+			scheduleFit();
+		});
+
+		stage.addEventListener('mousedown', onMouseDown);
+		stage.addEventListener('wheel', onWheel, { passive: false });
+		window.addEventListener('mousemove', onMouseMove);
+		window.addEventListener('mouseup', onMouseUp);
+		window.addEventListener('resize', onResize);
+		resizeObserver.observe(stage);
+
+		container.__fitDiagram = scheduleFit;
+
+		container.__destroyDiagramViewer = () => {
+			stopInertia();
+			stage.removeEventListener('mousedown', onMouseDown);
+			stage.removeEventListener('wheel', onWheel);
+			window.removeEventListener('mousemove', onMouseMove);
+			window.removeEventListener('mouseup', onMouseUp);
+			window.removeEventListener('resize', onResize);
+			resizeObserver.disconnect();
+		};
+	}
+
+	function imageExists(src) {
+		return new Promise((resolve) => {
+			const image = new Image();
+			image.onload = () => resolve(true);
+			image.onerror = () => resolve(false);
+			image.src = src;
+		});
+	}
+
+	async function loadDiagrama(pointNumber, container) {
+		if (!container || container.dataset.loaded === 'true') return;
+
+		const { blocId, temaId } = getCurrentBlocTema();
+		const normalizedPoint = String(pointNumber || '').trim();
+		if (!/^\d+$/.test(normalizedPoint)) {
+			container.innerHTML = 'En construcció';
+			container.dataset.loaded = 'true';
+			return;
+		}
+		const imageSrc = `/content/${blocId}/${temaId}/diagrama/${normalizedPoint}.png`;
+
+		const exists = await imageExists(imageSrc);
+		if (!exists) {
+			container.innerHTML = 'En construcció';
+			container.dataset.loaded = 'true';
+			return;
+		}
+
+		setupDiagramViewer(container, imageSrc, `Diagrama punt ${pointNumber}`);
+		container.dataset.loaded = 'true';
+	}
+
 	function toggleSection(id) {
 		const el = document.getElementById(id);
 		if (!el) return;
-		if (el.style.display === "block") {
+		const willOpen = el.style.display !== 'block';
+
+		const preguntesMatch = id.match(/^p(\d+)-preguntes$/);
+		if (preguntesMatch && willOpen) {
+			loadPreguntes(el);
+		}
+
+		const diagramaMatch = id.match(/^p(\d+)-diagrama$/);
+		if (diagramaMatch && willOpen) {
+			loadDiagrama(diagramaMatch[1], el);
+		}
+
+		const explicacioMatch = id.match(/^p(\d+)-explicacio$/);
+		if (explicacioMatch && willOpen) {
+			loadExplicacio(explicacioMatch[1], el);
+		}
+
+		if (!willOpen) {
+			if (diagramaMatch && typeof el.__destroyDiagramViewer === 'function') {
+				el.__destroyDiagramViewer();
+				delete el.__destroyDiagramViewer;
+			}
 			el.style.display = "none";
 		} else {
 			el.style.display = "block";
+			if (diagramaMatch) {
+				window.requestAnimationFrame(() => {
+					window.setTimeout(() => {
+						if (typeof el.__fitDiagram === 'function') {
+							el.__fitDiagram();
+						}
+					}, 0);
+				});
+			}
 		}
 	}
 
