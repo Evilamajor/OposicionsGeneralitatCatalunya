@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1.5rem 3rem;
 }
@@ -26,7 +26,7 @@
 .forum-title {
   font-size: 1.65rem;
   font-weight: 700;
-  color: #1f2933;
+  color: var(--text-primary);
   margin: 0 0 0.4rem 0;
   display: flex;
   align-items: center;
@@ -39,7 +39,7 @@
 
 .forum-subtitle {
   font-size: 1.05rem;
-  color: #6b7280;
+  color: var(--text-muted);
   margin: 0;
   line-height: 1.5;
 }
@@ -54,9 +54,9 @@
   color: #fff;
   background: #1976d2;
   border: none;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: background 150ms, transform 150ms;
+  transition: background var(--transition-fast), transform var(--transition-fast);
   white-space: nowrap;
 }
 
@@ -89,22 +89,22 @@
 
 /* Category card */
 .forum-category-card {
-  background: #fff;
-  border: 2px solid #e0e7ef;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
   border-radius: 14px;
   padding: 1.5rem;
   cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-soft);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
 .forum-category-card:hover {
-  border-color: #90caf9;
-  box-shadow: 0 6px 18px rgba(25, 118, 210, 0.1);
-  transform: translateY(-3px);
+  border-color: #9eb6dc;
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
 }
 
 .forum-category-card--active {
@@ -150,20 +150,20 @@
 /* ── Latest topics table ── */
 .forum-table-wrapper {
   overflow-x: auto;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-soft);
 }
 
 .forum-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.93rem;
+  font-size: 0.96rem;
 }
 
 .forum-table thead {
-  background: #f5f8fc;
+  background: var(--bg-surface-muted);
 }
 
 .forum-table th {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, NavLink, useNavigate } from 'react-router-dom';
 import { blocks } from '../data';
 import NotesEditor from './NotesEditor';
@@ -34,7 +34,11 @@ const SECTIONS = [
 export default function BlocPage() {
   const { blocId, temaId, seccio } = useParams();
   const navigate = useNavigate();
-  const [sectionsVisible, setSectionsVisible] = useState(true);
+  const [sectionsVisible, setSectionsVisible] = useState(false);
+  const [esquemesHtml, setEsquemesHtml] = useState('');
+  const [esquemesError, setEsquemesError] = useState('');
+  const [isLoadingEsquemes, setIsLoadingEsquemes] = useState(false);
+  const esquemesContainerRef = useRef(null);
 
   const bloc = blocks.find((b) => b.id === blocId);
   const tema = bloc?.topics?.find((t) => t.id === temaId);
@@ -72,6 +76,92 @@ export default function BlocPage() {
       navigate(`/bloc/${blocId}/${temaId}/esquemes`, { replace: true });
     }
   }, [blocId, temaId, seccio, bloc, navigate]);
+
+  useEffect(() => {
+    setSectionsVisible(false);
+  }, [blocId, temaId, seccio]);
+
+  useEffect(() => {
+    if (seccio !== 'esquemes' || !schemaPath) {
+      setEsquemesHtml('');
+      setEsquemesError('');
+      setIsLoadingEsquemes(false);
+      return;
+    }
+
+    const controller = new AbortController();
+
+    const resolveRelativeUrls = (htmlString, htmlPath) => {
+      const parser = new DOMParser();
+      const parsed = parser.parseFromString(htmlString, 'text/html');
+      const baseDir = htmlPath.slice(0, htmlPath.lastIndexOf('/') + 1);
+      const baseUrl = `${window.location.origin}${baseDir}`;
+
+      parsed.querySelectorAll('[src], [href]').forEach((element) => {
+        const attrName = element.hasAttribute('src') ? 'src' : 'href';
+        const value = element.getAttribute(attrName);
+
+        if (!value) return;
+
+        const isAbsolute = /^(https?:|data:|mailto:|tel:|#|\/)/i.test(value);
+        if (isAbsolute) return;
+
+        try {
+          const resolved = new URL(value, baseUrl).pathname;
+          element.setAttribute(attrName, resolved);
+        } catch {
+          // keep original value when URL resolution fails
+        }
+      });
+
+      const hasBody = parsed.body && parsed.body.innerHTML.trim().length > 0;
+      return hasBody ? parsed.body.innerHTML : htmlString;
+    };
+
+    const loadEsquemes = async () => {
+      try {
+        setIsLoadingEsquemes(true);
+        setEsquemesError('');
+        const response = await fetch(schemaPath, { signal: controller.signal });
+
+        if (!response.ok) {
+          throw new Error(`No s'ha pogut carregar l'esquema (${response.status})`);
+        }
+
+        const rawHtml = await response.text();
+        setEsquemesHtml(resolveRelativeUrls(rawHtml, schemaPath));
+      } catch (error) {
+        if (error.name === 'AbortError') return;
+        setEsquemesError(error.message || 'Error carregant l\'esquema');
+      } finally {
+        if (!controller.signal.aborted) {
+          setIsLoadingEsquemes(false);
+        }
+      }
+    };
+
+    loadEsquemes();
+
+    return () => controller.abort();
+  }, [blocId, temaId, seccio, schemaPath]);
+
+  useEffect(() => {
+    if (seccio !== 'esquemes' || !esquemesHtml || !esquemesContainerRef.current) {
+      return;
+    }
+
+    const container = esquemesContainerRef.current;
+    const scriptNodes = container.querySelectorAll('script');
+
+    scriptNodes.forEach((oldScript) => {
+      const newScript = document.createElement('script');
+      Array.from(oldScript.attributes).forEach((attribute) => {
+        newScript.setAttribute(attribute.name, attribute.value);
+      });
+      newScript.textContent = oldScript.textContent;
+      oldScript.replaceWith(newScript);
+    });
+  }, [seccio, esquemesHtml]);
 
   if (!bloc) {
     return (
@@ -131,16 +221,26 @@ export default function BlocPage() {
           <iframe
             src={legislacioPath}
             title="Legislació del tema"
-            style={{ width: '100%', minHeight: '1200px', border: 'none', borderRadius: '12px' }}
+            className="bloc-embedded-frame"
           />
         )}
 
         {seccio === 'esquemes' && schemaPath && (
-          <iframe
-            src={schemaPath}
-            title="Esquema del tema"
-            style={{ width: '100%', minHeight: '1200px', border: 'none', borderRadius: '12px' }}
-          />
+          isLoadingEsquemes ? (
+            <div className="loading">
+              <p>Carregant esquema...</p>
+            </div>
+          ) : esquemesError ? (
+            <div className="error">
+              <p>{esquemesError}</p>
+            </div>
+          ) : (
+            <div
+              ref={esquemesContainerRef}
+              className="html-content"
+              dangerouslySetInnerHTML={{ __html: esquemesHtml }}
+            />
+          )
         )}
 
         {seccio === 'powerpoints' && (
@@ -167,7 +267,7 @@ export default function BlocPage() {
           <iframe
             src={materialsPath}
             title="Materials del tema"
-            style={{ width: '100%', minHeight: '1200px', border: 'none', borderRadius: '12px' }}
+            className="bloc-embedded-frame"
           />
         )}
 

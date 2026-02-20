@@ -10,13 +10,13 @@
 .projects-title {
   font-size: 1.4rem;
   font-weight: 600;
-  color: #1f2933;
+  color: var(--text-primary);
   margin: 0 0 12px 0;
 }
 
 .projects-subtitle {
   font-size: 1rem;
-  color: #6b7280;
+  color: var(--text-muted);
   margin: 0;
   line-height: 1.6;
 }
@@ -31,15 +31,15 @@
 
 /* Project card */
 .project-card {
-  background: white;
-  border: 2px solid #e0e0e0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
   border-radius: 16px;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-soft);
   position: relative;
   overflow: hidden;
 }
@@ -50,8 +50,8 @@
 }
 
 .project-card:not(.disabled):hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 24px rgba(52, 152, 219, 0.15);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
   border-color: #2980b9;
 }
 
@@ -130,13 +130,13 @@
   font-size: 1.05rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
   box-shadow: 0 4px 8px rgba(52, 152, 219, 0.2);
 }
 
 .project-button:hover:not(:disabled) {
   background: linear-gradient(135deg, #2980b9 0%, #21618c 100%);
-  transform: scale(1.03);
+  transform: translateY(-1px);
   box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
 }
 
@@ -252,3 +252,6 @@
 
   .info-box {
     padding: 1rem;
+  }
+
+}

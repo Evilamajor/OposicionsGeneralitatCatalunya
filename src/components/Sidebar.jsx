@@ -154,7 +154,7 @@ export default function Sidebar({ collapsed, onToggle }) {
             />
           </svg>
         </button>
-        <h3 className="sidebar-title annexos-title" style={{ marginBottom: 0, cursor: 'pointer' }} onClick={() => setAnnexosOpen(!annexosOpen)}>{annexosHeader}</h3>
+        <h3 className="sidebar-title annexos-title annexos-title-btn" onClick={() => setAnnexosOpen(!annexosOpen)}>{annexosHeader}</h3>
       </div>
 
       {annexosOpen && (
@@ -202,7 +202,7 @@ export default function Sidebar({ collapsed, onToggle }) {
               strokeLinejoin="round"
             />
           </svg>
-          <h3 className="sidebar-title" style={{ marginBottom: 0 }}>Fòrum</h3>
+          <h3 className="sidebar-title forum-title-inline">Fòrum</h3>
         </NavLink>
       </div>
     </aside>

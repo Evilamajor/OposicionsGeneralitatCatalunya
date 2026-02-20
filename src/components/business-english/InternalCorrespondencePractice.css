@@ -10,11 +10,11 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  background: #ffffff;
-  border: 1px solid #e6ebf2;
-  border-radius: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
   padding: 1.25rem 1.4rem;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--shadow-soft);
 }
 
 .icp-title {
@@ -52,11 +52,11 @@
 }
 
 .icp-card {
-  background: #ffffff;
-  border: 1px solid #e6ebf2;
-  border-radius: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
   padding: 1.1rem;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+  box-shadow: var(--shadow-soft);
 }
 
 @media (max-width: 760px) {
