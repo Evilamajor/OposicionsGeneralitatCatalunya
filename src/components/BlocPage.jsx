@@ -20,6 +20,8 @@ const SLIDE_MD_MAP = {
   'bloc-7': '/content/bloc-7/presentacio.md',
 };
 
+const TOPIC_POWERPOINT_BLOCS = new Set(['bloc-1', 'bloc-2', 'bloc-3']);
+
 const SECTIONS = [
   { id: 'esquemes', label: 'Esquemes' },
   { id: 'powerpoints', label: 'PowerPoints' },
@@ -142,9 +144,18 @@ export default function BlocPage() {
         )}
 
         {seccio === 'powerpoints' && (
-          SLIDE_MD_MAP[blocId]
-            ? <SlideDeck mdUrl={SLIDE_MD_MAP[blocId]} title={bloc.title} />
-            : <ComingSoon sectionName="PowerPoints" />
+          TOPIC_POWERPOINT_BLOCS.has(blocId)
+            ? (
+              <SlideDeck
+                deckConfigUrl={`/content/${blocId}/${temaId}/powerpoints/config.json`}
+                title={tema.label}
+              />
+            )
+            : (
+              SLIDE_MD_MAP[blocId]
+                ? <SlideDeck mdUrl={SLIDE_MD_MAP[blocId]} title={bloc.title} />
+                : <ComingSoon sectionName="PowerPoints" />
+            )
         )}
 
         {seccio === 'fitxes' && blocId === 'bloc-4' && <PlataformaPSCP />}

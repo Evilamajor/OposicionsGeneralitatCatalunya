@@ -1,4 +1,4 @@
-import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import { Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 
 import './App.css';
@@ -18,6 +18,8 @@ import ArtsPage from './pages/ArtsPage';
 import AgendaCulturalPage from './pages/AgendaCulturalPage';
 import InternalCorrespondencePractice from './components/business-english/InternalCorrespondencePractice';
 import InternalCorrespondenceContext from './components/business-english/InternalCorrespondenceContext';
+import BusinessEnglishFitxes from './components/BusinessEnglishFitxes';
+import BusinessEnglishFitxaPage from './components/business-english/BusinessEnglishFitxaPage';
 
 export default function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -73,6 +75,10 @@ export default function App() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<WelcomePanel />} />
+          <Route path="/bloc/business-english" element={<Navigate to="/bloc/business-english/fitxes" replace />} />
+          <Route path="/bloc/business-english/fitxes" element={<BusinessEnglishFitxes />} />
+          <Route path="/bloc/business-english/fitxes/:fitxaId" element={<BusinessEnglishFitxaPage />} />
+          <Route path="/bloc/business-english/fitxes/:fitxaId/:seccio" element={<BusinessEnglishFitxaPage />} />
           <Route path="/bloc/:blocId/:temaId/esquemes/:schemaName" element={<SchemaViewer />} />
           <Route path="/bloc/:blocId/fitxes/:fitxaId" element={<DiagramViewer />} />
           <Route path="/bloc/:blocId/:temaId/:seccio" element={<BlocPage />} />
