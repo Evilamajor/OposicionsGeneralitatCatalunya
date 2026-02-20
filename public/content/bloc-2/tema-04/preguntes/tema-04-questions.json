@@ -1,0 +1,71 @@
+{
+  "title": "Tema 4 - Fonts del Dret Administratiu",
+  "questions": [
+    {
+      "type": "tf",
+      "prompt": "1. Les fonts del dret són criteris interpretatius de les normes jurídiques.",
+      "answer": false,
+      "explanation": "La resposta correcta és Fals. Les fonts del dret són formes de producció normativa."
+    },
+    {
+      "type": "mcq",
+      "prompt": "2. Ordre de prevalença segons l'article 1 del Codi Civil:",
+      "choices": [
+        "La llei, seguida pel costum i finalment els principis generals del dret.",
+        "El costum, la llei i els principis generals.",
+        "Principis generals, llei i costum.",
+        "La jurisprudència, la llei i el costum."
+      ],
+      "answer": 0,
+      "explanation": "La resposta correcta és la primera opció."
+    },
+    {
+      "type": "tf",
+      "prompt": "3. El reglament pot contradir una llei si és dictat per autoritat superior.",
+      "answer": false,
+      "explanation": "La resposta correcta és Fals. El reglament no pot contradir la llei."
+    },
+    {
+      "type": "mcq",
+      "prompt": "4. Afirmació correcta sobre jerarquia normativa:",
+      "choices": [
+        "Un reglament contrari a la llei és anul·lable.",
+        "La Constitució ocupa el rang suprem i el reglament és la norma administrativa per excel·lència.",
+        "El principi de legalitat només s'aplica a les lleis.",
+        "La jurisprudència és font directa superior al reglament."
+      ],
+      "answer": 1,
+      "explanation": "La resposta correcta és la segona opció."
+    },
+    {
+      "type": "tf",
+      "prompt": "5. La jurisprudència és font directa del dret.",
+      "answer": false,
+      "explanation": "La resposta correcta és Fals."
+    },
+    {
+      "type": "mcq",
+      "prompt": "7. Funció dels principis generals del dret:",
+      "choices": [
+        "Són la font primària.",
+        "Regeixen només en defecte de llei.",
+        "Tenen caràcter supletori i informador.",
+        "No són fonts del dret."
+      ],
+      "answer": 2,
+      "explanation": "La resposta correcta és la tercera opció."
+    },
+    {
+      "type": "mcq",
+      "prompt": "8. Constitució i Estatut:",
+      "choices": [
+        "L'Estatut és superior a la Constitució.",
+        "La Constitució és norma suprema i l'Estatut forma part del bloc de constitucionalitat.",
+        "L'Administració pot actuar fora del marc legal.",
+        "L'Estatut pot contradir la Constitució."
+      ],
+      "answer": 1,
+      "explanation": "La resposta correcta és la segona opció."
+    }
+  ]
+}

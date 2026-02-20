@@ -1,0 +1,87 @@
+.fullscreen-diagram-page {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-app);
+}
+
+.fullscreen-diagram-topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--bg-surface);
+}
+
+.fullscreen-diagram-back {
+  border: 1px solid var(--border-soft);
+  background: var(--bg-surface-muted);
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.fullscreen-diagram-title {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.fullscreen-diagram-body {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+}
+
+.fullscreen-diagram-controls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.fullscreen-diagram-controls button {
+  border: 1px solid var(--border-soft);
+  background: var(--bg-surface-muted);
+  border-radius: var(--radius-md);
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.fullscreen-diagram-canvas {
+  flex: 1;
+  min-height: 400px;
+  width: 100%;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-surface);
+}
+
+.fullscreen-diagram-image {
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.fullscreen-diagram-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  color: #c02b2b;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-md);
+}

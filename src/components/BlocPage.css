@@ -7,9 +7,9 @@
   gap: 1.5rem;
   min-height: 100vh;
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 28px 24px 36px;
+  max-width: none;
+  margin: 0;
+  padding: 28px 0 36px;
   box-sizing: border-box;
 }
 
@@ -176,6 +176,40 @@
   box-shadow: inset 0 0 0 1px rgba(59, 110, 165, 0.15);
 }
 
+.seccions-list.simplified-tabs {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+.seccions-list.simplified-tabs .seccio-link.simplified-tab-link {
+  flex: 1;
+  text-align: center;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  border: 1px solid var(--border-soft);
+  border-bottom-width: 1px;
+  background: var(--bg-surface-muted);
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+
+.seccions-list.simplified-tabs .seccio-link.simplified-tab-link:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.seccions-list.simplified-tabs .seccio-link.simplified-tab-link.active {
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  box-shadow: 0 6px 14px rgba(59, 110, 165, 0.14);
+}
+
 /* =========================
    Contingut del bloc (a sota)
    CANONICAL LAYOUT CONTAINER (full width)
@@ -191,6 +225,11 @@
   padding: 32px;
   box-sizing: border-box;
   box-shadow: var(--shadow-soft);
+}
+
+.bloc-contingut:has(.html-content) {
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 .bloc-contingut iframe {
@@ -254,6 +293,38 @@
   padding: 0;
   display: block;
   overflow: visible;
+  box-sizing: border-box;
+}
+
+.esquema-content-wrapper {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.html-content .diagram-viewer {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.html-content .diagram-stage,
+.html-content .diagram-viewport,
+.html-content .diagram-zoom-container {
+  width: 100%;
+  height: 100%;
+}
+
+.html-content .schema-content,
+.html-content .content,
+.html-content [id$='-preguntes'],
+.html-content [id$='-diagrama'],
+.html-content [id$='-explicacio'] {
+  width: 100%;
+  margin: 0;
+  padding: 1rem;
   box-sizing: border-box;
 }
 
@@ -368,6 +439,18 @@
   font-style: italic;
 }
 
+.bloc-contingut .html-content .schema-content,
+.bloc-contingut .html-content [id$='-preguntes'],
+.bloc-contingut .html-content [id$='-diagrama'],
+.bloc-contingut .html-content [id$='-explicacio'],
+.html-content .schema-content,
+.html-content [id$='-preguntes'],
+.html-content [id$='-diagrama'],
+.html-content [id$='-explicacio'] {
+  border-left: none !important;
+  border-inline-start: none !important;
+}
+
 .html-content code {
   background: #f6f8fb;
   padding: 0.25rem 0.5rem;
@@ -423,11 +506,28 @@
 
 @media (max-width: 768px) {
   .bloc-page {
-    padding: 16px;
+    padding: 16px 0;
+  }
+
+  .seccions-list.simplified-tabs {
+    flex-wrap: wrap;
+  }
+
+  .seccions-list.simplified-tabs .seccio-link.simplified-tab-link {
+    min-width: calc(50% - 0.5rem);
   }
 
   .bloc-contingut {
     padding: 20px;
+  }
+
+  .bloc-contingut:has(.html-content) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .esquema-content-wrapper {
+    padding: 1rem;
   }
 
   .content-card {
