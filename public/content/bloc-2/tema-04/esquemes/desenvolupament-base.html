@@ -388,16 +388,23 @@
 		}
 	}
 
-	async function loadPreguntes(container) {
+	async function loadPreguntes(pointNumber, container) {
 		if (!container || container.dataset.loaded === 'true') return;
 
 		const { blocId, temaId } = getCurrentBlocTema();
-		const htmlPath = `/content/${blocId}/${temaId}/preguntes/1.html`;
+		const normalizedPoint = String(pointNumber || '').trim();
+		if (!/^\d+$/.test(normalizedPoint)) {
+			container.innerHTML = 'En construcció';
+			container.dataset.loaded = 'true';
+			return;
+		}
+		const htmlPath = `/content/${blocId}/${temaId}/preguntes/${normalizedPoint}.html`;
 
 		try {
 			const response = await fetch(htmlPath);
 			if (!response.ok) throw new Error('Not found');
 			const html = await response.text();
+			window.__quizSourcePath = htmlPath;
 			container.innerHTML = html;
 			executeEmbeddedScripts(container);
 			container.dataset.loaded = 'true';
@@ -659,7 +666,7 @@
 
 		const preguntesMatch = id.match(/^p(\d+)-preguntes$/);
 		if (preguntesMatch && willOpen) {
-			loadPreguntes(el);
+			loadPreguntes(preguntesMatch[1], el);
 		}
 
 		const diagramaMatch = id.match(/^p(\d+)-diagrama$/);

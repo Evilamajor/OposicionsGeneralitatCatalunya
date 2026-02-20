@@ -11,6 +11,7 @@ import AnnexPage from './components/AnnexPage';
 import SchemaViewer from './components/SchemaViewer';
 import DiagramViewer from './components/DiagramViewer';
 import FullscreenDiagramViewer from './components/FullscreenDiagramViewer';
+import QuizRoutePage from './components/QuizRoutePage';
 import ForumPage from './pages/ForumPage';
 import CulturaCatalanaPage from './pages/CulturaCatalanaPage';
 import HistoriaCatalanaPage from './pages/HistoriaCatalanaPage';
@@ -83,6 +84,7 @@ export default function App() {
           <Route path="/bloc/:blocId/:temaId/esquemes/:schemaName" element={<SchemaViewer />} />
           <Route path="/diagram-viewer/:blocId/:temaId/:punt" element={<FullscreenDiagramViewer />} />
           <Route path="/bloc/:blocId/fitxes/:fitxaId" element={<DiagramViewer />} />
+          <Route path="/bloc/:blocId/tema/:temaId/preguntes/:punt" element={<QuizRoutePage />} />
           <Route path="/bloc/:blocId/:temaId/:seccio" element={<BlocPage />} />
           <Route path="/bloc/:blocId" element={<BlocPage />} />
           <Route path="/annex/:annexId" element={<AnnexPage />} />
