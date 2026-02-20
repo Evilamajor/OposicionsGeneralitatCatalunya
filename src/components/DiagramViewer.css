@@ -4,18 +4,18 @@
 .diagram-viewer {
   width: 100%;
   min-height: 100vh;
-  padding: 24px;
+  padding: 24px 20px 32px;
   box-sizing: border-box;
 }
 
 .dv-container {
   max-width: 1200px;
   margin: 0 auto;
-  background: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  padding: 24px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+  padding: 28px;
 }
 
 /* Top bar */
@@ -31,21 +31,21 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #f3f4f6;
-  color: #111;
+  background: var(--bg-surface-muted);
+  color: var(--text-primary);
   font-weight: 600;
   font-size: 0.9rem;
   padding: 8px 16px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: background-color 0.15s ease;
+  transition: all var(--transition-fast);
   white-space: nowrap;
   flex-shrink: 0;
 }
 
 .dv-back:hover {
-  background: #e5e7eb;
+  background: var(--bg-hover);
 }
 
 .dv-title {
@@ -69,17 +69,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f3f4f6;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  background: var(--bg-surface-muted);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
   font-size: 1.1rem;
   cursor: pointer;
-  transition: background-color 0.15s ease;
+  transition: all var(--transition-fast);
   color: #374151;
 }
 
 .dv-controls button:hover {
-  background: #e5e7eb;
+  background: var(--bg-hover);
 }
 
 /* Canvas area */
@@ -87,10 +87,10 @@
   width: 100%;
   height: 60vh;
   min-height: 350px;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  background: #fafafa;
+  background: var(--bg-surface-muted);
   cursor: grab;
 }
 
@@ -159,14 +159,15 @@
    Section cards (enrichment blocks)
 =========================== */
 .dv-section-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
   padding: 24px;
   margin-top: 24px;
   line-height: 1.7;
-  font-size: 0.96rem;
-  color: #374151;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-soft);
 }
 
 .dv-section-card p {
@@ -274,9 +275,9 @@
 /* Q&A blocks */
 .dv-qa-block {
   padding: 12px 16px;
-  background: #fafafa;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
+  background: var(--bg-surface-muted);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
   margin-bottom: 10px;
 }
 

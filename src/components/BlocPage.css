@@ -4,10 +4,12 @@
 .bloc-page {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
   min-height: 100vh;
   width: 100%;
-  padding: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 24px 36px;
   box-sizing: border-box;
 }
 
@@ -15,18 +17,18 @@
    Seccions del bloc (a dalt)
 ========================= */
 .bloc-seccions {
-  background: #ffffff;
-  padding: 18px 20px;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 4px 16px rgba(17, 24, 39, 0.04);
+  background: var(--bg-surface);
+  padding: 20px 22px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
 }
 
 .bloc-seccions h2 {
   margin-top: 0;
   margin-bottom: 1rem;
-  color: #1f2933;
-  font-size: 16px;
+  color: var(--text-primary);
+  font-size: 1.1rem;
   font-weight: 600;
 }
 
@@ -36,11 +38,11 @@
 .bloc-diagram-container {
   width: 100%;
   height: calc(100vh - 180px);
-  background: #ffffff;
-  border-radius: 12px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e5e7eb;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-soft);
   padding: 12px;
 }
 
@@ -55,33 +57,33 @@
   gap: 0;
   margin-bottom: 24px;
   padding: 0;
-  border-bottom: 2px solid #e5e7eb;
+  border-bottom: 2px solid var(--border-soft);
 }
 
 .view-toggle-btn {
   display: inline-flex;
   align-items: center;
-  padding: 10px 20px;
-  font-size: 13px;
+  padding: 11px 20px;
+  font-size: 14px;
   font-weight: 500;
-  color: #6b7280;
+  color: var(--text-muted);
   background: transparent;
   border: none;
   border-bottom: 2px solid transparent;
   margin-bottom: -2px;
   cursor: pointer;
-  transition: all 200ms ease;
+  transition: all var(--transition-fast);
 }
 
 .view-toggle-btn:hover {
-  color: #1f2933;
-  background: #f9fafb;
+  color: var(--text-primary);
+  background: var(--bg-hover);
 }
 
 .view-toggle-btn.active {
-  color: #0052cc;
+  color: var(--accent);
   background: transparent;
-  border-bottom-color: #0052cc;
+  border-bottom-color: var(--accent);
   font-weight: 600;
 }
 
@@ -95,22 +97,22 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 6px 12px;
+  padding: 8px 14px;
   margin-bottom: 0.85rem;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
-  color: #6b7280;
+  color: var(--text-muted);
   background: transparent;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
 }
 
 .tabs-toggle:hover {
-  color: #1f2933;
-  background: #f3f4f6;
-  border-color: #d1d5db;
+  color: var(--text-primary);
+  background: var(--bg-hover);
+  border-color: var(--border-strong);
 }
 
 .tabs-toggle:focus-visible {
@@ -151,26 +153,26 @@
 
 .seccio-link {
   display: inline-block;
-  padding: 8px 14px;
-  border-radius: 8px;
+  padding: 9px 14px;
+  border-radius: 9px;
   background: transparent;
-  color: #6b7280;
+  color: var(--text-muted);
   text-decoration: none;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 14px;
   border-bottom: 2px solid transparent;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
 }
 
 .seccio-link:hover {
-  color: #1f2933;
-  background: #f3f4f6;
+  color: var(--text-primary);
+  background: var(--bg-hover);
 }
 
 .seccio-link.active {
-  color: #0052cc;
-  border-bottom-color: #0052cc;
-  background: #eef2ff;
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  background: var(--accent-soft);
   box-shadow: inset 0 0 0 1px rgba(59, 110, 165, 0.15);
 }
 
@@ -179,21 +181,29 @@
    CANONICAL LAYOUT CONTAINER (full width)
 ========================= */
 .bloc-contingut {
-  background: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-soft);
   flex: 1;
   overflow-y: auto;
   min-height: 50vh;
   width: 100%;
-  padding: 28px;
+  padding: 32px;
   box-sizing: border-box;
+  box-shadow: var(--shadow-soft);
 }
 
 .bloc-contingut iframe {
   display: block;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   box-shadow: 0 8px 22px rgba(15, 23, 42, 0.07);
+}
+
+.bloc-embedded-frame {
+  width: 100%;
+  min-height: 1200px;
+  border: none;
+  border-radius: var(--radius-lg);
 }
 
 /* When SlideDeck sits inside bloc-contingut, remove padding and let it fill */
@@ -206,12 +216,13 @@
 
 /* Reusable content card */
 .content-card {
-  background: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  padding: 24px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-soft);
+  padding: 26px;
   width: 100%;
   box-sizing: border-box;
+  box-shadow: var(--shadow-soft);
 }
 
 .preview-card h3 {
@@ -234,9 +245,9 @@
 
 /* HTML content area – canonical full-width wrapper for injected HTML */
 .html-content {
-  color: #4b5563;
+  color: var(--text-secondary);
   line-height: 1.7;
-  font-size: 14px;
+  font-size: 1rem;
   width: 100%;
   max-width: none;
   margin: 0;
@@ -263,7 +274,7 @@
 .html-content h4,
 .html-content h5,
 .html-content h6 {
-  color: #1f2933;
+  color: var(--text-primary);
   margin-top: 1.8rem;
   margin-bottom: 0.9rem;
   font-weight: 600;
@@ -285,18 +296,26 @@
   margin: 0.75rem 0;
 }
 
-.html-content a {
-  color: #0052cc;
-  text-decoration: underline;
-  transition: color 150ms ease;
+.bloc-contingut .html-content a,
+.bloc-contingut .html-content details a,
+.bloc-contingut .html-content .toggle a {
+  color: var(--sidebar-topic-color);
+  font-size: var(--sidebar-topic-font-size);
+  font-weight: var(--sidebar-topic-font-weight);
+  text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
-.html-content a:hover {
-  color: #003a99;
+.bloc-contingut .html-content a:visited,
+.bloc-contingut .html-content details a:visited,
+.bloc-contingut .html-content .toggle a:visited {
+  color: var(--sidebar-topic-color);
 }
 
-.html-content a:visited {
-  color: #6b3f99;
+.bloc-contingut .html-content a:hover,
+.bloc-contingut .html-content details a:hover,
+.bloc-contingut .html-content .toggle a:hover {
+  color: var(--sidebar-topic-hover-color);
 }
 
 .html-content ul,
@@ -307,6 +326,38 @@
 
 .html-content li {
   margin: 0.5rem 0;
+}
+
+.bloc-contingut .html-content details > summary,
+.bloc-contingut .html-content .toggle,
+.bloc-contingut .html-content .schema-toggle,
+.html-content details > summary,
+.html-content .toggle,
+.html-content .schema-toggle {
+  font-size: var(--sidebar-topic-font-size) !important;
+  font-weight: var(--sidebar-topic-font-weight) !important;
+  color: var(--sidebar-topic-color) !important;
+  line-height: 1.45;
+  transition: var(--sidebar-topic-transition);
+}
+
+.bloc-contingut .html-content details > summary:hover,
+.bloc-contingut .html-content .toggle:hover,
+.bloc-contingut .html-content .schema-toggle:hover,
+.html-content details > summary:hover,
+.html-content .toggle:hover,
+.html-content .schema-toggle:hover {
+  color: var(--sidebar-topic-hover-color) !important;
+}
+
+/* Esquemes prefix refinement: soften only the leading ">" symbol */
+.bloc-contingut .html-content .toggle::first-letter,
+.bloc-contingut .html-content .schema-toggle::first-letter,
+.bloc-contingut .html-content details > summary::first-letter,
+.html-content .toggle::first-letter,
+.html-content .schema-toggle::first-letter,
+.html-content details > summary::first-letter {
+  color: rgba(0, 0, 0, 0.45);
 }
 
 .html-content blockquote {
@@ -341,7 +392,7 @@
 
 .html-content th,
 .html-content td {
-  padding: 0.75rem;
+  padding: 0.85rem;
   text-align: left;
   border-bottom: 1px solid #e5e7eb;
 }
@@ -376,11 +427,11 @@
   }
 
   .bloc-contingut {
-    padding: 16px;
+    padding: 20px;
   }
 
   .content-card {
-    padding: 16px;
+    padding: 18px;
   }
 }
 
@@ -389,9 +440,9 @@
    (shown in bloc-level shared views)
 ========================= */
 .bloc-topics-nav {
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+  background: var(--bg-surface-muted);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
   padding: 0;
 }
 
@@ -406,7 +457,7 @@
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
-  color: #6b7280;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   transition: color 150ms ease;
@@ -439,10 +490,10 @@
 .topic-nav-card {
   display: block;
   padding: 12px 16px;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
   border-radius: 8px;
-  color: #374151;
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 13px;
   font-weight: 500;
@@ -450,9 +501,9 @@
 }
 
 .topic-nav-card:hover {
-  background: #eef2ff;
-  border-color: #0052cc;
-  color: #0052cc;
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 /* Shared-section badge on tab bar */

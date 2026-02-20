@@ -10,22 +10,22 @@
 .autoavaluacio-title {
   font-size: 1.4rem;
   font-weight: 600;
-  color: #1f2933;
+  color: var(--text-primary);
   margin: 0 0 12px 0;
 }
 
 .autoavaluacio-subtitle {
   font-size: 1rem;
-  color: #6b7280;
+  color: var(--text-muted);
   margin: 0;
   line-height: 1.6;
 }
 
 /* Placeholder message */
 .autoavaluacio-placeholder {
-  background: #f9f9f9;
-  border: 2px dashed #ddd;
-  border-radius: 10px;
+  background: var(--bg-surface-muted);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
   padding: 3rem 2rem;
   text-align: center;
   margin-bottom: 24px;
@@ -38,7 +38,7 @@
 
 .placeholder-text {
   font-size: 1rem;
-  color: #6b7280;
+  color: var(--text-muted);
   margin-bottom: 0.5rem;
 }
 
@@ -58,26 +58,26 @@
 
 /* Resource card */
 .resource-card {
-  background: white;
-  border: 2px solid #e0e0e0;
-  border-radius: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-soft);
 }
 
 .resource-card:not(.disabled) {
   cursor: pointer;
-  border-color: #4a90e2;
+  border-color: #9fb4d8;
 }
 
 .resource-card:not(.disabled):hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(74, 144, 226, 0.2);
-  border-color: #357abd;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--accent);
 }
 
 .resource-card.disabled {
@@ -97,13 +97,13 @@
 .resource-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary);
   margin: 0 0 0.5rem 0;
 }
 
 .resource-description {
   font-size: 0.95rem;
-  color: #666;
+  color: var(--text-secondary);
   line-height: 1.5;
   margin: 0;
 }
@@ -111,19 +111,18 @@
 .resource-button {
   width: 100%;
   padding: 0.75rem 1.5rem;
-  background: #4a90e2;
+  background: var(--accent);
   border: none;
   border-radius: 8px;
   color: white;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
 }
 
 .resource-button:hover:not(:disabled) {
-  background: #357abd;
-  transform: scale(1.02);
+  background: #183f85;
 }
 
 .resource-button:disabled {
