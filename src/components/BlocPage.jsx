@@ -294,6 +294,22 @@ export default function BlocPage() {
       });
     }
 
+    const onPreguntesNavigate = (event) => {
+      const toggleNode = event.target.closest('.toggle, .schema-toggle');
+      if (!toggleNode) return;
+
+      const label = (toggleNode.textContent || '').toLowerCase();
+      if (!label.includes('preguntes')) return;
+
+      const sectionNode = toggleNode.nextElementSibling;
+      const match = sectionNode?.id?.match(/^p(\d+)-preguntes$/);
+      if (!match) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      navigate(`/bloc/${blocId}/tema/${temaId}/preguntes/${match[1]}`);
+    };
+
     const onSectionToggle = (event) => {
       const toggleNode = event.target.closest('.toggle, .schema-toggle, summary');
       if (!toggleNode) return;
@@ -303,13 +319,15 @@ export default function BlocPage() {
       });
     };
 
+    container.addEventListener('click', onPreguntesNavigate, true);
     container.addEventListener('click', onSectionToggle, true);
 
     return () => {
+      container.removeEventListener('click', onPreguntesNavigate, true);
       container.removeEventListener('click', onSectionToggle, true);
       destroyDiagramRuntime();
     };
-  }, [seccio, esquemesHtml, blocId, temaId]);
+  }, [seccio, esquemesHtml, blocId, temaId, navigate]);
 
   if (!bloc) {
     return (

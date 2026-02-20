@@ -1,0 +1,125 @@
+{
+  "title": "Tema 4 · Punt 2 · Fonts formals vs. fonts materials",
+  "questions": [
+    {
+      "type": "mcq",
+      "prompt": "1) Identifica la classificació correcta: “El Govern dicta un reial decret reglamentari.”",
+      "choices": [
+        "Font material: reial decret · Font formal: Govern",
+        "Font material: Govern · Font formal: reial decret (reglament)",
+        "Font material: Corts Generals · Font formal: reial decret",
+        "Font material: Constitució · Font formal: Govern"
+      ],
+      "answer": 1,
+      "explanation": "La font material és l’òrgan creador (Govern) i la font formal és la forma normativa (reial decret/reglament)."
+    },
+    {
+      "type": "mcq",
+      "prompt": "2) Quina afirmació és més precisa sobre jerarquia i competència?",
+      "choices": [
+        "La competència és una subcategoria de la jerarquia normativa.",
+        "En conflictes Estat–CCAA, sempre preval la llei estatal per jerarquia.",
+        "La jerarquia ordena rangs dins un mateix sistema; la competència delimita àmbits d’actuació normativa.",
+        "Un reglament autonòmic és sempre inferior a una llei estatal."
+      ],
+      "answer": 2,
+      "explanation": "Competència = qui pot regular què; jerarquia = rang de normes dins l’ordenament."
+    },
+    {
+      "type": "mcq",
+      "prompt": "3) Què és més correcte sobre la “reserva de llei”?",
+      "choices": [
+        "Permet al reglament regular qualsevol matèria si hi ha necessitat i eficàcia.",
+        "Impedeix que el reglament reguli de forma autònoma determinades matèries, exigint rang de llei.",
+        "Només opera quan el reglament contradigui una llei preexistent.",
+        "És un principi aplicable només a la Unió Europea."
+      ],
+      "answer": 1,
+      "explanation": "La reserva de llei exigeix regulació amb rang de llei en determinades matèries."
+    },
+    {
+      "type": "mcq",
+      "prompt": "4) Cas: una conselleria aprova una ordre que “crea” obligacions noves sense cobertura legal. Quin és el diagnòstic més ajustat?",
+      "choices": [
+        "Cap problema: el principi d’eficàcia justifica la potestat reglamentària.",
+        "És un vici menor: anul·labilitat com si fos un acte administratiu.",
+        "Possible vulneració de jerarquia/reserva de llei → disposició reglamentària nul·la de ple dret.",
+        "És vàlida si es publica correctament (font formal correcta)."
+      ],
+      "answer": 2,
+      "explanation": "Si el reglament innova sense base legal en matèria reservada o contradient la llei, pot ser nul."
+    },
+    {
+      "type": "mcq",
+      "prompt": "5) Quin enunciat defineix millor “font material”?",
+      "choices": [
+        "La publicació al diari oficial d’una norma.",
+        "El tipus de norma (llei, reglament, costum...).",
+        "L’òrgan o poder del qual emana la norma (origen competencial).",
+        "El conjunt de principis generals del dret."
+      ],
+      "answer": 2,
+      "explanation": "Font material = qui crea la norma."
+    },
+    {
+      "type": "mcq",
+      "prompt": "6) UE: segons l’art. 288 TFUE, quina parella és correcta?",
+      "choices": [
+        "Directiva = aplicació directa · Reglament = necessita transposició",
+        "Reglament = aplicació directa general · Directiva = obliga al resultat i requereix transposició",
+        "Decisió = sempre necessita llei estatal per existir",
+        "Recomanacions = obligatòries en tots els seus elements"
+      ],
+      "answer": 1,
+      "explanation": "El reglament és directament aplicable; la directiva obliga quant al resultat i exigeix transposició."
+    },
+    {
+      "type": "mcq",
+      "prompt": "7) Tria l’única frase exacta: “El reglament és la norma administrativa per excel·lència perquè…”",
+      "choices": [
+        "...té rang superior a la llei quan regula matèries tècniques.",
+        "...la seva font material és l’Administració/Govern, però com a font formal està subordinat a la llei.",
+        "...és una font material i formal alhora.",
+        "...substitueix la Constitució quan hi ha buit legal."
+      ],
+      "answer": 1,
+      "explanation": "El reglament és formalment subordinat a la llei."
+    },
+    {
+      "type": "mcq",
+      "prompt": "8) Quin error conceptual hi ha en l’afirmació: “La publicació és una font formal”?",
+      "choices": [
+        "Cap error: la publicació crea el rang normatiu.",
+        "La publicació és condició d’eficàcia/coneixement, però la font formal és la forma normativa (llei/reglament...), no el tràmit.",
+        "La publicació és font material, no formal.",
+        "La publicació només existeix per a les directives UE."
+      ],
+      "answer": 1,
+      "explanation": "La publicació és requisit d’eficàcia, no categoria de font formal."
+    },
+    {
+      "type": "mcq",
+      "prompt": "9) Reglament contrari a una llei: quina conseqüència és la més correcta segons el règim de disposicions?",
+      "choices": [
+        "Anul·labilitat amb termini de recurs ordinari.",
+        "Nul·litat de ple dret; no és convalidable i la seva il·legalitat pot ser al·legada en qualsevol moment.",
+        "Vàlid si l’òrgan és competent i s’ha publicat.",
+        "Només és il·legal si ho declara el Parlament."
+      ],
+      "answer": 1,
+      "explanation": "Els reglaments il·legals poden incórrer en nul·litat de ple dret."
+    },
+    {
+      "type": "mcq",
+      "prompt": "10) Tria l’única combinació sense error:",
+      "choices": [
+        "Font material = forma de norma · Font formal = òrgan creador",
+        "Parlament = font formal · Llei = font material",
+        "Govern = font material · Reglament = font formal · Llei = font formal",
+        "UE = font formal · Directiva = font material"
+      ],
+      "answer": 2,
+      "explanation": "Govern (material) produeix reglament (formal) i la llei és també font formal."
+    }
+  ]
+}
