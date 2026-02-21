@@ -1,0 +1,33 @@
+.autoavaluacio-page {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 2.5rem;
+}
+
+.autoavaluacio-header {
+  margin-bottom: 1.25rem;
+}
+
+.autoavaluacio-header p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.autoavaluacio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.autoavaluacio-card {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  padding: 1rem;
+}
+
+.autoavaluacio-card h2 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}

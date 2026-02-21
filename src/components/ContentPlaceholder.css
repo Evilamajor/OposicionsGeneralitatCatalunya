@@ -1,0 +1,18 @@
+.content-placeholder {
+  padding: 1.5rem;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+}
+
+.content-placeholder h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.content-placeholder p {
+  margin: 0;
+  color: var(--text-secondary);
+}
