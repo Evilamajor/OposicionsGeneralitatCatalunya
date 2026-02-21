@@ -1,0 +1,63 @@
+.ics-sidebar .sidebar-title {
+  text-align: left;
+}
+
+.ics-sidebar .sidebar-header {
+  justify-content: flex-start;
+}
+
+.ics-sidebar .ics-section-toggle {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 2px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.ics-sidebar .ics-arrow {
+  font-size: 12px;
+  line-height: 1;
+  color: var(--text-muted);
+  width: 12px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.ics-sidebar .ics-section-title {
+  margin: 0;
+  font-weight: 700;
+}
+
+.ics-sidebar .ics-section-panel {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 220ms ease, opacity 180ms ease;
+}
+
+.ics-sidebar .ics-section-panel.open {
+  max-height: 1200px;
+  opacity: 1;
+}
+
+.ics-sidebar .sidebar-block {
+  margin-bottom: 0.75rem;
+}
+
+.ics-sidebar .ics-topic-list .bloc-title {
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.ics-sidebar .ics-subtopic-list {
+  margin-top: 8px;
+}
+
+.ics-sidebar .ics-subtopic-list .topic-label {
+  font-size: 12.5px;
+  line-height: 1.35;
+}

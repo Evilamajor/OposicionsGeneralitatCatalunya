@@ -1,0 +1,17 @@
+.noticies-page {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.noticies-header p {
+  margin-top: 0.4rem;
+  color: var(--text-muted, #5e6875);
+}
+
+.noticies-placeholder {
+  border: 1px solid var(--border-color, #e4e8ef);
+  border-radius: 12px;
+  background: var(--surface-color, #ffffff);
+  padding: 1rem 1.25rem;
+  font-weight: 500;
+}

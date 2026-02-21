@@ -1,16 +1,20 @@
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useLocation, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { sidebarConfig } from '../data';
 
 const { blocks: allBlocks, annexos, blocsHeader, annexosHeader } = sidebarConfig;
 
-// Filter out Business English from blocs – it now lives under ANNEXOS
+// Keep only the official bloc navigation in BLOCS section
 const blocksOnly = allBlocks.filter((b) => b.id !== 'business-english');
 
 export default function Sidebar({ collapsed, onToggle }) {
   const [expandedBlocId, setExpandedBlocId] = useState(null);
   const [annexosOpen, setAnnexosOpen] = useState(false);
   const { blocId: activeBlockId } = useParams();
+  const location = useLocation();
+  const basePath = location.pathname.startsWith('/generalitat') ? '/generalitat' : '';
+
+  const withBasePath = (path) => `${basePath}${path}`;
 
   // Auto-expand the current bloc when navigating
   useEffect(() => {
@@ -104,7 +108,7 @@ export default function Sidebar({ collapsed, onToggle }) {
                       return (
                       <li key={t.id}>
                         <NavLink
-                          to={`/bloc/${bloc.id}/${t.id}/${firstSection}`}
+                          to={withBasePath(`/bloc/${bloc.id}/${t.id}/${firstSection}`)}
                         >
                           <span
                             className="topic-dot"
@@ -164,7 +168,7 @@ export default function Sidebar({ collapsed, onToggle }) {
               <li key={annex.id} className="sidebar-block">
                 <div className="bloc-header">
                   <NavLink
-                    to={annex.route || `/annex/${annex.id}`}
+                    to={withBasePath(annex.route || `/annex/${annex.id}`)}
                     className={({ isActive }) => (isActive ? 'active' : '')}
                   >
                     <span className="bloc-title">{annex.title}</span>
@@ -176,13 +180,13 @@ export default function Sidebar({ collapsed, onToggle }) {
         </nav>
       )}
 
-      {/* Divider before FÒRUM */}
+      {/* Divider before NOTÍCIES */}
       <div className="sidebar-divider" />
 
-      {/* FÒRUM – standalone top-level section */}
+      {/* NOTÍCIES – standalone top-level section */}
       <div className="sidebar-header">
         <NavLink
-          to="/forum"
+          to={withBasePath('/noticies')}
           className={({ isActive }) => `sidebar-forum-link${isActive ? ' active' : ''}`}
           onClick={() => { if (onToggle && !collapsed) onToggle(); }}
         >
@@ -202,7 +206,7 @@ export default function Sidebar({ collapsed, onToggle }) {
               strokeLinejoin="round"
             />
           </svg>
-          <h3 className="sidebar-title forum-title-inline">Fòrum</h3>
+          <h3 className="sidebar-title forum-title-inline">Notícies</h3>
         </NavLink>
       </div>
     </aside>

@@ -1,11 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { useParams, NavLink, useNavigate } from 'react-router-dom';
-import { blocks } from '../data';
+import { blocks, ALLOWED_BLOC_SECTIONS } from '../data';
 import NotesEditor from './NotesEditor';
-import AutoavaluacioSection from './AutoavaluacioSection';
-import PlataformaPSCP from './PlataformaPSCP';
-import FitxesEstudi from './FitxesEstudi';
-import TopicDataProjects from './TopicDataProjects';
 import SlideDeck from './SlideDeck';
 import ComingSoon from './ComingSoon';
 import { initEsquemaDiagramRuntime } from '../utils/initEsquemaDiagramRuntime';
@@ -22,23 +18,7 @@ const SLIDE_MD_MAP = {
 };
 
 const TOPIC_POWERPOINT_BLOCS = new Set(['bloc-1', 'bloc-2', 'bloc-3']);
-const SIMPLIFIED_BLOCS = new Set(['bloc-1', 'bloc-2', 'bloc-3']);
-
-const EXTENDED_SECTIONS = [
-  { id: 'esquemes', label: 'Esquemes' },
-  { id: 'powerpoints', label: 'PowerPoints' },
-  { id: 'fitxes', label: "Fitxes d'estudi" },
-  { id: 'autoavaluacio', label: 'Autoavaluació' },
-  { id: 'legislacio', label: 'Legislació' },
-  { id: 'materials', label: 'Materials' },
-];
-
-const BASE_SECTIONS = [
-  { id: 'esquemes', label: 'Esquemes' },
-  { id: 'powerpoints', label: 'PowerPoints' },
-  { id: 'legislacio', label: 'Legislació' },
-  { id: 'materials', label: 'Materials' },
-];
+const MAIN_BLOCS = new Set(['bloc-1', 'bloc-2', 'bloc-3', 'bloc-4', 'bloc-5', 'bloc-6', 'bloc-7']);
 
 export default function BlocPage() {
   const { blocId, temaId, seccio } = useParams();
@@ -51,10 +31,7 @@ export default function BlocPage() {
 
   const bloc = blocks.find((b) => b.id === blocId);
   const tema = bloc?.topics?.find((t) => t.id === temaId);
-  const sections = useMemo(
-    () => (SIMPLIFIED_BLOCS.has(blocId) ? BASE_SECTIONS : EXTENDED_SECTIONS),
-    [blocId],
-  );
+  const sections = useMemo(() => ALLOWED_BLOC_SECTIONS, []);
 
   const schemaPath =
     blocId && temaId
@@ -286,7 +263,7 @@ export default function BlocPage() {
     sanitizeEsquemaSections();
 
     let destroyDiagramRuntime = () => {};
-    if (SIMPLIFIED_BLOCS.has(blocId)) {
+    if (MAIN_BLOCS.has(blocId)) {
       destroyDiagramRuntime = initEsquemaDiagramRuntime({
         container,
         blocId,
@@ -369,12 +346,12 @@ export default function BlocPage() {
           <span>{sectionsVisible ? 'Amagar' : 'Mostrar'} seccions</span>
         </button>
 
-        <div className={`seccions-list ${SIMPLIFIED_BLOCS.has(blocId) ? 'simplified-tabs' : ''} ${!sectionsVisible ? 'seccions-hidden' : ''}`}>
+        <div className={`seccions-list simplified-tabs ${!sectionsVisible ? 'seccions-hidden' : ''}`}>
           {sections.map((section) => (
             <NavLink
               key={section.id}
               to={`/bloc/${blocId}/${temaId}/${section.id}`}
-              className={({ isActive }) => `seccio-link ${SIMPLIFIED_BLOCS.has(blocId) ? 'simplified-tab-link' : ''} ${isActive ? 'active' : ''}`}
+              className={({ isActive }) => `seccio-link simplified-tab-link ${isActive ? 'active' : ''}`}
             >
               {section.label}
             </NavLink>
@@ -426,21 +403,12 @@ export default function BlocPage() {
             )
         )}
 
-        {seccio === 'fitxes' && blocId === 'bloc-4' && <PlataformaPSCP />}
-        {seccio === 'fitxes' && blocId !== 'bloc-4' && <FitxesEstudi blocId={blocId} />}
-
-        {seccio === 'autoavaluacio' && <AutoavaluacioSection blocId={blocId} temaId={temaId} />}
-
         {seccio === 'materials' && materialsPath && (
           <iframe
             src={materialsPath}
             title="Materials del tema"
             className="bloc-embedded-frame"
           />
-        )}
-
-        {seccio === 'projectes' && blocId === 'bloc-5' && (
-          <TopicDataProjects blocId={blocId} temaId={temaId} />
         )}
       </div>
 

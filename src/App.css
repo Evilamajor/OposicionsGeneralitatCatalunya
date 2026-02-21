@@ -13,6 +13,10 @@
   transition: grid-template-columns var(--transition-base);
 }
 
+.app-layout.home-route {
+  --home-baseline-offset: 24px;
+}
+
 /* Collapsed state — sidebar column shrinks to 0 */
 .app-layout.sidebar-collapsed {
   grid-template-columns: 0px 1fr;

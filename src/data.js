@@ -76,6 +76,13 @@ export const blocks = [
   },
 ];
 
+export const ALLOWED_BLOC_SECTIONS = [
+  { id: 'esquemes', label: 'Esquemes' },
+  { id: 'powerpoints', label: 'PowerPoints' },
+  { id: 'legislacio', label: 'Legislació' },
+  { id: 'materials', label: 'Materials' },
+];
+
 // ---------------------------------------------------------------------------
 // Annexos – materials complementaris (no formen part del temari oficial)
 // ---------------------------------------------------------------------------
@@ -89,16 +96,16 @@ export const annexos = [
     description: 'Llengua catalana aplicada a l\'àmbit jurídic i administratiu',
   },
   {
-    id: 'cultura-catalana',
-    title: 'Cultura catalana',
-    description: 'Context històric, literari i artístic de Catalunya',
-    route: '/annexos/cultura-catalana',
+    id: 'catala-nivell-c',
+    title: 'Català nivell C',
+    description: 'Preparació progressiva per assolir el nivell C de català',
+    route: '/annexos/catala-nivell-c',
   },
   {
-    id: 'business-english',
-    title: 'Business English',
-    description: 'Business English communication skills',
-    route: '/bloc/business-english/fitxes',
+    id: 'autoavaluacions',
+    title: 'Autoavaluacions',
+    description: 'Espai de pràctica i seguiment de l\'aprenentatge',
+    route: '/autoavaluacions',
   },
 ];
 

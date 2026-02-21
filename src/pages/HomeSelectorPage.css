@@ -1,0 +1,30 @@
+.home-selector-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.home-content-top-baseline {
+  width: 100%;
+  padding-top: var(--home-baseline-offset, 24px);
+}
+
+.home-welcome-panel {
+  width: 100%;
+  padding: 0 24px;
+}
+
+.home-image-frame {
+  min-height: calc(100vh - (var(--home-baseline-offset, 24px) * 2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-welcome-image {
+  width: min(92%, 760px);
+  max-width: 760px;
+  max-height: calc(100vh - (var(--home-baseline-offset, 24px) * 2));
+  object-fit: contain;
+}
