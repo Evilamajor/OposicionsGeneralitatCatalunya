@@ -421,6 +421,91 @@
   color: var(--sidebar-topic-hover-color) !important;
 }
 
+.html-content .schema-point-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.html-content .schema-point-toggle {
+  flex: 1;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: none;
+  background: transparent;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.html-content .schema-point-chevron {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1;
+  width: 0.9rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.html-content .schema-point-title {
+  font-size: 1.02rem;
+  font-weight: 650;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+.html-content .schema-point-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.html-content .schema-point-action {
+  border: none;
+  background: transparent;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 6px;
+  transition: color 160ms ease, background-color 160ms ease;
+}
+
+.html-content .schema-point-toggle:hover .schema-point-title {
+  color: var(--accent);
+}
+
+.html-content .schema-point-toggle.active .schema-point-title {
+  color: var(--accent);
+}
+
+.html-content .schema-point-action:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.html-content .schema-point-action.active {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.html-content .schema-point-action:disabled {
+  color: #9aa3b2;
+  cursor: not-allowed;
+  background: transparent;
+}
+
+.html-content .schema-inline-explicacio {
+  margin-top: 0.55rem;
+  margin-bottom: 0.25rem;
+}
+
 /* Esquemes prefix refinement: soften only the leading ">" symbol */
 .bloc-contingut .html-content .toggle::first-letter,
 .bloc-contingut .html-content .schema-toggle::first-letter,

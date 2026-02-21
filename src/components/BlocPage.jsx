@@ -3,8 +3,8 @@ import { useParams, NavLink, useNavigate } from 'react-router-dom';
 import { blocks, ALLOWED_BLOC_SECTIONS } from '../data';
 import NotesEditor from './NotesEditor';
 import SlideDeck from './SlideDeck';
+import PowerPointViewer from './PowerPointViewer';
 import ComingSoon from './ComingSoon';
-import { initEsquemaDiagramRuntime } from '../utils/initEsquemaDiagramRuntime';
 import './BlocPage.css';
 
 const SLIDE_MD_MAP = {
@@ -18,7 +18,6 @@ const SLIDE_MD_MAP = {
 };
 
 const TOPIC_POWERPOINT_BLOCS = new Set(['bloc-1', 'bloc-2', 'bloc-3']);
-const MAIN_BLOCS = new Set(['bloc-1', 'bloc-2', 'bloc-3', 'bloc-4', 'bloc-5', 'bloc-6', 'bloc-7']);
 
 export default function BlocPage() {
   const { blocId, temaId, seccio } = useParams();
@@ -27,7 +26,9 @@ export default function BlocPage() {
   const [esquemesHtml, setEsquemesHtml] = useState('');
   const [esquemesError, setEsquemesError] = useState('');
   const [isLoadingEsquemes, setIsLoadingEsquemes] = useState(false);
+  const [openExpPointId, setOpenExpPointId] = useState(null);
   const esquemesContainerRef = useRef(null);
+  const expSectionsRegistryRef = useRef(new Map());
 
   const bloc = blocks.find((b) => b.id === blocId);
   const tema = bloc?.topics?.find((t) => t.id === temaId);
@@ -69,6 +70,11 @@ export default function BlocPage() {
 
   useEffect(() => {
     setSectionsVisible(false);
+  }, [blocId, temaId, seccio]);
+
+  useEffect(() => {
+    setOpenExpPointId(null);
+    expSectionsRegistryRef.current = new Map();
   }, [blocId, temaId, seccio]);
 
   useEffect(() => {
@@ -246,65 +252,212 @@ export default function BlocPage() {
       });
     };
 
-    const scriptNodes = container.querySelectorAll('script');
+    const extractPointId = (...nodes) => {
+      for (const node of nodes) {
+        const id = node?.id || '';
+        const match = id.match(/^p(\d+)-/);
+        if (match) return match[1];
+      }
+      return null;
+    };
 
-    scriptNodes.forEach((oldScript) => {
-      const newScript = document.createElement('script');
-      Array.from(oldScript.attributes).forEach((attribute) => {
-        newScript.setAttribute(attribute.name, attribute.value);
+    const applyExpVisibility = (activePointId, registry) => {
+      registry.forEach(({ contentNode, button }, pointId) => {
+        const isOpen = activePointId === pointId;
+        contentNode.style.display = isOpen ? 'block' : 'none';
+        button.classList.toggle('active', isOpen);
+        button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       });
-      newScript.textContent = oldScript.textContent;
-      oldScript.replaceWith(newScript);
-    });
+    };
+
+    const renderPointActions = () => {
+      const registry = new Map();
+      const frames = container.querySelectorAll('.frame, .schema-frame');
+
+      frames.forEach((frame) => {
+        frame.querySelectorAll('.point-content').forEach((body) => {
+          while (body.firstChild) {
+            frame.appendChild(body.firstChild);
+          }
+          body.remove();
+        });
+
+        const titleElement = frame.querySelector('h3') || frame.querySelector('.point-title');
+        if (!titleElement) return;
+
+        const explicacioNode = frame.querySelector("[id$='-explicacio']");
+        const diagramaNode = frame.querySelector("[id$='-diagrama']");
+        const preguntesNode = frame.querySelector("[id$='-preguntes']");
+        const pointId = extractPointId(explicacioNode, diagramaNode, preguntesNode);
+
+        if (!pointId) return;
+
+        const pointTitle = titleElement.textContent?.trim() || `Punt ${pointId}`;
+
+        frame.querySelectorAll('.toggle, .schema-toggle, .point-toggle').forEach((toggleNode) => {
+          toggleNode.remove();
+        });
+
+        const row = document.createElement('div');
+        row.className = 'schema-point-row';
+
+        const titleButton = document.createElement('button');
+        titleButton.type = 'button';
+        titleButton.className = 'schema-point-toggle';
+        titleButton.setAttribute('aria-expanded', 'false');
+
+        const chevron = document.createElement('span');
+        chevron.className = 'schema-point-chevron';
+        chevron.textContent = '▸';
+
+        const titleLabel = document.createElement('span');
+        titleLabel.className = 'schema-point-title';
+        titleLabel.textContent = pointTitle;
+
+        titleButton.append(chevron, titleLabel);
+
+        const actions = document.createElement('div');
+        actions.className = 'schema-point-actions';
+
+        const grafButton = document.createElement('button');
+        grafButton.type = 'button';
+        grafButton.className = 'schema-point-action graf';
+        grafButton.textContent = 'GRAF';
+
+        const askButton = document.createElement('button');
+        askButton.type = 'button';
+        askButton.className = 'schema-point-action ask';
+        askButton.textContent = 'ASK';
+        if (!diagramaNode) {
+          grafButton.disabled = true;
+        }
+        if (!preguntesNode) {
+          askButton.disabled = true;
+        }
+
+        let inlineExpNode = explicacioNode;
+        const fallbackExpHtml = explicacioNode?.innerHTML?.trim() || '(Explicació no disponible)';
+        if (!inlineExpNode) {
+          inlineExpNode = document.createElement('div');
+          inlineExpNode.className = 'schema-inline-explicacio';
+          inlineExpNode.innerHTML = fallbackExpHtml;
+          frame.appendChild(inlineExpNode);
+        }
+
+        const paddedPoint = String(Number.parseInt(pointId, 10)).padStart(2, '0');
+        inlineExpNode.dataset.sourceUrl = `/content/${blocId}/${temaId}/esquemes/explicacions/punt-${paddedPoint}.html`;
+        inlineExpNode.dataset.loaded = 'false';
+        inlineExpNode.dataset.fallbackHtml = fallbackExpHtml;
+
+        titleButton.addEventListener('click', () => {
+          setOpenExpPointId((current) => (current === pointId ? null : pointId));
+        });
+
+        grafButton.addEventListener('click', (event) => {
+          event.stopPropagation();
+          navigate(`/diagram-viewer/${blocId}/${temaId}/${pointId}`);
+        });
+
+        askButton.addEventListener('click', (event) => {
+          event.stopPropagation();
+          navigate(`/bloc/${blocId}/tema/${temaId}/preguntes/${pointId}`);
+        });
+
+        actions.append(grafButton, askButton);
+        row.append(titleButton, actions);
+
+        if (titleElement.tagName.toLowerCase() === 'h3') {
+          titleElement.replaceWith(row);
+        } else {
+          frame.insertBefore(row, frame.firstChild);
+          titleElement.remove();
+        }
+
+        if (diagramaNode) {
+          diagramaNode.style.display = 'none';
+        }
+        if (preguntesNode) {
+          preguntesNode.style.display = 'none';
+        }
+
+        inlineExpNode.classList.add('schema-inline-explicacio');
+        inlineExpNode.style.display = 'none';
+        registry.set(pointId, { contentNode: inlineExpNode, button: titleButton, chevronNode: chevron });
+      });
+
+      expSectionsRegistryRef.current = registry;
+      applyExpVisibility(openExpPointId, registry);
+    };
 
     reorderDetailsSections();
     reorderToggleSections();
-
     sanitizeEsquemaSections();
 
-    let destroyDiagramRuntime = () => {};
-    if (MAIN_BLOCS.has(blocId)) {
-      destroyDiagramRuntime = initEsquemaDiagramRuntime({
-        container,
-        blocId,
-        temaId,
-      });
-    }
-
-    const onPreguntesNavigate = (event) => {
-      const toggleNode = event.target.closest('.toggle, .schema-toggle');
-      if (!toggleNode) return;
-
-      const label = (toggleNode.textContent || '').toLowerCase();
-      if (!label.includes('preguntes')) return;
-
-      const sectionNode = toggleNode.nextElementSibling;
-      const match = sectionNode?.id?.match(/^p(\d+)-preguntes$/);
-      if (!match) return;
-
-      event.preventDefault();
-      event.stopPropagation();
-      navigate(`/bloc/${blocId}/tema/${temaId}/preguntes/${match[1]}`);
-    };
-
-    const onSectionToggle = (event) => {
-      const toggleNode = event.target.closest('.toggle, .schema-toggle, summary');
-      if (!toggleNode) return;
-
-      requestAnimationFrame(() => {
-        sanitizeEsquemaSections();
-      });
-    };
-
-    container.addEventListener('click', onPreguntesNavigate, true);
-    container.addEventListener('click', onSectionToggle, true);
+    container.querySelectorAll('script').forEach((scriptNode) => scriptNode.remove());
+    renderPointActions();
 
     return () => {
-      container.removeEventListener('click', onPreguntesNavigate, true);
-      container.removeEventListener('click', onSectionToggle, true);
-      destroyDiagramRuntime();
+      expSectionsRegistryRef.current = new Map();
     };
   }, [seccio, esquemesHtml, blocId, temaId, navigate]);
+
+  useEffect(() => {
+    if (seccio !== 'esquemes') return;
+
+    const registry = expSectionsRegistryRef.current;
+    if (!registry || registry.size === 0) return;
+
+    registry.forEach(({ contentNode, button, chevronNode }, pointId) => {
+      const isOpen = openExpPointId === pointId;
+      contentNode.style.display = isOpen ? 'block' : 'none';
+      button.classList.toggle('active', isOpen);
+      button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (chevronNode) {
+        chevronNode.textContent = isOpen ? '▾' : '▸';
+      }
+    });
+  }, [openExpPointId, seccio]);
+
+  useEffect(() => {
+    if (seccio !== 'esquemes' || !openExpPointId) return;
+
+    const registry = expSectionsRegistryRef.current;
+    if (!registry || registry.size === 0) return;
+
+    const activeEntry = registry.get(openExpPointId);
+    if (!activeEntry) return;
+
+    const { contentNode } = activeEntry;
+    const sourceUrl = contentNode.dataset.sourceUrl;
+    const fallbackHtml = contentNode.dataset.fallbackHtml || '(Explicació no disponible)';
+    const alreadyLoaded = contentNode.dataset.loaded === 'true';
+
+    if (!sourceUrl || alreadyLoaded) return;
+
+    let isMounted = true;
+
+    fetch(sourceUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Explanation file not found');
+        }
+        return response.text();
+      })
+      .then((html) => {
+        if (!isMounted) return;
+        contentNode.innerHTML = html || fallbackHtml;
+        contentNode.dataset.loaded = 'true';
+      })
+      .catch(() => {
+        if (!isMounted) return;
+        contentNode.innerHTML = fallbackHtml;
+        contentNode.dataset.loaded = 'true';
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [openExpPointId, seccio]);
 
   if (!bloc) {
     return (
@@ -391,10 +544,19 @@ export default function BlocPage() {
         {seccio === 'powerpoints' && (
           TOPIC_POWERPOINT_BLOCS.has(blocId)
             ? (
-              <SlideDeck
-                deckConfigUrl={`/content/${blocId}/${temaId}/powerpoints/config.json`}
-                title={tema.label}
-              />
+              blocId === 'bloc-1' && temaId === 'tema-1'
+                ? (
+                  <PowerPointViewer
+                    metadataUrl={`/content/${blocId}/${temaId}/powerpoints/metadata.json`}
+                    title={tema.label}
+                  />
+                )
+                : (
+                  <SlideDeck
+                    deckConfigUrl={`/content/${blocId}/${temaId}/powerpoints/config.json`}
+                    title={tema.label}
+                  />
+                )
             )
             : (
               SLIDE_MD_MAP[blocId]

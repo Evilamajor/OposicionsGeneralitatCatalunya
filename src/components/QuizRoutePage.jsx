@@ -6,6 +6,7 @@ export default function QuizRoutePage() {
   const { blocId, temaId, punt } = useParams();
   const navigate = useNavigate();
   const [quiz, setQuiz] = useState(null);
+  const [htmlQuestionPath, setHtmlQuestionPath] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [score, setScore] = useState(0);
@@ -17,37 +18,61 @@ export default function QuizRoutePage() {
     [blocId, temaId, punt],
   );
 
+  const htmlPath = useMemo(() => {
+    const numeric = Number.parseInt(String(punt || '').trim(), 10);
+    const padded = Number.isNaN(numeric)
+      ? String(punt || '').trim()
+      : String(numeric).padStart(2, '0');
+
+    return `/content/${blocId}/${temaId}/esquemes/preguntes/punt-${padded}.html`;
+  }, [blocId, temaId, punt]);
+
   useEffect(() => {
     let isMounted = true;
     setLoading(true);
     setError(null);
     setQuiz(null);
+    setHtmlQuestionPath(null);
     setCurrentIndex(0);
     setSelected(null);
     setScore(0);
 
-    fetch(jsonPath)
+    fetch(htmlPath)
       .then((res) => {
         if (!res.ok) {
-          throw new Error('JSON not found');
+          throw new Error('HTML not found');
         }
-        return res.json();
+        return res.text();
       })
-      .then((data) => {
+      .then(() => {
         if (!isMounted) return;
-        setQuiz(data);
+        setHtmlQuestionPath(htmlPath);
         setLoading(false);
       })
       .catch(() => {
-        if (!isMounted) return;
-        setError('No questions available for this punt yet.');
-        setLoading(false);
+        fetch(jsonPath)
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error('JSON not found');
+            }
+            return res.json();
+          })
+          .then((data) => {
+            if (!isMounted) return;
+            setQuiz(data);
+            setLoading(false);
+          })
+          .catch(() => {
+            if (!isMounted) return;
+            setError('No questions available for this punt yet.');
+            setLoading(false);
+          });
       });
 
     return () => {
       isMounted = false;
     };
-  }, [jsonPath]);
+  }, [htmlPath, jsonPath]);
 
   if (loading) {
     return (
@@ -64,6 +89,28 @@ export default function QuizRoutePage() {
       <div className="bloc-page">
         <div className="bloc-contingut">
           <div className="quiz-error">{error}</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (htmlQuestionPath) {
+    return (
+      <div className="bloc-page">
+        <div className="bloc-contingut">
+          <div className="quiz-container quiz-html-container">
+            <button type="button" className="quiz-back-button" onClick={handleBack}>
+              ← Back
+            </button>
+
+            <h2 className="quiz-title">Preguntes · {blocId} · {temaId} · Punt {punt}</h2>
+
+            <iframe
+              title={`Preguntes punt ${punt}`}
+              src={htmlQuestionPath}
+              className="quiz-html-frame"
+            />
+          </div>
         </div>
       </div>
     );
@@ -103,11 +150,6 @@ export default function QuizRoutePage() {
   }
 
   function handleBack() {
-    if (window.history.length > 1) {
-      navigate(-1);
-      return;
-    }
-
     navigate(`/bloc/${blocId}/${temaId}/esquemes`);
   }
 
@@ -116,7 +158,7 @@ export default function QuizRoutePage() {
       <div className="bloc-contingut">
         <div className="quiz-container">
           <button type="button" className="quiz-back-button" onClick={handleBack}>
-            ← Tornar a Esquemes
+            ← Back
           </button>
 
           <h2 className="quiz-title">{quiz.title || `Quiz · ${blocId} · ${temaId} · Punt ${punt}`}</h2>

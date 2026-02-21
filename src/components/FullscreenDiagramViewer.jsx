@@ -7,18 +7,31 @@ export default function FullscreenDiagramViewer() {
   const { blocId, temaId, punt } = useParams();
   const navigate = useNavigate();
   const [hasError, setHasError] = useState(false);
+  const [sourceIndex, setSourceIndex] = useState(0);
 
-  const src = useMemo(() => {
+  const backToEsquemes = `/bloc/${blocId}/${temaId}/esquemes`;
+
+  const sources = useMemo(() => {
     const normalizedPunt = String(punt || '').trim();
-    return `/content/${blocId}/${temaId}/diagrama/${normalizedPunt}.png`;
+    const numeric = Number.parseInt(normalizedPunt, 10);
+    const paddedPoint = Number.isNaN(numeric)
+      ? normalizedPunt
+      : String(numeric).padStart(2, '0');
+
+    return [
+      `/content/${blocId}/${temaId}/esquemes/diagrames/punt-${paddedPoint}.png`,
+      `/content/${blocId}/${temaId}/diagrama/${normalizedPunt}.png`,
+    ];
   }, [blocId, temaId, punt]);
+
+  const src = sources[sourceIndex] || sources[0];
 
   const title = `Diagrama · ${blocId}/${temaId} · punt ${punt}`;
 
   return (
     <div className="fullscreen-diagram-page">
       <div className="fullscreen-diagram-topbar">
-        <button className="fullscreen-diagram-back" onClick={() => navigate(-1)}>
+        <button className="fullscreen-diagram-back" onClick={() => navigate(backToEsquemes)}>
           ← Back
         </button>
         <h2 className="fullscreen-diagram-title">{title}</h2>
@@ -54,7 +67,14 @@ export default function FullscreenDiagramViewer() {
                       alt={title}
                       className="fullscreen-diagram-image"
                       draggable={false}
-                      onError={() => setHasError(true)}
+                      onError={() => {
+                        const hasNextSource = sourceIndex < sources.length - 1;
+                        if (hasNextSource) {
+                          setSourceIndex((current) => current + 1);
+                          return;
+                        }
+                        setHasError(true);
+                      }}
                     />
                   </TransformComponent>
                 </div>

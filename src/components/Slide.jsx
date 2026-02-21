@@ -158,7 +158,121 @@ function renderBlock(block, key) {
 
 /* ── component ── */
 
-export default function Slide({ index, total, title, subtitle, blocks, slideType = 'content', active, direction }) {
+export default function Slide({
+  index,
+  total,
+  title,
+  subtitle,
+  blocks = [],
+  slideType = 'content',
+  active,
+  direction,
+  content,
+  isEditing,
+  draftContent,
+  setDraftContent,
+  pointTitle,
+  pointSection,
+  pointSources,
+  warningMessage,
+}) {
+  const current = isEditing && draftContent ? draftContent : content;
+  const isPointSlide =
+    current && typeof current === 'object'
+    && ('ideaClau' in current || 'estructura' in current || 'aplicacio' in current || 'controlFinal' in current);
+
+  if (isPointSlide) {
+    const cleanPointTitle = (pointTitle || 'Punt').replace(/^\d+\.\s*/, '');
+    const kicker = `Punt ${pointSources?.puntId || '--'} · ${pointSection || ''}`;
+    const editableStyle = {
+      width: '100%',
+      resize: 'vertical',
+      border: '1px dashed rgba(0,0,0,0.2)',
+      borderRadius: 8,
+      padding: '6px 8px',
+      background: 'transparent',
+      font: 'inherit',
+      color: 'inherit',
+      lineHeight: 'inherit',
+      pointerEvents: 'auto',
+    };
+
+    const updateField = (fieldName, nextValue) => {
+      if (!setDraftContent) return;
+      setDraftContent((prev) => ({
+        ...(prev || current || {}),
+        [fieldName]: nextValue,
+      }));
+    };
+
+    return (
+      <article className="ultra-slide point-slide">
+        <p className="slide-kicker">{kicker}</p>
+        <h2>{cleanPointTitle}</h2>
+        <div className="slide-body">
+          <ul>
+            <li>
+              <strong>Idea clau:</strong>{' '}
+              {isEditing ? (
+                <textarea
+                  value={current.ideaClau ?? ''}
+                  onChange={(e) => updateField('ideaClau', e.target.value)}
+                  style={editableStyle}
+                />
+              ) : (
+                <span dangerouslySetInnerHTML={{ __html: current.ideaClau || '' }} />
+              )}
+            </li>
+            <li>
+              <strong>Estructura:</strong>{' '}
+              {isEditing ? (
+                <textarea
+                  value={current.estructura ?? ''}
+                  onChange={(e) => updateField('estructura', e.target.value)}
+                  style={editableStyle}
+                />
+              ) : (
+                <span dangerouslySetInnerHTML={{ __html: current.estructura || '' }} />
+              )}
+            </li>
+            <li>
+              <strong>Aplicació:</strong>{' '}
+              {isEditing ? (
+                <textarea
+                  value={current.aplicacio ?? ''}
+                  onChange={(e) => updateField('aplicacio', e.target.value)}
+                  style={editableStyle}
+                />
+              ) : (
+                <span dangerouslySetInnerHTML={{ __html: current.aplicacio || '' }} />
+              )}
+            </li>
+            <li>
+              <strong>Control final:</strong>{' '}
+              {isEditing ? (
+                <textarea
+                  value={current.controlFinal ?? ''}
+                  onChange={(e) => updateField('controlFinal', e.target.value)}
+                  style={editableStyle}
+                />
+              ) : (
+                <span dangerouslySetInnerHTML={{ __html: current.controlFinal || '' }} />
+              )}
+            </li>
+          </ul>
+
+          {warningMessage ? <p className="powerpoint-warning">{warningMessage}</p> : null}
+
+          <div className="chip-row">
+            <span className="chip">{pointSection || 'Tema'}</span>
+            {pointSources?.sectionId ? <span className="chip">Secció {pointSources.sectionId}</span> : null}
+            {pointSources?.puntId ? <span className="chip">Punt {pointSources.puntId}</span> : null}
+          </div>
+        </div>
+      </article>
+    );
+  }
+
   const isTitleSlide = slideType === 'title';
   const typeClass = `slide--${slideType}`;
   const dirClass = direction ? `slide--exit-${direction}` : '';

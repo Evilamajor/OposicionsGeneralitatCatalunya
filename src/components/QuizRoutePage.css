@@ -10,6 +10,18 @@
   box-sizing: border-box;
 }
 
+.quiz-html-container {
+  max-width: 1100px;
+}
+
+.quiz-html-frame {
+  width: 100%;
+  min-height: 900px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+}
+
 .quiz-title {
   margin: 0 0 14px;
   color: var(--text-primary);
