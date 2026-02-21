@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import AskPageWrapper from './AskPageWrapper';
+import { getAskConfig } from '../data/askRegistry';
 import './QuizRoutePage.css';
 
 export default function QuizRoutePage() {
@@ -12,6 +14,11 @@ export default function QuizRoutePage() {
   const [score, setScore] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const askConfig = useMemo(
+    () => getAskConfig({ blocId, temaId, punt }),
+    [blocId, temaId, punt],
+  );
 
   const jsonPath = useMemo(
     () => `/content/${blocId}/${temaId}/preguntes/${punt}.json`,
@@ -28,6 +35,17 @@ export default function QuizRoutePage() {
   }, [blocId, temaId, punt]);
 
   useEffect(() => {
+    if (askConfig) {
+      setLoading(false);
+      setError(null);
+      setQuiz(null);
+      setHtmlQuestionPath(null);
+      setCurrentIndex(0);
+      setSelected(null);
+      setScore(0);
+      return undefined;
+    }
+
     let isMounted = true;
     setLoading(true);
     setError(null);
@@ -72,7 +90,7 @@ export default function QuizRoutePage() {
     return () => {
       isMounted = false;
     };
-  }, [htmlPath, jsonPath]);
+  }, [htmlPath, jsonPath, askConfig]);
 
   if (loading) {
     return (
@@ -109,6 +127,26 @@ export default function QuizRoutePage() {
               title={`Preguntes punt ${punt}`}
               src={htmlQuestionPath}
               className="quiz-html-frame"
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (askConfig) {
+    return (
+      <div className="bloc-page">
+        <div className="bloc-contingut">
+          <div className="quiz-container quiz-html-container">
+            <button type="button" className="quiz-back-button" onClick={handleBack}>
+              ← Back
+            </button>
+
+            <AskPageWrapper
+              title={askConfig.title}
+              questionsData={askConfig.questionsData}
+              storageKey={askConfig.storageKey}
             />
           </div>
         </div>

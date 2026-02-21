@@ -1,0 +1,1 @@
+export { default } from '../bloc1/tema1/punt1Ask';

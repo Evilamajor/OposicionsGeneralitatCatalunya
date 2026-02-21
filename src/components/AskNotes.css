@@ -1,0 +1,18 @@
+.ask-notes-container {
+  margin-top: 40px;
+  padding: 20px;
+  border-radius: 12px;
+  background: #f9fafc;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.ask-notes-container textarea {
+  width: 100%;
+  min-height: 200px;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  resize: vertical;
+  font-family: inherit;
+}
