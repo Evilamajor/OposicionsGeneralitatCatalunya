@@ -25,13 +25,17 @@ export default function QuizRoutePage() {
     [blocId, temaId, punt],
   );
 
-  const htmlPath = useMemo(() => {
+  const htmlPathCandidates = useMemo(() => {
     const numeric = Number.parseInt(String(punt || '').trim(), 10);
     const padded = Number.isNaN(numeric)
       ? String(punt || '').trim()
       : String(numeric).padStart(2, '0');
 
-    return `/content/${blocId}/${temaId}/esquemes/preguntes/punt-${padded}.html`;
+    return [
+      `/content/${blocId}/${temaId}/preguntes/punt-${padded}.html`,
+      `/content/${blocId}/${temaId}/preguntes/${String(punt || '').trim()}.html`,
+      `/content/${blocId}/${temaId}/esquemes/preguntes/punt-${padded}.html`,
+    ];
   }, [blocId, temaId, punt]);
 
   useEffect(() => {
@@ -55,42 +59,40 @@ export default function QuizRoutePage() {
     setSelected(null);
     setScore(0);
 
-    fetch(htmlPath)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error('HTML not found');
+    const loadQuiz = async () => {
+      try {
+        for (const htmlPath of htmlPathCandidates) {
+          const htmlResponse = await fetch(htmlPath);
+          if (htmlResponse.ok) {
+            await htmlResponse.text();
+            if (!isMounted) return;
+            setHtmlQuestionPath(htmlPath);
+            setLoading(false);
+            return;
+          }
         }
-        return res.text();
-      })
-      .then(() => {
+
+        const jsonResponse = await fetch(jsonPath);
+        if (!jsonResponse.ok) {
+          throw new Error('JSON not found');
+        }
+        const data = await jsonResponse.json();
         if (!isMounted) return;
-        setHtmlQuestionPath(htmlPath);
+        setQuiz(data);
         setLoading(false);
-      })
-      .catch(() => {
-        fetch(jsonPath)
-          .then((res) => {
-            if (!res.ok) {
-              throw new Error('JSON not found');
-            }
-            return res.json();
-          })
-          .then((data) => {
-            if (!isMounted) return;
-            setQuiz(data);
-            setLoading(false);
-          })
-          .catch(() => {
-            if (!isMounted) return;
-            setError('No questions available for this punt yet.');
-            setLoading(false);
-          });
-      });
+      } catch {
+        if (!isMounted) return;
+        setError('No questions available for this punt yet.');
+        setLoading(false);
+      }
+    };
+
+    loadQuiz();
 
     return () => {
       isMounted = false;
     };
-  }, [htmlPath, jsonPath, askConfig]);
+  }, [htmlPathCandidates, jsonPath, askConfig, blocId, temaId, punt]);
 
   if (loading) {
     return (

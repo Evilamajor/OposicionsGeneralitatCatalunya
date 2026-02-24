@@ -26,12 +26,14 @@ export default function BlocPage() {
   const [esquemesHtml, setEsquemesHtml] = useState('');
   const [esquemesError, setEsquemesError] = useState('');
   const [isLoadingEsquemes, setIsLoadingEsquemes] = useState(false);
+  const [powerpointMode, setPowerpointMode] = useState('config');
   const [openExpPointId, setOpenExpPointId] = useState(null);
   const esquemesContainerRef = useRef(null);
   const expSectionsRegistryRef = useRef(new Map());
 
   const bloc = blocks.find((b) => b.id === blocId);
   const tema = bloc?.topics?.find((t) => t.id === temaId);
+  const temaLabel = tema?.label || temaId || 'Tema';
   const sections = useMemo(() => ALLOWED_BLOC_SECTIONS, []);
 
   const schemaPath =
@@ -45,6 +47,14 @@ export default function BlocPage() {
 
   const materialsPath = blocId && temaId
     ? `/content/${blocId}/${temaId}/materials.html`
+    : null;
+
+  const powerpointMetadataUrl = blocId && temaId
+    ? `/content/${blocId}/${temaId}/powerpoints/metadata.json`
+    : null;
+
+  const powerpointConfigUrl = blocId && temaId
+    ? `/content/${blocId}/${temaId}/powerpoints/config.json`
     : null;
 
   useEffect(() => {
@@ -76,6 +86,36 @@ export default function BlocPage() {
     setOpenExpPointId(null);
     expSectionsRegistryRef.current = new Map();
   }, [blocId, temaId, seccio]);
+
+  useEffect(() => {
+    if (
+      seccio !== 'powerpoints'
+      || !blocId
+      || !temaId
+      || !TOPIC_POWERPOINT_BLOCS.has(blocId)
+      || !powerpointMetadataUrl
+    ) {
+      setPowerpointMode('config');
+      return;
+    }
+
+    let isMounted = true;
+    setPowerpointMode('checking');
+
+    fetch(powerpointMetadataUrl, { method: 'HEAD' })
+      .then((response) => {
+        if (!isMounted) return;
+        setPowerpointMode(response.ok ? 'metadata' : 'config');
+      })
+      .catch(() => {
+        if (!isMounted) return;
+        setPowerpointMode('config');
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [seccio, blocId, temaId, powerpointMetadataUrl]);
 
   useEffect(() => {
     if (seccio !== 'esquemes' || !schemaPath) {
@@ -544,17 +584,23 @@ export default function BlocPage() {
         {seccio === 'powerpoints' && (
           TOPIC_POWERPOINT_BLOCS.has(blocId)
             ? (
-              blocId === 'bloc-1' && temaId === 'tema-1'
+              powerpointMode === 'checking'
                 ? (
+                  <div className="loading">
+                    <p>Carregant presentació...</p>
+                  </div>
+                )
+                : powerpointMode === 'metadata'
+                  ? (
                   <PowerPointViewer
-                    metadataUrl={`/content/${blocId}/${temaId}/powerpoints/metadata.json`}
-                    title={tema.label}
+                    metadataUrl={powerpointMetadataUrl}
+                    title={temaLabel}
                   />
                 )
                 : (
                   <SlideDeck
-                    deckConfigUrl={`/content/${blocId}/${temaId}/powerpoints/config.json`}
-                    title={tema.label}
+                    deckConfigUrl={powerpointConfigUrl}
+                    title={temaLabel}
                   />
                 )
             )
@@ -577,7 +623,7 @@ export default function BlocPage() {
       <div className="notes-section">
         <NotesEditor
           storageKey={`notes-${blocId}-${temaId}`}
-          title={`Notes de ${tema.label}`}
+          title={`Notes de ${temaLabel}`}
         />
       </div>
     </div>

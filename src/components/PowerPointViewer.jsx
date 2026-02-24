@@ -5,12 +5,19 @@ import Slide from './Slide';
 const BASE_WIDTH = 1280;
 const BASE_HEIGHT = 720;
 
-const getStorageKey = (slideId) => `ppt_edits_bloc1_tema1_${slideId}`;
-const CLOCK_STORAGE_KEY = 'ppt_clockOn_tema1';
+const getViewerNamespace = (metadataUrl = '') => {
+  const match = metadataUrl.match(/\/content\/([^/]+)\/([^/]+)\//);
+  return match ? `${match[1]}_${match[2]}` : 'generic';
+};
+
+const getStorageKey = (namespace, slideId) => `ppt_edits_${namespace}_${slideId}`;
+const getClockStorageKey = (namespace) => `ppt_clockOn_${namespace}`;
 
 export default function PowerPointViewer({ metadataUrl, title = 'PowerPoint' }) {
   const stageViewportRef = useRef(null);
   const stageCanvasRef = useRef(null);
+  const viewerNamespace = useMemo(() => getViewerNamespace(metadataUrl), [metadataUrl]);
+  const clockStorageKey = useMemo(() => getClockStorageKey(viewerNamespace), [viewerNamespace]);
   const [metadata, setMetadata] = useState(null);
   const [loadingMeta, setLoadingMeta] = useState(true);
   const [metaError, setMetaError] = useState('');
@@ -25,7 +32,7 @@ export default function PowerPointViewer({ metadataUrl, title = 'PowerPoint' }) 
   const [draftContent, setDraftContent] = useState(null);
   const [clockOn, setClockOn] = useState(() => {
     try {
-      return localStorage.getItem(CLOCK_STORAGE_KEY) === 'true';
+      return localStorage.getItem(clockStorageKey) === 'true';
     } catch {
       return false;
     }
@@ -41,11 +48,19 @@ export default function PowerPointViewer({ metadataUrl, title = 'PowerPoint' }) 
 
   useEffect(() => {
     try {
-      localStorage.setItem(CLOCK_STORAGE_KEY, String(clockOn));
+      setClockOn(localStorage.getItem(clockStorageKey) === 'true');
+    } catch {
+      setClockOn(false);
+    }
+  }, [clockStorageKey]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(clockStorageKey, String(clockOn));
     } catch {
       // ignore localStorage errors
     }
-  }, [clockOn]);
+  }, [clockOn, clockStorageKey]);
 
   useEffect(() => {
     let cancelled = false;
@@ -95,7 +110,7 @@ export default function PowerPointViewer({ metadataUrl, title = 'PowerPoint' }) 
     }
 
     if (isCoverSlide) {
-      setSlideHtml(`<article class="ultra-slide title-slide"><h1>Tema 1 · La Constitució espanyola de 1978</h1></article>`);
+      setSlideHtml(`<article class="ultra-slide title-slide"><h1>${metadata?.title || title}</h1></article>`);
       setLoadingSlide(false);
       setSlideError('');
       return;
@@ -235,7 +250,7 @@ export default function PowerPointViewer({ metadataUrl, title = 'PowerPoint' }) 
     }
 
     try {
-      const key = getStorageKey(currentSlide.id);
+      const key = getStorageKey(viewerNamespace, currentSlide.id);
       const saved = localStorage.getItem(key);
 
       if (saved) {
@@ -247,7 +262,7 @@ export default function PowerPointViewer({ metadataUrl, title = 'PowerPoint' }) 
     } catch {
       setDraftContent(activePointLayer);
     }
-  }, [currentSlide, activePointLayer, isPointSlide]);
+  }, [currentSlide, activePointLayer, isPointSlide, viewerNamespace]);
 
   const toggleFullscreen = async () => {
     const node = stageViewportRef.current;
@@ -276,7 +291,7 @@ export default function PowerPointViewer({ metadataUrl, title = 'PowerPoint' }) 
 
   const handleSave = () => {
     if (!currentSlide?.id || !draftContent) return;
-    const key = getStorageKey(currentSlide.id);
+    const key = getStorageKey(viewerNamespace, currentSlide.id);
     localStorage.setItem(key, JSON.stringify(draftContent));
     setIsEditing(false);
   };
@@ -288,7 +303,7 @@ export default function PowerPointViewer({ metadataUrl, title = 'PowerPoint' }) 
 
   const handleReset = () => {
     if (!currentSlide?.id) return;
-    const key = getStorageKey(currentSlide.id);
+    const key = getStorageKey(viewerNamespace, currentSlide.id);
     localStorage.removeItem(key);
     setDraftContent(currentSlide?.content || activePointLayer || null);
   };

@@ -15,6 +15,34 @@ function AskTest({ questionsData }) {
     return [...array].sort(() => Math.random() - 0.5);
   };
 
+  const getQuestionId = (item, index) => item?.id ?? `q-${index}`;
+
+  const getOptionText = (option) => (typeof option === 'string' ? option : option?.text);
+
+  const getOptionKey = (option, index) => {
+    if (typeof option === 'object' && option?.key) return option.key;
+    return String.fromCharCode(65 + index);
+  };
+
+  const isCorrectAnswer = (item, selectedIndex) => {
+    if (selectedIndex === undefined || selectedIndex === null) return false;
+
+    const selectedOption = item?.options?.[selectedIndex];
+    if (selectedOption && typeof selectedOption === 'object' && 'correct' in selectedOption) {
+      return Boolean(selectedOption.correct);
+    }
+
+    return Number(item?.correct) === selectedIndex;
+  };
+
+  const getAnswerExplanation = (item, selectedIndex) => {
+    const explanations = item?.explanations;
+    if (Array.isArray(explanations) && selectedIndex !== undefined && selectedIndex !== null) {
+      return explanations[selectedIndex] || '';
+    }
+    return item?.explanation || '';
+  };
+
   useEffect(() => {
     setQuestions(shuffleArray(questionsData || []));
     setScore(0);
@@ -27,9 +55,10 @@ function AskTest({ questionsData }) {
 
   const calculateFinalScore = () => {
     let final = 0;
-    questions.forEach((item) => {
-      const answer = answers[item.id];
-      if (answer?.correct) final += 1;
+    questions.forEach((item, index) => {
+      const questionId = getQuestionId(item, index);
+      const selectedIndex = answers[questionId];
+      if (isCorrectAnswer(item, selectedIndex)) final += 1;
     });
     setScore(final);
   };
@@ -66,16 +95,16 @@ function AskTest({ questionsData }) {
     }
   }, [mode]);
 
-  const handleAnswer = (questionId, option) => {
+  const handleAnswer = (questionId, item, optionIndex) => {
     if (isFinished) return;
-    if (answers[questionId]) return;
+    if (answers[questionId] !== undefined) return;
 
     setAnswers((prev) => ({
       ...prev,
-      [questionId]: option,
+      [questionId]: optionIndex,
     }));
 
-    if (mode === 'training' && option.correct) {
+    if (mode === 'training' && isCorrectAnswer(item, optionIndex)) {
       setScore((prev) => prev + 1);
     }
   };
@@ -136,48 +165,51 @@ function AskTest({ questionsData }) {
       </div>
 
       {question && (
-        <div key={question.id} className="ask-card">
+        <div key={getQuestionId(question, currentIndex)} className="ask-card">
           <h3>Pregunta {currentIndex + 1} / {questions.length}</h3>
           <p className="ask-question">{question.question}</p>
 
-          {(question.options || []).map((option) => {
-            const selectedAnswer = answers[question.id];
-            const isAnswered = !!selectedAnswer;
-            const isSelected = selectedAnswer?.key === option.key;
+          {(question.options || []).map((option, optionIndex) => {
+            const questionId = getQuestionId(question, currentIndex);
+            const selectedAnswer = answers[questionId];
+            const isAnswered = selectedAnswer !== undefined;
+            const isSelected = selectedAnswer === optionIndex;
             const shouldShowCorrection =
               (mode === 'training' && isAnswered) || (mode === 'exam' && isFinished);
+
+            const isCorrect = isCorrectAnswer(question, optionIndex);
 
             let className = 'ask-option';
 
             if (shouldShowCorrection) {
-              if (option.correct) className += ' correct';
-              else if (isSelected && !option.correct) className += ' incorrect';
+              if (isCorrect) className += ' correct';
+              else if (isSelected && !isCorrect) className += ' incorrect';
             }
 
             return (
               <button
-                key={option.key}
+                key={`${getOptionKey(option, optionIndex)}-${optionIndex}`}
                 type="button"
                 className={className}
-                onClick={() => handleAnswer(question.id, option)}
+                onClick={() => handleAnswer(questionId, question, optionIndex)}
                 disabled={isAnswered || isFinished}
               >
-                {option.key}) {option.text}
+                {getOptionKey(option, optionIndex)}) {getOptionText(option)}
               </button>
             );
           })}
 
-          {((mode === 'training' && answers[question.id]) || (mode === 'exam' && isFinished)) && (
-            <div className={`ask-feedback ${answers[question.id]?.correct ? 'correct' : 'incorrect'}`}>
+          {((mode === 'training' && answers[getQuestionId(question, currentIndex)] !== undefined) || (mode === 'exam' && isFinished)) && (
+            <div className={`ask-feedback ${isCorrectAnswer(question, answers[getQuestionId(question, currentIndex)]) ? 'correct' : 'incorrect'}`}>
               <p>
-                {answers[question.id]?.correct
+                {isCorrectAnswer(question, answers[getQuestionId(question, currentIndex)])
                   ? '✅ Resposta correcta'
-                  : answers[question.id]
+                  : answers[getQuestionId(question, currentIndex)] !== undefined
                     ? '❌ Resposta incorrecta'
                     : '⚪ Sense resposta'}
               </p>
               <p className="ask-explanation">
-                {question.explanation}
+                {getAnswerExplanation(question, answers[getQuestionId(question, currentIndex)])}
               </p>
             </div>
           )}
@@ -202,10 +234,10 @@ function AskTest({ questionsData }) {
 
           <div className="ask-status-grid">
             {questions.map((item, index) => {
-              const answered = !!answers[item.id];
+              const answered = answers[getQuestionId(item, index)] !== undefined;
               return (
                 <span
-                  key={item.id}
+                  key={getQuestionId(item, index)}
                   className={`status-dot ${answered ? 'answered' : 'pending'} ${currentIndex === index ? 'current' : ''}`}
                   onClick={() => setCurrentIndex(index)}
                   role="button"
