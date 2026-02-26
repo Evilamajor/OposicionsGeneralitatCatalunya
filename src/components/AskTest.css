@@ -88,6 +88,69 @@
   font-weight: 500;
 }
 
+.ask-custom-actions {
+  margin-bottom: 12px;
+}
+
+.ask-custom-actions button {
+  border: 1px solid #fecaca;
+  background: #fff1f2;
+  color: #be123c;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.ask-edit-controls {
+  margin-bottom: 12px;
+}
+
+.ask-edit-controls button {
+  border: 1px solid #d1d5db;
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.ask-edit-panel {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: #f8fafc;
+}
+
+.ask-edit-panel label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.ask-edit-panel textarea {
+  width: 100%;
+  min-height: 86px;
+  resize: vertical;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  font-family: inherit;
+}
+
+.ask-edit-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.ask-edit-actions button {
+  border: 1px solid #d1d5db;
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
 .ask-option {
   width: 100%;
   margin: 8px 0;

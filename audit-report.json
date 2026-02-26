@@ -1,0 +1,443 @@
+{
+  "scannedFiles": 48,
+  "loadedFiles": 48,
+  "totalQuestions": 618,
+  "validQuestions": 618,
+  "invalidQuestions": 0,
+  "structureErrors": 0,
+  "explanationMissing": 0,
+  "summaryByFile": [
+    {
+      "file": "src/data/bloc1/tema1/punt10Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt11Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt12Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt13Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt14Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt15Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt16Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt17Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt18Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt19Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt1Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt20Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt21Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt22Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt23Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt24Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt2Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt3Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt4Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt5Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt6Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt7Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt8Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema1/punt9Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt10Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt11Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt12Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt13Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt14Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt15Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt16Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt17Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt18Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt19Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt1Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt20Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt21Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt22Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt23Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt24Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt2Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt3Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt4Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt5Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt6Ask.js",
+      "questions": 20,
+      "validQuestions": 20,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt7Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt8Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    },
+    {
+      "file": "src/data/bloc1/tema2/punt9Ask.js",
+      "questions": 1,
+      "validQuestions": 1,
+      "invalidQuestions": 0,
+      "structureErrors": 0,
+      "explanationMissing": 0,
+      "importError": null
+    }
+  ]
+}

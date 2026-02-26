@@ -1,7 +1,99 @@
 import { useEffect, useState } from 'react';
+import {
+  getSavedExplanations,
+  getSavedExplanation,
+  resetExplanation,
+  saveExplanation,
+} from '../utils/explanationStorage';
+import CreateQuestionModal from './CreateQuestionModal';
+import {
+  addCustomQuestion,
+  getCustomQuestions,
+  removeCustomQuestion,
+} from '../utils/customQuestionsStorage';
 import './AskTest.css';
 
-function AskTest({ questionsData }) {
+const LETTER_TO_INDEX = { A: 0, B: 1, C: 2, D: 3, E: 4 };
+
+const normalizeOptionText = (option) => {
+  if (typeof option === 'string') return option;
+  if (typeof option === 'object' && option) return option.text || option.label || option.value || '';
+  return '';
+};
+
+const toZeroBasedIndex = (value, optionCount) => {
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    if (value >= 0 && value < optionCount) return value;
+    if (value >= 1 && value <= optionCount) return value - 1;
+    return null;
+  }
+
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    if (!trimmed) return null;
+
+    const upper = trimmed.toUpperCase();
+    if (LETTER_TO_INDEX[upper] !== undefined && LETTER_TO_INDEX[upper] < optionCount) {
+      return LETTER_TO_INDEX[upper];
+    }
+
+    const asNumber = Number(trimmed);
+    if (Number.isFinite(asNumber)) {
+      return toZeroBasedIndex(asNumber, optionCount);
+    }
+  }
+
+  return null;
+};
+
+const normalizeQuestion = (item, index) => {
+  const optionsRaw = item?.options || item?.opcions || item?.choices || [];
+  const options = Array.isArray(optionsRaw) ? optionsRaw.map((option) => normalizeOptionText(option)) : [];
+
+  const optionCorrectIndex = Array.isArray(optionsRaw)
+    ? optionsRaw.findIndex((option) => typeof option === 'object' && option?.correct === true)
+    : -1;
+
+  const explicitCorrectAnswer =
+    item?.correctAnswer ?? item?.correcta ?? item?.correct ?? item?.answer;
+
+  const normalizedByProperty = toZeroBasedIndex(explicitCorrectAnswer, options.length);
+  const correctAnswer = optionCorrectIndex >= 0 ? optionCorrectIndex : normalizedByProperty;
+
+  const genericExplanation = item?.explanation || item?.explicacio || '';
+  const explanations = Array.isArray(item?.explanations) ? item.explanations : null;
+
+  const explanationCorrect =
+    item?.explanationCorrect
+    || (correctAnswer !== null && explanations?.[correctAnswer])
+    || genericExplanation
+    || 'La resposta és correcta segons el contingut del temari.';
+
+  const firstIncorrectExplanation = explanations?.find((_, explanationIndex) => explanationIndex !== correctAnswer && Boolean(explanations[explanationIndex]));
+
+  const explanationIncorrect =
+    item?.explanationIncorrect
+    || firstIncorrectExplanation
+    || genericExplanation
+    || 'Revisa el concepte clau d’aquesta pregunta i torna-ho a intentar.';
+
+  return {
+    id: item?.id ?? index + 1,
+    type: item?.type || item?.category || item?.tipus || 'general',
+    question: item?.question || item?.enunciat || item?.prompt || '',
+    options,
+    correctAnswer,
+    explanationCorrect,
+    explanationIncorrect,
+  };
+};
+
+const normalizeQuestionsData = (questionsData) => {
+  if (!Array.isArray(questionsData)) return [];
+  return questionsData.map((item, index) => normalizeQuestion(item, index));
+};
+
+function AskTest({ questionsData, storageKey }) {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(0);
@@ -10,6 +102,15 @@ function AskTest({ questionsData }) {
   const [isFinished, setIsFinished] = useState(false);
   const [finishReason, setFinishReason] = useState('time');
   const [mode, setMode] = useState('training');
+  const [editMode, setEditMode] = useState(false);
+  const [editedExplanationCorrect, setEditedExplanationCorrect] = useState('');
+  const [editedExplanationIncorrect, setEditedExplanationIncorrect] = useState('');
+  const [explanationOverrides, setExplanationOverrides] = useState({});
+  const [customQuestions, setCustomQuestions] = useState([]);
+  const [isCreateQuestionOpen, setIsCreateQuestionOpen] = useState(false);
+
+  const explanationStorageKey = storageKey || 'default';
+  const customQuestionsScope = storageKey || 'default';
 
   const shuffleArray = (array) => {
     return [...array].sort(() => Math.random() - 0.5);
@@ -17,7 +118,7 @@ function AskTest({ questionsData }) {
 
   const getQuestionId = (item, index) => item?.id ?? `q-${index}`;
 
-  const getOptionText = (option) => (typeof option === 'string' ? option : option?.text);
+  const getOptionText = (option) => option;
 
   const getOptionKey = (option, index) => {
     if (typeof option === 'object' && option?.key) return option.key;
@@ -27,31 +128,74 @@ function AskTest({ questionsData }) {
   const isCorrectAnswer = (item, selectedIndex) => {
     if (selectedIndex === undefined || selectedIndex === null) return false;
 
-    const selectedOption = item?.options?.[selectedIndex];
-    if (selectedOption && typeof selectedOption === 'object' && 'correct' in selectedOption) {
-      return Boolean(selectedOption.correct);
-    }
+    return item?.correctAnswer === selectedIndex;
+  };
 
-    return Number(item?.correct) === selectedIndex;
+  const getSavedExplanationPair = (item, index) => {
+    const questionId = getQuestionId(item, index);
+    const override = explanationOverrides[questionId]
+      || getSavedExplanation(explanationStorageKey, questionId);
+
+    return {
+      explanationCorrect: override?.explanationCorrect || item?.explanationCorrect || '',
+      explanationIncorrect: override?.explanationIncorrect || item?.explanationIncorrect || '',
+    };
   };
 
   const getAnswerExplanation = (item, selectedIndex) => {
-    const explanations = item?.explanations;
-    if (Array.isArray(explanations) && selectedIndex !== undefined && selectedIndex !== null) {
-      return explanations[selectedIndex] || '';
+    const { explanationCorrect, explanationIncorrect } = getSavedExplanationPair(item, currentIndex);
+
+    if (selectedIndex === undefined || selectedIndex === null) {
+      return explanationIncorrect;
     }
-    return item?.explanation || '';
+
+    return isCorrectAnswer(item, selectedIndex)
+      ? explanationCorrect
+      : explanationIncorrect;
+  };
+
+  const getMergedQuestions = (sourceQuestions = questionsData, sourceCustomQuestions = customQuestions) => {
+    const baseQuestions = normalizeQuestionsData(sourceQuestions);
+    const normalizedCustom = normalizeQuestionsData(sourceCustomQuestions);
+    return [...baseQuestions, ...normalizedCustom];
+  };
+
+  const refreshEditorFields = (nextQuestion = question, nextIndex = currentIndex) => {
+    if (!nextQuestion) {
+      setEditedExplanationCorrect('');
+      setEditedExplanationIncorrect('');
+      return;
+    }
+
+    const { explanationCorrect, explanationIncorrect } = getSavedExplanationPair(nextQuestion, nextIndex);
+    setEditedExplanationCorrect(explanationCorrect);
+    setEditedExplanationIncorrect(explanationIncorrect);
   };
 
   useEffect(() => {
-    setQuestions(shuffleArray(questionsData || []));
+    setExplanationOverrides(getSavedExplanations(explanationStorageKey));
+  }, [explanationStorageKey]);
+
+  useEffect(() => {
+    setCustomQuestions(getCustomQuestions(customQuestionsScope));
+  }, [customQuestionsScope]);
+
+  useEffect(() => {
+    const mergedQuestions = getMergedQuestions(questionsData, customQuestions);
+    setQuestions(shuffleArray(mergedQuestions));
     setScore(0);
     setAnswers({});
     setCurrentIndex(0);
     setTimeLeft(60);
     setIsFinished(false);
     setFinishReason('time');
-  }, [questionsData]);
+    setEditMode(false);
+    setIsCreateQuestionOpen(false);
+  }, [questionsData, customQuestions]);
+
+  useEffect(() => {
+    refreshEditorFields();
+  }, [currentIndex, questions, explanationOverrides]);
 
   const calculateFinalScore = () => {
     let final = 0;
@@ -92,6 +236,7 @@ function AskTest({ questionsData }) {
       setTimeLeft(60);
       setIsFinished(false);
       setFinishReason('time');
+      setEditMode(false);
     }
   }, [mode]);
 
@@ -112,11 +257,91 @@ function AskTest({ questionsData }) {
   const handleRestart = () => {
     setScore(0);
     setAnswers({});
-    setQuestions(shuffleArray(questionsData || []));
+    setQuestions(shuffleArray(getMergedQuestions(questionsData, customQuestions)));
     setCurrentIndex(0);
     setTimeLeft(60);
     setIsFinished(false);
     setFinishReason('time');
+    setEditMode(false);
+  };
+
+  const toggleCreateQuestion = () => {
+    if (mode !== 'training') return;
+    setIsCreateQuestionOpen((prev) => !prev);
+  };
+
+  const handleCreateQuestion = (payload) => {
+    const newQuestion = {
+      id: `custom-${Date.now()}`,
+      question: payload.question,
+      options: payload.options,
+      correctAnswer: payload.correctAnswer,
+      type: 'custom',
+      explanationCorrect: payload.explanationCorrect,
+      explanationIncorrect: payload.explanationIncorrect,
+    };
+
+    const nextCustomQuestions = addCustomQuestion(customQuestionsScope, newQuestion);
+    setCustomQuestions(nextCustomQuestions);
+    setIsCreateQuestionOpen(false);
+  };
+
+  const handleDeleteCustomQuestion = () => {
+    if (!question || question.type !== 'custom') return;
+
+    const questionId = getQuestionId(question, currentIndex);
+    const nextCustomQuestions = removeCustomQuestion(customQuestionsScope, questionId);
+
+    setCustomQuestions(nextCustomQuestions);
+    setAnswers((prev) => {
+      const next = { ...prev };
+      delete next[questionId];
+      return next;
+    });
+    resetExplanation(explanationStorageKey, questionId);
+  };
+
+  const toggleEditMode = () => {
+    if (mode !== 'training') return;
+
+    setEditMode((prev) => {
+      const next = !prev;
+      if (next) {
+        refreshEditorFields();
+      }
+      return next;
+    });
+  };
+
+  const saveEdits = () => {
+    if (!question) return;
+
+    const questionId = getQuestionId(question, currentIndex);
+    const saved = saveExplanation(explanationStorageKey, questionId, {
+      explanationCorrect: editedExplanationCorrect,
+      explanationIncorrect: editedExplanationIncorrect,
+    });
+
+    setExplanationOverrides((prev) => ({
+      ...prev,
+      [questionId]: saved,
+    }));
+  };
+
+  const resetToOriginal = () => {
+    if (!question) return;
+
+    const questionId = getQuestionId(question, currentIndex);
+    resetExplanation(explanationStorageKey, questionId);
+
+    setExplanationOverrides((prev) => {
+      const next = { ...prev };
+      delete next[questionId];
+      return next;
+    });
+
+    setEditedExplanationCorrect(question?.explanationCorrect || '');
+    setEditedExplanationIncorrect(question?.explanationIncorrect || '');
   };
 
   const question = questions[currentIndex];
@@ -143,6 +368,12 @@ function AskTest({ questionsData }) {
         >
           Mode Examen Oficial
         </button>
+
+        {mode === 'training' && (
+          <button type="button" onClick={toggleCreateQuestion}>
+            ➕ Editar pregunta
+          </button>
+        )}
       </div>
 
       <div className="ask-header">
@@ -168,6 +399,43 @@ function AskTest({ questionsData }) {
         <div key={getQuestionId(question, currentIndex)} className="ask-card">
           <h3>Pregunta {currentIndex + 1} / {questions.length}</h3>
           <p className="ask-question">{question.question}</p>
+
+          {mode === 'training' && question.type === 'custom' && (
+            <div className="ask-custom-actions">
+              <button type="button" onClick={handleDeleteCustomQuestion}>🗑 Eliminar</button>
+            </div>
+          )}
+
+          {mode === 'training' && (
+            <div className="ask-edit-controls">
+              <button type="button" onClick={toggleEditMode}>
+                ✏️ Editar explicacions
+              </button>
+            </div>
+          )}
+
+          {mode === 'training' && editMode && (
+            <div className="ask-edit-panel">
+              <label htmlFor="explanation-correct">Explicació resposta correcta</label>
+              <textarea
+                id="explanation-correct"
+                value={editedExplanationCorrect}
+                onChange={(event) => setEditedExplanationCorrect(event.target.value)}
+              />
+
+              <label htmlFor="explanation-incorrect">Explicació resposta incorrecta</label>
+              <textarea
+                id="explanation-incorrect"
+                value={editedExplanationIncorrect}
+                onChange={(event) => setEditedExplanationIncorrect(event.target.value)}
+              />
+
+              <div className="ask-edit-actions">
+                <button type="button" onClick={saveEdits}>💾 Guardar</button>
+                <button type="button" onClick={resetToOriginal}>↩️ Restaurar original</button>
+              </div>
+            </div>
+          )}
 
           {(question.options || []).map((option, optionIndex) => {
             const questionId = getQuestionId(question, currentIndex);
@@ -281,8 +549,31 @@ function AskTest({ questionsData }) {
       <button type="button" className="ask-restart" onClick={handleRestart}>
         🔄 Tornar a començar
       </button>
+
+      <CreateQuestionModal
+        isOpen={isCreateQuestionOpen}
+        onClose={() => setIsCreateQuestionOpen(false)}
+        onSave={handleCreateQuestion}
+      />
     </div>
   );
 }
 
 export default AskTest;
+
+/*
+  SISTEMA D’INDEXACIÓ DEFINITIU (motor ASK)
+  - `correctAnswer` estàndard: índex numèric 0-based (A=0, B=1, C=2, D=3).
+  - El motor accepta automàticament formats legacy (`correct`, `correcta`, `answer`, lletres A-D)
+    i els converteix internament a `correctAnswer` 0-based.
+  - Esquema recomanat per nous fitxers *Ask.js:
+    {
+      id: number,
+      type: string,
+      question: string,
+      options: string[],
+      correctAnswer: number,
+      explanationCorrect: string,
+      explanationIncorrect: string
+    }
+*/

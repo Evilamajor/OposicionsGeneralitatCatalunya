@@ -1,19 +1,17 @@
 const punt16Ask = [
   {
-    question: "Pregunta provisional del Punt 16 (en construcció).",
-    options: [
+    "id": 1,
+    "question": "Pregunta provisional del Punt 16 (en construcció).",
+    "options": [
       "Opció A",
       "Opció B",
       "Opció C",
       "Opció D"
     ],
-    correct: 0,
-    explanations: [
-      "Resposta correcta provisional.",
-      "Incorrecte.",
-      "Incorrecte.",
-      "Incorrecte."
-    ]
+    "correctAnswer": 0,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   }
 ];
 

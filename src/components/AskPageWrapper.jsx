@@ -6,7 +6,7 @@ function AskPageWrapper({ title, questionsData, storageKey }) {
     <div className="ask-page-wrapper">
       <h2>{title}</h2>
 
-      <AskTest questionsData={questionsData} />
+      <AskTest questionsData={questionsData} storageKey={storageKey} />
 
       <AskNotes storageKey={storageKey} />
     </div>

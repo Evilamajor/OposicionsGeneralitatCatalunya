@@ -314,7 +314,35 @@ const askRegistry = {
   },
 };
 
+const logAskFormatError = (puntLabel, details) => {
+  console.error(`ASK format error in Punt ${puntLabel}${details ? `: ${details}` : ''}`);
+};
+
+const isValidAskArray = (questionsData, puntLabel) => {
+  if (!Array.isArray(questionsData)) {
+    logAskFormatError(puntLabel, 'questionsData is not an array');
+    return false;
+  }
+
+  const hasInvalidQuestion = questionsData.some((item) => !item || !Object.prototype.hasOwnProperty.call(item, 'correctAnswer'));
+  if (hasInvalidQuestion) {
+    logAskFormatError(puntLabel, 'missing correctAnswer');
+    return false;
+  }
+
+  return true;
+};
+
 export function getAskConfig(params) {
   const key = buildAskKey(params);
-  return askRegistry[key] || null;
+  const config = askRegistry[key] || null;
+
+  if (!config) return null;
+
+  const puntLabel = normalizePunt(params?.punt);
+  if (!isValidAskArray(config.questionsData, puntLabel)) {
+    return null;
+  }
+
+  return config;
 }

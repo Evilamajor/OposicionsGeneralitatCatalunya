@@ -1,234 +1,284 @@
 const punt1Ask = [
   {
-    id: 1,
-    question: 'L’Estatut d’Autonomia té el mateix rang normatiu que la Constitució dins del bloc de constitucionalitat.',
-    category: 'trampa',
-    options: [
-      { key: 'A', text: 'Cert', correct: false },
-      { key: 'B', text: 'Fals', correct: true },
+    "id": 1,
+    "question": "L’Estatut d’Autonomia té el mateix rang normatiu que la Constitució dins del bloc de constitucionalitat.",
+    "options": [
+      "Cert",
+      "Fals",
+      "Cap de les anteriors",
+      "Totes les anteriors"
     ],
-    explanation: 'Correcte. L’Estatut forma part del bloc de constitucionalitat però està subordinat a la CE.',
+    "correctAnswer": 1,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 2,
-    question: 'El preàmbul de l’Estatut té eficàcia normativa directa.',
-    category: 'legislacio',
-    options: [
-      { key: 'A', text: 'Cert', correct: false },
-      { key: 'B', text: 'Fals', correct: true },
+    "id": 2,
+    "question": "El preàmbul de l’Estatut té eficàcia normativa directa.",
+    "options": [
+      "Cert",
+      "Fals",
+      "Cap de les anteriors",
+      "Totes les anteriors"
     ],
-    explanation: 'Correcte. Té valor interpretatiu però no normatiu (STC 31/2010).',
+    "correctAnswer": 1,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 3,
-    question: 'L’Estatut pot modificar el repartiment competencial fixat a la CE.',
-    category: 'trampa',
-    options: [
-      { key: 'A', text: 'Cert', correct: false },
-      { key: 'B', text: 'Fals', correct: true },
+    "id": 3,
+    "question": "L’Estatut pot modificar el repartiment competencial fixat a la CE.",
+    "options": [
+      "Cert",
+      "Fals",
+      "Cap de les anteriors",
+      "Totes les anteriors"
     ],
-    explanation: 'Correcte. L’Estatut no pot alterar el marc competencial constitucional.',
+    "correctAnswer": 1,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 4,
-    question: 'Els drets estatutaris tenen el mateix rang que els drets fonamentals.',
-    category: 'trampa',
-    options: [
-      { key: 'A', text: 'Cert', correct: false },
-      { key: 'B', text: 'Fals', correct: true },
+    "id": 4,
+    "question": "Els drets estatutaris tenen el mateix rang que els drets fonamentals.",
+    "options": [
+      "Cert",
+      "Fals",
+      "Cap de les anteriors",
+      "Totes les anteriors"
     ],
-    explanation: 'Correcte. Els drets estatutaris no són drets fonamentals constitucionals.',
+    "correctAnswer": 1,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 5,
-    question: 'L’Estatut és aprovat exclusivament pel Parlament de Catalunya.',
-    category: 'legislacio',
-    options: [
-      { key: 'A', text: 'Cert', correct: false },
-      { key: 'B', text: 'Fals', correct: true },
+    "id": 5,
+    "question": "L’Estatut és aprovat exclusivament pel Parlament de Catalunya.",
+    "options": [
+      "Cert",
+      "Fals",
+      "Cap de les anteriors",
+      "Totes les anteriors"
     ],
-    explanation: 'Correcte. Requereix aprovació per Llei Orgànica estatal a les Corts Generals.',
+    "correctAnswer": 1,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 6,
-    question: 'Segons l’art. 147.1 CE, l’Estatut és:',
-    category: 'legislacio',
-    options: [
-      { key: 'A', text: 'Una llei ordinària reforçada', correct: false },
-      { key: 'B', text: 'La norma institucional bàsica de la Comunitat Autònoma', correct: true },
-      { key: 'C', text: 'Una norma reglamentària territorial', correct: false },
-      { key: 'D', text: 'Una llei autonòmica superior', correct: false },
+    "id": 6,
+    "question": "Segons l’art. 147.1 CE, l’Estatut és:",
+    "options": [
+      "Una llei ordinària reforçada",
+      "La norma institucional bàsica de la Comunitat Autònoma",
+      "Una norma reglamentària territorial",
+      "Una llei autonòmica superior"
     ],
-    explanation: 'Correcte. L’article 147.1 CE defineix l’Estatut com la norma institucional bàsica de la comunitat autònoma.',
+    "correctAnswer": 1,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 7,
-    question: 'L’art. 147.2 CE exigeix necessàriament:',
-    category: 'legislacio',
-    options: [
-      { key: 'A', text: 'Pressupost anual', correct: false },
-      { key: 'B', text: 'Règim electoral detallat', correct: false },
-      { key: 'C', text: 'Delimitació territorial', correct: true },
-      { key: 'D', text: 'Pla de govern', correct: false },
+    "id": 7,
+    "question": "L’art. 147.2 CE exigeix necessàriament:",
+    "options": [
+      "Pressupost anual",
+      "Règim electoral detallat",
+      "Delimitació territorial",
+      "Pla de govern"
     ],
-    explanation: 'Correcte. La delimitació territorial forma part del contingut mínim obligatori de l’Estatut.',
+    "correctAnswer": 2,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 8,
-    question: 'Formalment, l’Estatut és una:',
-    category: 'legislacio',
-    options: [
-      { key: 'A', text: 'Llei ordinària', correct: false },
-      { key: 'B', text: 'Llei orgànica estatal', correct: true },
-      { key: 'C', text: 'Llei autonòmica reforçada', correct: false },
-      { key: 'D', text: 'Norma constitucional', correct: false },
+    "id": 8,
+    "question": "Formalment, l’Estatut és una:",
+    "options": [
+      "Llei ordinària",
+      "Llei orgànica estatal",
+      "Llei autonòmica reforçada",
+      "Norma constitucional"
     ],
-    explanation: 'Correcte. Formalment l’Estatut és una llei orgànica estatal.',
+    "correctAnswer": 1,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 9,
-    question: 'El Tribunal Constitucional utilitza com a paràmetre:',
-    category: 'general',
-    options: [
-      { key: 'A', text: 'Només la CE', correct: false },
-      { key: 'B', text: 'Només l’Estatut', correct: false },
-      { key: 'C', text: 'Bloc de constitucionalitat', correct: true },
-      { key: 'D', text: 'Lleis orgàniques', correct: false },
+    "id": 9,
+    "question": "El Tribunal Constitucional utilitza com a paràmetre:",
+    "options": [
+      "Només la CE",
+      "Només l’Estatut",
+      "Bloc de constitucionalitat",
+      "Lleis orgàniques"
     ],
-    explanation: 'Correcte. El bloc de constitucionalitat integra CE i Estatuts com a paràmetre principal.',
+    "correctAnswer": 2,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 10,
-    question: 'Segons la STC 31/2010 l’Estatut és:',
-    category: 'legislacio',
-    options: [
-      { key: 'A', text: 'Poder constituent', correct: false },
-      { key: 'B', text: 'Norma constitucional territorial', correct: false },
-      { key: 'C', text: 'Poder constituït', correct: true },
-      { key: 'D', text: 'Reglament reforçat', correct: false },
+    "id": 10,
+    "question": "Segons la STC 31/2010 l’Estatut és:",
+    "options": [
+      "Poder constituent",
+      "Norma constitucional territorial",
+      "Poder constituït",
+      "Reglament reforçat"
     ],
-    explanation: 'Correcte. L’Estatut és poder constituït i subordinat a la Constitució.',
+    "correctAnswer": 2,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 11,
-    question: '11. Pregunta conceptual del Punt 01 (veure temari).',
-    category: 'general',
-    options: [
-      { key: 'A', text: 'Opció A', correct: false },
-      { key: 'B', text: 'Opció B', correct: false },
-      { key: 'C', text: 'Opció C', correct: true },
-      { key: 'D', text: 'Opció D', correct: false },
+    "id": 11,
+    "question": "11. Pregunta conceptual del Punt 01 (veure temari).",
+    "options": [
+      "Opció A",
+      "Opció B",
+      "Opció C",
+      "Opció D"
     ],
-    explanation: 'Correcte segons la naturalesa jurídica i el bloc de constitucionalitat.',
+    "correctAnswer": 2,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 12,
-    question: '12. Pregunta conceptual del Punt 01 (veure temari).',
-    category: 'general',
-    options: [
-      { key: 'A', text: 'Opció A', correct: false },
-      { key: 'B', text: 'Opció B', correct: false },
-      { key: 'C', text: 'Opció C', correct: true },
-      { key: 'D', text: 'Opció D', correct: false },
+    "id": 12,
+    "question": "12. Pregunta conceptual del Punt 01 (veure temari).",
+    "options": [
+      "Opció A",
+      "Opció B",
+      "Opció C",
+      "Opció D"
     ],
-    explanation: 'Correcte segons la naturalesa jurídica i el bloc de constitucionalitat.',
+    "correctAnswer": 2,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 13,
-    question: '13. Pregunta conceptual del Punt 01 (veure temari).',
-    category: 'general',
-    options: [
-      { key: 'A', text: 'Opció A', correct: false },
-      { key: 'B', text: 'Opció B', correct: false },
-      { key: 'C', text: 'Opció C', correct: true },
-      { key: 'D', text: 'Opció D', correct: false },
+    "id": 13,
+    "question": "13. Pregunta conceptual del Punt 01 (veure temari).",
+    "options": [
+      "Opció A",
+      "Opció B",
+      "Opció C",
+      "Opció D"
     ],
-    explanation: 'Correcte segons la naturalesa jurídica i el bloc de constitucionalitat.',
+    "correctAnswer": 2,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 14,
-    question: '14. Pregunta conceptual del Punt 01 (veure temari).',
-    category: 'general',
-    options: [
-      { key: 'A', text: 'Opció A', correct: false },
-      { key: 'B', text: 'Opció B', correct: false },
-      { key: 'C', text: 'Opció C', correct: true },
-      { key: 'D', text: 'Opció D', correct: false },
+    "id": 14,
+    "question": "14. Pregunta conceptual del Punt 01 (veure temari).",
+    "options": [
+      "Opció A",
+      "Opció B",
+      "Opció C",
+      "Opció D"
     ],
-    explanation: 'Correcte segons la naturalesa jurídica i el bloc de constitucionalitat.',
+    "correctAnswer": 2,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 15,
-    question: '15. Pregunta conceptual del Punt 01 (veure temari).',
-    category: 'general',
-    options: [
-      { key: 'A', text: 'Opció A', correct: false },
-      { key: 'B', text: 'Opció B', correct: false },
-      { key: 'C', text: 'Opció C', correct: true },
-      { key: 'D', text: 'Opció D', correct: false },
+    "id": 15,
+    "question": "15. Pregunta conceptual del Punt 01 (veure temari).",
+    "options": [
+      "Opció A",
+      "Opció B",
+      "Opció C",
+      "Opció D"
     ],
-    explanation: 'Correcte segons la naturalesa jurídica i el bloc de constitucionalitat.',
+    "correctAnswer": 2,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 16,
-    question: '16. Pregunta conceptual del Punt 01 (veure temari).',
-    category: 'general',
-    options: [
-      { key: 'A', text: 'Opció A', correct: false },
-      { key: 'B', text: 'Opció B', correct: false },
-      { key: 'C', text: 'Opció C', correct: true },
-      { key: 'D', text: 'Opció D', correct: false },
+    "id": 16,
+    "question": "16. Pregunta conceptual del Punt 01 (veure temari).",
+    "options": [
+      "Opció A",
+      "Opció B",
+      "Opció C",
+      "Opció D"
     ],
-    explanation: 'Correcte segons la naturalesa jurídica i el bloc de constitucionalitat.',
+    "correctAnswer": 2,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 17,
-    question: '17. Pregunta conceptual del Punt 01 (veure temari).',
-    category: 'general',
-    options: [
-      { key: 'A', text: 'Opció A', correct: false },
-      { key: 'B', text: 'Opció B', correct: false },
-      { key: 'C', text: 'Opció C', correct: true },
-      { key: 'D', text: 'Opció D', correct: false },
+    "id": 17,
+    "question": "17. Pregunta conceptual del Punt 01 (veure temari).",
+    "options": [
+      "Opció A",
+      "Opció B",
+      "Opció C",
+      "Opció D"
     ],
-    explanation: 'Correcte segons la naturalesa jurídica i el bloc de constitucionalitat.',
+    "correctAnswer": 2,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 18,
-    question: '18. Pregunta conceptual del Punt 01 (veure temari).',
-    category: 'general',
-    options: [
-      { key: 'A', text: 'Opció A', correct: false },
-      { key: 'B', text: 'Opció B', correct: false },
-      { key: 'C', text: 'Opció C', correct: true },
-      { key: 'D', text: 'Opció D', correct: false },
+    "id": 18,
+    "question": "18. Pregunta conceptual del Punt 01 (veure temari).",
+    "options": [
+      "Opció A",
+      "Opció B",
+      "Opció C",
+      "Opció D"
     ],
-    explanation: 'Correcte segons la naturalesa jurídica i el bloc de constitucionalitat.',
+    "correctAnswer": 2,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 19,
-    question: '19. Pregunta conceptual del Punt 01 (veure temari).',
-    category: 'general',
-    options: [
-      { key: 'A', text: 'Opció A', correct: false },
-      { key: 'B', text: 'Opció B', correct: false },
-      { key: 'C', text: 'Opció C', correct: true },
-      { key: 'D', text: 'Opció D', correct: false },
+    "id": 19,
+    "question": "19. Pregunta conceptual del Punt 01 (veure temari).",
+    "options": [
+      "Opció A",
+      "Opció B",
+      "Opció C",
+      "Opció D"
     ],
-    explanation: 'Correcte segons la naturalesa jurídica i el bloc de constitucionalitat.',
+    "correctAnswer": 2,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
   },
   {
-    id: 20,
-    question: '20. Pregunta conceptual del Punt 01 (veure temari).',
-    category: 'general',
-    options: [
-      { key: 'A', text: 'Opció A', correct: false },
-      { key: 'B', text: 'Opció B', correct: false },
-      { key: 'C', text: 'Opció C', correct: true },
-      { key: 'D', text: 'Opció D', correct: false },
+    "id": 20,
+    "question": "20. Pregunta conceptual del Punt 01 (veure temari).",
+    "options": [
+      "Opció A",
+      "Opció B",
+      "Opció C",
+      "Opció D"
     ],
-    explanation: 'Correcte segons la naturalesa jurídica i el bloc de constitucionalitat.',
-  },
+    "correctAnswer": 2,
+    "type": "contingut",
+    "explanationCorrect": "Resposta correcta segons el contingut del temari.",
+    "explanationIncorrect": "Revisa aquest concepte clau del tema corresponent."
+  }
 ];
 
 export default punt1Ask;
