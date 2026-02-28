@@ -1,0 +1,86 @@
+import { normalizeNormativaDataset } from '../templates/normativaTemplate';
+
+const rawLOData = {
+	'2/1979': {
+		titol: 'LO 2/1979, Llei orgànica del Tribunal Constitucional',
+		queRegula: 'Règim jurídic del Tribunal Constitucional i dels processos constitucionals.',
+		ideaClau: 'Defineix composició, competències i funcionament del TC.',
+		contextTemari: 'Clau en control de constitucionalitat i garanties del bloc constitucional.',
+		clauExamen: 'Relacionar recurs d’inconstitucionalitat, empara i qüestió d’inconstitucionalitat amb la LOTC.',
+		errorHabitual: 'Confondre funcions del TC amb les de la jurisdicció ordinària.',
+	},
+	'3/1980': {
+		titol: 'LO 3/1980, Llei orgànica del Defensor del Poble',
+		queRegula: 'Estatut i funcions del Defensor del Poble com a alt comissionat de les Corts.',
+		ideaClau: 'Garantia institucional no jurisdiccional de drets fonamentals.',
+		contextTemari: 'S’enllaça amb l’article 54 CE i el sistema de garanties dels drets.',
+		clauExamen: 'Identificar la funció supervisora de l’Administració i els límits de les seves resolucions.',
+		errorHabitual: 'Atribuir-li potestat anul·latòria directa d’actes administratius.',
+	},
+	'2/1980': {
+		titol: 'LO 2/1980, Llei orgànica sobre modalitats de referèndum',
+		queRegula: 'Condicions jurídiques de les diferents modalitats de referèndum previstes constitucionalment.',
+		ideaClau: 'Desplegament orgànic dels instruments de democràcia directa.',
+		contextTemari: 'Rellevant en participació política i procediments de consulta.',
+		clauExamen: 'Distingir referèndum consultiu, constitucional i d’àmbit territorial.',
+		errorHabitual: 'Confondre consulta no referendària amb referèndum constitucional.',
+	},
+	'8/1980': {
+		titol: 'LO 8/1980, LOFCA',
+		queRegula: 'Sistema general de finançament de les comunitats autònomes.',
+		ideaClau: 'Marc bàsic d’autonomia financera i coordinació amb l’Estat.',
+		contextTemari: 'Eix del tema de finançament autonòmic i relació CE–EAC.',
+		clauExamen: 'Relacionar principis de suficiència, solidaritat i corresponsabilitat fiscal.',
+		errorHabitual: 'Pensar que l’autonomia financera elimina la coordinació estatal.',
+	},
+	'5/1985': {
+		titol: 'LO 5/1985, LOREG',
+		queRegula: 'Règim electoral general per a processos electorals estatals i referències bàsiques territorials.',
+		ideaClau: 'Norma central de la representació política i del procediment electoral.',
+		contextTemari: 'Connexió amb drets de participació política i sistema parlamentari.',
+		clauExamen: 'Preguntes habituals sobre sufragi, administració electoral i assignació d’escons.',
+		errorHabitual: 'Barrejar regles de circumscripció amb regles de barrera electoral.',
+	},
+	'6/1985': {
+		titol: 'LO 6/1985, Llei orgànica del poder judicial',
+		queRegula: 'Organització, govern i estatut bàsic del poder judicial.',
+		ideaClau: 'Garantia d’independència judicial i estructura orgànica dels tribunals.',
+		contextTemari: 'Punt clau en separació de poders i justícia constitucional/ordinària.',
+		clauExamen: 'Distingir òrgans jurisdiccionals, CGPJ i competències de govern intern.',
+		errorHabitual: 'Confondre competències del CGPJ amb les del Tribunal Constitucional.',
+	},
+	'10/1985': {
+		titol: 'LO 10/1985, adhesió d’Espanya a les Comunitats Europees',
+		queRegula: 'Autoritza constitucionalment la cessió d’exercici de competències a institucions europees.',
+		ideaClau: 'Aplicació pràctica de l’article 93 CE.',
+		contextTemari: 'Rellevant en integració europea i relació entre dret intern i dret UE.',
+		clauExamen: 'Identificar la base constitucional de la integració d’Espanya a la UE.',
+		errorHabitual: 'Equiparar cessió d’exercici de competències amb pèrdua de sobirania constitucional.',
+	},
+	'6/2006': {
+		titol: 'LO 6/2006, reforma de l’Estatut d’Autonomia de Catalunya',
+		queRegula: 'Aprovació de l’EAC 2006 com a norma institucional bàsica de Catalunya.',
+		ideaClau: 'Element central del bloc de constitucionalitat per a Catalunya.',
+		contextTemari: 'Nucli del Tema 2 i relació amb STC 31/2010.',
+		clauExamen: 'Pregunta típica sobre naturalesa jurídica i procediment de reforma estatutària.',
+		errorHabitual: 'Confondre reforma estatutària amb reforma constitucional dels articles 167-168 CE.',
+	},
+	'4/2000': {
+		titol: 'LO 4/2000, drets i llibertats de les persones estrangeres',
+		queRegula: 'Règim de drets, deures i situacions administratives de les persones estrangeres a Espanya.',
+		ideaClau: 'Concreció legal de la titularitat i exercici de drets constitucionals de persones no nacionals.',
+		contextTemari: 'Relació directa amb l’article 13 CE i drets de participació política.',
+		clauExamen: 'Diferenciar drets reconeguts universalment i drets condicionats per nacionalitat.',
+		errorHabitual: 'Assumir que totes les facultats de l’article 23 CE són extensibles sense límit a estrangers.',
+	},
+	'2/2012': {
+		titol: 'LO 2/2012, estabilitat pressupostària i sostenibilitat financera',
+		queRegula: 'Regles fiscals i de disciplina pressupostària per al conjunt del sector públic.',
+		ideaClau: 'Desplegament de l’article 135 CE en clau d’estabilitat pressupostària.',
+		contextTemari: 'Bàsic en gestió economicopressupostària i control de despesa pública.',
+		clauExamen: 'Preguntes clàssiques sobre regla de despesa, dèficit i sostenibilitat.',
+		errorHabitual: 'Confondre estabilitat pressupostària amb prohibició absoluta de dèficit.',
+	},
+};
+
+export const LOData = normalizeNormativaDataset(rawLOData);

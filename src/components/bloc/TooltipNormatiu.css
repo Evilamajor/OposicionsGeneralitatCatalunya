@@ -1,0 +1,48 @@
+.tooltip-bubble-shell {
+  position: fixed;
+  overflow: visible;
+  z-index: 1000;
+  pointer-events: auto;
+}
+
+.tooltip-bubble {
+  position: relative;
+  overflow: visible;
+  z-index: 1000;
+  max-width: calc(100vw - 24px);
+  background: #ffffff;
+  border: 1px solid #dfe6ef;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.10);
+  padding: 12px 14px;
+  color: #0f172a;
+  line-height: 1.35;
+}
+
+.tooltip-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 24px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #ffffff;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.08));
+}
+
+.tooltip-bubble-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-size: 0.94rem;
+}
+
+.tooltip-bubble-row {
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+}
+
+.tooltip-bubble-row:last-child {
+  margin-bottom: 0;
+}
