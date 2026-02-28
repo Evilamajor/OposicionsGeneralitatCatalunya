@@ -1,36 +1,38 @@
 import { Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
-import { useState, useCallback } from 'react';
+import { lazy, Suspense } from 'react';
 
 import './App.css';
 
 import Sidebar from './components/Sidebar';
 import HomeSidebar from './components/HomeSidebar';
 import IcsSidebar from './pages/ics/IcsSidebar';
+import ErrorBoundary from './components/common/ErrorBoundary';
+import useAppStore from './stores/useAppStore';
 
-import BlocPage from './components/BlocPage';
-import AnnexPage from './components/AnnexPage';
-import SchemaViewer from './components/SchemaViewer';
-import FullscreenDiagramViewer from './components/FullscreenDiagramViewer';
-import QuizRoutePage from './components/QuizRoutePage';
-import AutoavaluacioPage from './pages/AutoavaluacioPage';
-import NoticiesPage from './pages/NoticiesPage';
-import CatalaNivellCPage from './pages/CatalaNivellCPage';
-import CulturaCatalanaPage from './pages/CulturaCatalanaPage';
-import HistoriaCatalanaPage from './pages/HistoriaCatalanaPage';
-import LiteraturaCatalanaPage from './pages/LiteraturaCatalanaPage';
-import ArtsPage from './pages/ArtsPage';
-import AgendaCulturalPage from './pages/AgendaCulturalPage';
-import InternalCorrespondencePractice from './components/business-english/InternalCorrespondencePractice';
-import InternalCorrespondenceContext from './components/business-english/InternalCorrespondenceContext';
-import BusinessEnglishFitxes from './components/BusinessEnglishFitxes';
-import BusinessEnglishFitxaPage from './components/business-english/BusinessEnglishFitxaPage';
-import HomeSelectorPage from './pages/HomeSelectorPage';
-import IcsLayout from './pages/ics/IcsLayout';
-import IcsPage from './pages/ics/IcsPage';
-import IcsSectionIndexPage from './pages/ics/IcsSectionIndexPage';
-import IcsTopicPage from './pages/ics/IcsTopicPage';
-import IcsSpecificBlockPage from './pages/ics/IcsSpecificBlockPage';
-import IcsCatalaJuridicPage from './pages/ics/IcsCatalaJuridicPage';
+const BlocPage = lazy(() => import('./components/BlocPage'));
+const AnnexPage = lazy(() => import('./components/AnnexPage'));
+const SchemaViewer = lazy(() => import('./components/SchemaViewer'));
+const FullscreenDiagramViewer = lazy(() => import('./components/FullscreenDiagramViewer'));
+const QuizRoutePage = lazy(() => import('./components/QuizRoutePage'));
+const AutoavaluacioPage = lazy(() => import('./pages/AutoavaluacioPage'));
+const NoticiesPage = lazy(() => import('./pages/NoticiesPage'));
+const CatalaNivellCPage = lazy(() => import('./pages/CatalaNivellCPage'));
+const CulturaCatalanaPage = lazy(() => import('./pages/CulturaCatalanaPage'));
+const HistoriaCatalanaPage = lazy(() => import('./pages/HistoriaCatalanaPage'));
+const LiteraturaCatalanaPage = lazy(() => import('./pages/LiteraturaCatalanaPage'));
+const ArtsPage = lazy(() => import('./pages/ArtsPage'));
+const AgendaCulturalPage = lazy(() => import('./pages/AgendaCulturalPage'));
+const InternalCorrespondencePractice = lazy(() => import('./components/business-english/InternalCorrespondencePractice'));
+const InternalCorrespondenceContext = lazy(() => import('./components/business-english/InternalCorrespondenceContext'));
+const BusinessEnglishFitxes = lazy(() => import('./components/BusinessEnglishFitxes'));
+const BusinessEnglishFitxaPage = lazy(() => import('./components/business-english/BusinessEnglishFitxaPage'));
+const HomeSelectorPage = lazy(() => import('./pages/HomeSelectorPage'));
+const IcsLayout = lazy(() => import('./pages/ics/IcsLayout'));
+const IcsPage = lazy(() => import('./pages/ics/IcsPage'));
+const IcsSectionIndexPage = lazy(() => import('./pages/ics/IcsSectionIndexPage'));
+const IcsTopicPage = lazy(() => import('./pages/ics/IcsTopicPage'));
+const IcsSpecificBlockPage = lazy(() => import('./pages/ics/IcsSpecificBlockPage'));
+const IcsCatalaJuridicPage = lazy(() => import('./pages/ics/IcsCatalaJuridicPage'));
 
 function buildGeneralitatRoutes(prefix = '') {
   return [
@@ -60,79 +62,79 @@ function buildGeneralitatRoutes(prefix = '') {
 }
 
 export default function App() {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const sidebarCollapsed = useAppStore((state) => state.sidebarCollapsed);
+  const toggleSidebar = useAppStore((state) => state.toggleSidebar);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const isIcsRoute = location.pathname === '/ics' || location.pathname.startsWith('/ics/');
   const showHomeSelectorSidebar = location.pathname === '/';
 
-  const toggleSidebar = useCallback(() => {
-    setSidebarCollapsed((prev) => !prev);
-  }, []);
-
   return (
-    <div className={`app-layout ${sidebarCollapsed ? 'sidebar-collapsed' : ''} ${isHomePage ? 'home-route' : ''}`}>
-      {!isHomePage && (
-        <header className="app-header">
-          <div className="header-sidebar-area">
-            <Link to="/" className="inici-link">Inici</Link>
-          </div>
-          <div className="header-content-area">
-            <h1 className="app-title">ADMINISTRATIU GENERALITAT DE CATALUNYA</h1>
-          </div>
-        </header>
-      )}
+    <ErrorBoundary>
+      <div className={`app-layout ${sidebarCollapsed ? 'sidebar-collapsed' : ''} ${isHomePage ? 'home-route' : ''}`}>
+        {!isHomePage && (
+          <header className="app-header">
+            <div className="header-sidebar-area">
+              <Link to="/" className="inici-link">Inici</Link>
+            </div>
+            <div className="header-content-area">
+              <h1 className="app-title">ADMINISTRATIU GENERALITAT DE CATALUNYA</h1>
+            </div>
+          </header>
+        )}
 
-      {showHomeSelectorSidebar
-        ? <HomeSidebar />
-        : isIcsRoute
-          ? <IcsSidebar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />
-          : <Sidebar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />}
+        {showHomeSelectorSidebar
+          ? <HomeSidebar />
+          : isIcsRoute
+            ? <IcsSidebar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />
+            : <Sidebar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />}
 
-      {/* Floating sidebar toggle */}
-      <button
-        className="sidebar-toggle-btn"
-        onClick={toggleSidebar}
-        aria-label={sidebarCollapsed ? 'Obrir barra lateral' : 'Tancar barra lateral'}
-        title={sidebarCollapsed ? 'Obrir navegació' : 'Tancar navegació'}
-      >
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="sidebar-toggle-chevron"
+        <button
+          className="sidebar-toggle-btn"
+          onClick={toggleSidebar}
+          aria-label={sidebarCollapsed ? 'Obrir barra lateral' : 'Tancar barra lateral'}
+          title={sidebarCollapsed ? 'Obrir navegació' : 'Tancar navegació'}
         >
-          <path d="M15 6l-6 6 6 6" />
-        </svg>
-      </button>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="sidebar-toggle-chevron"
+          >
+            <path d="M15 6l-6 6 6 6" />
+          </svg>
+        </button>
 
-      <main className="main-content">
-        <Routes>
-          <Route path="/" element={<HomeSelectorPage />} />
-          <Route path="/ics/*" element={<IcsLayout />}>
-            <Route index element={<IcsPage />} />
-            <Route path="transversal" element={<IcsSectionIndexPage section="transversal" />} />
-            <Route path="transversal/:temaId" element={<IcsTopicPage section="transversal" />} />
-            <Route path="especific" element={<IcsSectionIndexPage section="especific" />} />
-            <Route path="especific/:blocId" element={<IcsSpecificBlockPage />} />
-            <Route path="especific/:blocId/:temaId" element={<IcsTopicPage section="especific" />} />
-            <Route path="annexos/catala-juridic" element={<IcsCatalaJuridicPage />} />
-            <Route path="annexos/catala-nivell-c" element={<CatalaNivellCPage />} />
-            <Route path="annexos/autoavaluacions" element={<AutoavaluacioPage />} />
-            <Route path="annexos/noticies" element={<NoticiesPage />} />
-            <Route path="*" element={<Navigate to="/ics" replace />} />
-          </Route>
-          <Route path="/generalitat" element={<Navigate to="/generalitat/bloc/bloc-1" replace />} />
-          {buildGeneralitatRoutes('/generalitat')}
-          {buildGeneralitatRoutes('')}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </main>
-    </div>
+        <main className="main-content">
+          <Suspense fallback={<div className="loading"><p>Carregant contingut...</p></div>}>
+            <Routes>
+              <Route path="/" element={<HomeSelectorPage />} />
+              <Route path="/ics/*" element={<IcsLayout />}>
+                <Route index element={<IcsPage />} />
+                <Route path="transversal" element={<IcsSectionIndexPage section="transversal" />} />
+                <Route path="transversal/:temaId" element={<IcsTopicPage section="transversal" />} />
+                <Route path="especific" element={<IcsSectionIndexPage section="especific" />} />
+                <Route path="especific/:blocId" element={<IcsSpecificBlockPage />} />
+                <Route path="especific/:blocId/:temaId" element={<IcsTopicPage section="especific" />} />
+                <Route path="annexos/catala-juridic" element={<IcsCatalaJuridicPage />} />
+                <Route path="annexos/catala-nivell-c" element={<CatalaNivellCPage />} />
+                <Route path="annexos/autoavaluacions" element={<AutoavaluacioPage />} />
+                <Route path="annexos/noticies" element={<NoticiesPage />} />
+                <Route path="*" element={<Navigate to="/ics" replace />} />
+              </Route>
+              <Route path="/generalitat" element={<Navigate to="/generalitat/bloc/bloc-1" replace />} />
+              {buildGeneralitatRoutes('/generalitat')}
+              {buildGeneralitatRoutes('')}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Suspense>
+        </main>
+      </div>
+    </ErrorBoundary>
   );
 }
