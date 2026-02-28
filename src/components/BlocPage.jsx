@@ -400,7 +400,7 @@ export default function BlocPage() {
 
         askButton.addEventListener('click', (event) => {
           event.stopPropagation();
-          navigate(`/bloc/${blocId}/tema/${temaId}/preguntes/${pointId}`);
+          navigate(`/bloc/${blocId}/${temaId}/ask/punt-${paddedPoint}`);
         });
 
         actions.append(grafButton, askButton);

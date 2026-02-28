@@ -40,6 +40,7 @@ function buildGeneralitatRoutes(prefix = '') {
     <Route key={`${prefix}-be-fitxa-seccio`} path={`${prefix}/bloc/business-english/fitxes/:fitxaId/:seccio`} element={<BusinessEnglishFitxaPage />} />,
     <Route key={`${prefix}-schema`} path={`${prefix}/bloc/:blocId/:temaId/esquemes/:schemaName`} element={<SchemaViewer />} />,
     <Route key={`${prefix}-diagram-viewer`} path={`${prefix}/diagram-viewer/:blocId/:temaId/:punt`} element={<FullscreenDiagramViewer />} />,
+    <Route key={`${prefix}-ask`} path={`${prefix}/bloc/:blocId/:temaId/ask/:punt`} element={<QuizRoutePage />} />,
     <Route key={`${prefix}-quiz`} path={`${prefix}/bloc/:blocId/tema/:temaId/preguntes/:punt`} element={<QuizRoutePage />} />,
     <Route key={`${prefix}-bloc-tema-seccio`} path={`${prefix}/bloc/:blocId/:temaId/:seccio`} element={<BlocPage />} />,
     <Route key={`${prefix}-bloc-root`} path={`${prefix}/bloc/:blocId`} element={<BlocPage />} />,
