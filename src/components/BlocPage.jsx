@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { blocks, ALLOWED_BLOC_SECTIONS } from '../data';
 import NotesEditor from './NotesEditor';
-import useAppStore from '../stores/useAppStore';
 import ContentUnavailable from './common/ContentUnavailable';
 import BlocSectionsTabs from './bloc/BlocSectionsTabs';
 import EsquemesViewer from './bloc/EsquemesViewer';
@@ -17,7 +16,6 @@ export default function BlocPage() {
   const navigate = useNavigate();
   const [sectionsVisible, setSectionsVisible] = useState(false);
   const [powerpointMode, setPowerpointMode] = useState('config');
-  const resetOpenExpPointId = useAppStore((state) => state.resetOpenExpPointId);
 
   const bloc = blocks.find((b) => b.id === blocId);
   const tema = bloc?.topics?.find((t) => t.id === temaId);
@@ -68,10 +66,6 @@ export default function BlocPage() {
 
   useEffect(() => {
     setSectionsVisible(false);
-  }, [blocId, temaId, seccio]);
-
-  useEffect(() => {
-    resetOpenExpPointId();
   }, [blocId, temaId, seccio]);
 
   useEffect(() => {

@@ -15,10 +15,75 @@ import './AskTest.css';
 
 const LETTER_TO_INDEX = { A: 0, B: 1, C: 2, D: 3, E: 4 };
 
+const FALLBACK_CORRECT_EXPLANATION = 'La resposta és correcta segons el contingut del temari.';
+const FALLBACK_INCORRECT_EXPLANATION = 'Revisa el concepte clau d’aquesta pregunta i torna-ho a intentar.';
+
 const normalizeOptionText = (option) => {
   if (typeof option === 'string') return option;
   if (typeof option === 'object' && option) return option.text || option.label || option.value || '';
   return '';
+};
+
+const normalizeExplanationText = (value) => {
+  if (typeof value === 'string') return value.trim();
+  if (typeof value === 'number' && Number.isFinite(value)) return String(value);
+  return '';
+};
+
+const normalizeExplanationArray = (value) => {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((item) => normalizeExplanationText(item))
+    .filter(Boolean);
+};
+
+const buildIncorrectExplanationByOption = ({
+  options,
+  correctAnswer,
+  explanations,
+  objectIncorrect,
+}) => {
+  const byOption = {};
+  const optionCount = Array.isArray(options) ? options.length : 0;
+
+  if (Array.isArray(explanations) && explanations.length > 0) {
+    explanations.forEach((text, optionIndex) => {
+      const normalized = normalizeExplanationText(text);
+      if (!normalized) return;
+      if (optionIndex === correctAnswer) return;
+      byOption[optionIndex] = normalized;
+    });
+  }
+
+  if (objectIncorrect.length > 0) {
+    if (optionCount > 0 && objectIncorrect.length === optionCount) {
+      objectIncorrect.forEach((text, optionIndex) => {
+        if (optionIndex === correctAnswer) return;
+        if (!byOption[optionIndex]) byOption[optionIndex] = text;
+      });
+    } else if (optionCount > 0 && correctAnswer !== null && objectIncorrect.length === optionCount - 1) {
+      let incorrectCursor = 0;
+      for (let optionIndex = 0; optionIndex < optionCount; optionIndex += 1) {
+        if (optionIndex === correctAnswer) continue;
+        const text = objectIncorrect[incorrectCursor] || '';
+        if (text && !byOption[optionIndex]) byOption[optionIndex] = text;
+        incorrectCursor += 1;
+      }
+    } else {
+      objectIncorrect.forEach((text, optionIndex) => {
+        if (optionIndex === correctAnswer) return;
+        if (!byOption[optionIndex]) byOption[optionIndex] = text;
+      });
+    }
+  }
+
+  return byOption;
+};
+
+const isAskDebugEnabled = () => {
+  if (!import.meta.env.DEV) return false;
+  if (typeof window === 'undefined') return false;
+  return window.localStorage?.getItem('ASK_DEBUG') === '1';
 };
 
 const toZeroBasedIndex = (value, optionCount) => {
@@ -60,31 +125,53 @@ const normalizeQuestion = (item, index) => {
   const normalizedByProperty = toZeroBasedIndex(explicitCorrectAnswer, options.length);
   const correctAnswer = optionCorrectIndex >= 0 ? optionCorrectIndex : normalizedByProperty;
 
-  const genericExplanation = item?.explanation || item?.explicacio || '';
+  const explanationRaw = item?.explanation ?? item?.explicacio ?? '';
+  const explanationObject =
+    explanationRaw && typeof explanationRaw === 'object' && !Array.isArray(explanationRaw)
+      ? explanationRaw
+      : null;
+  const genericExplanation = normalizeExplanationText(explanationRaw);
   const explanations = Array.isArray(item?.explanations) ? item.explanations : null;
+  const explanationCorrectFromObject = normalizeExplanationText(explanationObject?.correct);
+  const explanationIncorrectFromObject = normalizeExplanationArray(
+    explanationObject?.incorrect ?? explanationObject?.incorrectes,
+  );
+
+  const explanationIncorrectByOption = buildIncorrectExplanationByOption({
+    options,
+    correctAnswer,
+    explanations,
+    objectIncorrect: explanationIncorrectFromObject,
+  });
 
   const explanationCorrect =
-    item?.explanationCorrect
+    normalizeExplanationText(item?.explanationCorrect)
+    || explanationCorrectFromObject
     || (correctAnswer !== null && explanations?.[correctAnswer])
     || genericExplanation
-    || 'La resposta és correcta segons el contingut del temari.';
+    || FALLBACK_CORRECT_EXPLANATION;
 
-  const firstIncorrectExplanation = explanations?.find((_, explanationIndex) => explanationIndex !== correctAnswer && Boolean(explanations[explanationIndex]));
+  const firstIncorrectExplanation = explanations?.find(
+    (_, explanationIndex) => explanationIndex !== correctAnswer && Boolean(explanations[explanationIndex]),
+  );
+  const firstIncorrectByOption = Object.values(explanationIncorrectByOption).find(Boolean);
 
   const explanationIncorrect =
-    item?.explanationIncorrect
+    normalizeExplanationText(item?.explanationIncorrect)
     || firstIncorrectExplanation
+    || firstIncorrectByOption
     || genericExplanation
-    || 'Revisa el concepte clau d’aquesta pregunta i torna-ho a intentar.';
+    || FALLBACK_INCORRECT_EXPLANATION;
 
   return {
     id: item?.id ?? index + 1,
     type: item?.type || item?.category || item?.tipus || 'general',
-    question: item?.question || item?.enunciat || item?.prompt || '',
+    question: item?.question || item?.pregunta || item?.enunciat || item?.prompt || '',
     options,
     correctAnswer,
     explanationCorrect,
     explanationIncorrect,
+    explanationIncorrectByOption,
   };
 };
 
@@ -137,21 +224,29 @@ function AskTest({ questionsData, storageKey }) {
       || getSavedExplanation(explanationStorageKey, questionId);
 
     return {
-      explanationCorrect: override?.explanationCorrect || item?.explanationCorrect || '',
-      explanationIncorrect: override?.explanationIncorrect || item?.explanationIncorrect || '',
+      hasOverride: Boolean(override?.explanationCorrect || override?.explanationIncorrect),
+      explanationCorrect: normalizeExplanationText(override?.explanationCorrect) || normalizeExplanationText(item?.explanationCorrect) || '',
+      explanationIncorrect: normalizeExplanationText(override?.explanationIncorrect) || normalizeExplanationText(item?.explanationIncorrect) || '',
     };
   };
 
   const getAnswerExplanation = (item, selectedIndex) => {
-    const { explanationCorrect, explanationIncorrect } = getSavedExplanationPair(item, currentIndex);
+    const { hasOverride, explanationCorrect, explanationIncorrect } = getSavedExplanationPair(item, currentIndex);
 
     if (selectedIndex === undefined || selectedIndex === null) {
-      return explanationIncorrect;
+      return explanationIncorrect || FALLBACK_INCORRECT_EXPLANATION;
     }
 
-    return isCorrectAnswer(item, selectedIndex)
-      ? explanationCorrect
-      : explanationIncorrect;
+    if (isCorrectAnswer(item, selectedIndex)) {
+      return explanationCorrect || FALLBACK_CORRECT_EXPLANATION;
+    }
+
+    if (!hasOverride) {
+      const byOptionExplanation = normalizeExplanationText(item?.explanationIncorrectByOption?.[selectedIndex]);
+      if (byOptionExplanation) return byOptionExplanation;
+    }
+
+    return explanationIncorrect || FALLBACK_INCORRECT_EXPLANATION;
   };
 
   const getMergedQuestions = (sourceQuestions = questionsData, sourceCustomQuestions = customQuestions) => {
@@ -182,6 +277,25 @@ function AskTest({ questionsData, storageKey }) {
 
   useEffect(() => {
     const mergedQuestions = getMergedQuestions(questionsData, customQuestions);
+    if (isAskDebugEnabled()) {
+      const invalidIndexes = mergedQuestions
+        .map((item, index) => {
+          const hasQuestion = Boolean(normalizeExplanationText(item?.question || item?.pregunta));
+          const optionsCount = Array.isArray(item?.options) ? item.options.length : 0;
+          const hasValidCorrect = Number.isInteger(item?.correctAnswer)
+            && item.correctAnswer >= 0
+            && item.correctAnswer < optionsCount;
+          return hasQuestion && optionsCount >= 2 && hasValidCorrect ? null : index;
+        })
+        .filter((index) => index !== null);
+
+      console.debug('[ASK][normalize]', {
+        storageKey: explanationStorageKey,
+        totalQuestions: mergedQuestions.length,
+        invalidQuestionIndexes: invalidIndexes,
+      });
+    }
+
     setQuestions(shuffleArray(mergedQuestions));
     setScore(0);
     setAnswers({});

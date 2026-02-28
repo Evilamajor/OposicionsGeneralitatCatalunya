@@ -1,23 +1,23 @@
 // Temari oficial Administratiu/va C1 – estructurat per BLOCS
 // Cada bloc conté els TEMES oficials (alineats amb el DOGC)
 
-const BLOC1_TOPIC_LABELS = {
-  1: 'Tema 1 · La Constitució espanyola de 1978',
-  2: 'Tema 2 · L\'Estatut d\'autonomia de Catalunya',
-  3: 'Tema 3 · Institucions de la Generalitat i de la Unió Europea',
-};
-
-const bloc1Topics = Array.from({ length: 25 }, (_, index) => {
-  const topicNumber = index + 1;
-  const topicId = `tema-${topicNumber}`;
-  const defaultLabel = `Tema ${topicNumber}`;
-
-  return {
-    id: topicId,
-    label: BLOC1_TOPIC_LABELS[topicNumber] || defaultLabel,
-    filename: `tema${String(topicNumber).padStart(2, '0')}.html`,
-  };
-});
+const bloc1Topics = [
+  {
+    id: 'tema-1',
+    label: 'Tema 1 · La Constitució espanyola de 1978',
+    filename: 'tema01.html',
+  },
+  {
+    id: 'tema-2',
+    label: 'Tema 2 · L\'Estatut d\'autonomia de Catalunya',
+    filename: 'tema02.html',
+  },
+  {
+    id: 'tema-3',
+    label: 'Tema 3 · Institucions de la Generalitat i de la Unió Europea',
+    filename: 'tema03.html',
+  },
+];
 
 export const blocks = [
   {

@@ -1,10 +1,508 @@
-<section class="punt-explicacio-placeholder">
-  <h3>Punt 23 — 23. Acció exterior de la Generalitat i UE</h3>
-  <p><em>En construcció…</em></p>
-  <ul>
-    <li><strong>Definició:</strong> …</li>
-    <li><strong>Idees clau d’examen:</strong> …</li>
-    <li><strong>Referències:</strong> …</li>
-    <li><strong>Exemple:</strong> …</li>
-  </ul>
-</section>
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BLOC I · TEMA 2 · PUNT 23 — Acció exterior de la Generalitat i la Unió Europea</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --panel:#f7f8fb;
+      --text:#0f172a;
+      --muted:#475569;
+      --border:#e2e8f0;
+      --accent:#2563eb;
+      --accent-2:#0ea5e9;
+      --ok:#16a34a;
+      --warn:#f59e0b;
+      --danger:#ef4444;
+      --shadow: 0 10px 30px rgba(2,6,23,.08);
+      --radius: 14px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:linear-gradient(180deg, #fbfdff 0%, #ffffff 35%, #ffffff 100%);
+    }
+
+    .wrap{max-width:1050px; margin:0 auto; padding:28px 18px 60px;}
+    header{
+      background:var(--bg);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:22px 22px 18px;
+      position:relative;
+      overflow:hidden;
+    }
+    header:before{
+      content:"";
+      position:absolute;
+      inset:-40px -60px auto auto;
+      width:280px; height:280px;
+      background:radial-gradient(circle at 30% 30%, rgba(37,99,235,.22), rgba(14,165,233,.10), transparent 70%);
+      transform:rotate(12deg);
+    }
+
+    .crumbs{
+      display:flex; flex-wrap:wrap; gap:8px;
+      font-size:14px; color:var(--muted);
+      position:relative;
+    }
+    .crumbs a{color:var(--muted); text-decoration:none}
+    .crumbs a:hover{color:var(--accent); text-decoration:underline}
+    .back{
+      display:inline-flex; align-items:center; gap:10px;
+      margin:14px 0 6px;
+      font-weight:600;
+      color:var(--accent);
+      text-decoration:none;
+      width:max-content;
+      position:relative;
+    }
+    .back:hover{ text-decoration:underline; }
+    .back .arr{
+      display:inline-grid; place-items:center;
+      width:28px; height:28px; border-radius:10px;
+      border:1px solid var(--border);
+      background:var(--panel);
+      color:var(--accent);
+      font-family:var(--mono);
+    }
+
+    h1{
+      margin:10px 0 6px;
+      font-size:28px;
+      letter-spacing:-.02em;
+      position:relative;
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+      position:relative;
+    }
+
+    .layout{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:16px;
+    }
+
+    @media (min-width: 980px){
+      .layout{
+        grid-template-columns: 320px 1fr;
+        align-items:start;
+      }
+    }
+
+    nav.toc{
+      background:var(--bg);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:14px;
+      position:sticky;
+      top:14px;
+    }
+    nav.toc h2{
+      font-size:13px;
+      margin:4px 6px 10px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+    .toc a{
+      display:block;
+      padding:10px 10px;
+      border-radius:12px;
+      text-decoration:none;
+      color:var(--text);
+      border:1px solid transparent;
+      line-height:1.25;
+      font-size:14px;
+    }
+    .toc a:hover{
+      background:var(--panel);
+      border-color:var(--border);
+      color:var(--accent);
+    }
+    .toc .small{
+      margin-top:10px;
+      font-size:12px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-top:1px dashed var(--border);
+    }
+
+    main{
+      background:var(--bg);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:20px 20px 22px;
+    }
+
+    section{
+      padding:10px 0 4px;
+      border-top:1px solid var(--border);
+    }
+    section:first-of-type{border-top:none; padding-top:2px;}
+    h2{
+      margin:6px 0 10px;
+      font-size:20px;
+      letter-spacing:-.01em;
+    }
+    h3{
+      margin:14px 0 8px;
+      font-size:16px;
+      letter-spacing:-.01em;
+    }
+    p{margin:10px 0; color:var(--text); line-height:1.65}
+    ul{margin:8px 0 12px 20px; line-height:1.65}
+    li{margin:6px 0}
+    .muted{color:var(--muted)}
+
+    .pillrow{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 0}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px; color:var(--muted);
+      border:1px solid var(--border);
+      background:var(--panel);
+      padding:6px 10px;
+      border-radius:999px;
+    }
+    .pill b{color:var(--text); font-weight:700}
+    code.k{
+      font-family:var(--mono);
+      font-size:.95em;
+      background:#f1f5f9;
+      border:1px solid var(--border);
+      padding:2px 6px;
+      border-radius:8px;
+      white-space:nowrap;
+    }
+
+    .callout{
+      border:1px solid var(--border);
+      border-left:5px solid var(--accent);
+      background:linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+      border-radius:14px;
+      padding:14px 14px 12px;
+      margin:12px 0;
+    }
+    .callout h4{margin:0 0 8px; font-size:14px}
+    .callout p{margin:0; color:var(--muted)}
+    .callout .bul{margin:8px 0 0 18px; color:var(--muted)}
+    .callout.warn{border-left-color:var(--warn); background:linear-gradient(180deg, #fffaf0 0%, #ffffff 100%);}
+    .callout.ok{border-left-color:var(--ok); background:linear-gradient(180deg, #f0fff4 0%, #ffffff 100%);}
+
+    .grid2{display:grid; gap:12px; grid-template-columns:1fr}
+    @media(min-width: 760px){ .grid2{grid-template-columns:1fr 1fr} }
+
+    .box{
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:var(--panel);
+      padding:14px;
+    }
+    .box h4{margin:0 0 8px; font-size:14px}
+    .box p{margin:0; color:var(--muted)}
+    .box ul{margin:8px 0 0 18px; color:var(--muted)}
+    .kpi{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin:8px 0 0;
+    }
+    .kpi span{
+      display:inline-flex;
+      align-items:center;
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .exam{
+      margin-top:14px;
+      padding:16px;
+      border-radius:16px;
+      border:1px solid rgba(37,99,235,.20);
+      background:linear-gradient(180deg, rgba(37,99,235,.08), rgba(14,165,233,.05), transparent 70%);
+    }
+    .exam h2{margin-top:0}
+    .exam ol{margin:10px 0 0 20px; line-height:1.65}
+    .exam li{margin:8px 0}
+    footer{
+      margin-top:14px;
+      color:var(--muted);
+      font-size:12px;
+      text-align:center;
+    }
+
+    /* Smooth anchors */
+    html{scroll-behavior:smooth}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="crumbs">
+        <a href="/">Inici</a>
+        <span class="muted">/</span>
+        <span>Bloc I</span>
+        <span class="muted">/</span>
+        <span>Tema 2</span>
+        <span class="muted">/</span>
+        <span>Punt 23</span>
+      </div>
+
+      <a class="back" href="javascript:history.back()" aria-label="Tornar enrere">
+        <span class="arr">←</span>
+        Back
+      </a>
+
+      <h1>BLOC I · TEMA 2 · PUNT 23 — Acció exterior de la Generalitat i la Unió Europea</h1>
+      <p class="subtitle">
+        Marc constitucional i estatutari, participació en els afers de la UE (fase ascendent i descendent),
+        principis rectors i jurisprudència constitucional.
+      </p>
+
+      <div class="pillrow" aria-label="Conceptes clau">
+        <span class="pill"><b>CE</b> art. <code class="k">149.1.3</code></span>
+        <span class="pill"><b>EAC</b> Títol V, cap. III <code class="k">193–200</code></span>
+        <span class="pill"><b>UE</b> fase <b>ascendent</b> i <b>descendent</b></span>
+        <span class="pill"><b>Jurisprudència</b> <code class="k">STC 165/1994</code> · <code class="k">STC 31/2010</code></span>
+      </div>
+    </header>
+
+    <div class="layout">
+      <nav class="toc" aria-label="Taula de continguts">
+        <h2>Continguts</h2>
+        <a href="#m1">1. Marc constitucional de l’acció exterior</a>
+        <a href="#m2">2. Regulació estatutària (EAC 2006)</a>
+        <a href="#m3">3. Participació de la Generalitat en la UE</a>
+        <a href="#m31">3.1. Fase ascendent: posició de l’Estat</a>
+        <a href="#m32">3.2. Presència en institucions europees</a>
+        <a href="#m33">3.3. Fase descendent: aplicació del dret UE</a>
+        <a href="#m4">4. Principis rectors</a>
+        <a href="#m5">5. Jurisprudència rellevant del TC</a>
+        <a href="#exam">Idea clau d’examen</a>
+
+        <div class="small">
+          Consell: fixa’t en la diferència <b>relacions internacionals</b> vs <b>acció exterior</b> (pregunta trampa típica).
+        </div>
+      </nav>
+
+      <main>
+        <section id="m1">
+          <h2>1. Marc constitucional de l’acció exterior</h2>
+          <p>
+            L’arquitectura constitucional espanyola estableix una reserva competencial rigorosa pel que fa a la projecció externa de l’Estat.
+            D’acord amb l’article <code class="k">149.1.3 CE</code>, l’Estat té la competència exclusiva en matèria de <b>relacions internacionals</b>.
+            Aquesta reserva inclou el denominat <b>nucli essencial</b> de la sobirania exterior, que comprèn:
+          </p>
+          <ul>
+            <li><b>Representació exterior</b> (<i>ius legationis</i>).</li>
+            <li><b>Conclusió de tractats</b> (<i>ius ad tractatum</i>).</li>
+            <li><b>Responsabilitat internacional</b> de l’Estat.</li>
+            <li><b>Formulació de la política exterior</b>.</li>
+          </ul>
+
+          <div class="callout warn">
+            <h4>Clau conceptual</h4>
+            <p>
+              El TC distingeix entre <b>relacions internacionals</b> (exclusives de l’Estat) i <b>acció exterior</b>
+              (activitat autonòmica amb projecció externa vinculada a competències pròpies).
+            </p>
+            <ul class="bul">
+              <li>Les CA poden actuar a l’exterior si és <b>instrumental</b> a les seves competències.</li>
+              <li>Límit: no poden crear obligacions internacionals ni comprometre la responsabilitat de l’Estat.</li>
+            </ul>
+          </div>
+
+          <p>
+            La doctrina del Tribunal Constitucional admet que les comunitats autònomes poden dur a terme activitats amb projecció exterior
+            quan aquestes deriven de l’exercici de les seves competències pròpies. El límit infranquejable és que no poden exercir un
+            <b><i>ius contrahendi</i></b> (signatura de tractats internacionals regits pel dret internacional), ni generar obligacions immediates
+            davant poders públics estrangers, ni comprometre la responsabilitat internacional de l’Estat.
+          </p>
+        </section>
+
+        <section id="m2">
+          <h2>2. Regulació estatutària (EAC 2006)</h2>
+          <p>
+            L’Estatut d’Autonomia de Catalunya de 2006 dedica el <b>Capítol III del Títol V</b> (articles <code class="k">193</code> a <code class="k">200</code>)
+            a l’acció exterior de la Generalitat. Aquesta regulació parteix de la idea que la Generalitat ha d’impulsar la projecció de Catalunya a l’exterior
+            i promoure els seus interessos, <b>respectant sempre la competència estatal</b>.
+          </p>
+
+          <div class="grid2">
+            <div class="box">
+              <h4>Principi de lleialtat institucional</h4>
+              <p>
+                El principi de lleialtat institucional mútua (<code class="k">art. 3.1 EAC</code>) obliga Generalitat i Estat a col·laborar i prestar-se ajuda mútua
+                per a l’exercici eficaç de les seves funcions.
+              </p>
+              <div class="kpi" aria-label="Elements del principi">
+                <span>col·laboració</span><span>informació</span><span>assistència</span><span>coordinació</span>
+              </div>
+            </div>
+
+            <div class="box">
+              <h4>Supòsits d’acció exterior a l’EAC</h4>
+              <ul>
+                <li><b>Oficines a l’exterior</b> per a la promoció d’interessos (<code class="k">art. 194 EAC</code>).</li>
+                <li><b>Acords de col·laboració</b> no normatius dins competències pròpies (<code class="k">art. 195 EAC</code>).</li>
+                <li><b>Tractats internacionals</b>: dret a informació prèvia i possibilitat de sol·licitar-ne la subscripció (<code class="k">art. 196 EAC</code>).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout ok" style="margin-top:12px;">
+            <h4>Idea d’examen</h4>
+            <p>
+              <b>Acció exterior</b> ≠ <b>relacions internacionals</b>. La Generalitat pot promoure interessos i cooperar a l’exterior, però
+              no pot actuar com a subjecte de dret internacional ni “fer diplomàcia” en sentit estricte.
+            </p>
+          </div>
+        </section>
+
+        <section id="m3">
+          <h2>3. Participació de la Generalitat en la Unió Europea</h2>
+          <p>
+            La integració d’Espanya a la UE ha exigit articular mecanismes de participació per salvaguardar l’autonomia política.
+            L’EAC estableix que la Generalitat participa en els afers europeus que afectin les seves competències en dues fases:
+            <b>fase ascendent</b> (formació de la posició de l’Estat) i <b>fase descendent</b> (desenvolupament i aplicació del dret de la UE).
+          </p>
+
+          <section id="m31">
+            <h3>3.1. Participació en la formació de la posició de l’Estat (fase ascendent)</h3>
+            <p>
+              La Generalitat intervé en la formació de la posició negociadora de l’Estat davant les institucions europees mitjançant mecanismes
+              bilaterals i multilaterals. L’article <code class="k">186 EAC</code> és central:
+            </p>
+            <ul>
+              <li>
+                La posició de la Generalitat és <b>determinant</b> per a la posició estatal si la matèria afecta competències exclusives i
+                se’n poden derivar conseqüències <b>financeres o administratives rellevants</b> per a Catalunya (<code class="k">art. 186.3 EAC</code>).
+              </li>
+              <li>
+                En els altres casos, la Generalitat <b>ha d’ésser escoltada</b>.
+              </li>
+            </ul>
+            <p class="muted">
+              La col·laboració s’articula a través de la <b>Comissió Bilateral Generalitat–Estat</b> i d’òrgans multilaterals com la
+              <b>Conferència per a Afers Relacionats amb la UE (CARUE)</b>.
+            </p>
+          </section>
+
+          <section id="m32">
+            <h3>3.2. Presència en institucions europees</h3>
+            <ul>
+              <li><b>Delegació del Govern davant la UE</b>: representació i defensa d’interessos a Brussel·les (<code class="k">art. 192 EAC</code>).</li>
+              <li><b>REPER</b>: participació en la designació de representants en el marc de la representació permanent espanyola davant la UE.</li>
+              <li><b>Comitè de les Regions</b>: òrgan consultiu amb representants regionals i locals; emet dictàmens no vinculants.</li>
+              <li>
+                <b>Consell de Ministres de la UE</b>: representants autonòmics poden integrar la delegació espanyola en afers de competència legislativa
+                de la Generalitat (<code class="k">art. 187 EAC</code>).
+              </li>
+            </ul>
+
+            <div class="callout warn">
+              <h4>Pregunta trampa típica</h4>
+              <p>
+                La Generalitat pot “assistir” o “integrar” delegacions estatals en determinats fòrums de la UE, però això no equival a una representació internacional pròpia
+                amb capacitat de comprometre l’Estat.
+              </p>
+            </div>
+          </section>
+
+          <section id="m33">
+            <h3>3.3. Desenvolupament i aplicació del dret europeu (fase descendent)</h3>
+            <p>
+              L’article <code class="k">189 EAC</code> estableix que l’existència d’una regulació europea <b>no modifica la distribució interna de competències</b>.
+              En conseqüència, correspon a la Generalitat aplicar i executar el dret de la UE quan la matèria sigui de la seva competència.
+            </p>
+          </section>
+        </section>
+
+        <section id="m4">
+          <h2>4. Principis rectors de l’acció institucional</h2>
+          <p>Les relacions entre les diferents instàncies de poder es regeixen, principalment, per:</p>
+
+          <div class="grid2">
+            <div class="box">
+              <h4>Cooperació i coordinació</h4>
+              <ul>
+                <li><b>Cooperació</b>: exercici conjunt i voluntari mitjançant òrgans mixtos.</li>
+                <li><b>Coordinació</b>: l’Estat pot fixar mètodes d’actuació obligatoris per evitar disfuncions.</li>
+              </ul>
+            </div>
+
+            <div class="box">
+              <h4>Subsidiarietat i lleialtat constitucional</h4>
+              <ul>
+                <li>
+                  <b>Subsidiarietat</b>: el Parlament de Catalunya participa en el seu control
+                  (<code class="k">art. 188 EAC</code>).
+                </li>
+                <li><b>Lleialtat constitucional</b>: tenir en compte els interessos generals de l’Estat i el marc polític de la UE.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="m5">
+          <h2>5. Jurisprudència rellevant del Tribunal Constitucional</h2>
+          <p>
+            La <code class="k">STC 165/1994</code> és la resolució fonamental: admet la legitimitat de les comunitats autònomes per obrir
+            oficines de representació a Brussel·les, sempre que no afectin les competències exclusives de l’Estat en relacions internacionals.
+          </p>
+          <p>
+            La <code class="k">STC 31/2010</code> (sobre l’EAC) va refermar que l’Estatut no pot imposar mandats vinculants al legislador estatal
+            ni models organitzatius unilaterals. Diversos preceptes de participació es van reconduir a <b>mandats de caràcter orientatiu</b> o
+            a fórmules no vinculants. El TC subratlla que el títol estatal de “relacions internacionals” ha de romandre intacte en el seu nucli sobirà.
+          </p>
+
+          <div class="callout">
+            <h4>Lectura d’examen</h4>
+            <p>
+              El TC permet projecció exterior autonòmica <b>instrumental</b> (competencial) però blinda el nucli sobirà estatal:
+              tractats, representació diplomàtica i responsabilitat internacional.
+            </p>
+          </div>
+        </section>
+
+        <section id="exam" class="exam" aria-label="Idea clau d’examen">
+          <h2>IDEA CLAU D’EXAMEN — 10 punts resum</h2>
+          <ol>
+            <li><b>Dualitat competencial</b>: Estat (<code class="k">art. 149.1.3 CE</code>) = relacions internacionals; Generalitat = acció exterior vinculada a competències (<code class="k">art. 193 EAC</code>).</li>
+            <li><b>Subjectivitat internacional</b>: només l’Estat és subjecte de dret internacional i responsable d’incompliments UE, encara que la infracció la cometi una CA.</li>
+            <li><b>Posició determinant</b>: la posició de la Generalitat és determinant si afecta competències exclusives i té rellevància financera/administrativa (<code class="k">art. 186.3 EAC</code>).</li>
+            <li><b>No alteració competencial</b>: la normativa UE no modifica el repartiment intern de competències (<code class="k">art. 189 EAC</code>).</li>
+            <li><b>Delegació a Brussel·les</b>: la Generalitat pot crear delegació pròpia davant institucions UE (<code class="k">art. 192 EAC</code>).</li>
+            <li><b>Oficines exteriors</b>: són vàlides (<code class="k">STC 165/1994</code>) si no actuen com ambaixades ni envaeixen el nucli estatal.</li>
+            <li><b>CARUE</b>: conferència sectorial per a la participació multilateral de les CA en assumptes UE.</li>
+            <li><b><i>Ius contrahendi</i></b>: la Generalitat no pot signar tractats internacionals; sí acords de col·laboració no regits pel dret internacional.</li>
+            <li><b>Lleialtat institucional</b>: principi motor d’informació i col·laboració mútua (<code class="k">art. 3.1 EAC</code>).</li>
+            <li><b>Comitè de les Regions</b>: òrgan consultiu amb ens subestatals, participa en el procediment legislatiu UE mitjançant dictàmens no vinculants.</li>
+          </ol>
+        </section>
+
+        <footer>
+          Document d’estudi — Bloc I · Tema 2 · Punt 23 · Acció exterior i UE
+        </footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

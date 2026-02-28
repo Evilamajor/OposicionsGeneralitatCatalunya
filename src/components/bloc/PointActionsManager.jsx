@@ -110,7 +110,6 @@ export const createPointActions = ({
   blocId,
   temaId,
   navigate,
-  openExpPointId,
   onTogglePoint,
 }) => {
   reorderDetailsSections(container);
@@ -230,6 +229,5 @@ export const createPointActions = ({
     });
   });
 
-  applyExpVisibility(openExpPointId, registry);
   return registry;
 };
