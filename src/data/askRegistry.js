@@ -22,25 +22,97 @@ const buildAskKey = ({ blocId, temaId, punt }) => {
   return `${bloc}|${tema}|${normalizedPunt}`;
 };
 
-const askModules = import.meta.glob('./bloc1/tema*/punt*Ask.js', { eager: true });
+const askModules = import.meta.glob('./**/punt*Ask.js', { eager: true });
+
+const parseModulePath = (modulePath) => {
+  const match = modulePath.match(/\.\/([^/]+)\/([^/]+)\/punt0*(\d+)Ask\.js$/i);
+  if (!match) return null;
+
+  const bloc = normalizeId(match[1], 'bloc');
+  const tema = normalizeId(match[2], 'tema');
+  const puntNumber = Number.parseInt(match[3], 10);
+
+  if (Number.isNaN(puntNumber)) return null;
+
+  return {
+    bloc,
+    tema,
+    puntNumber,
+  };
+};
+
+const resolveAskPayload = (module) => {
+  if (module?.default) return module.default;
+
+  const namedExportKey = Object.keys(module || {}).find((key) => /^punt\d+Ask$/i.test(key));
+  if (namedExportKey) return module[namedExportKey];
+
+  return Object.values(module || {}).find((value) => value && typeof value === 'object') || null;
+};
+
+const normalizeAskPayload = (payload, filePath) => {
+  if (Array.isArray(payload)) {
+    return {
+      title: null,
+      questionsData: payload,
+    };
+  }
+
+  if (payload && typeof payload === 'object') {
+    const questionsData = Array.isArray(payload.questions)
+      ? payload.questions
+      : (Array.isArray(payload.preguntes) ? payload.preguntes : null);
+
+    if (!questionsData) {
+      console.error('Invalid ASK module structure:', filePath);
+      return null;
+    }
+
+    const payloadTitle = typeof payload.title === 'string' && payload.title.trim().length > 0
+      ? payload.title.trim()
+      : (typeof payload.titol === 'string' && payload.titol.trim().length > 0
+        ? payload.titol.trim()
+        : null);
+
+    return {
+      title: payloadTitle,
+      questionsData,
+    };
+  }
+
+  console.error('Invalid ASK module structure:', filePath);
+  return null;
+};
+
+const getNumericId = (value) => {
+  const match = String(value || '').match(/(\d+)/);
+  if (!match) return null;
+
+  const parsed = Number.parseInt(match[1], 10);
+  return Number.isNaN(parsed) ? null : parsed;
+};
 
 const buildDynamicAskRegistry = () => {
   const registry = {};
 
   Object.entries(askModules).forEach(([modulePath, module]) => {
-    const match = modulePath.match(/\.\/bloc1\/tema(\d+)\/punt(\d+)Ask\.js$/);
-    if (!match) return;
+    const parsedPath = parseModulePath(modulePath);
+    if (!parsedPath) return;
 
-    const temaNumber = Number.parseInt(match[1], 10);
-    const puntNumber = Number.parseInt(match[2], 10);
+    const askPayload = resolveAskPayload(module);
+    const normalizedPayload = normalizeAskPayload(askPayload, modulePath);
+    if (!normalizedPayload) return;
 
-    if (Number.isNaN(temaNumber) || Number.isNaN(puntNumber)) return;
+    const blocNumber = getNumericId(parsedPath.bloc);
+    const temaNumber = getNumericId(parsedPath.tema);
+    const key = `${parsedPath.bloc}|${parsedPath.tema}|${parsedPath.puntNumber}`;
 
-    const key = `bloc-1|tema-${temaNumber}|${puntNumber}`;
     registry[key] = {
-      title: `ASK · Bloc 1 · Tema ${temaNumber} · Punt ${puntNumber}`,
-      questionsData: module?.default,
-      storageKey: `bloc1-tema${temaNumber}-punt${puntNumber}-ask`,
+      title:
+        normalizedPayload.title
+        || `ASK · Bloc ${blocNumber ?? parsedPath.bloc} · Tema ${temaNumber ?? parsedPath.tema} · Punt ${parsedPath.puntNumber}`,
+      questionsData: normalizedPayload.questionsData,
+      storageKey: `bloc${blocNumber ?? parsedPath.bloc}-tema${temaNumber ?? parsedPath.tema}-punt${parsedPath.puntNumber}-ask`,
     };
   });
 
@@ -55,8 +127,15 @@ export function getAskConfig(params) {
   const key = buildAskKey(params);
   const config = askRegistry[key] || null;
 
-  if (!config) return null;
-  if (!isValidAskArray(config.questionsData)) return null;
+  if (!config) {
+    console.error('ASK file not found for:', params?.blocId, params?.temaId, params?.punt);
+    return null;
+  }
+
+  if (!isValidAskArray(config.questionsData)) {
+    console.error('ASK questions invalid for:', params?.blocId, params?.temaId, params?.punt);
+    return null;
+  }
 
   return config;
 }

@@ -1,4 +1,4 @@
-import TooltipNormatiu from './TooltipNormatiu';
+import NormativeTooltip from '../common/NormativeTooltip';
 
 const renderReference = (reference) => {
   if (!reference || !reference.tipus || !reference.referencia) {
@@ -6,13 +6,13 @@ const renderReference = (reference) => {
   }
 
   return (
-    <TooltipNormatiu
+    <NormativeTooltip
       key={`${reference.tipus}-${reference.referencia}`}
       tipus={reference.tipus}
       referencia={reference.referencia}
     >
       {reference.label}
-    </TooltipNormatiu>
+    </NormativeTooltip>
   );
 };
 

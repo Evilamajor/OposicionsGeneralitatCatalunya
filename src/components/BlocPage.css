@@ -506,6 +506,44 @@
   margin-bottom: 0.25rem;
 }
 
+.html-content .schema-inline-explicacio .edit-controls {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.html-content .schema-inline-explicacio .edit-controls button {
+  border: 1px solid var(--border-soft);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.html-content .schema-inline-explicacio .edit-controls button:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-strong);
+}
+
+.html-content .schema-inline-explicacio .edit-textarea {
+  width: 100%;
+  min-height: 600px;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 1rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  box-sizing: border-box;
+  resize: vertical;
+}
+
 /* Esquemes prefix refinement: soften only the leading ">" symbol */
 .bloc-contingut .html-content .toggle::first-letter,
 .bloc-contingut .html-content .schema-toggle::first-letter,

@@ -12,10 +12,13 @@ import { bloc1Tema1Normativa } from '../../data/bloc1Tema1Normativa';
 import { bloc1Tema2Normativa } from '../../data/bloc1Tema2Normativa';
 import { LOData } from '../../data/lleisOrganiques';
 import { jurisprudenciaTC } from '../../data/jurisprudenciaTC';
+import NormativeTooltip from '../common/NormativeTooltip';
+import { parseNormativeReferences } from '../../utils/normativeReferenceParser';
 import NormativePillHeader from './NormativePillHeader';
 import { createPointActions, applyExpVisibility } from './PointActionsManager';
 
 const PLACEHOLDER_TOC_TEXT = 'Navegació automàtica generada des dels títols h2 i h3.';
+const EDIT_MODE_ENABLED = import.meta.env.VITE_ENABLE_EXPLANATION_EDIT !== '0';
 
 /**
  * INFORME TÈCNIC D'AUDITORIA — Material d'estudi (Bloc 1, punts 1-24)
@@ -68,6 +71,115 @@ const resolveRelativeUrls = (htmlString, htmlPath) => {
 
   const hasBody = parsed.body && parsed.body.innerHTML.trim().length > 0;
   return hasBody ? parsed.body.innerHTML : htmlString;
+};
+
+const extractNumericId = (value, fallback = '0') => {
+  const match = String(value || '').match(/(\d+)/);
+  if (!match) return fallback;
+
+  const parsed = Number.parseInt(match[1], 10);
+  return Number.isNaN(parsed) ? fallback : String(parsed);
+};
+
+const buildExplanationStorageKey = ({ blocId, temaId, pointId }) => {
+  const bloc = extractNumericId(blocId, '0');
+  const tema = extractNumericId(temaId, '0');
+  const punt = extractNumericId(pointId, '0');
+  return `bloc${bloc}-tema${tema}-punt${punt}`;
+};
+
+const INLINE_NORMATIVE_SKIP_SELECTOR = [
+  'a',
+  'button',
+  'code',
+  'pre',
+  'script',
+  'style',
+  '.pillrow',
+  '.normative-tooltip-trigger',
+  '.normative-inline-ref',
+  '.toc',
+  'aside',
+].join(', ');
+
+const replaceTextNodeWithNormativeRefs = (textNode, matches) => {
+  const text = textNode.nodeValue || '';
+  if (matches.length === 0) return;
+
+  const fragment = document.createDocumentFragment();
+  let lastIndex = 0;
+
+  matches.forEach((match) => {
+    if (match.start > lastIndex) {
+      fragment.appendChild(document.createTextNode(text.slice(lastIndex, match.start)));
+    }
+
+    const mountNode = document.createElement('span');
+    mountNode.className = 'normative-inline-ref';
+    mountNode.dataset.tipus = match.tipus;
+    mountNode.dataset.referencia = match.referencia;
+    mountNode.dataset.label = match.label;
+    fragment.appendChild(mountNode);
+
+    lastIndex = match.end;
+  });
+
+  if (lastIndex < text.length) {
+    fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+  }
+
+  textNode.parentNode?.replaceChild(fragment, textNode);
+};
+
+const mountInlineNormativeTooltips = (rootNode) => {
+  if (Array.isArray(rootNode.__inlineNormativeRoots)) {
+    rootNode.__inlineNormativeRoots.forEach((root) => root.unmount());
+  }
+
+  rootNode.__inlineNormativeRoots = [];
+
+  const walker = document.createTreeWalker(rootNode, NodeFilter.SHOW_TEXT);
+  const textNodes = [];
+  let currentNode = walker.nextNode();
+
+  while (currentNode) {
+    const parent = currentNode.parentElement;
+    if (!parent || parent.closest(INLINE_NORMATIVE_SKIP_SELECTOR)) {
+      currentNode = walker.nextNode();
+      continue;
+    }
+
+    const rawText = currentNode.nodeValue || '';
+    if (!rawText.trim()) {
+      currentNode = walker.nextNode();
+      continue;
+    }
+
+    textNodes.push(currentNode);
+    currentNode = walker.nextNode();
+  }
+
+  textNodes.forEach((textNode) => {
+    const matches = parseNormativeReferences(textNode.nodeValue || '');
+    if (matches.length === 0) return;
+    replaceTextNodeWithNormativeRefs(textNode, matches);
+  });
+
+  rootNode.querySelectorAll('.normative-inline-ref').forEach((mountNode) => {
+    const tipus = mountNode.dataset.tipus;
+    const referencia = mountNode.dataset.referencia;
+    const label = mountNode.dataset.label;
+    if (!tipus || !referencia || !label) return;
+
+    const root = createRoot(mountNode);
+    root.render(
+      <NormativeTooltip tipus={tipus} referencia={referencia}>
+        {label}
+      </NormativeTooltip>,
+    );
+
+    rootNode.__inlineNormativeRoots.push(root);
+  });
 };
 
 const slugify = (text = '') => text
@@ -479,10 +591,123 @@ const updateExamMiniCheck = (rootNode, detectedArticles) => {
 const enhanceExplicacioContent = (rootNode, context) => {
   if (!rootNode) return;
   renderNormativaHeader(rootNode, context);
+  mountInlineNormativeTooltips(rootNode);
   buildDynamicToc(rootNode);
   const detectedArticles = updateEssentialArticles(rootNode);
   updateJurisprudencia(rootNode);
   updateExamMiniCheck(rootNode, detectedArticles);
+};
+
+const mountEditableExplanation = ({
+  contentNode,
+  blocId,
+  temaId,
+  pointId,
+  originalHtml,
+}) => {
+  const storageKey = buildExplanationStorageKey({ blocId, temaId, pointId });
+
+  let savedHtml = null;
+  try {
+    savedHtml = window.localStorage.getItem(storageKey);
+  } catch {
+    savedHtml = null;
+  }
+
+  let isEditing = false;
+  const originalContent = originalHtml || '';
+  let content = savedHtml ?? originalContent;
+
+  contentNode.innerHTML = '';
+
+  const controlsNode = document.createElement('div');
+  controlsNode.className = 'edit-controls';
+
+  const contentHost = document.createElement('div');
+  contentHost.className = 'schema-editable-content';
+
+  contentNode.append(controlsNode, contentHost);
+
+  const renderPreview = () => {
+    contentHost.innerHTML = content || '';
+    enhanceExplicacioContent(contentHost, { blocId, temaId });
+  };
+
+  const renderEditor = () => {
+    contentHost.innerHTML = '';
+    const textarea = document.createElement('textarea');
+    textarea.className = 'edit-textarea';
+    textarea.value = content;
+    textarea.addEventListener('input', (event) => {
+      content = event.target.value;
+    });
+    contentHost.appendChild(textarea);
+  };
+
+  const setButtonLabel = (button, label) => {
+    button.textContent = label;
+  };
+
+  const renderControls = () => {
+    controlsNode.innerHTML = '';
+
+    if (!isEditing) {
+      const editButton = document.createElement('button');
+      editButton.type = 'button';
+      setButtonLabel(editButton, '✏️ Edició');
+      editButton.addEventListener('click', () => {
+        isEditing = true;
+        renderControls();
+        renderEditor();
+      });
+      controlsNode.appendChild(editButton);
+      return;
+    }
+
+    const saveButton = document.createElement('button');
+    saveButton.type = 'button';
+    setButtonLabel(saveButton, '💾 Guardar');
+    saveButton.addEventListener('click', () => {
+      try {
+        window.localStorage.setItem(storageKey, content);
+      } catch {
+        // ignore localStorage errors
+      }
+      isEditing = false;
+      renderControls();
+      renderPreview();
+    });
+
+    const cancelButton = document.createElement('button');
+    cancelButton.type = 'button';
+    setButtonLabel(cancelButton, '❌ Cancel·lar');
+    cancelButton.addEventListener('click', () => {
+      content = originalContent;
+      isEditing = false;
+      renderControls();
+      renderPreview();
+    });
+
+    const restoreButton = document.createElement('button');
+    restoreButton.type = 'button';
+    setButtonLabel(restoreButton, '🔄 Restaurar original');
+    restoreButton.addEventListener('click', () => {
+      try {
+        window.localStorage.removeItem(storageKey);
+      } catch {
+        // ignore localStorage errors
+      }
+      content = originalContent;
+      isEditing = false;
+      renderControls();
+      renderPreview();
+    });
+
+    controlsNode.append(saveButton, cancelButton, restoreButton);
+  };
+
+  renderControls();
+  renderPreview();
 };
 
 export default function EsquemesViewer({ blocId, temaId, schemaPath, active }) {
@@ -581,14 +806,44 @@ export default function EsquemesViewer({ blocId, temaId, schemaPath, active }) {
     fetchTextWithCache(sourceUrl)
       .then((html) => {
         if (!isMounted) return;
-        contentNode.innerHTML = html || fallbackHtml;
-        enhanceExplicacioContent(contentNode, { blocId, temaId });
+
+        const originalHtml = html || fallbackHtml;
+
+        if (!EDIT_MODE_ENABLED) {
+          contentNode.innerHTML = originalHtml;
+          enhanceExplicacioContent(contentNode, { blocId, temaId });
+          contentNode.dataset.loaded = 'true';
+          return;
+        }
+
+        mountEditableExplanation({
+          contentNode,
+          blocId,
+          temaId,
+          pointId: activePoint,
+          originalHtml,
+        });
+
         contentNode.dataset.loaded = 'true';
       })
       .catch(() => {
         if (!isMounted) return;
-        contentNode.innerHTML = fallbackHtml;
-        enhanceExplicacioContent(contentNode, { blocId, temaId });
+
+        if (!EDIT_MODE_ENABLED) {
+          contentNode.innerHTML = fallbackHtml;
+          enhanceExplicacioContent(contentNode, { blocId, temaId });
+          contentNode.dataset.loaded = 'true';
+          return;
+        }
+
+        mountEditableExplanation({
+          contentNode,
+          blocId,
+          temaId,
+          pointId: activePoint,
+          originalHtml: fallbackHtml,
+        });
+
         contentNode.dataset.loaded = 'true';
       });
 
