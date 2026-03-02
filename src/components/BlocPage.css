@@ -506,6 +506,29 @@
   margin-bottom: 0.25rem;
 }
 
+.html-content .schema-inline-explicacio.explicacio-simplified .layout,
+.html-content .schema-inline-explicacio.explicacio-simplified .layout.layout-single-column {
+  display: block !important;
+  grid-template-columns: 1fr !important;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.html-content .schema-inline-explicacio.explicacio-simplified .wrap,
+.html-content .schema-inline-explicacio.explicacio-simplified .tema-container,
+.html-content .schema-inline-explicacio.explicacio-simplified main,
+.html-content .schema-inline-explicacio.explicacio-simplified .point-content {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.html-content .schema-inline-explicacio.explicacio-simplified main,
+.html-content .schema-inline-explicacio.explicacio-simplified section {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .html-content .schema-inline-explicacio .edit-controls {
   margin-bottom: 1rem;
   display: flex;

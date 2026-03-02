@@ -112,53 +112,6 @@ h1{
   grid-template-columns:1fr;
   gap:16px;
 }
-@media (min-width: 980px){
-  .layout{grid-template-columns:320px 1fr; align-items:start;}
-}
-
-nav.toc{
-  background:var(--bg);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:14px;
-  position:sticky;
-  top:14px;
-}
-nav.toc h2{
-  font-size:13px;
-  margin:4px 6px 10px;
-  color:var(--muted);
-  text-transform:uppercase;
-  letter-spacing:.08em;
-}
-.toc a{
-  display:block;
-  padding:10px 10px;
-  border-radius:12px;
-  text-decoration:none;
-  color:var(--text);
-  border:1px solid transparent;
-  line-height:1.25;
-  font-size:14px;
-}
-.toc a:hover{
-  background:var(--panel);
-  border-color:var(--border);
-  color:var(--accent);
-}
-.toc a.toc-sub{
-  font-size:13px;
-  margin-left:12px;
-  color:var(--muted);
-}
-.toc .small{
-  margin-top:10px;
-  font-size:12px;
-  color:var(--muted);
-  padding:8px 10px;
-  border-top:1px dashed var(--border);
-}
 
 main{
   background:var(--bg);
@@ -193,7 +146,7 @@ code{font-family:var(--mono)}
 .callout.warn{border-left-color:var(--warn); background:linear-gradient(180deg, #fffaf0 0%, #ffffff 100%)}
 .callout.ok{border-left-color:var(--ok); background:linear-gradient(180deg, #f0fff4 0%, #ffffff 100%)}
 
-.box,.ref,.key,.note{
+.box,.ref,.note{
   border:1px solid var(--border);
   border-radius:14px;
   background:var(--panel);
@@ -203,29 +156,6 @@ code{font-family:var(--mono)}
 .box + .box{margin-top:12px}
 .ref{margin:8px 0}
 .ref .small{display:block; margin-top:6px; color:var(--muted); font-size:12px}
-.keys{display:grid; gap:10px; margin-top:12px}
-.key{display:flex; gap:10px; background:#fff}
-.badge{
-  width:28px;
-  height:28px;
-  border-radius:10px;
-  display:grid;
-  place-items:center;
-  background:rgba(31,111,235,.10);
-  border:1px solid rgba(31,111,235,.20);
-  color:var(--accent);
-  font-weight:700;
-  flex:0 0 auto;
-}
-
-.exam{
-  margin-top:14px;
-  padding:16px;
-  border-radius:16px;
-  border:1px solid rgba(37,99,235,.20);
-  background:linear-gradient(180deg, rgba(37,99,235,.08), rgba(14,165,233,.05), transparent 70%);
-}
-.exam h2{margin-top:0}
 footer{
   margin-top:14px;
   color:var(--muted);

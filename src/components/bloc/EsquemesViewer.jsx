@@ -3,10 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { useNavigate } from 'react-router-dom';
 import { fetchTextWithCache } from '../../utils/contentCache';
 import {
-  legalStudyRegistry,
   jurisprudenciaConstitucional,
-  jurisprudenciaFallbackText,
-  buildDefaultMiniCheck,
 } from '../../data/studyMaterialKnowledgeBase';
 import { bloc1Tema1Normativa } from '../../data/bloc1Tema1Normativa';
 import { bloc1Tema2Normativa } from '../../data/bloc1Tema2Normativa';
@@ -17,7 +14,6 @@ import { parseNormativeReferences } from '../../utils/normativeReferenceParser';
 import NormativePillHeader from './NormativePillHeader';
 import { createPointActions, applyExpVisibility } from './PointActionsManager';
 
-const PLACEHOLDER_TOC_TEXT = 'Navegació automàtica generada des dels títols h2 i h3.';
 const EDIT_MODE_ENABLED = import.meta.env.VITE_ENABLE_EXPLANATION_EDIT !== '0';
 
 /**
@@ -182,85 +178,13 @@ const mountInlineNormativeTooltips = (rootNode) => {
   });
 };
 
-const slugify = (text = '') => text
+const normalizeTextLabel = (value = '') => String(value)
   .toLowerCase()
   .normalize('NFD')
   .replace(/[\u0300-\u036f]/g, '')
-  .replace(/[^a-z0-9\s-]/g, '')
-  .trim()
-  .replace(/\s+/g, '-')
-  .replace(/-+/g, '-');
-
-const ensureAnchorId = (heading, fallbackPrefix = 'sec') => {
-  if (heading.id) return heading.id;
-  const generatedId = slugify(heading.textContent) || fallbackPrefix;
-  heading.id = generatedId;
-  return generatedId;
-};
-
-const isInside = (node, selector) => Boolean(node.closest(selector));
-
-const getHeadingTarget = (heading) => {
-  if (heading.tagName === 'H2') {
-    const section = heading.closest('section');
-    if (section) {
-      if (!section.id) {
-        section.id = slugify(heading.textContent) || 'sec';
-      }
-      return section.id;
-    }
-  }
-
-  return ensureAnchorId(heading, 'subsec');
-};
-
-const normalizeArticleKey = (rawArticle = '') => rawArticle
-  .split('.')
-  .map((segment) => {
-    if (!segment) return segment;
-    const parsed = Number.parseInt(segment, 10);
-    return Number.isNaN(parsed) ? segment : String(parsed);
-  })
-  .join('.');
-
-const normalizeArticleLabel = (articleKey) => `CE ${articleKey}`;
-
-const getAsideBoxByTitle = (rootNode, titleText) => {
-  const boxes = rootNode.querySelectorAll('aside .box');
-  return Array.from(boxes).find((box) => {
-    const heading = box.querySelector('h3');
-    return heading?.textContent?.trim().toLowerCase() === titleText.toLowerCase();
-  }) || null;
-};
-
-const createSmallLine = (label, content) => {
-  const detailNode = document.createElement('span');
-  detailNode.className = 'small';
-
-  const strongNode = document.createElement('strong');
-  strongNode.textContent = `${label}: `;
-
-  detailNode.append(strongNode, content);
-  return detailNode;
-};
-
-const extractStcReferences = (boxNode) => {
-  if (!boxNode) return [];
-
-  const text = boxNode.textContent || '';
-  const stcRegex = /STC\s*(\d+)\s*\/\s*(\d{4})/gi;
-  const found = [];
-  const seen = new Set();
-
-  for (const match of text.matchAll(stcRegex)) {
-    const normalized = `${match[1]}/${match[2]}`;
-    if (seen.has(normalized)) continue;
-    seen.add(normalized);
-    found.push(normalized);
-  }
-
-  return found;
-};
+  .replace(/[^a-z0-9\s]/g, ' ')
+  .replace(/\s+/g, ' ')
+  .trim();
 
 const extractPointNumber = (rootNode) => {
   const h1Text = rootNode.querySelector('header h1')?.textContent || '';
@@ -390,212 +314,59 @@ const renderNormativaHeader = (rootNode, { blocId, temaId }) => {
   pillRow.__normativeRoot = root;
 };
 
-const buildDynamicToc = (rootNode) => {
-  const tocLinks = rootNode.querySelector('.toc-links');
-  if (!tocLinks) return;
-
-  const main = rootNode.querySelector('main') || rootNode;
-  const headings = Array.from(main.querySelectorAll('h1, h2, h3, h4'))
-    .filter((heading) => !isInside(heading, 'nav.toc, aside'));
-
-  tocLinks.innerHTML = '';
-
-  if (headings.length === 0) return;
-
-  headings.forEach((heading) => {
-    const targetId = getHeadingTarget(heading);
-    if (!targetId) return;
-
-    const anchor = document.createElement('a');
-    anchor.href = `#${targetId}`;
-    anchor.textContent = heading.textContent.replace(/\s+/g, ' ').trim();
-
-    if (heading.tagName === 'H3' || heading.tagName === 'H4') {
-      anchor.classList.add('toc-sub');
-    }
-
-    tocLinks.appendChild(anchor);
-  });
-
-  const tocHint = rootNode.querySelector('nav.toc .small');
-  if (tocHint && tocHint.textContent?.includes(PLACEHOLDER_TOC_TEXT)) {
-    tocHint.textContent = `Navegació automàtica (${headings.length} seccions detectades).`;
-  }
-};
-
-const extractConstitutionArticles = (rootNode) => {
-  const main = rootNode.querySelector('main') || rootNode;
-  const clonedMain = main.cloneNode(true);
-  clonedMain.querySelectorAll('nav, aside, script, style').forEach((node) => node.remove());
-
-  const text = clonedMain.textContent || '';
-  const matches = [];
-
-  const directCeRegex = /\bCE\s*(\d+(?:\.\d+){0,3})\b/gi;
-  const articleCeRegex = /\b(?:Art(?:icle)?\.?)\s*(\d+(?:\.\d+){0,3})\s*CE\b/gi;
-
-  for (const match of text.matchAll(directCeRegex)) {
-    if (match[1]) matches.push(normalizeArticleKey(match[1]));
-  }
-
-  for (const match of text.matchAll(articleCeRegex)) {
-    if (match[1]) matches.push(normalizeArticleKey(match[1]));
-  }
-
-  const unique = [];
-  const seen = new Set();
-
-  matches.forEach((article) => {
-    if (seen.has(article)) return;
-    seen.add(article);
-    unique.push(article);
-  });
-
-  return unique;
-};
-
-const updateEssentialArticles = (rootNode) => {
-  const articlesBox = getAsideBoxByTitle(rootNode, 'Articles imprescindibles');
-  if (!articlesBox) return [];
-
-  const refsContainer = articlesBox.querySelector('.refs') || articlesBox;
-  if (!refsContainer) return [];
-
-  const detectedArticles = extractConstitutionArticles(rootNode);
-  const ceRegistry = legalStudyRegistry.CE?.articles || {};
-  refsContainer.innerHTML = '';
-
-  if (detectedArticles.length === 0) {
-    const refNode = document.createElement('div');
-    refNode.className = 'ref';
-
-    const codeNode = document.createElement('code');
-    codeNode.textContent = 'Sense referències CE detectades';
-
-    const detailNode = createSmallLine('Detecció', 'No s’han detectat articles CE al text principal del punt.');
-
-    refNode.append(codeNode, detailNode);
-    refsContainer.appendChild(refNode);
-    return [];
-  }
-
-  detectedArticles.forEach((articleKey) => {
-    const article = normalizeArticleLabel(articleKey);
-    const articleData = ceRegistry[articleKey];
-
-    const refNode = document.createElement('div');
-    refNode.className = 'ref';
-
-    const codeNode = document.createElement('code');
-    codeNode.textContent = article;
-
-    refNode.appendChild(codeNode);
-
-    if (!articleData) {
-      refNode.appendChild(createSmallLine('Estat', 'Article pendent de documentar'));
-      refsContainer.appendChild(refNode);
-      return;
-    }
-
-    refNode.appendChild(createSmallLine('Què diu', articleData.queRegula));
-    refNode.appendChild(createSmallLine('Idea clau d’examen', articleData.ideaClau));
-    refNode.appendChild(createSmallLine('Per què és important en aquest punt', articleData.contextTemari));
-    refNode.appendChild(createSmallLine('Pregunta típica', articleData.clauExamen));
-
-    refsContainer.appendChild(refNode);
-  });
-
-  return detectedArticles;
-};
-
-const updateJurisprudencia = (rootNode) => {
-  const jurisprudenciaBox = getAsideBoxByTitle(rootNode, 'Jurisprudència rellevant');
-  if (!jurisprudenciaBox) return [];
-
-  const detectedStc = extractStcReferences(jurisprudenciaBox);
-  jurisprudenciaBox.querySelectorAll('.ref, .note').forEach((node) => node.remove());
-
-  if (detectedStc.length === 0) {
-    const refNode = document.createElement('div');
-    refNode.className = 'ref';
-    refNode.appendChild(createSmallLine('Criteri', jurisprudenciaFallbackText));
-    jurisprudenciaBox.appendChild(refNode);
-    return [];
-  }
-
-  detectedStc.forEach((stcCode) => {
-    const refNode = document.createElement('div');
-    refNode.className = 'ref';
-
-    const data = jurisprudenciaConstitucional[stcCode];
-
-    const codeNode = document.createElement('code');
-    codeNode.textContent = `STC ${stcCode}`;
-
-    refNode.appendChild(codeNode);
-    refNode.appendChild(createSmallLine('Què regula', data?.queRegula || 'Sentència citada al punt que cal revisar en relació amb el precepte constitucional aplicable.'));
-    refNode.appendChild(createSmallLine('Idea nuclear', data?.ideaClau || 'Revisa la doctrina constitucional principal vinculada al punt.'));
-    refNode.appendChild(createSmallLine('Per què pot sortir a examen', data?.clauExamen || 'Pot aparèixer com a pregunta de doctrina constitucional associada al tema.'));
-
-    jurisprudenciaBox.appendChild(refNode);
-  });
-
-  return detectedStc;
-};
-
-const updateExamMiniCheck = (rootNode, detectedArticles) => {
-  const miniCheckBox = getAsideBoxByTitle(rootNode, 'Mini-check d’examen');
-  if (!miniCheckBox) return;
-
-  const ceRegistry = legalStudyRegistry.CE?.articles || {};
-  const firstKnownArticleKey = detectedArticles.find((key) => Boolean(ceRegistry[key]));
-  const firstArticleData = firstKnownArticleKey ? ceRegistry[firstKnownArticleKey] : null;
-  const firstArticleLabel = firstKnownArticleKey ? normalizeArticleLabel(firstKnownArticleKey) : null;
-
-  const checklist = buildDefaultMiniCheck({
-    articleLabel: firstArticleLabel,
-    articleData: firstArticleData,
-  });
-
-  miniCheckBox.querySelectorAll('.note, .ref').forEach((node) => node.remove());
-
-  const noteNode = document.createElement('div');
-  noteNode.className = 'note';
-
-  const titleNode = document.createElement('strong');
-  titleNode.textContent = '🎯 Recorda:';
-
-  const listNode = document.createElement('ul');
-
-  const rows = [
-    ['Article clau', checklist.articleClau],
-    ['Principi nuclear', checklist.principiNuclear],
-    ['Possible error habitual', checklist.errorHabitual],
-    ['Diferència amb concepte similar', checklist.diferenciaConcepte],
+const removeExamIdeasSection = (rootNode) => {
+  const targetSelectors = [
+    'section.idees-clau',
+    'section#exam',
+    'section.exam',
+    'section[id*="idees-clau"]',
+    '[id*="idees-clau-dexamen"]',
   ];
 
-  rows.forEach(([label, content]) => {
-    const itemNode = document.createElement('li');
-
-    const strongNode = document.createElement('strong');
-    strongNode.textContent = `${label}: `;
-
-    itemNode.append(strongNode, content);
-    listNode.appendChild(itemNode);
+  rootNode.querySelectorAll(targetSelectors.join(', ')).forEach((node) => {
+    const section = node.closest('section') || node;
+    section.remove();
   });
 
-  noteNode.append(titleNode, listNode);
-  miniCheckBox.appendChild(noteNode);
+  rootNode.querySelectorAll('section').forEach((section) => {
+    const heading = section.querySelector('h1, h2, h3, h4');
+    const headingText = normalizeTextLabel(heading?.textContent || '');
+    if (headingText.includes('idees clau d examen')) {
+      section.remove();
+    }
+  });
+
+  rootNode.querySelectorAll('a[href*="#exam"], a[href*="idees-clau"]').forEach((anchor) => {
+    anchor.remove();
+  });
+
+  rootNode.querySelectorAll('li').forEach((listItem) => {
+    const text = normalizeTextLabel(listItem.textContent || '');
+    if (text.includes('idees clau d examen')) {
+      listItem.remove();
+    }
+  });
+};
+
+const simplifyExplanationStructure = (rootNode) => {
+  rootNode.classList.add('explicacio-simplified');
+
+  rootNode.querySelectorAll('nav.toc, .toc, aside, iframe').forEach((node) => {
+    node.remove();
+  });
+
+  removeExamIdeasSection(rootNode);
+
+  rootNode.querySelectorAll('.layout').forEach((layoutNode) => {
+    layoutNode.classList.add('layout-single-column');
+  });
 };
 
 const enhanceExplicacioContent = (rootNode, context) => {
   if (!rootNode) return;
+  simplifyExplanationStructure(rootNode);
   renderNormativaHeader(rootNode, context);
   mountInlineNormativeTooltips(rootNode);
-  buildDynamicToc(rootNode);
-  const detectedArticles = updateEssentialArticles(rootNode);
-  updateJurisprudencia(rootNode);
-  updateExamMiniCheck(rootNode, detectedArticles);
 };
 
 const mountEditableExplanation = ({
