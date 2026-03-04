@@ -1,4 +1,4 @@
-import { normalizeNormativaDataset } from '../templates/normativaTemplate';
+import { normalizeNormativaDataset } from '../templates/normativaTemplate.js';
 
 const rawCEArticles = {
   '1.1': {

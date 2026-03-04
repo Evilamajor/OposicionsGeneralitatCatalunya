@@ -105,14 +105,14 @@ export default function NormativeTooltip({ tipus, referencia, children }) {
       >
         {info.titol && (
           <div className="normative-tooltip-title">
-            {info.titol}
+            ⚖️ {info.titol}
           </div>
         )}
-        {renderField('Què regula', info.queRegula)}
-        {renderField('Idea clau', info.ideaClau)}
-        {renderField('Context dins del temari', info.contextTemari)}
-        {renderField('Clau d’examen', info.clauExamen)}
-        {renderField('Error habitual', info.errorHabitual)}
+        {renderField('📚 Què regula', info.queRegula)}
+        {renderField('🎯 Idea clau', info.ideaClau)}
+        {renderField('🧭 Context dins del temari', info.contextTemari)}
+        {renderField('📝 Clau d’examen', info.clauExamen)}
+        {renderField('⚠️ Error habitual', info.errorHabitual)}
       </div>
     </div>,
     document.body,

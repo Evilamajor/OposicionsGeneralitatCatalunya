@@ -1,4 +1,4 @@
-import { normalizeNormativaDataset } from '../templates/normativaTemplate';
+import { normalizeNormativaDataset } from '../templates/normativaTemplate.js';
 
 const rawJurisprudenciaTC = {
   '6/1981': {
