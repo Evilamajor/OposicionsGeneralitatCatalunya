@@ -3,6 +3,7 @@ import { EACArticles } from '../data/eac2006';
 import { LOData } from '../data/lleisOrganiques';
 import { jurisprudenciaTC } from '../data/jurisprudenciaTC';
 import { normativaContent } from '../data/normativaContent';
+import { buildNormativaHeader, buildNormativaKey } from './normativeReferenceFormatter.js';
 import { applyNormativaTemplate, validateNormativaEntry } from '../templates/normativaTemplate';
 
 const fallbackByType = {
@@ -40,17 +41,8 @@ const fallbackByType = {
   },
 };
 
-const buildReferenceLabel = (tipus, referencia, options = {}) => {
-  const articleSeparator = options.compactArticle ? '' : ' ';
-
-  if (tipus === 'CE') return `Art.${articleSeparator}${referencia} CE`;
-  if (tipus === 'EAC') return `Art.${articleSeparator}${referencia} EAC`;
-  if (tipus === 'LO') return `LO ${referencia}`;
-  return `STC ${referencia}`;
-};
-
-const buildHeader = (tipus, referencia) => buildReferenceLabel(tipus, referencia);
-const buildKey = (tipus, referencia) => buildReferenceLabel(tipus, referencia, { compactArticle: true });
+const buildHeader = (tipus, referencia) => buildNormativaHeader(tipus, referencia);
+const buildKey = (tipus, referencia) => buildNormativaKey(tipus, referencia);
 
 const mapCentralEntry = (entry, fallbackTitle) => {
   if (!entry) return null;

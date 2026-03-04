@@ -12,20 +12,7 @@ import { CEArticles } from './constitucioCE.js';
 import { EACArticles } from './eac2006.js';
 import { LOData } from './lleisOrganiques.js';
 import { jurisprudenciaTC } from './jurisprudenciaTC.js';
-
-const buildNormativaKey = (type, reference) => {
-  if (type === 'CE') return `Art.${reference} CE`;
-  if (type === 'EAC') return `Art.${reference} EAC`;
-  if (type === 'LO') return `LO ${reference}`;
-  return `STC ${reference}`;
-};
-
-const buildNormativaTitle = (type, reference) => {
-  if (type === 'CE') return `Article ${reference} Constitució Espanyola`;
-  if (type === 'EAC') return `Article ${reference} Estatut d'Autonomia de Catalunya`;
-  if (type === 'LO') return `LO ${reference} (llei orgànica)`;
-  return `STC ${reference} (Tribunal Constitucional)`;
-};
+import { buildNormativaKey, buildNormativaTitle } from '../utils/normativeReferenceFormatter.js';
 
 const mapLegacyEntry = (type, reference, entry = {}) => ({
   title: entry.titol || buildNormativaTitle(type, reference),
