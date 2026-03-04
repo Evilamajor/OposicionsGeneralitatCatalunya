@@ -26,6 +26,7 @@ npm install
 npm run dev    # starts Vite with HMR
 npm run build  # production build
 npm run preview  # preview build
+npm run update:normativa # scan bloc content and update normativa tooltips
 ```
 
 - Where to add content:
