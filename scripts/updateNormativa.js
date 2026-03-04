@@ -7,6 +7,7 @@ const CONTENT_ROOT = path.join(ROOT_DIR, 'public', 'content');
 const NORMATIVA_PATH = path.join(ROOT_DIR, 'src', 'data', 'normativaContent.js');
 const BLOCK_DIRS = ['bloc-1', 'bloc-2', 'bloc-3', 'bloc-4', 'bloc-5', 'bloc-6', 'bloc-7'];
 const TEXT_EXTENSIONS = new Set(['.html', '.md', '.txt', '.json']);
+// Marcadors que delimiten la secció auto-generada a normativaContent.js (no es poden eliminar manualment).
 const AUTO_SECTION_START = '// AUTO-GENERATED-NORMATIVA-START';
 const AUTO_SECTION_END = '// AUTO-GENERATED-NORMATIVA-END';
 
@@ -213,7 +214,7 @@ const updateNormativaFile = async (autoEntries) => {
 
   if (!autoSectionRegex.test(fileContent)) {
     const filename = path.basename(NORMATIVA_PATH);
-    throw new Error(`No s’ha trobat la secció auto-generada delimitada per AUTO-GENERATED-NORMATIVA-START i AUTO-GENERATED-NORMATIVA-END al fitxer ${filename}.`);
+    throw new Error(`No s’ha trobat la secció auto-generada delimitada per AUTO-GENERATED-NORMATIVA-START i AUTO-GENERATED-NORMATIVA-END al fitxer ${filename}. Assegura’t que el fitxer conté aquests marcadors per inserir el contingut auto-generat.`);
   }
 
   const updatedContent = fileContent.replace(autoSectionRegex, replacement);
