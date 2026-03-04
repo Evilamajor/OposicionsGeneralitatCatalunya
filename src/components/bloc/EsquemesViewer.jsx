@@ -7,6 +7,7 @@ import {
 } from '../../data/studyMaterialKnowledgeBase';
 import { bloc1Tema1Normativa } from '../../data/bloc1Tema1Normativa';
 import { bloc1Tema2Normativa } from '../../data/bloc1Tema2Normativa';
+import { bloc1Tema3Normativa } from '../../data/bloc1Tema3Normativa';
 import { LOData } from '../../data/lleisOrganiques';
 import { jurisprudenciaTC } from '../../data/jurisprudenciaTC';
 import NormativeTooltip from '../common/NormativeTooltip';
@@ -199,7 +200,7 @@ const extractPointNumber = (rootNode) => {
 };
 
 const renderNormativaHeader = (rootNode, { blocId, temaId }) => {
-  if (blocId !== 'bloc-1' || !['tema-1', 'tema-2'].includes(temaId)) return;
+  if (blocId !== 'bloc-1' || !['tema-1', 'tema-2', 'tema-3'].includes(temaId)) return;
 
   const pillRow = rootNode.querySelector('header .pillrow');
   if (!pillRow) return;
@@ -227,9 +228,12 @@ const renderNormativaHeader = (rootNode, { blocId, temaId }) => {
    * - No depenien d'una matriu normativa per punt (excepte alguns casos puntuals manuals).
    * - Per oposicions, això no permetia identificar ràpidament arquitectura CE–EAC ni STC clau.
    */
-  const pointNormativa = temaId === 'tema-1'
-    ? bloc1Tema1Normativa[pointNumber]
-    : bloc1Tema2Normativa[pointNumber];
+  const pointNormativaMap = {
+    'tema-1': bloc1Tema1Normativa,
+    'tema-2': bloc1Tema2Normativa,
+    'tema-3': bloc1Tema3Normativa,
+  };
+  const pointNormativa = (pointNormativaMap[temaId] || {})[pointNumber];
   if (!pointNormativa) return;
 
   const ceReferences = (pointNormativa.ce || []).map((article) => ({
@@ -262,48 +266,48 @@ const renderNormativaHeader = (rootNode, { blocId, temaId }) => {
     };
   });
 
-  const categories = [
-    ...(temaId === 'tema-2'
-      ? [
-        {
-          title: 'CONSTITUCIÓ ESPANYOLA',
-          references: ceReferences,
-          fallback: 'No hi ha preceptes constitucionals definits per a aquest punt.',
-        },
-        {
-          title: 'ESTATUT D’AUTONOMIA (EAC 2006)',
-          references: eacReferences,
-          fallback: 'No hi ha preceptes estatutaris específics rellevants en aquest punt.',
-        },
-        {
-          title: 'LLEI ORGÀNICA D’APROVACIÓ',
-          references: loReferences,
-          fallback: 'No hi ha normativa orgànica específica rellevant en aquest punt.',
-        },
-        {
-          title: 'JURISPRUDÈNCIA CONSTITUCIONAL',
-          references: stcReferences,
-          fallback: 'No consta jurisprudència constitucional estructural rellevant en aquest punt.',
-        },
-      ]
-      : [
-        {
-          title: 'CONSTITUCIÓ ESPANYOLA',
-          references: ceReferences,
-          fallback: 'No hi ha preceptes constitucionals definits per a aquest punt.',
-        },
-        {
-          title: 'LLEIS ORGÀNIQUES',
-          references: loReferences,
-          fallback: 'No hi ha normativa orgànica específica rellevant en aquest punt.',
-        },
-        {
-          title: 'JURISPRUDÈNCIA',
-          references: stcReferences,
-          fallback: 'No consta jurisprudència constitucional estructural rellevant en aquest punt.',
-        },
-      ]),
-  ];
+  const usesEAC = temaId === 'tema-2' || temaId === 'tema-3';
+
+  const categories = usesEAC
+    ? [
+      {
+        title: 'CONSTITUCIÓ ESPANYOLA',
+        references: ceReferences,
+        fallback: 'No hi ha preceptes constitucionals definits per a aquest punt.',
+      },
+      {
+        title: 'ESTATUT D’AUTONOMIA (EAC 2006)',
+        references: eacReferences,
+        fallback: 'No hi ha preceptes estatutaris específics rellevants en aquest punt.',
+      },
+      {
+        title: 'LLEIS ORGÀNIQUES',
+        references: loReferences,
+        fallback: 'No hi ha normativa orgànica específica rellevant en aquest punt.',
+      },
+      {
+        title: 'JURISPRUDÈNCIA CONSTITUCIONAL',
+        references: stcReferences,
+        fallback: 'No consta jurisprudència constitucional estructural rellevant en aquest punt.',
+      },
+    ]
+    : [
+      {
+        title: 'CONSTITUCIÓ ESPANYOLA',
+        references: ceReferences,
+        fallback: 'No hi ha preceptes constitucionals definits per a aquest punt.',
+      },
+      {
+        title: 'LLEIS ORGÀNIQUES',
+        references: loReferences,
+        fallback: 'No hi ha normativa orgànica específica rellevant en aquest punt.',
+      },
+      {
+        title: 'JURISPRUDÈNCIA',
+        references: stcReferences,
+        fallback: 'No consta jurisprudència constitucional estructural rellevant en aquest punt.',
+      },
+    ];
 
   if (pillRow.__normativeRoot) {
     pillRow.__normativeRoot.unmount();
