@@ -6,7 +6,9 @@ export const buildNormativaReference = (type, reference, options = {}) => {
   if (normalizedType === 'CE') return `Art.${articleSeparator}${normalizedRef} CE`;
   if (normalizedType === 'EAC') return `Art.${articleSeparator}${normalizedRef} EAC`;
   if (normalizedType === 'LO') return `LO ${normalizedRef}`;
-  return `STC ${normalizedRef}`;
+  if (normalizedType === 'STC') return `STC ${normalizedRef}`;
+  if (!normalizedType) return normalizedRef;
+  return `${normalizedType} ${normalizedRef}`.trim();
 };
 
 export const buildNormativaKey = (type, reference) => (
@@ -24,5 +26,7 @@ export const buildNormativaTitle = (type, reference) => {
   if (normalizedType === 'CE') return `Article ${normalizedRef} Constitució Espanyola`;
   if (normalizedType === 'EAC') return `Article ${normalizedRef} Estatut d'Autonomia de Catalunya`;
   if (normalizedType === 'LO') return `LO ${normalizedRef} (llei orgànica)`;
-  return `STC ${normalizedRef} (Tribunal Constitucional)`;
+  if (normalizedType === 'STC') return `STC ${normalizedRef} (Tribunal Constitucional)`;
+  if (!normalizedType) return normalizedRef;
+  return `${normalizedType} ${normalizedRef}`;
 };
