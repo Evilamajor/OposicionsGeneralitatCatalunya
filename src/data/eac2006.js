@@ -66,6 +66,12 @@ const rawEACArticles = {
     ideaClau: 'Promoció institucional de llengua i cultura pròpies.',
     clauExamen: 'Relacionable amb competències en cultura i educació.',
   },
+  '55': {
+    queRegula: 'El Parlament de Catalunya exerceix la potestat legislativa, aprova els pressupostos, controla i impulsa l’acció política i de govern i exerceix les altres funcions que li atribueix la Constitució i l’Estatut.',
+    ideaClau: 'Triple funció del Parlament: legislar, pressupostar i controlar el Govern.',
+    contextTemari: 'Eix de l’organització i funció del Parlament de Catalunya.',
+    clauExamen: 'Quin article EAC defineix les funcions del Parlament de Catalunya?',
+  },
   '56': {
     queRegula: 'Configura el Parlament de Catalunya com a institució representativa.',
     ideaClau: 'Centralitat del Parlament en l’autogovern.',
@@ -85,6 +91,12 @@ const rawEACArticles = {
     queRegula: 'Funcions de control i impuls polític del Parlament.',
     ideaClau: 'Control parlamentari del Govern.',
     clauExamen: 'Preguntable amb moció de censura i qüestió de confiança.',
+  },
+  '62': {
+    queRegula: 'Regulació de la iniciativa legislativa popular i municipal davant el Parlament.',
+    ideaClau: 'Formes de participació ciutadana i local en la funció legislativa.',
+    contextTemari: 'Connecta amb els drets de participació política i la democràcia participativa.',
+    clauExamen: 'Quin article EAC regula la iniciativa legislativa popular i municipal?',
   },
   '67': {
     queRegula: 'President o presidenta de la Generalitat: elecció i posició institucional.',
@@ -150,6 +162,18 @@ const rawEACArticles = {
     queRegula: 'Consell de l’Audiovisual i garanties en l’àmbit comunicatiu.',
     ideaClau: 'Supervisió independent en espai audiovisual català.',
     clauExamen: 'Pregunta freqüent sobre institucions pròpies.',
+  },
+  '82': {
+    queRegula: 'El Consell de l’Audiovisual de Catalunya és l’autoritat reguladora independent en matèria audiovisual i té la funció de vetllar pel compliment de la normativa audiovisual.',
+    ideaClau: 'Institució estatutària independent de control audiovisual.',
+    contextTemari: 'Connecta amb la llibertat d’expressió, el pluralisme informatiu i les competències autonòmiques en comunicació.',
+    clauExamen: 'Quin article EAC regula el Consell de l’Audiovisual de Catalunya?',
+  },
+  '85': {
+    queRegula: 'El Consell de Governs Locals és l’òrgan de representació dels ens locals en les institucions de la Generalitat.',
+    ideaClau: 'Mecanisme de participació dels governs locals en les decisions autonòmiques.',
+    contextTemari: 'Important en el règim local i les relacions intergoveramentals Generalitat-municipis.',
+    clauExamen: 'Quin article EAC crea el Consell de Governs Locals?',
   },
   '97': {
     queRegula: 'Règim del poder judicial a Catalunya en el marc competencial constitucional.',
@@ -325,6 +349,30 @@ const rawEACArticles = {
     queRegula: 'Coordinació de l’acció exterior amb l’Estat.',
     ideaClau: 'Evitar invasió de la competència estatal en relacions internacionals.',
     clauExamen: 'Tema recurrent amb jurisprudència constitucional.',
+  },
+  '180': {
+    queRegula: 'La Generalitat participa en les institucions, els organismes i els procediments de l’Estat que afecten les competències o els interessos de Catalunya.',
+    ideaClau: 'Dret de participació autonòmica en institucions i procediments estatals.',
+    contextTemari: 'Clau en les relacions intergovernamentals Generalitat-Estat.',
+    clauExamen: 'Quin article EAC reconeix la participació de la Generalitat en institucions de l’Estat?',
+  },
+  '186': {
+    queRegula: 'La Generalitat participa en el Comitè de les Regions i en el Comitè Econòmic i Social Europeu.',
+    ideaClau: 'Representació autonòmica en institucions consultives de la UE.',
+    contextTemari: 'Connecta la participació autonòmica en assumptes europeus amb la gestió institucional comunitària.',
+    clauExamen: 'Quin article EAC regula la participació de la Generalitat en el Comitè de les Regions?',
+  },
+  '187': {
+    queRegula: 'La Generalitat pot designar delegats davant les institucions europees per defensar els seus interessos en els àmbits de les seves competències.',
+    ideaClau: 'Representació específica de la Generalitat davant la UE.',
+    contextTemari: 'Mecanisme d’acció exterior autonòmica respectuosa amb el marc constitucional.',
+    clauExamen: 'Quin article EAC permet a la Generalitat designar delegats davant institucions europees?',
+  },
+  '188': {
+    queRegula: 'La Generalitat pot participar en les delegacions espanyoles davant les institucions de la Unió Europea en matèries que afectin les seves competències.',
+    ideaClau: 'Integració de la veu autonòmica en la delegació de l’Estat davant la UE.',
+    contextTemari: 'Relació amb el mecanisme de coordinació Estat-CCAA en assumptes europeus.',
+    clauExamen: 'Quin article EAC regula la participació de la Generalitat en delegacions espanyoles davant la UE?',
   },
   '199': {
     queRegula: 'Cooperació transfronterera i interregional dins marcs jurídics aplicables.',
