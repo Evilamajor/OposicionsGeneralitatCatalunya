@@ -40,19 +40,17 @@ const fallbackByType = {
   },
 };
 
-const buildHeader = (tipus, referencia) => {
-  if (tipus === 'CE') return `Art. ${referencia} CE`;
-  if (tipus === 'EAC') return `Art. ${referencia} EAC`;
+const buildReferenceLabel = (tipus, referencia, options = {}) => {
+  const articleSeparator = options.compactArticle ? '' : ' ';
+
+  if (tipus === 'CE') return `Art.${articleSeparator}${referencia} CE`;
+  if (tipus === 'EAC') return `Art.${articleSeparator}${referencia} EAC`;
   if (tipus === 'LO') return `LO ${referencia}`;
   return `STC ${referencia}`;
 };
 
-const buildKey = (tipus, referencia) => {
-  if (tipus === 'CE') return `Art.${referencia} CE`;
-  if (tipus === 'EAC') return `Art.${referencia} EAC`;
-  if (tipus === 'LO') return `LO ${referencia}`;
-  return `STC ${referencia}`;
-};
+const buildHeader = (tipus, referencia) => buildReferenceLabel(tipus, referencia);
+const buildKey = (tipus, referencia) => buildReferenceLabel(tipus, referencia, { compactArticle: true });
 
 const mapCentralEntry = (entry, fallbackTitle) => {
   if (!entry) return null;
