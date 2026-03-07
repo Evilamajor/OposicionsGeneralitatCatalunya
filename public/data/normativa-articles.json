@@ -1,0 +1,222 @@
+{
+  "LCSP": {
+    "title": "LCSP 9/2017",
+    "summary": "La Llei 9/2017, de contractes del sector public, estableix el marc basic de la contractacio publica a Espanya i transpon les directives europees de 2014.",
+    "oppositionPoints": [
+      "Norma central del Tema 13 i referencia basica per a totes les administracions publiques.",
+      "Combina integritat, transparencia i eficiencia amb la millor relacio qualitat-preu.",
+      "Diferencia entre administracions publiques, PANAP i altres ens del sector public."
+    ],
+    "context": "Has de citar-la com a eix del sistema contractual quan et preguntin pel marc juridic general o pels principis de la contractacio publica."
+  },
+  "LCSP_art_1": {
+    "title": "Art. 1 LCSP",
+    "summary": "Defineix les finalitats del sistema contractual: llibertat d'acces a les licitacions, publicitat, transparencia, no-discriminacio i igualtat de tracte, amb una despesa eficient i orientada a la millor relacio qualitat-preu.",
+    "oppositionPoints": [
+      "Es l'article de capcalera per explicar els principis generals de la contractacio publica.",
+      "Ja no n'hi ha prou amb el preu mes baix: el centre es la millor relacio qualitat-preu.",
+      "Permet incorporar criteris socials, ambientals i d'innovacio."
+    ],
+    "context": "Al Tema 13 apareix com a porta d'entrada als principis generals i als de transparencia i publicitat."
+  },
+  "LCSP_art_2_1": {
+    "title": "Art. 2.1 LCSP",
+    "summary": "Delimita el concepte de contracte del sector public a partir del caracter onerós del negoci i de la seva subscripcio per entitats integrades en el sector public.",
+    "oppositionPoints": [
+      "Serveix per definir l'ambit objectiu inicial de la LCSP.",
+      "Ajuda a distingir contractes del sector public d'altres figures no contractuals o excloses.",
+      "La dada clau es la combinacio entre subjecte public i negoci onerós."
+    ],
+    "context": "Al Tema 13 es clau al punt 03 per explicar quan una relacio entra realment dins del regim contractual public."
+  },
+  "LCSP_art_15_1": {
+    "title": "Art. 15.1 LCSP",
+    "summary": "Defineix el contracte de concessio de serveis com aquell en que un poder adjudicador encomana a titol onerós la gestio d un servei i la contraprestacio consisteix, principalment, en el dret d explotar-lo amb assumpcio del risc operacional.",
+    "oppositionPoints": [
+      "Es la referencia basica per distingir la concessio de serveis del contracte de serveis.",
+      "La clau d examen es la combinacio entre explotacio del servei i risc operacional.",
+      "Connecta directament amb la Directiva 2014/23/UE i amb la desaparicio de l antiga gestio de serveis publics."
+    ],
+    "context": "Al Tema 13 estructura el punt 13 i serveix per explicar la definicio legal de la concessio de serveis."
+  },
+  "LCSP_art_16": {
+    "title": "Art. 16 LCSP",
+    "summary": "Defineix el contracte de subministrament com aquell que te per objecte l'adquisicio, arrendament financer o arrendament, amb o sense opcio de compra, de productes o béns mobles.",
+    "oppositionPoints": [
+      "Es la referencia legal de capcalera per al contracte de subministrament.",
+      "Sovint es contraposa amb els contractes d'obres, serveis i concessions.",
+      "Cal retenir que el centre es el lliurament o disponibilitat de béns mobles."
+    ],
+    "context": "Al Tema 13 connecta directament amb el punt 14, dedicat a la definicio i el regim basic del contracte de subministrament."
+  },
+  "LCSP_art_39_2_c": {
+    "title": "Art. 39.2.c LCSP",
+    "summary": "Preveu la nul·litat de ple dret quan s'omet la publicacio de l'anunci de licitacio en els mitjans preceptius, perque es trenca la publicitat exigida pel sistema.",
+    "oppositionPoints": [
+      "Relaciona directament publicitat defectuosa i invalidesa maxima de l'acte.",
+      "Es una referencia molt util per a preguntes sobre consequencies juridiques de la manca de publicacio.",
+      "Connecta amb la idea que sense publicitat real no hi ha concurrencia efectiva."
+    ],
+    "context": "Important en el punt 05 quan s'explica que transparencia i publicitat no son deures formals, sino garanties estructurals."
+  },
+  "CE_art_149_1_18": {
+    "title": "Art. 149.1.18 CE",
+    "summary": "Atribueix a l'Estat la competencia sobre les bases del regim juridic de les administracions publiques i del procediment administratiu comu, fonament de la legislacio basica contractual.",
+    "oppositionPoints": [
+      "Justifica per que la LCSP te caracter basic i s'aplica amb un marc comu a totes les administracions.",
+      "Surt sovint en preguntes de cobertura constitucional de la legislacio administrativa.",
+      "No atribueix tota l'execucio a l'Estat: fonamenta les bases."
+    ],
+    "context": "Clau per explicar el marc estatal de la contractacio publica i la legitimitat constitucional de la LCSP."
+  },
+  "CE_art_105_b": {
+    "title": "Art. 105.b CE",
+    "summary": "Reconeix l'acces dels ciutadans als arxius i registres administratius en els termes que estableixi la llei, i serveix de suport constitucional als deures de transparencia.",
+    "oppositionPoints": [
+      "No regula la contractacio directament, pero fonamenta l'obertura informativa de l'Administracio.",
+      "S'ha de connectar amb transparencia, acces a la informacio i control ciutada.",
+      "No s'ha de confondre amb els preceptes de competencia de l'article 149 CE."
+    ],
+    "context": "Al Tema 13 reforca la dimensio constitucional del principi de transparencia i publicitat."
+  },
+  "DIRECTIVA_2014_24_UE": {
+    "title": "Directiva 2014/24/UE",
+    "summary": "Es la directiva central de la contractacio publica general a la Unio Europea i harmonitza procediments, principis i garanties dels poders adjudicadors.",
+    "oppositionPoints": [
+      "Es la referencia europea principal per a la contractacio ordinaria del sector public.",
+      "Inspira la LCSP i el gir cap a una compra publica estrategica.",
+      "S'ha de distingir de la 2014/25/UE i de la 2014/23/UE."
+    ],
+    "context": "Necessaria quan et preguntin pel fonament europeu del sistema contractual espanyol."
+  },
+  "DIRECTIVA_2014_25_UE": {
+    "title": "Directiva 2014/25/UE",
+    "summary": "Regula la contractacio en sectors especials com aigua, energia, transports i serveis postals, amb un regim adaptat a aquestes activitats.",
+    "oppositionPoints": [
+      "No es la directiva general: se centra en sectors especials.",
+      "Has d'associar-la a activitats amb peculiaritats organitzatives i economiques.",
+      "Sovint es demana en contrast amb la 2014/24/UE."
+    ],
+    "context": "Apareix al punt 01 per ordenar el marc normatiu europeu de la contractacio publica."
+  },
+  "DIRECTIVA_2014_23_UE": {
+    "title": "Directiva 2014/23/UE",
+    "summary": "Regula les concessions d'obres i de serveis i destaca la transferencia del risc operacional al concessionari com a element distintiu.",
+    "oppositionPoints": [
+      "La dada d'examen essencial es la transferencia del risc operacional.",
+      "No regula la contractacio general, sino les concessions.",
+      "Ajuda a diferenciar concessio i contracte de serveis."
+    ],
+    "context": "Apareix al punt 01 com una de les tres directives basiques del paquet europeu de 2014."
+  },
+  "LLEI_47_2003": {
+    "title": "Llei 47/2003, General Pressupostaria",
+    "summary": "Exigeix cobertura pressupostaria, disponibilitat de credit i control de la despesa abans d'assumir compromisos contractuals.",
+    "oppositionPoints": [
+      "Sense credit adequat i suficient no hi pot haver contractacio valida.",
+      "Connecta contractacio i fiscalitzacio previa de la despesa.",
+      "Complementa la LCSP, no la substitueix."
+    ],
+    "context": "Serveix per explicar que el marc contractual es completa amb normativa pressupostaria."
+  },
+  "LLEI_39_2015": {
+    "title": "Llei 39/2015",
+    "summary": "Actua com a norma supletoria en la contractacio publica en els aspectes no regulats especificament per la LCSP, especialment sobre actes i procediment administratiu.",
+    "oppositionPoints": [
+      "La idea clau es la supletorietat, no la centralitat.",
+      "Surt en preguntes de validesa, eficacia o revisio dels actes de l'expedient.",
+      "No es la norma basica contractual: aquesta es la LCSP."
+    ],
+    "context": "Al punt 01 apareix com a peça complementaria del marc juridic de la contractacio publica."
+  },
+  "LLEI_19_2014": {
+    "title": "Llei 19/2014 de transparencia",
+    "summary": "Impulsa la transparencia, l'acces a la informacio publica i el bon govern a Catalunya, amb obligacions de publicitat activa tambe rellevants en contractacio.",
+    "oppositionPoints": [
+      "S'ha de relacionar amb portals de transparencia, control ciutada i rendicio de comptes.",
+      "Complementa la LCSP des del vessant de transparencia institucional.",
+      "Es especialment important en l'ambit catala."
+    ],
+    "context": "Tema 13 la fa servir per reforcar el principi de transparencia i publicitat activa."
+  },
+  "TFUE": {
+    "title": "TFUE",
+    "summary": "El Tractat de Funcionament de la Unio Europea aporta el fonament del mercat interior i de les llibertats que inspiren la contractacio publica europea.",
+    "oppositionPoints": [
+      "Has de lligar-lo amb llibertat d'establiment, lliure prestacio de serveis i circulacio de mercaderies.",
+      "Es el fonament dels principis, abans de la concrecio a les directives.",
+      "Explica la dimensio europea de la igualtat de tracte i la no-discriminacio."
+    ],
+    "context": "Al punt 04 serveix per justificar l'origen europeu dels principis generals de la contractacio publica."
+  },
+  "PERFIL_CONTRACTANT": {
+    "title": "Perfil del contractant",
+    "summary": "Es l'espai electronic on l'organ de contractacio publica la informacio essencial del procediment: licitacions, plecs, adjudicacions i incidencies.",
+    "oppositionPoints": [
+      "Es l'instrument ordinari de publicitat de la contractacio publica.",
+      "Fa efectiva la concurrencia i la transparencia del procediment.",
+      "La seva omissio pot provocar invalidesa quan la publicitat era preceptiva."
+    ],
+    "context": "Tema 13 l'utilitza com a mecanisme nuclear dels principis de publicitat i transparencia."
+  },
+  "PSCP": {
+    "title": "PSCP",
+    "summary": "La Plataforma de Serveis de Contractacio Publica de Catalunya es el portal de difusio de la contractacio del sector public catala.",
+    "oppositionPoints": [
+      "Permet acces lliure, directe i gratuit a la informacio contractual.",
+      "Centralitza els perfils del contractant del sector public de Catalunya.",
+      "Es una referencia practica recurrent en preguntes sobre publicitat institucional."
+    ],
+    "context": "Important als punts 04 i 05 per aterrar el principi de publicitat a l'ambit catala."
+  },
+  "DOUE": {
+    "title": "DOUE",
+    "summary": "El Diari Oficial de la Unio Europea es el canal de publicacio comunitaria dels contractes subjectes a regulacio harmonitzada.",
+    "oppositionPoints": [
+      "S'ha d'associar als contractes SARA i a l'obertura del mercat a escala europea.",
+      "No substitueix la publicitat interna: la complementa quan la normativa ho exigeix.",
+      "Es una dada de localitzacio formal molt habitual a examen."
+    ],
+    "context": "Tema 13 el fa servir per explicar la dimensio europea de la publicitat contractual."
+  },
+  "DIR_2014_23_UE": {
+    "title": "Directiva 2014/23/UE",
+    "summary": "Regula les concessions d'obres i de serveis i destaca la transferencia del risc operacional al concessionari com a element distintiu.",
+    "oppositionPoints": [
+      "La dada d'examen essencial es la transferencia del risc operacional.",
+      "No regula la contractacio general, sino les concessions.",
+      "Ajuda a diferenciar concessio i contracte de serveis."
+    ],
+    "context": "Apareix al punt 01 com una de les tres directives basiques del paquet europeu de 2014."
+  },
+  "DIR_2014_24_UE": {
+    "title": "Directiva 2014/24/UE",
+    "summary": "Es la directiva central de la contractacio publica general a la Unio Europea i harmonitza procediments, principis i garanties dels poders adjudicadors.",
+    "oppositionPoints": [
+      "Es la referencia europea principal per a la contractacio ordinaria del sector public.",
+      "Inspira la LCSP i el gir cap a una compra publica estrategica.",
+      "S'ha de distingir de la 2014/25/UE i de la 2014/23/UE."
+    ],
+    "context": "Necessaria quan et preguntin pel fonament europeu del sistema contractual espanyol."
+  },
+  "DIR_2014_25_UE": {
+    "title": "Directiva 2014/25/UE",
+    "summary": "Regula la contractacio en sectors especials com aigua, energia, transports i serveis postals, amb un regim adaptat a aquestes activitats.",
+    "oppositionPoints": [
+      "No es la directiva general: se centra en sectors especials.",
+      "Has d'associar-la a activitats amb peculiaritats organitzatives i economiques.",
+      "Sovint es demana en contrast amb la 2014/24/UE."
+    ],
+    "context": "Apareix al punt 01 per ordenar el marc normatiu europeu de la contractacio publica."
+  },
+  "LLEI_19_2014_CAT": {
+    "title": "Llei 19/2014 de transparencia",
+    "summary": "Impulsa la transparencia, l'acces a la informacio publica i el bon govern a Catalunya, amb obligacions de publicitat activa tambe rellevants en contractacio.",
+    "oppositionPoints": [
+      "S'ha de relacionar amb portals de transparencia, control ciutada i rendicio de comptes.",
+      "Complementa la LCSP des del vessant de transparencia institucional.",
+      "Es especialment important en l'ambit catala."
+    ],
+    "context": "Tema 13 la fa servir per reforcar el principi de transparencia i publicitat activa."
+  }
+}

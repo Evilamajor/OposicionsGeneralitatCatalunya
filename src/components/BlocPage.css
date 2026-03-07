@@ -582,6 +582,15 @@
   border-color: var(--border-strong);
 }
 
+.html-content .schema-inline-explicacio .edit-controls .btn-open-tab {
+  margin-left: 0;
+  background: #f5f7fa;
+}
+
+.html-content .schema-inline-explicacio .edit-controls .btn-open-tab:hover {
+  background: #e9edf3;
+}
+
 .html-content .schema-inline-explicacio .edit-textarea {
   width: 100%;
   min-height: 600px;
