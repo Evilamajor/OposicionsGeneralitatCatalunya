@@ -21,9 +21,9 @@ function normalizeItems(payload) {
     .filter((item) => item && item.title && item.href)
     .map((item) => ({
       ...item,
-      href: item.href.startsWith('/')
-        ? getBasePath(item.href)
-        : item.href,
+      href: /^(https?:|mailto:|tel:|#)/i.test(item.href)
+        ? item.href
+        : getBasePath(item.href),
     }));
 }
 

@@ -1,11 +1,5 @@
-export default function MaterialsSection({ materialsPath }) {
-  if (!materialsPath) return null;
+import EmbeddedHtmlFrame from './EmbeddedHtmlFrame';
 
-  return (
-    <iframe
-      src={materialsPath}
-      title="Materials del tema"
-      className="bloc-embedded-frame"
-    />
-  );
+export default function MaterialsSection({ materialsPath }) {
+  return <EmbeddedHtmlFrame src={materialsPath} title="Materials del tema" />;
 }
