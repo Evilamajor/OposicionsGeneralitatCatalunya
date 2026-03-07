@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchTextWithCache } from '../../utils/contentCache';
+import { getBasePath } from '@/utils/basePath';
 import { getStandaloneExplanationRoute } from '../../constants/routes';
 import {
   jurisprudenciaConstitucional,
@@ -56,12 +57,17 @@ const resolveRelativeUrls = (htmlString, htmlPath) => {
 
     if (!value) return;
 
-    const isAbsolute = /^(https?:|data:|mailto:|tel:|#|\/)/i.test(value);
-    if (isAbsolute) return;
+    const isExternal = /^(https?:|data:|mailto:|tel:|#)/i.test(value);
+    if (isExternal) return;
 
     try {
-      const resolved = new URL(value, baseUrl).pathname;
-      element.setAttribute(attrName, resolved);
+      if (value.startsWith('/')) {
+        element.setAttribute(attrName, getBasePath(value));
+        return;
+      }
+
+      const resolved = new URL(value, baseUrl);
+      element.setAttribute(attrName, `${resolved.pathname}${resolved.search}${resolved.hash}`);
     } catch {
       // keep original value
     }

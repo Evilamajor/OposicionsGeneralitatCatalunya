@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import { getBasePath } from '@/utils/basePath';
 import './FullscreenDiagramViewer.css';
 
 export default function FullscreenDiagramViewer() {
@@ -19,8 +20,8 @@ export default function FullscreenDiagramViewer() {
       : String(numeric).padStart(2, '0');
 
     return [
-      `/content/${blocId}/${temaId}/esquemes/diagrames/punt-${paddedPoint}.png`,
-      `/content/${blocId}/${temaId}/diagrama/${normalizedPunt}.png`,
+      getBasePath(`content/${blocId}/${temaId}/esquemes/diagrames/punt-${paddedPoint}.png`),
+      getBasePath(`content/${blocId}/${temaId}/diagrama/${normalizedPunt}.png`),
     ];
   }, [blocId, temaId, punt]);
 

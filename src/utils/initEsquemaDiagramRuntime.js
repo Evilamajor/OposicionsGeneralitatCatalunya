@@ -1,3 +1,5 @@
+import { getBasePath } from '@/utils/basePath';
+
 const STYLE_ID = 'unified-esquema-diagram-runtime-style';
 
 function ensureStyleTag() {
@@ -317,7 +319,7 @@ export function initEsquemaDiagramRuntime({ container, blocId, temaId }) {
       if (section && section.dataset.diagramRuntimeLoaded === 'true') {
         const point = getPointFromSectionId(section.id);
         if (!point) return;
-        const imageSrc = `/content/${blocId}/${temaId}/diagrama/${point}.png`;
+        const imageSrc = getBasePath(`content/${blocId}/${temaId}/diagrama/${point}.png`);
         const image = new Image();
         image.onload = () => {
           const fit = section.__diagramRuntimeFit;
@@ -331,7 +333,7 @@ export function initEsquemaDiagramRuntime({ container, blocId, temaId }) {
     const point = getPointFromSectionId(section.id);
     if (!point) return;
 
-    const imageSrc = `/content/${blocId}/${temaId}/diagrama/${point}.png`;
+    const imageSrc = getBasePath(`content/${blocId}/${temaId}/diagrama/${point}.png`);
     const probe = new Image();
     probe.onload = () => {
       const cleanup = createDiagramViewer(section, imageSrc, blocId, temaId, point);

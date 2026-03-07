@@ -9,6 +9,7 @@ import PowerPointsSection from './bloc/PowerPointsSection';
 import MaterialsSection from './bloc/MaterialsSection';
 import LegislacioSection from './bloc/LegislacioSection';
 import { DEFAULT_TOPIC_SECTION, TOPIC_POWERPOINT_BLOCS } from '../constants/sections';
+import { getBasePath } from '@/utils/basePath';
 import './BlocPage.css';
 
 export default function BlocPage() {
@@ -24,23 +25,23 @@ export default function BlocPage() {
 
   const schemaPath =
     blocId && temaId
-      ? `/content/${blocId}/${temaId}/esquemes/desenvolupament-base.html`
+      ? getBasePath(`content/${blocId}/${temaId}/esquemes/desenvolupament-base.html`)
       : null;
 
   const legislacioPath = blocId && temaId
-    ? `/content/${blocId}/${temaId}/legislacio.html`
+    ? getBasePath(`content/${blocId}/${temaId}/legislacio.html`)
     : null;
 
   const materialsPath = blocId && temaId
-    ? `/content/${blocId}/${temaId}/materials.html`
+    ? getBasePath(`content/${blocId}/${temaId}/materials.html`)
     : null;
 
   const powerpointMetadataUrl = blocId && temaId
-    ? `/content/${blocId}/${temaId}/powerpoints/metadata.json`
+    ? getBasePath(`content/${blocId}/${temaId}/powerpoints/metadata.json`)
     : null;
 
   const powerpointConfigUrl = blocId && temaId
-    ? `/content/${blocId}/${temaId}/powerpoints/config.json`
+    ? getBasePath(`content/${blocId}/${temaId}/powerpoints/config.json`)
     : null;
 
   useEffect(() => {

@@ -1,4 +1,5 @@
 import './HomeSelectorPage.css';
+import { getBasePath } from '@/utils/basePath';
 
 export default function HomeSelectorPage() {
   return (
@@ -7,7 +8,7 @@ export default function HomeSelectorPage() {
         <section className="welcome-panel home-welcome-panel">
           <div className="home-image-frame">
             <img
-              src="/assets/images/catalunya-portada.png"
+              src={getBasePath('assets/images/catalunya-portada.png')}
               alt="Paisatge de Catalunya"
               className="welcome-image home-welcome-image"
             />

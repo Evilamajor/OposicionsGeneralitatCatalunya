@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchTextWithCache } from '../utils/contentCache';
+import { getBasePath } from '@/utils/basePath';
 import './ExplicacioStandalone.css';
 
 const normalizeNumericId = (value, fallback = '0') => {
@@ -14,8 +15,8 @@ const normalizeNumericId = (value, fallback = '0') => {
 const buildCandidatePaths = ({ bloc, tema, punt }) => {
   const paddedPoint = String(Number.parseInt(punt, 10)).padStart(2, '0');
   return [
-    `/content/bloc-${bloc}/tema-${tema}/explicacions/punt-${paddedPoint}.html`,
-    `/content/bloc-${bloc}/tema-${tema}/esquemes/explicacions/punt-${paddedPoint}.html`,
+    getBasePath(`content/bloc-${bloc}/tema-${tema}/explicacions/punt-${paddedPoint}.html`),
+    getBasePath(`content/bloc-${bloc}/tema-${tema}/esquemes/explicacions/punt-${paddedPoint}.html`),
   ];
 };
 
@@ -33,12 +34,17 @@ const resolveRelativeUrls = (htmlString, htmlPath) => {
 
     if (!value) return;
 
-    const isAbsolute = /^(https?:|data:|mailto:|tel:|#|\/)/i.test(value);
-    if (isAbsolute) return;
+    const isExternal = /^(https?:|data:|mailto:|tel:|#)/i.test(value);
+    if (isExternal) return;
 
     try {
-      const resolved = new URL(value, baseUrl).pathname;
-      element.setAttribute(attrName, resolved);
+      if (value.startsWith('/')) {
+        element.setAttribute(attrName, getBasePath(value));
+        return;
+      }
+
+      const resolved = new URL(value, baseUrl);
+      element.setAttribute(attrName, `${resolved.pathname}${resolved.search}${resolved.hash}`);
     } catch {
       // Keep original value if resolution fails.
     }

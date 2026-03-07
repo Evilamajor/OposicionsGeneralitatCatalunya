@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import ContentPlaceholder from '../components/ContentPlaceholder';
 import { BLOC_SECTIONS, getBlocById, isValidBlocId, isValidBlocSection } from '../data';
+import { getBasePath } from '@/utils/basePath';
 import './BlocSectionPage.css';
 
 const SECTION_DESCRIPTIONS = {
@@ -16,7 +17,14 @@ function normalizeItems(payload) {
     return [];
   }
 
-  return payload.items.filter((item) => item && item.title && item.href);
+  return payload.items
+    .filter((item) => item && item.title && item.href)
+    .map((item) => ({
+      ...item,
+      href: item.href.startsWith('/')
+        ? getBasePath(item.href)
+        : item.href,
+    }));
 }
 
 export default function BlocSectionPage() {
@@ -43,7 +51,7 @@ export default function BlocSectionPage() {
       setError('');
 
       try {
-        const response = await fetch(`/content/bloc-${blocId}/${section}/index.json`, {
+        const response = await fetch(getBasePath(`content/bloc-${blocId}/${section}/index.json`), {
           signal: controller.signal,
         });
 
