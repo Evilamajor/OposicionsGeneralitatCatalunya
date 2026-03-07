@@ -370,11 +370,50 @@
 		});
 	}
 
+	const availablePreguntaJsonPoints = new Set(['1', '2']);
+
+	function escapeHtml(value) {
+		return String(value ?? '').replace(/[&<>"']/g, (character) => ({
+			'&': '&amp;',
+			'<': '&lt;',
+			'>': '&gt;',
+			'"': '&quot;',
+			"'": '&#39;',
+		}[character]));
+	}
+
+	function renderPreguntesFromJson(data) {
+		const title = data?.title ? `<h4>${escapeHtml(data.title)}</h4>` : '';
+		const questions = Array.isArray(data?.questions) ? data.questions : [];
+		if (!questions.length) {
+			return `${title}<p>No hi ha preguntes disponibles.</p>`;
+		}
+
+		const items = questions.map((question, index) => {
+			const prompt = escapeHtml(question?.prompt ?? `Pregunta ${index + 1}`);
+			const explanation = question?.explanation ? `<p><strong>Explicació:</strong> ${escapeHtml(question.explanation)}</p>` : '';
+			const hasValidChoiceAnswer = Number.isInteger(question?.answer)
+				&& question.answer >= 0
+				&& question.answer < (Array.isArray(question?.choices) ? question.choices.length : 0);
+			const answer = Array.isArray(question?.choices)
+				? `<p><strong>Resposta correcta:</strong> ${hasValidChoiceAnswer ? escapeHtml(question.choices[question.answer]) : 'No disponible'}</p>`
+				: typeof question?.answer === 'boolean'
+					? `<p><strong>Resposta correcta:</strong> ${question.answer ? 'Vertader' : 'Fals'}</p>`
+					: '';
+			const choices = Array.isArray(question?.choices) && question.choices.length
+				? `<ol>${question.choices.map((choice) => `<li>${escapeHtml(choice)}</li>`).join('')}</ol>`
+				: '';
+
+			return `<article class="question-card"><h5>${prompt}</h5>${choices}${answer}${explanation}</article>`;
+		}).join('');
+
+		return `${title}<div class="question-list">${items}</div>`;
+	}
+
 	async function loadExplicacio(pointNumber, container) {
 		if (!container || container.dataset.loaded === 'true') return;
 
-		const { blocId, temaId } = getCurrentBlocTema();
-		const htmlPath = `/content/${blocId}/${temaId}/esquemes/${pointNumber}.html`;
+		const htmlPath = `${pointNumber}.html`;
 
 		try {
 			const response = await fetch(htmlPath);
@@ -391,22 +430,25 @@
 	async function loadPreguntes(pointNumber, container) {
 		if (!container || container.dataset.loaded === 'true') return;
 
-		const { blocId, temaId } = getCurrentBlocTema();
 		const normalizedPoint = String(pointNumber || '').trim();
 		if (!/^\d+$/.test(normalizedPoint)) {
 			container.innerHTML = 'En construcció';
 			container.dataset.loaded = 'true';
 			return;
 		}
-		const htmlPath = `/content/${blocId}/${temaId}/preguntes/${normalizedPoint}.html`;
+		if (!availablePreguntaJsonPoints.has(normalizedPoint)) {
+			container.innerHTML = 'En construcció';
+			container.dataset.loaded = 'true';
+			return;
+		}
+		const jsonPath = `../preguntes/${normalizedPoint}.json`;
 
 		try {
-			const response = await fetch(htmlPath);
+			const response = await fetch(jsonPath);
 			if (!response.ok) throw new Error('Not found');
-			const html = await response.text();
-			window.__quizSourcePath = htmlPath;
-			container.innerHTML = html;
-			executeEmbeddedScripts(container);
+			const data = await response.json();
+			window.__quizSourcePath = jsonPath;
+			container.innerHTML = renderPreguntesFromJson(data);
 			container.dataset.loaded = 'true';
 		} catch {
 			container.innerHTML = 'En construcció';
@@ -639,14 +681,13 @@
 	async function loadDiagrama(pointNumber, container) {
 		if (!container || container.dataset.loaded === 'true') return;
 
-		const { blocId, temaId } = getCurrentBlocTema();
 		const normalizedPoint = String(pointNumber || '').trim();
 		if (!/^\d+$/.test(normalizedPoint)) {
 			container.innerHTML = 'En construcció';
 			container.dataset.loaded = 'true';
 			return;
 		}
-		const imageSrc = `/content/${blocId}/${temaId}/diagrama/${normalizedPoint}.png`;
+		const imageSrc = `../diagrama/${normalizedPoint}.png`;
 
 		const exists = await imageExists(imageSrc);
 		if (!exists) {
