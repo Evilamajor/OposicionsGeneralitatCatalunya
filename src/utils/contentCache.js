@@ -1,4 +1,10 @@
+import { getContentPath } from './getContentPath';
+
 const textContentCache = new Map();
+
+const isRootContentPath = (path) => typeof path === 'string' && /^\/?content\//.test(path);
+
+const normalizeContentRequestPath = (path) => (isRootContentPath(path) ? getContentPath(path) : path);
 
 export const getCachedContent = (key) => textContentCache.get(key) || null;
 
@@ -12,20 +18,21 @@ export const clearContentCache = () => {
 
 export const fetchTextWithCache = async (path, options = {}) => {
   const { signal, force = false } = options;
+  const normalizedPath = normalizeContentRequestPath(path);
 
   if (!force) {
-    const cached = getCachedContent(path);
+    const cached = getCachedContent(normalizedPath);
     if (cached !== null) {
       return cached;
     }
   }
 
-  const response = await fetch(path, { signal });
+  const response = await fetch(normalizedPath, { signal });
   if (!response.ok) {
     throw new Error(`No s'ha pogut carregar el contingut (${response.status})`);
   }
 
   const text = await response.text();
-  setCachedContent(path, text);
+  setCachedContent(normalizedPath, text);
   return text;
 };

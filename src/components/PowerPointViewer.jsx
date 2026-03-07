@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { getBasePath } from '@/utils/basePath';
+import { getContentPath } from '@/utils/getContentPath';
 import './PowerPointViewer.css';
 import Slide from './Slide';
 
@@ -13,7 +14,13 @@ const getViewerNamespace = (metadataUrl = '') => {
 
 const getStorageKey = (namespace, slideId) => `ppt_edits_${namespace}_${slideId}`;
 const getClockStorageKey = (namespace) => `ppt_clockOn_${namespace}`;
-const resolvePublicAssetPath = (path = '') => (path.startsWith('/') ? getBasePath(path) : path);
+const resolvePublicAssetPath = (path = '') => {
+  if (/^\/?content\//.test(path)) {
+    return getContentPath(path);
+  }
+
+  return path.startsWith('/') ? getBasePath(path) : path;
+};
 
 export default function PowerPointViewer({ metadataUrl, title = 'PowerPoint' }) {
   const stageViewportRef = useRef(null);

@@ -9,7 +9,7 @@ import PowerPointsSection from './bloc/PowerPointsSection';
 import MaterialsSection from './bloc/MaterialsSection';
 import LegislacioSection from './bloc/LegislacioSection';
 import { DEFAULT_TOPIC_SECTION, TOPIC_POWERPOINT_BLOCS } from '../constants/sections';
-import { getBasePath } from '@/utils/basePath';
+import { getContentPath } from '@/utils/getContentPath';
 import './BlocPage.css';
 
 export default function BlocPage() {
@@ -25,23 +25,23 @@ export default function BlocPage() {
 
   const schemaPath =
     blocId && temaId
-      ? getBasePath(`content/${blocId}/${temaId}/esquemes/desenvolupament-base.html`)
+      ? getContentPath(`content/${blocId}/${temaId}/esquemes/desenvolupament-base.html`)
       : null;
 
   const legislacioPath = blocId && temaId
-    ? getBasePath(`content/${blocId}/${temaId}/legislacio.html`)
+    ? getContentPath(`content/${blocId}/${temaId}/legislacio.html`)
     : null;
 
   const materialsPath = blocId && temaId
-    ? getBasePath(`content/${blocId}/${temaId}/materials.html`)
+    ? getContentPath(`content/${blocId}/${temaId}/materials.html`)
     : null;
 
   const powerpointMetadataUrl = blocId && temaId
-    ? getBasePath(`content/${blocId}/${temaId}/powerpoints/metadata.json`)
+    ? getContentPath(`content/${blocId}/${temaId}/powerpoints/metadata.json`)
     : null;
 
   const powerpointConfigUrl = blocId && temaId
-    ? getBasePath(`content/${blocId}/${temaId}/powerpoints/config.json`)
+    ? getContentPath(`content/${blocId}/${temaId}/powerpoints/config.json`)
     : null;
 
   useEffect(() => {
