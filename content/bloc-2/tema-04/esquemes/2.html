@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="ca">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tema 4 · Punt 2 · Fonts formals vs. fonts materials</title>
+    <style>
+      :root {
+        --text: #0f172a;
+        --muted: #475569;
+        --border: #e2e8f0;
+        --bg: #ffffff;
+        --soft: #f8fafc;
+        --accent: #1d4ed8;
+        --danger: #dc2626;
+        --ok: #16a34a;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        line-height: 1.55;
+      }
+
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 28px 20px 48px;
+      }
+
+      .card {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: #fff;
+        padding: 22px 22px;
+        box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+      }
+
+      h1 {
+        font-size: 1.6rem;
+        margin: 0 0 14px;
+        letter-spacing: -0.02em;
+      }
+
+      h2 {
+        font-size: 1.1rem;
+        margin: 22px 0 10px;
+        letter-spacing: -0.01em;
+      }
+
+      h3 {
+        font-size: 1rem;
+        margin: 16px 0 8px;
+        color: var(--text);
+      }
+
+      p {
+        margin: 10px 0;
+        color: var(--text);
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--soft);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      .section {
+        margin-top: 16px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+      }
+
+      ul {
+        margin: 8px 0 0 18px;
+        padding: 0;
+      }
+
+      li {
+        margin: 6px 0;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        overflow: hidden;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+      }
+
+      th,
+      td {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+
+      th {
+        background: var(--soft);
+        text-align: left;
+        font-weight: 700;
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      .keybox {
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        border-radius: 12px;
+        padding: 14px 14px;
+        margin-top: 12px;
+      }
+
+      .keybox h3 {
+        margin-top: 0;
+        color: #1e3a8a;
+      }
+
+      .trapbox {
+        background: #fff1f2;
+        border: 1px solid #fecdd3;
+        border-radius: 12px;
+        padding: 14px 14px;
+        margin-top: 12px;
+      }
+
+      .trapbox h3 {
+        margin-top: 0;
+        color: #9f1239;
+      }
+
+      .ultra {
+        background: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        border-radius: 12px;
+        padding: 14px 14px;
+        margin-top: 12px;
+      }
+
+      .ultra h3 {
+        margin-top: 0;
+        color: #14532d;
+      }
+
+      .tag {
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .no {
+        color: var(--danger);
+        font-weight: 700;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <h1>2. Fonts formals vs. fonts materials</h1>
+        <div class="pill">📌 Versió oposicions · Estructura A–F · Enfocament examen</div>
+
+        <div class="section">
+          <h2>A) Concepte i marc constitucional</h2>
+          <p>
+            Les fonts del dret administratiu s’analitzen des de dues perspectives
+            complementàries:
+            <span class="tag">font material</span> (qui crea la norma) i
+            <span class="tag">font formal</span> (com s’expressa jurídicament).
+            El sistema s’articula sota la subjecció a la Constitució i a la llei
+            (art. 9.1 CE) i els principis de legalitat, jerarquia i seguretat
+            jurídica (art. 9.3 CE). El dret administratiu és singular perquè
+            l’Administració no només aplica el dret, sinó que també crea normes
+            mitjançant la potestat reglamentària (art. 97 CE).
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>B) Fonts materials</h2>
+          <p>
+            Són els òrgans o poders amb potestat normativa. La font material
+            determina la <strong>competència normativa</strong>.
+          </p>
+
+          <h3>1. Estat</h3>
+          <ul>
+            <li>Corts Generals → llei (art. 66 CE)</li>
+            <li>Govern → reglament (art. 97 CE)</li>
+          </ul>
+
+          <h3>2. Comunitats Autònomes</h3>
+          <ul>
+            <li>Parlament autonòmic → llei</li>
+            <li>Govern autonòmic → reglament</li>
+            <li>Fonament competencial: arts. 110–113 EAC</li>
+          </ul>
+
+          <h3>3. Unió Europea</h3>
+          <ul>
+            <li>Institucions UE → art. 288 TFUE</li>
+            <li>Reglaments, directives, decisions…</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>C) Fonts formals</h2>
+          <p>
+            Són les formes jurídiques d’expressió del dret. La font formal
+            determina el <strong>rang normatiu</strong>.
+          </p>
+
+          <p class="muted">
+            Referència general: art. 1.1 Codi Civil (llei, costum, principis
+            generals del dret). En dret administratiu predominen les fonts
+            escrites.
+          </p>
+
+          <ul>
+            <li>Constitució (norma suprema)</li>
+            <li>Lleis orgàniques i ordinàries</li>
+            <li>Reglaments (reials decrets, ordres…)</li>
+            <li>Costum i principis generals (fonts subsidiàries)</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>D) Relació entre potestat normativa i forma normativa</h2>
+          <p>
+            Cada font material només pot produir una font formal concreta:
+            Parlament → llei; Govern → reglament. El reglament està subordinat a
+            la llei (art. 9.3 CE). Principis clau: jerarquia normativa, reserva
+            de llei i competència. La llei pot derogar un reglament; el reglament
+            no pot contradir la llei.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>E) Conseqüències jurídiques (molt examinable)</h2>
+          <p>
+            Si un reglament vulnera la llei, regula matèries reservades a llei o
+            és dictat per òrgan incompetent, incorre en
+            <strong>nul·litat de ple dret</strong> (art. 47.2 LPACAP). A diferència
+            dels actes administratius (on l’anul·labilitat és la regla general),
+            els reglaments il·legals són sempre nuls.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>F) Dimensió europea</h2>
+          <p>
+            Segons l’art. 288 TFUE: el reglament UE és directament aplicable; la
+            directiva requereix transposició. El principi de primacia del dret
+            de la UE implica que les fonts materials europees poden prevaler
+            sobre normes internes.
+          </p>
+        </div>
+
+        <div class="keybox">
+          <h3>🔎 Idees clau d’examen</h3>
+          <ul>
+            <li>Font material = origen del poder / competència.</li>
+            <li>Font formal = forma jurídica / rang.</li>
+            <li>El reglament és font formal subordinada a la llei.</li>
+            <li>En conflictes Estat–CCAA, preval el principi de competència.</li>
+            <li>Reglament il·legal = nul de ple dret (art. 47.2 LPACAP).</li>
+          </ul>
+        </div>
+
+        <div class="trapbox">
+          <h3>⚠️ Preguntes trampa habituals</h3>
+          <ul>
+            <li>
+              El Parlament és font formal?
+              <span class="no">No</span> → és font material (òrgan creador).
+            </li>
+            <li>
+              El reglament és font material?
+              <span class="no">No</span> → és font formal.
+            </li>
+            <li>
+              Un reglament contrari a la llei és anul·lable?
+              <span class="no">No</span> → és nul de ple dret.
+            </li>
+            <li>
+              El reglament autonòmic és sempre inferior a la llei estatal?
+              <span class="no">No necessàriament</span> → depèn de la competència.
+            </li>
+          </ul>
+        </div>
+
+        <div class="ultra">
+          <h3>✅ Ultra-resum (memòria ràpida)</h3>
+          <ul>
+            <li><strong>Qui crea</strong> → font material</li>
+            <li><strong>Com s’expressa</strong> → font formal</li>
+            <li>Reglament subordinat a llei</li>
+            <li>Vici competència / reserva de llei → nul·litat</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>Diferència clau (taula)</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Fonts formals</th>
+                <th>Fonts materials</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Forma jurídica en què s’expressa la norma</td>
+                <td>Òrgan o poder del qual emana la norma</td>
+              </tr>
+              <tr>
+                <td>Determina el rang normatiu</td>
+                <td>Determina la competència normativa</td>
+              </tr>
+              <tr>
+                <td>Constitució, llei, reglament, etc.</td>
+                <td>Parlament, Govern, UE, CCAA, etc.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

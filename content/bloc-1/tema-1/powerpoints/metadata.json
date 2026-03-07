@@ -1,0 +1,657 @@
+{
+  "title": "Tema 1 · Ultraesquemes",
+  "subtitle": "La Constitució espanyola de 1978",
+  "generatedAt": "2026-02-21T15:49:46.693Z",
+  "slideBasePath": "/content/bloc-1/tema-1/powerpoints/slides",
+  "slides": [
+    {
+      "id": "slide-01",
+      "title": "Portada",
+      "type": "title",
+      "section": "Introducció",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-01.html"
+    },
+    {
+      "id": "slide-02",
+      "title": "I. CONTEXT I PRINCIPIS CONSTITUCIONALS",
+      "type": "section",
+      "section": "I. CONTEXT I PRINCIPIS CONSTITUCIONALS",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-02.html"
+    },
+    {
+      "id": "slide-03",
+      "title": "1. Concepte de Constitució i constitucionalisme",
+      "type": "point",
+      "section": "I. CONTEXT I PRINCIPIS CONSTITUCIONALS",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-03.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "La Constitució és la norma jurídica suprema de l’ordenament. No és una declaració política, sinó una norma vinculant que",
+        "estructura": "L’article <strong>9.1</strong> CE estableix que ciutadans i poders públics estan subjectes a la Constitució i a la resta de l’ordenament jurídic.",
+        "aplicacio": "Reconeix i garanteix drets fonamentals Control de constitucionalitat La Constitució de <strong>1978</strong> té plena força normativa . No és programàtica: és dret aplicable.",
+        "controlFinal": "Idea clau: Una norma pot tenir contingut materialment constitucional encara que no formi part del text formal."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-01.html",
+        "puntId": "01",
+        "sectionId": "I"
+      }
+    },
+    {
+      "id": "slide-04",
+      "title": "2. Procés constituent i aprovació de la Constitució de 1978",
+      "type": "point",
+      "section": "I. CONTEXT I PRINCIPIS CONSTITUCIONALS",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-04.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "La Transició és el pas d’un règim autoritari a un sistema democràtic i d’un Estat centralista a un Estat descentralitzat en autonomies.",
+        "estructura": "El poble espanyol, titular de la sobirania (<strong>art. 1.2 CE</strong>), ratifica el text. Acte formal del Rei (<strong>art. 91 CE</strong>) La sobirania nacional resideix en el poble (<strong>art. 1.2 CE</strong>).",
+        "aplicacio": "La Transició implica dues transformacions simultànies: Les Corts no es van convocar formalment com a assemblea constituent, però van assumir aquesta funció de facto.",
+        "controlFinal": "Exercit directament pel poble en cada elecció. El procés constituent (<strong>1977</strong>-<strong>1978</strong>) va permetre la transició jurídica cap a la democràcia mitjançant la Llei per a la Reforma Política."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-02.html",
+        "puntId": "02",
+        "sectionId": "I"
+      }
+    },
+    {
+      "id": "slide-05",
+      "title": "3. Valors superiors de l’ordenament jurídic",
+      "type": "point",
+      "section": "I. CONTEXT I PRINCIPIS CONSTITUCIONALS",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-05.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "L’article <strong>1.1</strong> CE estableix que Espanya es constitueix en un Estat social i democràtic de Dret i proclama com a valors superiors del seu ordenament jurídic la llibertat, la justícia, la igualtat i el pluralisme polític .",
+        "estructura": "L’article <strong>1.1</strong> CE estableix que Espanya es constitueix en un Estat social i democràtic de Dret i proclama com a valors superiors del seu ordenament jurídic la llibertat, la justícia, la igualtat i el pluralisme polític .",
+        "aplicacio": "Són criteri per interpretar normes i controlar la seva constitucionalitat. Implica autonomia personal i absència de coaccions injustificades. Es concreta en el lliure desenvolupament de la personalitat (<strong>art. 10.1 CE</strong>).",
+        "controlFinal": "Partits polítics (<strong>art. 6 CE</strong>). Els valors superiors (llibertat, justícia, igualtat i pluralisme polític) constitueixen el nucli de l’Estat social i democràtic de Dret (<strong>art. 1.1 CE</strong>)."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-03.html",
+        "puntId": "03",
+        "sectionId": "I"
+      }
+    },
+    {
+      "id": "slide-06",
+      "title": "4. Estat social i democràtic de dret: significat i abast",
+      "type": "point",
+      "section": "I. CONTEXT I PRINCIPIS CONSTITUCIONALS",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-06.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "L’article <strong>1.1</strong> CE defineix Espanya com un Estat social i democràtic de Dret . Aquesta expressió no és una simple suma d’adjectius, sinó una definició unitària de la forma d’Estat.",
+        "estructura": "L’article <strong>1.1</strong> CE defineix Espanya com un Estat social i democràtic de Dret . Aquesta expressió no és una simple suma d’adjectius, sinó una definició unitària de la forma d’Estat.",
+        "aplicacio": "L’Estat de Dret implica que tots els poders públics estan sotmesos a la Constitució i a la llei. El seu objectiu és evitar l’arbitrarietat i protegir la llibertat. Control dels actes administratius pels tribunals.",
+        "controlFinal": "L’Estat social transforma el model liberal abstencionista en un model interventor. El seu nucli és l’<strong>art. 9.2 CE</strong>. L’Estat social i democràtic de Dret (art."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-04.html",
+        "puntId": "04",
+        "sectionId": "I"
+      }
+    },
+    {
+      "id": "slide-07",
+      "title": "II. DRETS I DEURES CONSTITUCIONALS",
+      "type": "section",
+      "section": "II. DRETS I DEURES CONSTITUCIONALS",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-07.html"
+    },
+    {
+      "id": "slide-08",
+      "title": "5. Estructura del Títol I: drets, llibertats i deures",
+      "type": "point",
+      "section": "II. DRETS I DEURES CONSTITUCIONALS",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-08.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "El Títol I CE, sota la rúbrica “Dels drets i deures fonamentals” , constitueix la part dogmàtica de la Constitució.",
+        "estructura": "El Títol I CE, sota la rúbrica “Dels drets i deures fonamentals” , constitueix la part dogmàtica de la Constitució. No tots els drets que s’hi recullen tenen la mateixa naturalesa ni el mateix nivell de protecció.",
+        "aplicacio": "No tots els drets que s’hi recullen tenen la mateixa naturalesa ni el mateix nivell de protecció. La seva ubicació determina el règim de garanties aplicable. Aquesta gradació s’anomena jerarquia de garanties .",
+        "controlFinal": "⚠️ L’estat d’alarma no permet suspensió, només limitació. El Títol I CE estableix un sistema escalonat de drets i garanties."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-05.html",
+        "puntId": "05",
+        "sectionId": "II"
+      }
+    },
+    {
+      "id": "slide-09",
+      "title": "6. Drets fonamentals i llibertats públiques",
+      "type": "point",
+      "section": "II. DRETS I DEURES CONSTITUCIONALS",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-09.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "Els drets fonamentals constitueixen el nucli dur de la Constitució . Es fonamenten en la dignitat humana (<strong>art. 10.1 CE</strong>) i estructuren tot l’Estat social i democràtic de Dret.",
+        "estructura": "Els drets fonamentals constitueixen el nucli dur de la Constitució . Es fonamenten en la dignitat humana (<strong>art. 10.1 CE</strong>) i estructuren tot l’Estat social i democràtic de Dret.",
+        "aplicacio": "Els drets fonamentals (arts. 15–29 CE) constitueixen el màxim nivell de protecció constitucional. Tenen aplicació directa, reserva de Llei Orgànica i recurs d’empara.",
+        "controlFinal": "Prohibició Tribunals d’Honor Els drets fonamentals (arts. 15–29 CE) constitueixen el màxim nivell de protecció constitucional."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-06.html",
+        "puntId": "06",
+        "sectionId": "II"
+      }
+    },
+    {
+      "id": "slide-10",
+      "title": "7. Principis rectors de la política social i econòmica",
+      "type": "point",
+      "section": "II. DRETS I DEURES CONSTITUCIONALS",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-10.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "Els principis rectors del Capítol III del Títol I (arts. 39–52 CE) concreten la clàusula d’ Estat social de l’article <strong>1.1</strong> CE.",
+        "estructura": "Els principis rectors del Capítol III del Títol I (arts. 39–52 CE) concreten la clàusula d’ Estat social de l’article <strong>1.1</strong> CE. En la jerarquia de garanties del Títol I, els principis rectors ocupen el nivell inferior.",
+        "aplicacio": "Funció informativa: informen la legislació, la pràctica judicial i l’actuació administrativa. Exemple: el dret a l’habitatge (<strong>art. 47</strong>) només és exigible segons la legislació urbanística.",
+        "controlFinal": "Organitzacions professionals Els principis rectors (arts. 39–52 CE) defineixen els objectius socials i econòmics de l’Estat. No són drets fonamentals ni tenen recurs d’empara."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-07.html",
+        "puntId": "07",
+        "sectionId": "II"
+      }
+    },
+    {
+      "id": "slide-11",
+      "title": "8. Deures constitucionals i deure de contribuir",
+      "type": "point",
+      "section": "II. DRETS I DEURES CONSTITUCIONALS",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-11.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "La Constitució Espanyola de <strong>1978</strong> no només reconeix drets, sinó també deures jurídicament exigibles .",
+        "estructura": "La Constitució Espanyola de <strong>1978</strong> no només reconeix drets, sinó també deures jurídicament exigibles .",
+        "aplicacio": "Exemple: ensenyament bàsic obligatori Possibilitat d’imposar deures en cas de catàstrofe (<strong>art. 30.4</strong></strong>).",
+        "controlFinal": "La Generalitat pot crear tributs propis sobre fets no gravats per l’Estat, dins del marc constitucional. Els deures constitucionals (arts."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-08.html",
+        "puntId": "08",
+        "sectionId": "II"
+      }
+    },
+    {
+      "id": "slide-12",
+      "title": "III. ORGANITZACIÓ TERRITORIAL DE L’ESTAT",
+      "type": "section",
+      "section": "III. ORGANITZACIÓ TERRITORIAL DE L’ESTAT",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-12.html"
+    },
+    {
+      "id": "slide-13",
+      "title": "9. Unitat de l’Estat, autonomia i solidaritat",
+      "type": "point",
+      "section": "III. ORGANITZACIÓ TERRITORIAL DE L’ESTAT",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-13.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "L’article 2 CE és un dels pilars del sistema constitucional. Està situat al Títol Preliminar perquè defineix l’estructura territorial de l’Estat.",
+        "estructura": "L’article 2 CE és un dels pilars del sistema constitucional. Està situat al Títol Preliminar perquè defineix l’estructura territorial de l’Estat. Aquest article s’ha d’interpretar conjuntament amb l’art.",
+        "aplicacio": "Autonomia: es reconeix i garanteix el dret a l’autonomia de nacionalitats i regions. Implica lleialtat institucional i cooperació entre administracions.",
+        "controlFinal": "Marc constitucional necessari. L’Estat espanyol és un Estat autonòmic compost basat en la unitat indissoluble de la Nació (<strong>art. 2 CE</strong>) i en la sobirania única del poble espanyol (art."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-09.html",
+        "puntId": "09",
+        "sectionId": "III"
+      }
+    },
+    {
+      "id": "slide-14",
+      "title": "10. Municipis, províncies i comunitats autònomes",
+      "type": "point",
+      "section": "III. ORGANITZACIÓ TERRITORIAL DE L’ESTAT",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-14.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "L’article 137 CE estableix que l’Estat s’organitza territorialment en municipis, províncies i Comunitats Autònomes . Totes aquestes entitats gaudeixen d’autonomia per gestionar els seus interessos.",
+        "estructura": "L’article 137 CE estableix que l’Estat s’organitza territorialment en municipis, províncies i Comunitats Autònomes . Totes aquestes entitats gaudeixen d’autonomia per gestionar els seus interessos.",
+        "aplicacio": "El municipi és l’ens local bàsic. L’article 140 CE garanteix: L’article 137 CE estructura l’Estat en municipis, províncies i Comunitats Autònomes.",
+        "controlFinal": "Aquest model configura l’anomenat Estat compost : diversos centres de poder integrats dins d’un únic Estat sobirà."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-10.html",
+        "puntId": "10",
+        "sectionId": "III"
+      }
+    },
+    {
+      "id": "slide-15",
+      "title": "11. Distribució competencial Estat-Comunitats Autònomes",
+      "type": "point",
+      "section": "III. ORGANITZACIÓ TERRITORIAL DE L’ESTAT",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-15.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "La Constitució no reparteix totes les competències directament a les CA. Funciona amb el principi dispositiu : la CE fixa el marc (arts. 148 i 149) i els Estatuts assumeixen les competències.",
+        "estructura": "La Constitució no reparteix totes les competències directament a les CA. Funciona amb el principi dispositiu : la CE fixa el marc (arts. 148 i 149) i els Estatuts assumeixen les competències. Clàusules de tancament (art.",
+        "aplicacio": "El mínim comú normatiu que garanteix uniformitat essencial. Normalment s’estableixen per llei. En cas de conflicte vàlid, preval la norma estatal (matèria no exclusiva CA).",
+        "controlFinal": "Desenvolupament + execució La distribució competencial es basa en el principi dispositiu. Les CA assumeixen competències mitjançant els seus Estatuts dins el marc dels arts. 148 i 149 CE."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-11.html",
+        "puntId": "11",
+        "sectionId": "III"
+      }
+    },
+    {
+      "id": "slide-16",
+      "title": "12. Finançament autonòmic i principis constitucionals",
+      "type": "point",
+      "section": "III. ORGANITZACIÓ TERRITORIAL DE L’ESTAT",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-16.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "El finançament autonòmic és la base material de l’autonomia política. Sense recursos suficients no es poden exercir competències com sanitat, educació o serveis socials.",
+        "estructura": "El finançament autonòmic és la base material de l’autonomia política. Sense recursos suficients no es poden exercir competències com sanitat, educació o serveis socials. Estat social (<strong>art. 1.1 CE</strong>).",
+        "aplicacio": "Decidir lliurement com aplicar els seus recursos dins les seves competències.",
+        "controlFinal": "La Constitució no fixa un model tancat, sinó que estableix principis generals (arts. 156–158 CE) i remet el desenvolupament a"
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-12.html",
+        "puntId": "12",
+        "sectionId": "III"
+      }
+    },
+    {
+      "id": "slide-17",
+      "title": "IV. INSTITUCIONS CONSTITUCIONALS DE L’ESTAT",
+      "type": "section",
+      "section": "IV. INSTITUCIONS CONSTITUCIONALS DE L’ESTAT",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-17.html"
+    },
+    {
+      "id": "slide-18",
+      "title": "13. La Corona: funcions constitucionals",
+      "type": "point",
+      "section": "IV. INSTITUCIONS CONSTITUCIONALS DE L’ESTAT",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-18.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "Espanya és una monarquia parlamentària . El Rei regna però no governa : no exerceix poder legislatiu, executiu ni judicial propi. Tots els seus actes són deguts i necessiten refrendament.",
+        "estructura": "El Rei exerceix funcions simbòliques, representatives, arbitrals i moderadores (<strong>art. 56.1 CE</strong>). Totes són actes deguts. Nomenar i separar ministres (<strong>art. 100 CE</strong>). Expedir decrets acordats en Consell de Ministres (art.",
+        "aplicacio": "Nomenament i cessament dels membres de la Casa del Rei. La Corona és la Prefectura de l’Estat dins una monarquia parlamentària (<strong>art. 1.3 CE</strong>). El Rei simbolitza la unitat i permanència de l’Estat",
+        "controlFinal": "President del Govern / Ministre Defensa La Corona és la Prefectura de l’Estat dins una monarquia parlamentària (<strong>art. 1.3 CE</strong>). El Rei simbolitza la unitat i permanència de l’Estat (art."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-13.html",
+        "puntId": "13",
+        "sectionId": "IV"
+      }
+    },
+    {
+      "id": "slide-19",
+      "title": "14. Corts Generals: composició i funcions",
+      "type": "point",
+      "section": "IV. INSTITUCIONS CONSTITUCIONALS DE L’ESTAT",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-19.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "Les Corts Generals són l’òrgan que representa el poble espanyol (<strong>art. 66.1 CE</strong>). Estan formades per",
+        "estructura": "Les Corts Generals són l’òrgan que representa el poble espanyol (<strong>art. 66.1 CE</strong>). Estan formades per: Segons l’<strong>art. 66.2 CE</strong> exerceixen tres funcions bàsiques: Són inviolables",
+        "aplicacio": "La Diputació Permanent garanteix continuïtat. Les Corts Generals són un parlament bicameral asimètric que representa el poble espanyol (<strong>art. 66 CE</strong>). Exerceixen funció legislativa, pressupostària i de control.",
+        "controlFinal": "Requereix majoria absoluta del Congrés en votació final."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-14.html",
+        "puntId": "14",
+        "sectionId": "IV"
+      }
+    },
+    {
+      "id": "slide-20",
+      "title": "15. Govern i Administració: direcció política i executiva",
+      "type": "point",
+      "section": "IV. INSTITUCIONS CONSTITUCIONALS DE L’ESTAT",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-20.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "L’article 97 de la Constitució Espanyola (CE) estableix que el Govern dirigeix la política interior i exterior, l’Administració civil i militar i la defensa de l’Estat.",
+        "estructura": "L’article 97 de la Constitució Espanyola (CE) estableix que el Govern dirigeix la política interior i exterior, l’Administració civil i militar i la defensa de l’Estat.",
+        "aplicacio": "Funció executiva : aplica les lleis aprovades per les Corts. L’Administració és l’estructura professional que executa les decisions del Govern i aplica les lleis. Control judicial i responsabilitat patrimonial",
+        "controlFinal": "El President no és Cap d’Estat. El Govern (arts. 97–102 CE) és l’òrgan polític que dirigeix la política i l’Administració, exerceix la funció executiva i té potestat reglamentària."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-15.html",
+        "puntId": "15",
+        "sectionId": "IV"
+      }
+    },
+    {
+      "id": "slide-21",
+      "title": "16. Poder judicial i principi d’independència judicial",
+      "type": "point",
+      "section": "IV. INSTITUCIONS CONSTITUCIONALS DE L’ESTAT",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-21.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "El Poder Judicial és un dels tres poders de l’Estat dins del model de separació de poders. Segons l’article <strong>117.1</strong> CE, la justícia emana del poble i s’administra en nom del Rei.",
+        "estructura": "El Poder Judicial és un dels tres poders de l’Estat dins del model de separació de poders. Segons l’article <strong>117.1</strong> CE, la justícia emana del poble i s’administra en nom del Rei.",
+        "aplicacio": "La independència garanteix que el jutge pugui aplicar el dret sense pressions. No és un privilegi del jutge, sinó una garantia per al ciutadà. No es poden crear tribunals especials per a casos concrets.",
+        "controlFinal": "El Poder Judicial és un dels tres poders de l’Estat dins del model de separació de poders. Segons l’article <strong>117.1</strong> CE, la justícia emana del poble i s’administra en nom del Rei."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-16.html",
+        "puntId": "16",
+        "sectionId": "IV"
+      }
+    },
+    {
+      "id": "slide-22",
+      "title": "V. GARANTIES CONSTITUCIONALS I CONTROL",
+      "type": "section",
+      "section": "V. GARANTIES CONSTITUCIONALS I CONTROL",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-22.html"
+    },
+    {
+      "id": "slide-23",
+      "title": "17. Tribunal Constitucional: composició i competències",
+      "type": "point",
+      "section": "V. GARANTIES CONSTITUCIONALS I CONTROL",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-23.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "El Tribunal Constitucional (TC) és un òrgan constitucional independent encarregat de garantir la supremacia de la Constitució.",
+        "estructura": "Segons l’article 1 de la Llei Orgànica del Tribunal Constitucional (LOTC), el TC és l’ intèrpret suprem de la Constitució . Recurs d’inconstitucionalitat (<strong>art. 161.1</strong></strong>.a CE): control abstracte de lleis.",
+        "aplicacio": "No forma part del Poder Judicial. Mentre que els jutges ordinaris jutgen persones i apliquen lleis, el TC controla si les lleis són conformes a la Constitució. Recurs d’inconstitucionalitat (Art.",
+        "controlFinal": "El Tribunal Constitucional (TC) és un òrgan constitucional independent encarregat de garantir la supremacia de la Constitució."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-17.html",
+        "puntId": "17",
+        "sectionId": "V"
+      }
+    },
+    {
+      "id": "slide-24",
+      "title": "18. Recursos d’inconstitucionalitat i qüestió d’inconstitucionalitat",
+      "type": "point",
+      "section": "V. GARANTIES CONSTITUCIONALS I CONTROL",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-24.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "La Constitució és la norma suprema de l’ordenament jurídic.",
+        "estructura": "Ampliable a 9 mesos si hi ha negociació Estat-CA (<strong>art. 33.2 LOTC</strong>).",
+        "aplicacio": "A diferència del model difús (on qualsevol jutge pot inaplicar una llei), a Espanya el TC té el monopoli del control de les normes amb rang de llei .",
+        "controlFinal": "La Constitució és la norma suprema de l’ordenament jurídic."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-18.html",
+        "puntId": "18",
+        "sectionId": "V"
+      }
+    },
+    {
+      "id": "slide-25",
+      "title": "19. Recurs d’empara constitucional",
+      "type": "point",
+      "section": "V. GARANTIES CONSTITUCIONALS I CONTROL",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-25.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "El recurs d’empara és la garantia jurisdiccional suprema dels drets fonamentals a Espanya.",
+        "estructura": "El recurs d’empara és la garantia jurisdiccional suprema dels drets fonamentals a Espanya.",
+        "aplicacio": "Clau d’examen: l’empara NO protegeix drets com el dret a l’habitatge (<strong>art. 47 CE</strong>). L’interès legítim implica que la decisió del TC ha de tenir efecte real en l’esfera jurídica del recurrent.",
+        "controlFinal": "El TC pot ordenar retroacció d’actuacions. El recurs d’empara (arts. <strong>53.2</strong> i <strong>161.1</strong>.b CE) és la via extraordinària de protecció dels drets fonamentals davant el Tribunal Constitucional."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-19.html",
+        "puntId": "19",
+        "sectionId": "V"
+      }
+    },
+    {
+      "id": "slide-26",
+      "title": "20. Defensor del Poble i altres mecanismes de garantia",
+      "type": "point",
+      "section": "V. GARANTIES CONSTITUCIONALS I CONTROL",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-26.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "L’ article 54 CE crea el Defensor del Poble com a alt comissionat de les Corts Generals per defensar els drets del Títol I .",
+        "estructura": "L’ article 54 CE crea el Defensor del Poble com a alt comissionat de les Corts Generals per defensar els drets del Títol I .",
+        "aplicacio": "És una institució inspirada en l’ ombudsman i actua com a control parlamentari extrajudicial . Es desplega per la Llei Orgànica <strong>3/1981</strong> (LODP).",
+        "controlFinal": "4) Control judicial de l’Administració (<strong>art. 106.1 CE</strong>): els tribunals controlen la legalitat de l’actuació administrativa i que s’ajusti a la finalitat que la justifica."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-20.html",
+        "puntId": "20",
+        "sectionId": "V"
+      }
+    },
+    {
+      "id": "slide-27",
+      "title": "VI. REFORMA CONSTITUCIONAL I PROJECCIÓ EUROPEA",
+      "type": "section",
+      "section": "VI. REFORMA CONSTITUCIONAL I PROJECCIÓ EUROPEA",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-27.html"
+    },
+    {
+      "id": "slide-28",
+      "title": "21. Procediment ordinari de reforma constitucional",
+      "type": "point",
+      "section": "VI. REFORMA CONSTITUCIONAL I PROJECCIÓ EUROPEA",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-28.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "La Constitució Espanyola de <strong>1978</strong> és una constitució rígida . Això significa que no es pot modificar mitjançant una llei ordinària, sinó que exigeix un procediment específic amb majories reforçades .",
+        "estructura": "La Constitució Espanyola de <strong>1978</strong> és una constitució rígida . Això significa que no es pot modificar mitjançant una llei ordinària, sinó que exigeix un procediment específic amb majories reforçades .",
+        "aplicacio": "Important per a examen: NO existeix iniciativa legislativa popular per reformar la Constitució (<strong>art. 166 CE</strong> exclou l’<strong>art. 87.3 CE</strong>).",
+        "controlFinal": "3. Quin d’aquests supòsits NO pot tramitar-se per l’<strong>art. 167 CE</strong>?"
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-21.html",
+        "puntId": "21",
+        "sectionId": "VI"
+      }
+    },
+    {
+      "id": "slide-29",
+      "title": "22. Procediment agreujat de reforma constitucional",
+      "type": "point",
+      "section": "VI. REFORMA CONSTITUCIONAL I PROJECCIÓ EUROPEA",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-29.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "La Constitució Espanyola de <strong>1978</strong> és una constitució rígida . No es pot reformar com una llei ordinària, sinó que exigeix majories reforçades i procediments específics.",
+        "estructura": "La Constitució Espanyola de <strong>1978</strong> és una constitució rígida . No es pot reformar com una llei ordinària, sinó que exigeix majories reforçades i procediments específics.",
+        "aplicacio": "L’article 168 CE s’ha d’aplicar obligatòriament en quatre supòsits: S’aplica a reforma total o parts especialment protegides. 3. Quantes vegades s’ha aplicat l’<strong>art. 168 CE</strong> des de <strong>1978</strong>?",
+        "controlFinal": "El text final de reforma ha de ser aprovat novament per <strong>2/3</strong> de cada Cambra ."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-22.html",
+        "puntId": "22",
+        "sectionId": "VI"
+      }
+    },
+    {
+      "id": "slide-30",
+      "title": "23. Integració europea i incidència constitucional",
+      "type": "point",
+      "section": "VI. REFORMA CONSTITUCIONAL I PROJECCIÓ EUROPEA",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-30.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "La integració d’Espanya a la Unió Europea té una base clarament constitucional. El fonament jurídic es troba a l’ article 93 CE , conegut com la “clàusula d’habilitació”.",
+        "estructura": "La integració d’Espanya a la Unió Europea té una base clarament constitucional. El fonament jurídic es troba a l’ article 93 CE , conegut com la “clàusula d’habilitació”.",
+        "aplicacio": "Clau d’examen: els reglaments no es transposen; les directives sí.",
+        "controlFinal": "3."
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-23.html",
+        "puntId": "23",
+        "sectionId": "VI"
+      }
+    },
+    {
+      "id": "slide-31",
+      "title": "24. Constitucionalisme multinivell i reptes actuals",
+      "type": "point",
+      "section": "VI. REFORMA CONSTITUCIONAL I PROJECCIÓ EUROPEA",
+      "file": "/content/bloc-1/tema-1/powerpoints/slides/slide-31.html",
+      "memory": {
+        "ideaClau": "defineix el concepte amb precisió jurídica i llenguatge administratiu.",
+        "estructura": "situa'l dins del marc constitucional i la seva funció institucional.",
+        "aplicacio": "vincula'l a casos pràctics típics d'oposicions i procediment públic.",
+        "controlFinal": "respon «què és», «per què importa» i «com s'aplica» en 30 segons."
+      },
+      "full": {
+        "ideaClau": "El constitucionalisme multinivell descriu un model en què la garantia dels drets, la distribució del poder i la producció normativa no depenen d’un únic centre (l’Estat), sinó de diversos nivells que interactuen entre s…",
+        "estructura": "El constitucionalisme multinivell descriu un model en què la garantia dels drets, la distribució del poder i la producció normativa no depenen d’un únic centre (l’Estat), sinó de diversos nivells que interactuen entre s…",
+        "aplicacio": "En el cas espanyol, aquests nivells són: Mitjançant l’article 93 CE, Espanya ha cedit l’exercici de determinades competències a la UE.",
+        "controlFinal": "El constitucionalisme multinivell descriu un model en què la garantia dels drets, la distribució del poder i la producció normativa no depenen d’un únic centre (l’Estat), sinó de diversos n…"
+      },
+      "hasFullContent": true,
+      "sources": {
+        "esquemaFile": "/content/bloc-1/tema-1/esquemes/explicacions/punt-24.html",
+        "puntId": "24",
+        "sectionId": "VI"
+      }
+    }
+  ]
+}

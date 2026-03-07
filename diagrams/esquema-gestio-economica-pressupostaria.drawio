@@ -1,0 +1,53 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Gestió econòmica i pressupostària">
+    <mxGraphModel dx="900" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Central node -->
+        <mxCell id="central" value="Gestió econòmica i pressupostària" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="300" y="200" width="260" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Pressupost -->
+        <mxCell id="pressupost" value="Pressupost de la Generalitat" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="220" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Execució despesa -->
+        <mxCell id="execucio" value="Execució de la despesa pública" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="560" y="80" width="220" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Control financer -->
+        <mxCell id="control" value="Control financer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="120" y="360" width="200" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Responsabilitats -->
+        <mxCell id="responsabilitats" value="Responsabilitats comptables" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="520" y="360" width="220" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Connections -->
+        <mxCell id="e1" edge="1" parent="1" source="pressupost" target="central">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e2" edge="1" parent="1" source="execucio" target="central">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e3" edge="1" parent="1" source="control" target="central">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e4" edge="1" parent="1" source="responsabilitats" target="central">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

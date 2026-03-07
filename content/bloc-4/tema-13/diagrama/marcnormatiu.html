@@ -1,0 +1,83 @@
+<div class="diagram-wrapper card">
+  <div class="controls">
+    <button onclick="zoomIn()">+</button>
+    <button onclick="zoomOut()">−</button>
+    <button onclick="resetZoom()">Reset</button>
+  </div>
+
+  <div class="diagram-container" id="diagramContainer">
+    <img
+      id="diagramImage"
+      src="/content/bloc-4/tema-13/diagrama/marcnormatiu.png"
+      alt="Marc normatiu de la contractació pública"
+    />
+  </div>
+</div>
+
+<script>
+(function initDiagram() {
+  const img = document.getElementById('diagramImage');
+  const container = document.getElementById('diagramContainer');
+  if (!img || !container) return;
+
+  let scale = 1;
+  let posX = 0;
+  let posY = 0;
+  let isDragging = false;
+  let startX = 0;
+  let startY = 0;
+
+  function updateTransform() {
+    img.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+  }
+
+  window.zoomIn = function zoomIn() {
+    scale += 0.1;
+    updateTransform();
+  };
+
+  window.zoomOut = function zoomOut() {
+    scale = Math.max(0.2, scale - 0.1);
+    updateTransform();
+  };
+
+  window.resetZoom = function resetZoom() {
+    scale = 1;
+    posX = 0;
+    posY = 0;
+    updateTransform();
+  };
+
+  container.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.clientX - posX;
+    startY = e.clientY - posY;
+    container.style.cursor = 'grabbing';
+  });
+
+  container.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    posX = e.clientX - startX;
+    posY = e.clientY - startY;
+    updateTransform();
+  });
+
+  container.addEventListener('mouseup', () => {
+    isDragging = false;
+    container.style.cursor = 'grab';
+  });
+
+  container.addEventListener('mouseleave', () => {
+    isDragging = false;
+    container.style.cursor = 'grab';
+  });
+
+  container.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    if (Math.sign(e.deltaY) > 0) window.zoomOut();
+    else window.zoomIn();
+  }, { passive: false });
+
+  updateTransform();
+})();
+</script>
