@@ -1,4 +1,4 @@
-import{d as f,r as i,j as e,L as p}from"./index-1a30d3d0.js";const g={requesting:[{sentence:"Can you send me the updated budget report by Friday?",subject:"Updated Budget Report Request",body:`Dear Finance Team,
+import{d as f,r as i,j as e,L as p}from"./index-8e958cb0.js";const g={requesting:[{sentence:"Can you send me the updated budget report by Friday?",subject:"Updated Budget Report Request",body:`Dear Finance Team,
 
 I hope you are doing well.
 
