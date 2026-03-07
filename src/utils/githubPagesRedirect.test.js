@@ -3,7 +3,7 @@ import { restoreRedirectFromSessionStorage } from './githubPagesRedirect';
 describe('restoreRedirectFromSessionStorage', () => {
   it('restores and clears a saved redirect path', () => {
     const storage = {
-      getItem: vi.fn(() => '/OposicionsGeneralitatCatalunya/bloc/bloc-1/tema-1/esquemes'),
+      getItem: vi.fn(() => '/bloc/bloc-1/tema-1/esquemes'),
       removeItem: vi.fn(),
     };
     const history = {
@@ -17,7 +17,7 @@ describe('restoreRedirectFromSessionStorage', () => {
     expect(history.replaceState).toHaveBeenCalledWith(
       null,
       null,
-      '/OposicionsGeneralitatCatalunya/bloc/bloc-1/tema-1/esquemes'
+      '/bloc/bloc-1/tema-1/esquemes'
     );
   });
 
