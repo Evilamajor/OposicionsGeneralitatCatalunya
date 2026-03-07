@@ -370,6 +370,33 @@
 		});
 	}
 
+	const availablePreguntaJsonPoints = new Set(['1', '2']);
+
+	function renderPreguntesFromJson(data) {
+		const title = data?.title ? `<h4>${data.title}</h4>` : '';
+		const questions = Array.isArray(data?.questions) ? data.questions : [];
+		if (!questions.length) {
+			return `${title}<p>No hi ha preguntes disponibles.</p>`;
+		}
+
+		const items = questions.map((question, index) => {
+			const prompt = question?.prompt ?? `Pregunta ${index + 1}`;
+			const explanation = question?.explanation ? `<p><strong>Explicació:</strong> ${question.explanation}</p>` : '';
+			const answer = Array.isArray(question?.choices)
+				? `<p><strong>Resposta correcta:</strong> ${question.choices[question.answer] ?? ''}</p>`
+				: typeof question?.answer === 'boolean'
+					? `<p><strong>Resposta correcta:</strong> ${question.answer ? 'Vertader' : 'Fals'}</p>`
+					: '';
+			const choices = Array.isArray(question?.choices) && question.choices.length
+				? `<ol>${question.choices.map((choice) => `<li>${choice}</li>`).join('')}</ol>`
+				: '';
+
+			return `<article class="question-card"><h5>${prompt}</h5>${choices}${answer}${explanation}</article>`;
+		}).join('');
+
+		return `${title}<div class="question-list">${items}</div>`;
+	}
+
 	async function loadExplicacio(pointNumber, container) {
 		if (!container || container.dataset.loaded === 'true') return;
 
@@ -396,15 +423,19 @@
 			container.dataset.loaded = 'true';
 			return;
 		}
-		const htmlPath = `../preguntes/${normalizedPoint}.html`;
+		if (!availablePreguntaJsonPoints.has(normalizedPoint)) {
+			container.innerHTML = 'En construcció';
+			container.dataset.loaded = 'true';
+			return;
+		}
+		const jsonPath = `../preguntes/${normalizedPoint}.json`;
 
 		try {
-			const response = await fetch(htmlPath);
+			const response = await fetch(jsonPath);
 			if (!response.ok) throw new Error('Not found');
-			const html = await response.text();
-			window.__quizSourcePath = htmlPath;
-			container.innerHTML = html;
-			executeEmbeddedScripts(container);
+			const data = await response.json();
+			window.__quizSourcePath = jsonPath;
+			container.innerHTML = renderPreguntesFromJson(data);
 			container.dataset.loaded = 'true';
 		} catch {
 			container.innerHTML = 'En construcció';
