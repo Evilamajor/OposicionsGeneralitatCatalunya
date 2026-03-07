@@ -70,6 +70,26 @@ const resolveRelativeUrls = (htmlString, htmlPath) => {
   return hasBody ? parsed.body.innerHTML : htmlString;
 };
 
+const fetchFirstAvailableText = async (paths, options = {}) => {
+  let lastError = null;
+
+  for (const path of paths) {
+    if (!path) continue;
+
+    try {
+      const text = await fetchTextWithCache(path, options);
+      return { html: text, path };
+    } catch (error) {
+      if (error?.name === 'AbortError') {
+        throw error;
+      }
+      lastError = error;
+    }
+  }
+
+  throw lastError || new Error('No s\'ha pogut carregar el contingut');
+};
+
 const extractNumericId = (value, fallback = '0') => {
   const match = String(value || '').match(/(\d+)/);
   if (!match) return fallback;
@@ -492,6 +512,8 @@ export default function EsquemesViewer({ blocId, temaId, schemaPath, active }) {
   const [isLoadingEsquemes, setIsLoadingEsquemes] = useState(false);
   const [activePoint, setActivePoint] = useState(null);
 
+  const usesTema1CardLayout = blocId === 'bloc-4' && ['tema-13', 'tema-14', 'tema-15'].includes(temaId);
+
   const esquemesContainerRef = useRef(null);
   const expSectionsRegistryRef = useRef(new Map());
 
@@ -571,6 +593,7 @@ export default function EsquemesViewer({ blocId, temaId, schemaPath, active }) {
 
     const { contentNode } = activeEntry;
     const sourceUrl = contentNode.dataset.sourceUrl;
+    const fallbackSourceUrl = contentNode.dataset.fallbackSourceUrl;
     const fallbackHtml = contentNode.dataset.fallbackHtml || '(Explicació no disponible)';
     const alreadyLoaded = contentNode.dataset.loaded === 'true';
 
@@ -578,14 +601,15 @@ export default function EsquemesViewer({ blocId, temaId, schemaPath, active }) {
 
     let isMounted = true;
 
-    fetchTextWithCache(sourceUrl)
-      .then((html) => {
+    fetchFirstAvailableText([sourceUrl, fallbackSourceUrl])
+      .then(({ html, path }) => {
         if (!isMounted) return;
 
         const originalHtml = html || fallbackHtml;
+        const resolvedHtml = resolveRelativeUrls(originalHtml, path || sourceUrl);
 
         if (!EDIT_MODE_ENABLED) {
-          contentNode.innerHTML = originalHtml;
+          contentNode.innerHTML = resolvedHtml;
           enhanceExplicacioContent(contentNode, { blocId, temaId });
           contentNode.dataset.loaded = 'true';
           return;
@@ -596,7 +620,7 @@ export default function EsquemesViewer({ blocId, temaId, schemaPath, active }) {
           blocId,
           temaId,
           pointId: activePoint,
-          originalHtml,
+          originalHtml: resolvedHtml,
         });
 
         contentNode.dataset.loaded = 'true';
@@ -646,7 +670,7 @@ export default function EsquemesViewer({ blocId, temaId, schemaPath, active }) {
   }
 
   return (
-    <div className="esquema-content-wrapper">
+    <div className={`esquema-content-wrapper ${usesTema1CardLayout ? 'esquema-content-wrapper--tema1-cards' : ''}`}>
       <div
         ref={esquemesContainerRef}
         className="html-content"

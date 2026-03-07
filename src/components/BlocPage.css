@@ -429,6 +429,36 @@
   margin-bottom: 0.4rem;
 }
 
+.esquema-content-wrapper--tema1-cards .html-content > h2 {
+  margin: 34px 0 16px;
+}
+
+.esquema-content-wrapper--tema1-cards .html-content > h2:first-child {
+  margin-top: 0;
+}
+
+.esquema-content-wrapper--tema1-cards .html-content .frame,
+.esquema-content-wrapper--tema1-cards .html-content .schema-frame {
+  background: #fbfcff;
+  padding: 24px;
+  border-radius: 14px;
+  margin-bottom: 24px;
+  border: 1px solid #e7ebf2;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+  transition: all 0.2s ease;
+}
+
+.esquema-content-wrapper--tema1-cards .html-content .frame:hover,
+.esquema-content-wrapper--tema1-cards .html-content .schema-frame:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.09);
+}
+
+.esquema-content-wrapper--tema1-cards .html-content .frame > h3,
+.esquema-content-wrapper--tema1-cards .html-content .schema-frame > h3 {
+  margin: 0 0 2px;
+}
+
 .html-content .schema-point-toggle {
   flex: 1;
   min-width: 0;
