@@ -119,11 +119,32 @@
       .replace(/^_|_$/g, '');
   }
 
+  function getSiteBasePath() {
+    if (document.currentScript && document.currentScript.src) {
+      try {
+        var scriptUrl = new URL(document.currentScript.src, window.location.href);
+        var scriptMarkerIndex = scriptUrl.pathname.indexOf('/js/');
+        if (scriptMarkerIndex >= 0) {
+          return scriptUrl.pathname.slice(0, scriptMarkerIndex + 1);
+        }
+      } catch (error) {
+        console.warn('No s\'ha pogut deduir el base path del runtime públic', error);
+      }
+    }
+
+    var contentMarkerIndex = window.location.pathname.indexOf('/content/');
+    if (contentMarkerIndex >= 0) {
+      return window.location.pathname.slice(0, contentMarkerIndex + 1);
+    }
+
+    return '/';
+  }
+
   function loadNormaRegistry() {
     if (normaState.registry) return Promise.resolve(normaState.registry);
 
     if (!normaState.registryPromise) {
-      normaState.registryPromise = fetch('/data/normativa-articles.json')
+      normaState.registryPromise = fetch(getSiteBasePath() + 'data/normativa-articles.json')
         .then(function (response) {
           if (!response.ok) {
             throw new Error('No s\'ha pogut carregar el registre normatiu');

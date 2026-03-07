@@ -1,1 +1,0 @@
-import{j as e}from"./index-00900ae8.js";function o({title:t="Contingut en preparació",description:n="Aquest apartat estarà disponible properament."}){return e.jsxs("section",{className:"content-placeholder",role:"status","aria-live":"polite",children:[e.jsx("h3",{children:t}),e.jsx("p",{children:n})]})}export{o as C};

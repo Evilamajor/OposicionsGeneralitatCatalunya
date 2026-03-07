@@ -1,0 +1,1 @@
+function r(e=""){const n="/OposicionsGeneralitatCatalunya/",t=String(e||"");if(!t)return`${n}content/`;if(t.startsWith(n))return t;const a=t.replace(/^\/+/,"").replace(/^content\/+/,"");return`${n}content/${a}`}export{r as c};
