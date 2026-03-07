@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import AskPageWrapper from './AskPageWrapper';
 import { getAskConfig } from '../data/askRegistry';
+import { getBasePath } from '@/utils/basePath';
 import './QuizRoutePage.css';
 
 export default function QuizRoutePage() {
@@ -21,7 +22,7 @@ export default function QuizRoutePage() {
   );
 
   const jsonPath = useMemo(
-    () => `/content/${blocId}/${temaId}/preguntes/${punt}.json`,
+    () => getBasePath(`content/${blocId}/${temaId}/preguntes/${punt}.json`),
     [blocId, temaId, punt],
   );
 
@@ -32,9 +33,9 @@ export default function QuizRoutePage() {
       : String(numeric).padStart(2, '0');
 
     return [
-      `/content/${blocId}/${temaId}/preguntes/punt-${padded}.html`,
-      `/content/${blocId}/${temaId}/preguntes/${String(punt || '').trim()}.html`,
-      `/content/${blocId}/${temaId}/esquemes/preguntes/punt-${padded}.html`,
+      getBasePath(`content/${blocId}/${temaId}/preguntes/punt-${padded}.html`),
+      getBasePath(`content/${blocId}/${temaId}/preguntes/${String(punt || '').trim()}.html`),
+      getBasePath(`content/${blocId}/${temaId}/esquemes/preguntes/punt-${padded}.html`),
     ];
   }, [blocId, temaId, punt]);
 

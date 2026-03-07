@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { getBasePath } from '@/utils/basePath';
 import './PowerPointViewer.css';
 import Slide from './Slide';
 
@@ -12,6 +13,7 @@ const getViewerNamespace = (metadataUrl = '') => {
 
 const getStorageKey = (namespace, slideId) => `ppt_edits_${namespace}_${slideId}`;
 const getClockStorageKey = (namespace) => `ppt_clockOn_${namespace}`;
+const resolvePublicAssetPath = (path = '') => (path.startsWith('/') ? getBasePath(path) : path);
 
 export default function PowerPointViewer({ metadataUrl, title = 'PowerPoint' }) {
   const stageViewportRef = useRef(null);
@@ -123,7 +125,7 @@ export default function PowerPointViewer({ metadataUrl, title = 'PowerPoint' }) 
         setLoadingSlide(true);
         setSlideError('');
         setIsTransitioning(true);
-        const response = await fetch(currentSlide.file);
+        const response = await fetch(resolvePublicAssetPath(currentSlide.file));
         if (!response.ok) {
           throw new Error(`No s'ha pogut carregar la diapositiva (${response.status})`);
         }

@@ -8,7 +8,7 @@
     "prebuild": "npm run sync:normativa-articles",
     "build": "vite build",
     "preview": "vite preview",
-    "sync:normativa-articles": "node --experimental-default-type=module scripts/syncNormativaArticles.mjs",
+    "sync:normativa-articles": "node scripts/syncNormativaArticles.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "update:normativa": "node --experimental-specifier-resolution=node scripts/updateNormativa.js"

@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchTextWithCache } from '../utils/contentCache';
+import { getBasePath } from '@/utils/basePath';
+import { rewriteHtmlAssetUrls } from '../utils/rewriteHtmlAssetUrls';
 import './ExplicacioStandalone.css';
 
 const normalizeNumericId = (value, fallback = '0') => {
@@ -14,37 +16,9 @@ const normalizeNumericId = (value, fallback = '0') => {
 const buildCandidatePaths = ({ bloc, tema, punt }) => {
   const paddedPoint = String(Number.parseInt(punt, 10)).padStart(2, '0');
   return [
-    `/content/bloc-${bloc}/tema-${tema}/explicacions/punt-${paddedPoint}.html`,
-    `/content/bloc-${bloc}/tema-${tema}/esquemes/explicacions/punt-${paddedPoint}.html`,
+    getBasePath(`content/bloc-${bloc}/tema-${tema}/explicacions/punt-${paddedPoint}.html`),
+    getBasePath(`content/bloc-${bloc}/tema-${tema}/esquemes/explicacions/punt-${paddedPoint}.html`),
   ];
-};
-
-const resolveRelativeUrls = (htmlString, htmlPath) => {
-  const parser = new DOMParser();
-  const parsed = parser.parseFromString(htmlString, 'text/html');
-  const baseDir = htmlPath.slice(0, htmlPath.lastIndexOf('/') + 1);
-  const baseUrl = `${window.location.origin}${baseDir}`;
-
-  parsed.querySelectorAll('script, style').forEach((node) => node.remove());
-
-  parsed.querySelectorAll('[src], [href]').forEach((element) => {
-    const attrName = element.hasAttribute('src') ? 'src' : 'href';
-    const value = element.getAttribute(attrName);
-
-    if (!value) return;
-
-    const isAbsolute = /^(https?:|data:|mailto:|tel:|#|\/)/i.test(value);
-    if (isAbsolute) return;
-
-    try {
-      const resolved = new URL(value, baseUrl).pathname;
-      element.setAttribute(attrName, resolved);
-    } catch {
-      // Keep original value if resolution fails.
-    }
-  });
-
-  return parsed.body?.innerHTML?.trim() || htmlString;
 };
 
 const fetchFirstAvailableText = async (paths, options = {}) => {
@@ -94,7 +68,7 @@ export default function ExplicacioStandalone() {
         setError('');
 
         const { html: rawHtml, path } = await fetchFirstAvailableText(candidatePaths, { signal: controller.signal });
-        setHtml(resolveRelativeUrls(rawHtml, path));
+        setHtml(rewriteHtmlAssetUrls(rawHtml, path, { stripScripts: true, stripStyles: true, bodyOnly: true }));
       } catch (fetchError) {
         if (fetchError?.name === 'AbortError') return;
         setError(fetchError?.message || 'No s\'ha pogut carregar l\'explicació');

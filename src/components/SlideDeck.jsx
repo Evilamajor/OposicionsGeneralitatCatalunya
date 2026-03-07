@@ -9,6 +9,7 @@
  */
 import { useState, useEffect, useCallback, useRef } from 'react';
 import parseMarkdownSlides from '../utils/parseMarkdownSlides';
+import { getBasePath } from '@/utils/basePath';
 import Slide from './Slide';
 import './SlideDeck.css';
 
@@ -21,12 +22,7 @@ export default function SlideDeck({ mdUrl, deckConfigUrl, title }) {
   const [printMode, setPrintMode] = useState(false);
   const deckRef = useRef(null);
 
-  const buildFullUrl = useCallback((url) => {
-    const baseUrl = import.meta.env.BASE_URL || '/';
-    return url.startsWith('/')
-      ? `${baseUrl.replace(/\/$/, '')}${url}`
-      : `${baseUrl}${url}`;
-  }, []);
+  const buildFullUrl = useCallback((url) => getBasePath(url), []);
 
   /* ── Load & parse markdown ── */
   useEffect(() => {

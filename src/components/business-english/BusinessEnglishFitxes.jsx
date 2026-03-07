@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
+import { getBasePath } from '@/utils/basePath';
 import './BusinessEnglishTheme.css';
 import './BusinessEnglishFitxes.css';
 
@@ -11,7 +12,7 @@ import './BusinessEnglishFitxes.css';
  * Architecture is ready for Firebase / Supabase swap — just replace the fetch.
  */
 
-const DATA_URL = '/content/business-english/materials/index.json';
+const DATA_URL = getBasePath('content/business-english/materials/index.json');
 
 /** Stable category display order */
 const CATEGORY_ORDER = [

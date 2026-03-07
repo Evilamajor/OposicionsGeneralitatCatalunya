@@ -1,11 +1,5 @@
-export default function LegislacioSection({ legislacioPath }) {
-  if (!legislacioPath) return null;
+import EmbeddedHtmlFrame from './EmbeddedHtmlFrame';
 
-  return (
-    <iframe
-      src={legislacioPath}
-      title="Legislació del tema"
-      className="bloc-embedded-frame"
-    />
-  );
+export default function LegislacioSection({ legislacioPath }) {
+  return <EmbeddedHtmlFrame src={legislacioPath} title="Legislació del tema" />;
 }

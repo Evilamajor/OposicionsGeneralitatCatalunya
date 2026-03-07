@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchTextWithCache } from '../../utils/contentCache';
+import { rewriteHtmlAssetUrls } from '../../utils/rewriteHtmlAssetUrls';
 import { getStandaloneExplanationRoute } from '../../constants/routes';
 import {
   jurisprudenciaConstitucional,
@@ -44,32 +45,7 @@ const EDIT_MODE_ENABLED = import.meta.env.VITE_ENABLE_EXPLANATION_EDIT !== '0';
  * - Mini-check reformulat en format “Recorda” orientat a memorització i error habitual.
  */
 
-const resolveRelativeUrls = (htmlString, htmlPath) => {
-  const parser = new DOMParser();
-  const parsed = parser.parseFromString(htmlString, 'text/html');
-  const baseDir = htmlPath.slice(0, htmlPath.lastIndexOf('/') + 1);
-  const baseUrl = `${window.location.origin}${baseDir}`;
-
-  parsed.querySelectorAll('[src], [href]').forEach((element) => {
-    const attrName = element.hasAttribute('src') ? 'src' : 'href';
-    const value = element.getAttribute(attrName);
-
-    if (!value) return;
-
-    const isAbsolute = /^(https?:|data:|mailto:|tel:|#|\/)/i.test(value);
-    if (isAbsolute) return;
-
-    try {
-      const resolved = new URL(value, baseUrl).pathname;
-      element.setAttribute(attrName, resolved);
-    } catch {
-      // keep original value
-    }
-  });
-
-  const hasBody = parsed.body && parsed.body.innerHTML.trim().length > 0;
-  return hasBody ? parsed.body.innerHTML : htmlString;
-};
+const resolveRelativeUrls = (htmlString, htmlPath) => rewriteHtmlAssetUrls(htmlString, htmlPath, { bodyOnly: true });
 
 const fetchFirstAvailableText = async (paths, options = {}) => {
   let lastError = null;
