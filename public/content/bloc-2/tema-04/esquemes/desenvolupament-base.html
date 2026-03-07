@@ -373,8 +373,7 @@
 	async function loadExplicacio(pointNumber, container) {
 		if (!container || container.dataset.loaded === 'true') return;
 
-		const { blocId, temaId } = getCurrentBlocTema();
-		const htmlPath = `/content/${blocId}/${temaId}/esquemes/${pointNumber}.html`;
+		const htmlPath = `${pointNumber}.html`;
 
 		try {
 			const response = await fetch(htmlPath);
@@ -391,14 +390,13 @@
 	async function loadPreguntes(pointNumber, container) {
 		if (!container || container.dataset.loaded === 'true') return;
 
-		const { blocId, temaId } = getCurrentBlocTema();
 		const normalizedPoint = String(pointNumber || '').trim();
 		if (!/^\d+$/.test(normalizedPoint)) {
 			container.innerHTML = 'En construcció';
 			container.dataset.loaded = 'true';
 			return;
 		}
-		const htmlPath = `/content/${blocId}/${temaId}/preguntes/${normalizedPoint}.html`;
+		const htmlPath = `../preguntes/${normalizedPoint}.html`;
 
 		try {
 			const response = await fetch(htmlPath);
@@ -639,14 +637,13 @@
 	async function loadDiagrama(pointNumber, container) {
 		if (!container || container.dataset.loaded === 'true') return;
 
-		const { blocId, temaId } = getCurrentBlocTema();
 		const normalizedPoint = String(pointNumber || '').trim();
 		if (!/^\d+$/.test(normalizedPoint)) {
 			container.innerHTML = 'En construcció';
 			container.dataset.loaded = 'true';
 			return;
 		}
-		const imageSrc = `/content/${blocId}/${temaId}/diagrama/${normalizedPoint}.png`;
+		const imageSrc = `../diagrama/${normalizedPoint}.png`;
 
 		const exists = await imageExists(imageSrc);
 		if (!exists) {
