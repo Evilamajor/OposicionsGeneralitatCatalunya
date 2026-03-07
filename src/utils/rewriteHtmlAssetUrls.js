@@ -1,4 +1,5 @@
 import { getBasePath } from './basePath';
+import { getContentPath } from './getContentPath';
 
 export function rewriteHtmlAssetUrls(htmlString, htmlPath, options = {}) {
   const { stripScripts = false, stripStyles = false, bodyOnly = false } = options;
@@ -24,7 +25,10 @@ export function rewriteHtmlAssetUrls(htmlString, htmlPath, options = {}) {
 
     try {
       if (value.startsWith('/')) {
-        element.setAttribute(attrName, getBasePath(value));
+        element.setAttribute(
+          attrName,
+          value.startsWith('/content/') ? getContentPath(value) : getBasePath(value),
+        );
         return;
       }
 

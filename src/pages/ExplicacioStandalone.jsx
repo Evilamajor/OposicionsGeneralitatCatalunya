@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchTextWithCache } from '../utils/contentCache';
-import { getBasePath } from '@/utils/basePath';
+import { getContentPath } from '@/utils/getContentPath';
 import { rewriteHtmlAssetUrls } from '../utils/rewriteHtmlAssetUrls';
 import './ExplicacioStandalone.css';
 
@@ -16,8 +16,8 @@ const normalizeNumericId = (value, fallback = '0') => {
 const buildCandidatePaths = ({ bloc, tema, punt }) => {
   const paddedPoint = String(Number.parseInt(punt, 10)).padStart(2, '0');
   return [
-    getBasePath(`content/bloc-${bloc}/tema-${tema}/explicacions/punt-${paddedPoint}.html`),
-    getBasePath(`content/bloc-${bloc}/tema-${tema}/esquemes/explicacions/punt-${paddedPoint}.html`),
+    getContentPath(`content/bloc-${bloc}/tema-${tema}/explicacions/punt-${paddedPoint}.html`),
+    getContentPath(`content/bloc-${bloc}/tema-${tema}/esquemes/explicacions/punt-${paddedPoint}.html`),
   ];
 };
 
