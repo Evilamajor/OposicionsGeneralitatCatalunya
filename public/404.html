@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ca">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirigint…</title>
+    <script>
+      const pathSegmentsToKeep = 1;
+      const basePath = window.location.pathname
+        .split('/')
+        .slice(1, 1 + pathSegmentsToKeep)
+        .join('/');
+      const redirect = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+      sessionStorage.setItem('redirect', redirect);
+      window.location.replace(`/${basePath}/`);
+    </script>
+  </head>
+  <body></body>
+</html>
