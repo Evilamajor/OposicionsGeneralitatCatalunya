@@ -1,1 +1,0 @@
-const s=new Map,f=t=>s.get(t)||null,h=(t,e)=>{s.set(t,e)},i=async(t,e={})=>{const{signal:a,force:r=!1}=e;if(!r){const o=f(t);if(o!==null)return o}const n=await fetch(t,{signal:a});if(!n.ok)throw new Error(`No s'ha pogut carregar el contingut (${n.status})`);const c=await n.text();return h(t,c),c};export{i as f};
