@@ -16,8 +16,11 @@ import NormativeTooltip from '../common/NormativeTooltip';
 import { parseNormativeReferences } from '../../utils/normativeReferenceParser';
 import NormativePillHeader from './NormativePillHeader';
 import { createPointActions, applyExpVisibility } from './PointActionsManager';
+import { isDev } from '../../utils/env';
 
-const EDIT_MODE_ENABLED = import.meta.env.VITE_ENABLE_EXPLANATION_EDIT !== '0';
+// Editing features are available only in development
+// to prevent users from modifying content on the public site.
+const EDIT_MODE_ENABLED = isDev;
 
 /**
  * INFORME TÈCNIC D'AUDITORIA — Material d'estudi (Bloc 1, punts 1-24)
@@ -597,6 +600,11 @@ const mountEditableExplanation = ({
 
   const renderControls = () => {
     controlsNode.innerHTML = '';
+
+    if (!EDIT_MODE_ENABLED) {
+      controlsNode.append(createOpenTabButton());
+      return;
+    }
 
     if (!isEditing) {
       const editButton = document.createElement('button');

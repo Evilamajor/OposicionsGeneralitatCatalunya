@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
-import { getContentPath } from '@/utils/getContentPath';
+import { contentPath } from '@/utils/contentPath';
 import './BusinessEnglishTheme.css';
 import './BusinessEnglishFitxes.css';
 
@@ -8,11 +8,11 @@ import './BusinessEnglishFitxes.css';
  * BusinessEnglishFitxes – loads UOC material catalogue from index.json,
  * groups by category, and renders an iframe viewer with fallback.
  *
- * Data source: /content/business-english/materials/index.json
+ * Data source: public/content/business-english/materials/index.json via contentPath().
  * Architecture is ready for Firebase / Supabase swap — just replace the fetch.
  */
 
-const DATA_URL = getContentPath('content/business-english/materials/index.json');
+const DATA_URL = contentPath('business-english/materials/index.json');
 
 /** Stable category display order */
 const CATEGORY_ORDER = [

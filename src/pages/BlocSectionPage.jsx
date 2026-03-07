@@ -3,7 +3,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import ContentPlaceholder from '../components/ContentPlaceholder';
 import { BLOC_SECTIONS, getBlocById, isValidBlocId, isValidBlocSection } from '../data';
 import { getBasePath } from '@/utils/basePath';
-import { getContentPath } from '@/utils/getContentPath';
+import { contentPath } from '@/utils/contentPath';
 import './BlocSectionPage.css';
 
 const SECTION_DESCRIPTIONS = {
@@ -25,7 +25,7 @@ function normalizeItems(payload) {
       href: /^(https?:|mailto:|tel:|#)/i.test(item.href)
         ? item.href
         : /^\/?content\//.test(item.href)
-          ? getContentPath(item.href)
+          ? contentPath(item.href)
           : getBasePath(item.href),
     }));
 }
@@ -54,7 +54,7 @@ export default function BlocSectionPage() {
       setError('');
 
       try {
-        const response = await fetch(getContentPath(`content/bloc-${blocId}/${section}/index.json`), {
+        const response = await fetch(contentPath(`bloc-${blocId}/${section}/index.json`), {
           signal: controller.signal,
         });
 

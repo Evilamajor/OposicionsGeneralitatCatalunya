@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { isDev } from '../utils/env';
 import './CreateQuestionModal.css';
 
 const EMPTY_FORM = {
@@ -40,6 +41,7 @@ function CreateQuestionModal({ isOpen, onClose, onSave }) {
   };
 
   const handleSave = () => {
+    if (!isDev) return;
     setTouched(true);
     if (!isValid) return;
 
@@ -59,7 +61,7 @@ function CreateQuestionModal({ isOpen, onClose, onSave }) {
     onClose();
   };
 
-  if (!isOpen) return null;
+  if (!isDev || !isOpen) return null;
 
   return (
     <div className="create-question-backdrop" role="presentation" onClick={handleCancel}>

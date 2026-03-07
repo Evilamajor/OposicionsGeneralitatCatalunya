@@ -1,5 +1,5 @@
 import { getAskRoute, getDiagramViewerRoute } from '../../constants/routes';
-import { getContentPath } from '@/utils/getContentPath';
+import { contentPath } from '@/utils/contentPath';
 
 const normalizeSectionLabel = (text = '') => text
   .toLowerCase()
@@ -189,8 +189,8 @@ export const createPointActions = ({
     }
 
     const paddedPoint = String(Number.parseInt(pointId, 10)).padStart(2, '0');
-    inlineExpNode.dataset.sourceUrl = getContentPath(`content/${blocId}/${temaId}/explicacions/punt-${paddedPoint}.html`);
-    inlineExpNode.dataset.fallbackSourceUrl = getContentPath(`content/${blocId}/${temaId}/esquemes/explicacions/punt-${paddedPoint}.html`);
+  inlineExpNode.dataset.sourceUrl = contentPath(`${blocId}/${temaId}/explicacions/punt-${paddedPoint}.html`);
+  inlineExpNode.dataset.fallbackSourceUrl = contentPath(`${blocId}/${temaId}/esquemes/explicacions/punt-${paddedPoint}.html`);
     inlineExpNode.dataset.loaded = 'false';
     inlineExpNode.dataset.fallbackHtml = fallbackExpHtml;
 

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { getBasePath } from '@/utils/basePath';
-import { getContentPath } from '@/utils/getContentPath';
+import { contentPath } from '@/utils/contentPath';
+import { isDev } from '@/utils/env';
 import './PowerPointViewer.css';
 import Slide from './Slide';
 
@@ -15,11 +16,15 @@ const getViewerNamespace = (metadataUrl = '') => {
 const getStorageKey = (namespace, slideId) => `ppt_edits_${namespace}_${slideId}`;
 const getClockStorageKey = (namespace) => `ppt_clockOn_${namespace}`;
 const resolvePublicAssetPath = (path = '') => {
-  if (/^\/?content\//.test(path)) {
-    return getContentPath(path);
+  if (/^(?:https?:)?\/\//i.test(path)) {
+    return path;
   }
 
-  return path.startsWith('/') ? getBasePath(path) : path;
+  if (!path.startsWith('/') || /^\/?content\//.test(path)) {
+    return contentPath(path);
+  }
+
+  return getBasePath(path);
 };
 
 export default function PowerPointViewer({ metadataUrl, title = 'PowerPoint' }) {
@@ -258,6 +263,12 @@ export default function PowerPointViewer({ metadataUrl, title = 'PowerPoint' }) 
       return;
     }
 
+    if (!isDev) {
+      setDraftContent(activePointLayer);
+      setIsEditing(false);
+      return;
+    }
+
     try {
       const key = getStorageKey(viewerNamespace, currentSlide.id);
       const saved = localStorage.getItem(key);
@@ -289,7 +300,7 @@ export default function PowerPointViewer({ metadataUrl, title = 'PowerPoint' }) 
   };
 
   function goToSlide(nextIndex) {
-    if (isEditing) {
+    if (isDev && isEditing) {
       const confirmLeave = window.confirm('Tens canvis sense guardar. Vols continuar?');
       if (!confirmLeave) return;
       setIsEditing(false);
@@ -299,6 +310,7 @@ export default function PowerPointViewer({ metadataUrl, title = 'PowerPoint' }) 
   }
 
   const handleSave = () => {
+    if (!isDev) return;
     if (!currentSlide?.id || !draftContent) return;
     const key = getStorageKey(viewerNamespace, currentSlide.id);
     localStorage.setItem(key, JSON.stringify(draftContent));
@@ -306,11 +318,13 @@ export default function PowerPointViewer({ metadataUrl, title = 'PowerPoint' }) 
   };
 
   const handleCancel = () => {
+    if (!isDev) return;
     setDraftContent(currentSlide?.content || activePointLayer || null);
     setIsEditing(false);
   };
 
   const handleReset = () => {
+    if (!isDev) return;
     if (!currentSlide?.id) return;
     const key = getStorageKey(viewerNamespace, currentSlide.id);
     localStorage.removeItem(key);
@@ -353,10 +367,10 @@ export default function PowerPointViewer({ metadataUrl, title = 'PowerPoint' }) 
             ))}
           </select>
           <button type="button" onClick={() => setIsDarkMode((prev) => !prev)}>{isDarkMode ? 'Light' : 'Dark'}</button>
-          {!isEditing && (
+          {isDev && !isEditing && (
             <button type="button" onClick={() => setIsEditing(true)}>Editar</button>
           )}
-          {isEditing && (
+          {isDev && isEditing && (
             <>
               <button type="button" onClick={handleSave}>Guardar</button>
               <button type="button" onClick={handleCancel}>Cancel·lar</button>

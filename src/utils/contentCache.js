@@ -1,10 +1,10 @@
-import { getContentPath } from './getContentPath';
+import { contentPath } from './contentPath';
 
 const textContentCache = new Map();
 
 const isRootContentPath = (path) => typeof path === 'string' && /^\/?content\//.test(path);
 
-const normalizeContentRequestPath = (path) => (isRootContentPath(path) ? getContentPath(path) : path);
+const normalizeContentRequestPath = (path) => (isRootContentPath(path) ? contentPath(path) : path);
 
 export const getCachedContent = (key) => textContentCache.get(key) || null;
 

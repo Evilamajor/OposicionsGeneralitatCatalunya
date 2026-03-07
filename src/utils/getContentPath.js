@@ -1,5 +1,6 @@
-import { getBasePath } from './basePath';
+import { contentPath } from './contentPath';
 
+// Backward-compatible alias. New code should import contentPath directly.
 export function getContentPath(path = '') {
-  return getBasePath(String(path).replace(/^\/+/, ''));
+  return contentPath(path);
 }

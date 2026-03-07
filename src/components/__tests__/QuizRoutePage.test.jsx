@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { contentPath } from '@/utils/contentPath';
 
 const { getAskConfigMock } = vi.hoisted(() => ({
   getAskConfigMock: vi.fn(),
@@ -44,7 +45,7 @@ describe('QuizRoutePage', () => {
 
   it('fetches HTML quiz content using the configured base path', async () => {
     getAskConfigMock.mockReturnValue(null);
-    const expectedPath = `${import.meta.env.BASE_URL}content/bloc-1/tema-1/preguntes/punt-01.html`;
+    const expectedPath = contentPath('bloc-1/tema-1/preguntes/punt-01.html');
     const fetchMock = vi.spyOn(global, 'fetch').mockResolvedValue({
       ok: true,
       text: vi.fn().mockResolvedValue('<p>Pregunta</p>'),

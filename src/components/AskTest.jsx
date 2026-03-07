@@ -11,6 +11,7 @@ import {
   getCustomQuestions,
   removeCustomQuestion,
 } from '../utils/customQuestionsStorage';
+import { isDev } from '../utils/env';
 import './AskTest.css';
 
 const LETTER_TO_INDEX = { A: 0, B: 1, C: 2, D: 3, E: 4 };
@@ -198,6 +199,7 @@ function AskTest({ questionsData, storageKey }) {
 
   const explanationStorageKey = storageKey || 'default';
   const customQuestionsScope = storageKey || 'default';
+  const canEditContent = isDev && mode === 'training';
 
   const shuffleArray = (array) => {
     return [...array].sort(() => Math.random() - 0.5);
@@ -220,8 +222,9 @@ function AskTest({ questionsData, storageKey }) {
 
   const getSavedExplanationPair = (item, index) => {
     const questionId = getQuestionId(item, index);
-    const override = explanationOverrides[questionId]
-      || getSavedExplanation(explanationStorageKey, questionId);
+    const override = isDev
+      ? explanationOverrides[questionId] || getSavedExplanation(explanationStorageKey, questionId)
+      : null;
 
     return {
       hasOverride: Boolean(override?.explanationCorrect || override?.explanationIncorrect),
@@ -268,11 +271,11 @@ function AskTest({ questionsData, storageKey }) {
   };
 
   useEffect(() => {
-    setExplanationOverrides(getSavedExplanations(explanationStorageKey));
+    setExplanationOverrides(isDev ? getSavedExplanations(explanationStorageKey) : {});
   }, [explanationStorageKey]);
 
   useEffect(() => {
-    setCustomQuestions(getCustomQuestions(customQuestionsScope));
+    setCustomQuestions(isDev ? getCustomQuestions(customQuestionsScope) : []);
   }, [customQuestionsScope]);
 
   useEffect(() => {
@@ -380,11 +383,13 @@ function AskTest({ questionsData, storageKey }) {
   };
 
   const toggleCreateQuestion = () => {
-    if (mode !== 'training') return;
+    if (!isDev || mode !== 'training') return;
     setIsCreateQuestionOpen((prev) => !prev);
   };
 
   const handleCreateQuestion = (payload) => {
+    if (!isDev) return;
+
     const newQuestion = {
       id: `custom-${Date.now()}`,
       question: payload.question,
@@ -401,6 +406,7 @@ function AskTest({ questionsData, storageKey }) {
   };
 
   const handleDeleteCustomQuestion = () => {
+    if (!isDev) return;
     if (!question || question.type !== 'custom') return;
 
     const questionId = getQuestionId(question, currentIndex);
@@ -416,7 +422,7 @@ function AskTest({ questionsData, storageKey }) {
   };
 
   const toggleEditMode = () => {
-    if (mode !== 'training') return;
+    if (!isDev || mode !== 'training') return;
 
     setEditMode((prev) => {
       const next = !prev;
@@ -428,6 +434,7 @@ function AskTest({ questionsData, storageKey }) {
   };
 
   const saveEdits = () => {
+    if (!isDev) return;
     if (!question) return;
 
     const questionId = getQuestionId(question, currentIndex);
@@ -443,6 +450,7 @@ function AskTest({ questionsData, storageKey }) {
   };
 
   const resetToOriginal = () => {
+    if (!isDev) return;
     if (!question) return;
 
     const questionId = getQuestionId(question, currentIndex);
@@ -483,7 +491,7 @@ function AskTest({ questionsData, storageKey }) {
           Mode Examen Oficial
         </button>
 
-        {mode === 'training' && (
+        {canEditContent && (
           <button type="button" onClick={toggleCreateQuestion}>
             ➕ Editar pregunta
           </button>
@@ -514,21 +522,22 @@ function AskTest({ questionsData, storageKey }) {
           <h3>Pregunta {currentIndex + 1} / {questions.length}</h3>
           <p className="ask-question">{question.question}</p>
 
-          {mode === 'training' && question.type === 'custom' && (
+          {canEditContent && question.type === 'custom' && (
             <div className="ask-custom-actions">
               <button type="button" onClick={handleDeleteCustomQuestion}>🗑 Eliminar</button>
             </div>
           )}
 
-          {mode === 'training' && (
+          {canEditContent && (
             <div className="ask-edit-controls">
+              {/* Editing is development-only to keep the deployed ASK viewer read-only. */}
               <button type="button" onClick={toggleEditMode}>
                 ✏️ Editar explicacions
               </button>
             </div>
           )}
 
-          {mode === 'training' && editMode && (
+          {canEditContent && editMode && (
             <div className="ask-edit-panel">
               <label htmlFor="explanation-correct">Explicació resposta correcta</label>
               <textarea
@@ -664,11 +673,13 @@ function AskTest({ questionsData, storageKey }) {
         🔄 Tornar a començar
       </button>
 
-      <CreateQuestionModal
-        isOpen={isCreateQuestionOpen}
-        onClose={() => setIsCreateQuestionOpen(false)}
-        onSave={handleCreateQuestion}
-      />
+      {isDev && (
+        <CreateQuestionModal
+          isOpen={isCreateQuestionOpen}
+          onClose={() => setIsCreateQuestionOpen(false)}
+          onSave={handleCreateQuestion}
+        />
+      )}
     </div>
   );
 }
