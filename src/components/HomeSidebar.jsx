@@ -5,7 +5,7 @@ export default function HomeSidebar() {
   return (
     <aside className="sidebar home-sidebar" aria-label="Selector d'itinerari" id="sidebar">
       <div className="sidebar-header home-sidebar-section-header">
-        <h3 className="sidebar-title">CONVOCATÒRIES</h3>
+        <h3 className="sidebar-title">OPOSICIONS ADMINISTRATIU GENERALITAT</h3>
       </div>
 
       <nav>
@@ -13,15 +13,7 @@ export default function HomeSidebar() {
           <li className="sidebar-block">
             <div className="bloc-header">
               <NavLink to="/generalitat" className={({ isActive }) => (isActive ? 'active' : '')} end>
-                <span className="bloc-title">Administratiu Generalitat</span>
-              </NavLink>
-            </div>
-          </li>
-
-          <li className="sidebar-block">
-            <div className="bloc-header">
-              <NavLink to="/ics" className={({ isActive }) => (isActive ? 'active' : '')}>
-                <span className="bloc-title">Administratiu ICS</span>
+                <span className="bloc-title">Convocatòria 2026</span>
               </NavLink>
             </div>
           </li>
