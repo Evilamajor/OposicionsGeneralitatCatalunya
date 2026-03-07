@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchTextWithCache } from '../../utils/contentCache';
+import { getStandaloneExplanationRoute } from '../../constants/routes';
 import {
   jurisprudenciaConstitucional,
 } from '../../data/studyMaterialKnowledgeBase';
@@ -70,6 +71,26 @@ const resolveRelativeUrls = (htmlString, htmlPath) => {
   return hasBody ? parsed.body.innerHTML : htmlString;
 };
 
+const fetchFirstAvailableText = async (paths, options = {}) => {
+  let lastError = null;
+
+  for (const path of paths) {
+    if (!path) continue;
+
+    try {
+      const text = await fetchTextWithCache(path, options);
+      return { html: text, path };
+    } catch (error) {
+      if (error?.name === 'AbortError') {
+        throw error;
+      }
+      lastError = error;
+    }
+  }
+
+  throw lastError || new Error('No s\'ha pogut carregar el contingut');
+};
+
 const extractNumericId = (value, fallback = '0') => {
   const match = String(value || '').match(/(\d+)/);
   if (!match) return fallback;
@@ -85,6 +106,19 @@ const buildExplanationStorageKey = ({ blocId, temaId, pointId }) => {
   return `bloc${bloc}-tema${tema}-punt${punt}`;
 };
 
+const buildExplanationHash = (pointId) => {
+  const punt = extractNumericId(pointId, '0').padStart(2, '0');
+  return `punt-${punt}-explicacio`;
+};
+
+const parseExplanationHash = (hashValue = '') => {
+  const normalizedHash = String(hashValue || '').replace(/^#/, '');
+  const match = normalizedHash.match(/^punt-(\d{2})-explicacio$/i);
+  if (!match) return null;
+
+  return String(Number.parseInt(match[1], 10));
+};
+
 const INLINE_NORMATIVE_SKIP_SELECTOR = [
   'a',
   'button',
@@ -95,9 +129,150 @@ const INLINE_NORMATIVE_SKIP_SELECTOR = [
   '.pillrow',
   '.normative-tooltip-trigger',
   '.normative-inline-ref',
+  '.normative-inline-entry',
+  '.norma',
   '.toc',
   'aside',
 ].join(', ');
+
+const TEMA13_ENTRY_PATTERNS = [
+  { entryKey: 'LCSP_art_15_1', regex: /\barticle\s+15\.1(?:\s+LCSP|\s+de la\s+Llei\s+9\/2017(?:,\s*de\s*8\s*de\s*novembre,\s*de\s*contractes\s+del\s+sector\s+public)?)\b/gi },
+  { entryKey: 'LCSP_art_16', regex: /\barticle\s+16(?:\s+LCSP|\s+de la\s+Llei\s+9\/2017(?:,\s*de\s*8\s*de\s*novembre,\s*de\s*contractes\s+del\s+sector\s+public)?)\b/gi },
+  { entryKey: 'LCSP_art_39_2_c', regex: /\barticle\s+39\.2\.c(?:\s+LCSP|\s+de la\s+Llei\s+9\/2017(?:,\s*de\s*8\s*de\s*novembre,\s*de\s*contractes\s+del\s+sector\s+public)?)\b/gi },
+  { entryKey: 'LCSP_art_2_1', regex: /\barticle\s+2\.1(?:\s+LCSP|\s+de la\s+Llei\s+9\/2017(?:,\s*de\s*contractes\s+del\s+sector\s+public)?)\b/gi },
+  { entryKey: 'LCSP_art_1', regex: /\barticle\s+1(?:\s+LCSP|\s+de la\s+LCSP|\s+de la\s+Llei\s+9\/2017(?:,\s*de\s*contractes\s+del\s+sector\s+public)?)\b/gi },
+  { entryKey: 'CE_art_105_b', regex: /\barticle\s+105\.b(?:\s+de la\s+Constituci(?:ó|o)\s+espanyola|\s+CE)\b/gi },
+  { entryKey: 'CE_art_149_1_18', regex: /\barticle\s+149\.1\.18(?:\s+de la\s+Constituci(?:ó|o)\s+espanyola|\s+CE)\b/gi },
+  { entryKey: 'DIRECTIVA_2014_23_UE', regex: /\bDirectiva\s+2014\/23\/UE\b/gi },
+  { entryKey: 'DIRECTIVA_2014_24_UE', regex: /\bDirectiva\s+2014\/24\/UE\b/gi },
+  { entryKey: 'DIRECTIVA_2014_25_UE', regex: /\bDirectiva\s+2014\/25\/UE\b/gi },
+  { entryKey: 'LCSP', regex: /\bLlei\s+9\/2017(?:,\s*de\s*8\s*de\s*novembre)?(?:,\s*de\s*contractes\s+del\s+sector\s+public)?(?:\s*\(LCSP\))?\b/gi },
+  { entryKey: 'LLEI_19_2014', regex: /\bLlei\s+19\/2014\b/gi },
+  { entryKey: 'TFUE', regex: /\b(?:Tractat\s+de\s+Funcionament\s+de\s+la\s+Uni(?:ó|o)\s+Europea\s*\(TFUE\)|TFUE)\b/gi },
+  { entryKey: 'PERFIL_CONTRACTANT', regex: /\bperfil\s+del\s+contractant\b/gi },
+  { entryKey: 'PSCP', regex: /\b(?:Plataforma\s+de\s+Serveis\s+de\s+Contractaci(?:ó|o)\s+P(?:ú|u)blica\s*\(PSCP\)|PSCP)\b/gi },
+  { entryKey: 'DOUE', regex: /\b(?:Diari\s+Oficial\s+de\s+la\s+Uni(?:ó|o)\s+Europea\s*\(DOUE\)|DOUE)\b/gi },
+];
+
+const createEntryMatch = (entryKey, label, start, end) => ({
+  entryKey,
+  label,
+  start,
+  end,
+});
+
+const dedupeStructuredNormativeMatches = (matches) => {
+  const sorted = [...matches].sort((first, second) => first.start - second.start || second.end - first.end);
+  const result = [];
+  let lastEnd = -1;
+
+  sorted.forEach((match) => {
+    if (match.start < lastEnd) return;
+    result.push(match);
+    lastEnd = match.end;
+  });
+
+  return result;
+};
+
+const collectTema13NormativeMatches = (text, context = {}) => {
+  if (context?.blocId !== 'bloc-4' || context?.temaId !== 'tema-13') {
+    return [];
+  }
+
+  const matches = [];
+
+  TEMA13_ENTRY_PATTERNS.forEach(({ entryKey, regex }) => {
+    for (const match of text.matchAll(regex)) {
+      const label = match[0];
+      const start = match.index ?? -1;
+      if (start < 0 || !label) continue;
+      matches.push(createEntryMatch(entryKey, label, start, start + label.length));
+    }
+  });
+
+  return dedupeStructuredNormativeMatches(matches);
+};
+
+const replaceTextNodeWithStructuredNormativeRefs = (textNode, matches) => {
+  const text = textNode.nodeValue || '';
+  if (matches.length === 0) return;
+
+  const fragment = document.createDocumentFragment();
+  let lastIndex = 0;
+
+  matches.forEach((match) => {
+    if (match.start > lastIndex) {
+      fragment.appendChild(document.createTextNode(text.slice(lastIndex, match.start)));
+    }
+
+    const mountNode = document.createElement('span');
+    mountNode.className = 'normative-inline-entry';
+    mountNode.dataset.entryKey = match.entryKey;
+    mountNode.dataset.label = match.label;
+    fragment.appendChild(mountNode);
+
+    lastIndex = match.end;
+  });
+
+  if (lastIndex < text.length) {
+    fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+  }
+
+  textNode.parentNode?.replaceChild(fragment, textNode);
+};
+
+const mountStructuredNormativeTooltips = (rootNode, context) => {
+  if (Array.isArray(rootNode.__structuredNormativeRoots)) {
+    rootNode.__structuredNormativeRoots.forEach((root) => root.unmount());
+  }
+
+  rootNode.__structuredNormativeRoots = [];
+
+  const walker = document.createTreeWalker(rootNode, NodeFilter.SHOW_TEXT);
+  const textNodes = [];
+  let currentNode = walker.nextNode();
+
+  while (currentNode) {
+    const parent = currentNode.parentElement;
+    if (!parent || parent.closest(INLINE_NORMATIVE_SKIP_SELECTOR)) {
+      currentNode = walker.nextNode();
+      continue;
+    }
+
+    const rawText = currentNode.nodeValue || '';
+    if (!rawText.trim()) {
+      currentNode = walker.nextNode();
+      continue;
+    }
+
+    textNodes.push(currentNode);
+    currentNode = walker.nextNode();
+  }
+
+  textNodes.forEach((textNode) => {
+    const matches = collectTema13NormativeMatches(textNode.nodeValue || '', context);
+    if (matches.length === 0) return;
+    replaceTextNodeWithStructuredNormativeRefs(textNode, matches);
+  });
+
+  rootNode.querySelectorAll('.norma[data-norma], .normative-inline-entry').forEach((mountNode) => {
+    const entryKey = mountNode.dataset.norma || mountNode.dataset.entryKey;
+    const label = mountNode.dataset.label || mountNode.textContent?.trim() || '';
+    if (!entryKey || !label) return;
+
+    const root = createRoot(mountNode);
+    root.render(
+      <NormativeTooltip entryKey={entryKey}>
+        {label}
+      </NormativeTooltip>,
+    );
+
+    rootNode.__structuredNormativeRoots.push(root);
+  });
+
+  return rootNode.__structuredNormativeRoots.length;
+};
 
 const replaceTextNodeWithNormativeRefs = (textNode, matches) => {
   const text = textNode.nodeValue || '';
@@ -370,7 +545,16 @@ const enhanceExplicacioContent = (rootNode, context) => {
   if (!rootNode) return;
   simplifyExplanationStructure(rootNode);
   renderNormativaHeader(rootNode, context);
+  const structuredTooltipCount = mountStructuredNormativeTooltips(rootNode, context);
   mountInlineNormativeTooltips(rootNode);
+
+  if (context?.blocId === 'bloc-4' && context?.temaId === 'tema-13') {
+    const explicitCount = rootNode.querySelectorAll('.norma[data-norma]').length;
+    console.debug('[normativa] Tema 13 tooltips enhanced', {
+      explicitCount,
+      structuredTooltipCount,
+    });
+  }
 };
 
 const mountEditableExplanation = ({
@@ -423,6 +607,18 @@ const mountEditableExplanation = ({
     button.textContent = label;
   };
 
+  const createOpenTabButton = () => {
+    const openTabButton = document.createElement('button');
+    openTabButton.type = 'button';
+    openTabButton.className = 'btn-open-tab';
+    setButtonLabel(openTabButton, '🔗 Obrir en nova pestanya');
+    openTabButton.addEventListener('click', () => {
+      const standaloneUrl = getStandaloneExplanationRoute(blocId, temaId, pointId);
+      window.open(standaloneUrl, '_blank', 'noopener,noreferrer');
+    });
+    return openTabButton;
+  };
+
   const renderControls = () => {
     controlsNode.innerHTML = '';
 
@@ -435,7 +631,7 @@ const mountEditableExplanation = ({
         renderControls();
         renderEditor();
       });
-      controlsNode.appendChild(editButton);
+      controlsNode.append(editButton, createOpenTabButton());
       return;
     }
 
@@ -478,7 +674,7 @@ const mountEditableExplanation = ({
       renderPreview();
     });
 
-    controlsNode.append(saveButton, cancelButton, restoreButton);
+    controlsNode.append(saveButton, cancelButton, restoreButton, createOpenTabButton());
   };
 
   renderControls();
@@ -487,10 +683,13 @@ const mountEditableExplanation = ({
 
 export default function EsquemesViewer({ blocId, temaId, schemaPath, active }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [esquemesHtml, setEsquemesHtml] = useState('');
   const [esquemesError, setEsquemesError] = useState('');
   const [isLoadingEsquemes, setIsLoadingEsquemes] = useState(false);
   const [activePoint, setActivePoint] = useState(null);
+
+  const usesTema1CardLayout = blocId === 'bloc-4' && ['tema-13', 'tema-14', 'tema-15'].includes(temaId);
 
   const esquemesContainerRef = useRef(null);
   const expSectionsRegistryRef = useRef(new Map());
@@ -502,6 +701,15 @@ export default function EsquemesViewer({ blocId, temaId, schemaPath, active }) {
   useEffect(() => {
     setActivePoint(null);
   }, [blocId, temaId, schemaPath]);
+
+  useEffect(() => {
+    if (!active) return;
+
+    const pointFromHash = parseExplanationHash(location.hash);
+    if (!pointFromHash) return;
+
+    setActivePoint(pointFromHash);
+  }, [active, location.hash, blocId, temaId, schemaPath]);
 
   useEffect(() => {
     if (!active || !schemaPath) {
@@ -561,6 +769,28 @@ export default function EsquemesViewer({ blocId, temaId, schemaPath, active }) {
   }, [active, activePoint]);
 
   useEffect(() => {
+    if (!active || typeof window === 'undefined') return;
+
+    const currentHashPoint = parseExplanationHash(window.location.hash);
+
+    if (!activePoint) {
+      if (currentHashPoint) {
+        const url = new URL(window.location.href);
+        url.hash = '';
+        window.history.replaceState(window.history.state, '', `${url.pathname}${url.search}`);
+      }
+      return;
+    }
+
+    const nextHash = buildExplanationHash(activePoint);
+    if (window.location.hash === `#${nextHash}`) return;
+
+    const url = new URL(window.location.href);
+    url.hash = nextHash;
+    window.history.replaceState(window.history.state, '', `${url.pathname}${url.search}#${nextHash}`);
+  }, [active, activePoint]);
+
+  useEffect(() => {
     if (!active || !activePoint) return;
 
     const registry = expSectionsRegistryRef.current;
@@ -571,6 +801,7 @@ export default function EsquemesViewer({ blocId, temaId, schemaPath, active }) {
 
     const { contentNode } = activeEntry;
     const sourceUrl = contentNode.dataset.sourceUrl;
+    const fallbackSourceUrl = contentNode.dataset.fallbackSourceUrl;
     const fallbackHtml = contentNode.dataset.fallbackHtml || '(Explicació no disponible)';
     const alreadyLoaded = contentNode.dataset.loaded === 'true';
 
@@ -578,14 +809,15 @@ export default function EsquemesViewer({ blocId, temaId, schemaPath, active }) {
 
     let isMounted = true;
 
-    fetchTextWithCache(sourceUrl)
-      .then((html) => {
+    fetchFirstAvailableText([sourceUrl, fallbackSourceUrl])
+      .then(({ html, path }) => {
         if (!isMounted) return;
 
         const originalHtml = html || fallbackHtml;
+        const resolvedHtml = resolveRelativeUrls(originalHtml, path || sourceUrl);
 
         if (!EDIT_MODE_ENABLED) {
-          contentNode.innerHTML = originalHtml;
+          contentNode.innerHTML = resolvedHtml;
           enhanceExplicacioContent(contentNode, { blocId, temaId });
           contentNode.dataset.loaded = 'true';
           return;
@@ -596,7 +828,7 @@ export default function EsquemesViewer({ blocId, temaId, schemaPath, active }) {
           blocId,
           temaId,
           pointId: activePoint,
-          originalHtml,
+          originalHtml: resolvedHtml,
         });
 
         contentNode.dataset.loaded = 'true';
@@ -646,7 +878,7 @@ export default function EsquemesViewer({ blocId, temaId, schemaPath, active }) {
   }
 
   return (
-    <div className="esquema-content-wrapper">
+    <div className={`esquema-content-wrapper ${usesTema1CardLayout ? 'esquema-content-wrapper--tema1-cards' : ''}`}>
       <div
         ref={esquemesContainerRef}
         className="html-content"

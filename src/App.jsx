@@ -14,6 +14,7 @@ const AnnexPage = lazy(() => import('./components/AnnexPage'));
 const SchemaViewer = lazy(() => import('./components/SchemaViewer'));
 const FullscreenDiagramViewer = lazy(() => import('./components/FullscreenDiagramViewer'));
 const QuizRoutePage = lazy(() => import('./components/QuizRoutePage'));
+const ExplicacioStandalone = lazy(() => import('./pages/ExplicacioStandalone'));
 const AutoavaluacioPage = lazy(() => import('./pages/AutoavaluacioPage'));
 const NoticiesPage = lazy(() => import('./pages/NoticiesPage'));
 const CatalaNivellCPage = lazy(() => import('./pages/CatalaNivellCPage'));
@@ -67,7 +68,44 @@ export default function App() {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const isIcsRoute = location.pathname === '/ics' || location.pathname.startsWith('/ics/');
+  const isStandaloneExplanationRoute = location.pathname.startsWith('/explicacio/bloc/');
   const showHomeSelectorSidebar = location.pathname === '/';
+
+  const appRoutes = (
+    <Routes>
+      <Route path="/" element={<HomeSelectorPage />} />
+      <Route path="/explicacio/bloc/:bloc/tema/:tema/punt/:punt" element={<ExplicacioStandalone />} />
+      <Route path="/ics/*" element={<IcsLayout />}>
+        <Route index element={<IcsPage />} />
+        <Route path="transversal" element={<IcsSectionIndexPage section="transversal" />} />
+        <Route path="transversal/:temaId" element={<IcsTopicPage section="transversal" />} />
+        <Route path="especific" element={<IcsSectionIndexPage section="especific" />} />
+        <Route path="especific/:blocId" element={<IcsSpecificBlockPage />} />
+        <Route path="especific/:blocId/:temaId" element={<IcsTopicPage section="especific" />} />
+        <Route path="annexos/catala-juridic" element={<IcsCatalaJuridicPage />} />
+        <Route path="annexos/catala-nivell-c" element={<CatalaNivellCPage />} />
+        <Route path="annexos/autoavaluacions" element={<AutoavaluacioPage />} />
+        <Route path="annexos/noticies" element={<NoticiesPage />} />
+        <Route path="*" element={<Navigate to="/ics" replace />} />
+      </Route>
+      <Route path="/generalitat" element={<Navigate to="/generalitat/bloc/bloc-1" replace />} />
+      {buildGeneralitatRoutes('/generalitat')}
+      {buildGeneralitatRoutes('')}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
+
+  if (isStandaloneExplanationRoute) {
+    return (
+      <ErrorBoundary>
+        <main className="standalone-main-content">
+          <Suspense fallback={<div className="loading"><p>Carregant contingut...</p></div>}>
+            {appRoutes}
+          </Suspense>
+        </main>
+      </ErrorBoundary>
+    );
+  }
 
   return (
     <ErrorBoundary>
@@ -112,26 +150,7 @@ export default function App() {
 
         <main className="main-content">
           <Suspense fallback={<div className="loading"><p>Carregant contingut...</p></div>}>
-            <Routes>
-              <Route path="/" element={<HomeSelectorPage />} />
-              <Route path="/ics/*" element={<IcsLayout />}>
-                <Route index element={<IcsPage />} />
-                <Route path="transversal" element={<IcsSectionIndexPage section="transversal" />} />
-                <Route path="transversal/:temaId" element={<IcsTopicPage section="transversal" />} />
-                <Route path="especific" element={<IcsSectionIndexPage section="especific" />} />
-                <Route path="especific/:blocId" element={<IcsSpecificBlockPage />} />
-                <Route path="especific/:blocId/:temaId" element={<IcsTopicPage section="especific" />} />
-                <Route path="annexos/catala-juridic" element={<IcsCatalaJuridicPage />} />
-                <Route path="annexos/catala-nivell-c" element={<CatalaNivellCPage />} />
-                <Route path="annexos/autoavaluacions" element={<AutoavaluacioPage />} />
-                <Route path="annexos/noticies" element={<NoticiesPage />} />
-                <Route path="*" element={<Navigate to="/ics" replace />} />
-              </Route>
-              <Route path="/generalitat" element={<Navigate to="/generalitat/bloc/bloc-1" replace />} />
-              {buildGeneralitatRoutes('/generalitat')}
-              {buildGeneralitatRoutes('')}
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
+            {appRoutes}
           </Suspense>
         </main>
       </div>

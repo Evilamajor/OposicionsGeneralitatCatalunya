@@ -47,15 +47,28 @@ const buildKey = (tipus, referencia) => buildNormativaKey(tipus, referencia);
 const mapCentralEntry = (entry, fallbackTitle) => {
   if (!entry) return null;
 
+  const oppositionPoints = Array.isArray(entry.oppositionPoints)
+    ? entry.oppositionPoints.filter(Boolean)
+    : [];
+
   return {
     titol: entry.titol || entry.title || fallbackTitle,
     queRegula: entry.queRegula || entry.summary || '',
-    ideaClau: entry.ideaClau || entry.keyIdea || '',
+    ideaClau: entry.ideaClau || entry.keyIdea || oppositionPoints[0] || '',
     contextTemari: entry.contextTemari || entry.context || '',
-    clauExamen: entry.clauExamen || entry.examNote || '',
+    clauExamen: entry.clauExamen || entry.examNote || oppositionPoints.slice(1).join(' ') || '',
     errorHabitual: entry.errorHabitual || '',
   };
 };
+
+const buildDirectKeyFallback = (entryKey) => applyNormativaTemplate({
+  ...(fallbackByType.CE || {}),
+  titol: String(entryKey || '').trim() || 'Referència normativa',
+  queRegula: 'Referència normativa pendent de síntesi pedagògica.',
+  ideaClau: 'Relaciona aquesta referència amb el punt del temari on apareix.',
+  contextTemari: 'Entrada detectada dins del contingut injectat de l esquema o explicació.',
+  clauExamen: 'Revisa la funció concreta de la norma dins del Tema 13.',
+});
 
 export const getNormativeInfo = (tipus, referencia) => {
   const normalizedType = String(tipus || '').toUpperCase();
@@ -84,6 +97,21 @@ export const getNormativeInfo = (tipus, referencia) => {
   });
 
   validateNormativaEntry(`${normalizedType}:${normalizedRef}`, merged);
+
+  return merged;
+};
+
+export const getNormativeInfoByKey = (entryKey) => {
+  const normalizedKey = String(entryKey || '').trim();
+  const source = mapCentralEntry(normativaContent?.[normalizedKey], normalizedKey);
+  const fallback = buildDirectKeyFallback(normalizedKey);
+  const merged = applyNormativaTemplate({
+    ...fallback,
+    ...(source || {}),
+    titol: source?.titol || fallback.titol,
+  });
+
+  validateNormativaEntry(`ENTRY:${normalizedKey}`, merged);
 
   return merged;
 };

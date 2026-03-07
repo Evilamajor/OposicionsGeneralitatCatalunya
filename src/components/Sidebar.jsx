@@ -2,14 +2,13 @@ import { NavLink, useLocation, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { sidebarConfig } from '../data';
 
-const { blocks: allBlocks, annexos, blocsHeader, annexosHeader } = sidebarConfig;
+const { blocks: allBlocks, blocsHeader } = sidebarConfig;
 
 // Keep only the official bloc navigation in BLOCS section
 const blocksOnly = allBlocks.filter((b) => b.id !== 'business-english');
 
 export default function Sidebar({ collapsed, onToggle }) {
   const [expandedBlocId, setExpandedBlocId] = useState(null);
-  const [annexosOpen, setAnnexosOpen] = useState(false);
   const { blocId: activeBlockId } = useParams();
   const location = useLocation();
   const basePath = location.pathname.startsWith('/generalitat') ? '/generalitat' : '';
@@ -129,86 +128,6 @@ export default function Sidebar({ collapsed, onToggle }) {
           ))}
         </ul>
       </nav>
-
-      {/* Divider between BLOCS and ANNEXOS */}
-      <div className="sidebar-divider" />
-
-      {/* ANNEXOS section */}
-      <div className="sidebar-header">
-        <button
-          className={`bloc-toggle ${annexosOpen ? 'expanded' : ''}`}
-          onClick={() => setAnnexosOpen(!annexosOpen)}
-          aria-expanded={annexosOpen}
-          aria-label={`${annexosOpen ? 'Collapse' : 'Expand'} Annexos`}
-        >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="chevron"
-          >
-            <path
-              d="M9 6l6 6-6 6"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-        <h3 className="sidebar-title annexos-title annexos-title-btn" onClick={() => setAnnexosOpen(!annexosOpen)}>{annexosHeader}</h3>
-      </div>
-
-      {annexosOpen && (
-        <nav>
-          <ul>
-            {annexos.map((annex) => (
-              <li key={annex.id} className="sidebar-block">
-                <div className="bloc-header">
-                  <NavLink
-                    to={withBasePath(annex.route || `/annex/${annex.id}`)}
-                    className={({ isActive }) => (isActive ? 'active' : '')}
-                  >
-                    <span className="bloc-title">{annex.title}</span>
-                  </NavLink>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
-
-      {/* Divider before NOTÍCIES */}
-      <div className="sidebar-divider" />
-
-      {/* NOTÍCIES – standalone top-level section */}
-      <div className="sidebar-header">
-        <NavLink
-          to={withBasePath('/noticies')}
-          className={({ isActive }) => `sidebar-forum-link${isActive ? ' active' : ''}`}
-          onClick={() => { if (onToggle && !collapsed) onToggle(); }}
-        >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="sidebar-forum-icon"
-          >
-            <path
-              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <h3 className="sidebar-title forum-title-inline">Notícies</h3>
-        </NavLink>
-      </div>
     </aside>
   );
 }

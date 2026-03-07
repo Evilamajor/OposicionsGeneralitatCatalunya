@@ -195,6 +195,15 @@
   padding-right: 24px;
 }
 
+.standalone-main-content {
+  min-height: 100vh;
+  background: #f3f6fb;
+}
+
+.standalone-main-content > * {
+  width: 100%;
+}
+
 /* =========================
    Llistes comunes
 ========================= */

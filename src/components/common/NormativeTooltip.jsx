@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { getNormativeInfo } from '../../utils/normativeDataResolver';
+import { getNormativeInfo, getNormativeInfoByKey } from '../../utils/normativeDataResolver';
 import './NormativeTooltip.css';
 
 const getTooltipPosition = (targetElement) => {
@@ -35,13 +35,16 @@ const renderField = (label, value) => {
   );
 };
 
-export default function NormativeTooltip({ tipus, referencia, children }) {
+export default function NormativeTooltip({ tipus, referencia, entryKey, children }) {
   const triggerRef = useRef(null);
   const tooltipRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0, width: 360 });
 
-  const info = useMemo(() => getNormativeInfo(tipus, referencia), [tipus, referencia]);
+  const info = useMemo(
+    () => (entryKey ? getNormativeInfoByKey(entryKey) : getNormativeInfo(tipus, referencia)),
+    [entryKey, tipus, referencia],
+  );
 
   useEffect(() => {
     if (!open || !triggerRef.current) return;

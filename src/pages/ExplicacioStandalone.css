@@ -1,0 +1,152 @@
+.explicacio-standalone-page {
+  min-height: 100vh;
+  color: #102033;
+  background: linear-gradient(180deg, #eef4fb 0%, #f7f9fc 140px, #f7f9fc 100%);
+}
+
+.explicacio-standalone-header {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.28);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+}
+
+.explicacio-standalone-header__inner {
+  width: min(900px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 20px;
+}
+
+.explicacio-standalone-eyebrow {
+  margin: 0 0 8px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #59708b;
+}
+
+.explicacio-standalone-title {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.explicacio-standalone-meta {
+  margin: 10px 0 0;
+  font-size: 0.98rem;
+  color: #4d647d;
+}
+
+.explicacio-standalone-main {
+  padding: 40px 16px 56px;
+}
+
+.explicacio-standalone-shell {
+  width: min(900px, calc(100% - 16px));
+  margin: 0 auto;
+  padding: 40px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.08);
+}
+
+.explicacio-standalone-content .layout,
+.explicacio-standalone-content .layout.layout-single-column {
+  display: block !important;
+  grid-template-columns: 1fr !important;
+}
+
+.explicacio-standalone-content .wrap,
+.explicacio-standalone-content .tema-container,
+.explicacio-standalone-content main,
+.explicacio-standalone-content .point-content,
+.explicacio-standalone-content .theme-point {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.explicacio-standalone-content nav.toc,
+.explicacio-standalone-content .toc,
+.explicacio-standalone-content aside,
+.explicacio-standalone-content iframe,
+.explicacio-standalone-content .edit-controls {
+  display: none !important;
+}
+
+.explicacio-standalone-content section {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.explicacio-standalone-content h1,
+.explicacio-standalone-content h2,
+.explicacio-standalone-content h3,
+.explicacio-standalone-content h4 {
+  color: #102033;
+}
+
+.explicacio-standalone-content p,
+.explicacio-standalone-content li,
+.explicacio-standalone-content td,
+.explicacio-standalone-content th {
+  color: #24384c;
+  line-height: 1.7;
+}
+
+.explicacio-standalone-content .box,
+.explicacio-standalone-content .ref,
+.explicacio-standalone-content .note,
+.explicacio-standalone-content .callout,
+.explicacio-standalone-content .idea-box,
+.explicacio-standalone-content .schema-box,
+.explicacio-standalone-content .warning-box,
+.explicacio-standalone-content .summary-box {
+  margin: 18px 0;
+  padding: 18px 20px;
+  border: 1px solid #dce5f0;
+  border-radius: 16px;
+  background: #f9fbfe;
+}
+
+.explicacio-standalone-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.explicacio-standalone-content th,
+.explicacio-standalone-content td {
+  padding: 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.explicacio-standalone-content th {
+  background: #f9fafb;
+  font-weight: 600;
+}
+
+.explicacio-standalone-content .norma {
+  color: #1d4ed8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .explicacio-standalone-main {
+    padding: 24px 12px 40px;
+  }
+
+  .explicacio-standalone-shell {
+    width: 100%;
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+
+  .explicacio-standalone-title {
+    font-size: 1.6rem;
+  }
+}
