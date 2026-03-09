@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchTextWithCache } from '../../utils/contentCache';
 import { rewriteHtmlAssetUrls } from '../../utils/rewriteHtmlAssetUrls';
+import { loadExplanationHtml } from '../../utils/explanationContent';
 import { getStandaloneExplanationRoute } from '../../constants/routes';
 import {
   jurisprudenciaConstitucional,
@@ -49,26 +50,6 @@ const EDIT_MODE_ENABLED = isDev;
  */
 
 const resolveRelativeUrls = (htmlString, htmlPath) => rewriteHtmlAssetUrls(htmlString, htmlPath, { bodyOnly: true });
-
-const fetchFirstAvailableText = async (paths, options = {}) => {
-  let lastError = null;
-
-  for (const path of paths) {
-    if (!path) continue;
-
-    try {
-      const text = await fetchTextWithCache(path, options);
-      return { html: text, path };
-    } catch (error) {
-      if (error?.name === 'AbortError') {
-        throw error;
-      }
-      lastError = error;
-    }
-  }
-
-  throw lastError || new Error('No s\'ha pogut carregar el contingut');
-};
 
 const extractNumericId = (value, fallback = '0') => {
   const match = String(value || '').match(/(\d+)/);
@@ -793,7 +774,11 @@ export default function EsquemesViewer({ blocId, temaId, schemaPath, active }) {
 
     let isMounted = true;
 
-    fetchFirstAvailableText([sourceUrl, fallbackSourceUrl])
+    loadExplanationHtml({
+      blocId,
+      temaId,
+      pointId: activePoint,
+    })
       .then(({ html, path }) => {
         if (!isMounted) return;
 
