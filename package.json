@@ -3,19 +3,30 @@
   "version": "0.0.1",
   "homepage": "https://evilamajor.github.io/OposicionsGeneralitatCatalunya",
   "private": true,
+  "type": "module",
+
   "scripts": {
     "predev": "npm run sync:normativa-articles",
     "dev": "vite",
+
     "prebuild": "npm run sync:normativa-articles",
     "build": "vite build",
     "preview": "vite preview",
+
     "sync:normativa-articles": "node scripts/syncNormativaArticles.mjs",
+
+    "scan-normativa": "node scripts/scan-normativa.js",
+    "generate-normativa": "node scripts/generate-normativa-files.js",
+
     "test": "vitest run",
     "test:watch": "vitest",
+
     "update:normativa": "node --experimental-specifier-resolution=node scripts/updateNormativa.js",
+
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
+
   "dependencies": {
     "pdfjs-dist": "^5.4.296",
     "react": "^18.2.0",
@@ -25,6 +36,7 @@
     "react-zoom-pan-pinch": "^3.7.0",
     "zustand": "^5.0.11"
   },
+
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -36,5 +48,3 @@
     "vitest": "^4.0.18"
   }
 }
-
-
