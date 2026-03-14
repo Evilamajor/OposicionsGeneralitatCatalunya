@@ -1,28 +1,555 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ca">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BLOC IV – TEMA 15 – PUNT 22</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Punt 22. Règim de recursos en matèria de contractació</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a30;
+      --panel-alt: #0f172a;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-strong: #0ea5e9;
+      --border: #1e293b;
+      --quote: #1d4ed8;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 28%),
+        radial-gradient(circle at top right, rgba(14, 165, 233, 0.08), transparent 24%),
+        linear-gradient(180deg, #0b1020 0%, #0f172a 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.14), rgba(14, 165, 233, 0.06));
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      margin: 0;
+      max-width: 930px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .index {
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .index h2 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 1.2rem;
+    }
+
+    .index ul {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+
+    .index li {
+      margin: 0.4rem 0;
+    }
+
+    .index a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .index a:hover {
+      text-decoration: underline;
+    }
+
+    .section {
+      background: rgba(18, 26, 48, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .section h2 {
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 1.5rem;
+      line-height: 1.25;
+    }
+
+    .section p {
+      margin: 0 0 1rem;
+      color: #dbe4f0;
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .note,
+    .example,
+    .summary-box,
+    .warning-box {
+      border-radius: 18px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+
+    .note {
+      background: rgba(29, 78, 216, 0.14);
+      border-left: 4px solid var(--quote);
+    }
+
+    .example {
+      background: rgba(34, 197, 94, 0.10);
+      border-left: 4px solid var(--success);
+    }
+
+    .summary-box {
+      background: rgba(245, 158, 11, 0.10);
+      border-left: 4px solid var(--warning);
+    }
+
+    .warning-box {
+      background: rgba(239, 68, 68, 0.10);
+      border-left: 4px solid var(--danger);
+    }
+
+    .label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    ul.custom {
+      padding-left: 1.2rem;
+      margin: 0.75rem 0 1rem;
+    }
+
+    ul.custom li {
+      margin-bottom: 0.55rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    @media (min-width: 900px) {
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+      color: var(--accent);
+    }
+
+    .footer-box {
+      margin-top: 32px;
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.10), rgba(56, 189, 248, 0.06));
+      border: 1px solid rgba(56, 189, 248, 0.18);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .footer-box h2 {
+      margin-top: 0;
+    }
+
+    strong {
+      color: #f8fafc;
+    }
+
+    em {
+      color: #cbd5e1;
+    }
+  </style>
 </head>
 <body>
-  <main>
-    <h1>BLOC IV – TEMA 15 – PUNT 22</h1>
-    <p>Contingut pendent d'elaborar.</p>
+  <main class="container">
+    <header class="hero">
+      <div class="eyebrow">Bloc 4 · Contractació pública</div>
+      <h1>Tema 15 · Punt 22 — Règim de recursos en matèria de contractació</h1>
+      <p class="subtitle">
+        El règim de recursos en matèria de contractació és el sistema de garanties que permet
+        controlar la legalitat dels actes administratius dictats en els procediments contractuals,
+        protegint la igualtat entre licitadors, la transparència, la lliure concurrència i la bona administració.
+      </p>
+    </header>
 
-    <section>
-      <h2>1. Context i definicions</h2>
-      <p>Apunts per completar.</p>
+    <nav class="index" aria-label="Índex del contingut">
+      <h2>Índex</h2>
+      <ul>
+        <li><a href="#concepte">1. Concepte i finalitat del règim de recursos en la contractació pública</a></li>
+        <li><a href="#tipologia">2. Tipologia de recursos en matèria de contractació</a></li>
+        <li><a href="#recurs-especial">3. El recurs especial en matèria de contractació</a></li>
+        <li><a href="#organs">4. Òrgans competents per resoldre el recurs especial</a></li>
+        <li><a href="#efectes">5. Efectes del recurs en el procediment de contractació</a></li>
+        <li><a href="#importancia">6. Importància del règim de recursos en la contractació pública</a></li>
+      </ul>
+    </nav>
+
+    <section id="concepte" class="section">
+      <h2>1. Concepte i finalitat del règim de recursos en la contractació pública</h2>
+
+      <p>
+        Dins del dret de la contractació pública, el <strong>règim de recursos</strong> és el conjunt de
+        mecanismes de control administratiu i jurisdiccional dissenyats per garantir que els actes dictats
+        pels òrgans de contractació s’ajustin estrictament a la legalitat. No es tracta només d’un instrument
+        reactiu davant d’irregularitats, sinó d’una peça estructural del sistema contractual modern.
+      </p>
+
+      <p>
+        Aquest règim parteix de la idea que la contractació pública no pot quedar només sota el control intern
+        de l’Administració que licita, sinó que ha d’existir una possibilitat real, ràpida i eficaç de revisar
+        els actes que poden vulnerar els drets dels licitadors o alterar els principis bàsics del procediment.
+        Aquesta necessitat es reforça per la influència del dret de la Unió Europea, que exigeix vies de recurs
+        efectives en matèria de contractes públics.
+      </p>
+
+      <p>
+        La seva finalitat no és només protegir interessos particulars, sinó preservar valors estructurals com la
+        <strong>legalitat</strong>, la <strong>transparència</strong>, la <strong>igualtat de tracte</strong>,
+        la <strong>no-discriminació</strong> i la <strong>lliure concurrència</strong>. Mitjançant el control
+        dels actes de l’Administració, es pretén evitar arbitrarietats i garantir que la decisió contractual
+        respongui realment als criteris objectius establerts als plecs i a la normativa aplicable.
+      </p>
+
+      <div class="note">
+        <div class="label">Idea clau</div>
+        <p>
+          El règim de recursos no protegeix només el licitador perjudicat: protegeix també la
+          <strong>integritat del procediment contractual</strong> i, en última instància, la correcta utilització
+          dels recursos públics.
+        </p>
+      </div>
+
+      <p>
+        En aquest sentit, el sistema de recursos materialitza el dret a la
+        <strong>tutela judicial efectiva</strong> i el principi de <strong>bona administració</strong> en l’àmbit
+        contractual. Permet corregir decisions il·legals abans que es consolidin de manera irreversible i assegura
+        que el mercat públic funcioni sota regles de competència efectiva.
+      </p>
     </section>
 
-    <section>
-      <h2>2. Desenvolupament</h2>
-      <p>Apunts per completar.</p>
+    <section id="tipologia" class="section">
+      <h2>2. Tipologia de recursos en matèria de contractació</h2>
+
+      <p>
+        El sistema de garanties en contractació pública no és uniforme, sinó que es configura de manera
+        <strong>fragmentada i graduada</strong> segons el tipus de contracte, el valor estimat i la naturalesa
+        de l’acte impugnat. La LCSP i la legislació administrativa general articulen diversos mecanismes de control
+        que conviuen dins d’un mateix esquema.
+      </p>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Principals vies de recurs</h3>
+          <ul class="custom">
+            <li>Recurs especial en matèria de contractació.</li>
+            <li>Recursos administratius ordinaris.</li>
+            <li>Recurs contenciós administratiu.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Funció dins del sistema</h3>
+          <ul class="custom">
+            <li>Control ràpid i especialitzat dels actes més rellevants.</li>
+            <li>Revisió administrativa general dels actes no sotmesos al recurs especial.</li>
+            <li>Control judicial definitiu de la legalitat administrativa.</li>
+          </ul>
+        </article>
+      </div>
+
+      <p>
+        El mecanisme més característic i innovador és el <strong>recurs especial en matèria de contractació</strong>,
+        que actua com a via preferent, especialitzada i gratuïta per impugnar determinats actes contractuals.
+        Té un caràcter exclusiu en el seu àmbit propi, de manera que, quan és procedent, no es pot substituir
+        per altres recursos administratius ordinaris.
+      </p>
+
+      <p>
+        En aquells supòsits que queden fora del seu àmbit d’aplicació, entren en joc els
+        <strong>recursos administratius ordinaris</strong> previstos a la legislació de procediment administratiu,
+        principalment el recurs d’alçada o el de reposició, segons si l’acte impugnat exhaureix o no la via administrativa.
+      </p>
+
+      <p>
+        Finalment, un cop esgotada la via administrativa —ja sigui per resolució del recurs especial o d’un recurs ordinari—,
+        queda oberta la via del <strong>recurs contenciós administratiu</strong>, que atribueix a la jurisdicció
+        especialitzada el control judicial definitiu dels actes i resolucions en matèria de contractació pública.
+      </p>
+
+      <div class="warning-box">
+        <div class="label">Atenció d’examen</div>
+        <p>
+          El sistema és escalonat: primer hi ha un control administratiu, general o especialitzat segons el cas,
+          i després un possible <strong>control jurisdiccional</strong> davant els tribunals contenciosos administratius.
+        </p>
+      </div>
     </section>
 
-    <section>
-      <h2>3. Idees clau</h2>
-      <p>Apunts per completar.</p>
+    <section id="recurs-especial" class="section">
+      <h2>3. El recurs especial en matèria de contractació</h2>
+
+      <p>
+        El <strong>recurs especial en matèria de contractació</strong> és el mecanisme central de garantia dins del
+        sistema contractual públic. Es tracta d’un recurs administratiu especialitzat, gratuït, potestatiu i previ
+        a la via contenciosa, concebut per oferir una resposta ràpida davant d’actes especialment sensibles dins del
+        procediment de contractació.
+      </p>
+
+      <p>
+        La seva aplicació no és universal, sinó que depèn de la naturalesa i del valor estimat del contracte,
+        d’acord amb la delimitació legal establerta a la LCSP. Amb caràcter general, afecta els contractes de major
+        rellevància econòmica i jurídica, així com determinades figures contractuals que, per la seva importància,
+        exigeixen una tutela reforçada.
+      </p>
+
+      <p>
+        Entre els actes que poden ser objecte d’aquest recurs hi ha els <strong>anuncis de licitació</strong>,
+        els <strong>plecs</strong>, els <strong>acords d’adjudicació</strong>, determinades
+        <strong>modificacions contractuals</strong> i els actes de tràmit qualificats que decideixen directament
+        o indirectament l’adjudicació o que produeixen indefensió, com ara l’<strong>exclusió d’un licitador</strong>.
+      </p>
+
+      <div class="example">
+        <div class="label">Exemple pràctic</div>
+        <p>
+          Si un licitador és exclòs perquè l’òrgan de contractació interpreta incorrectament un requisit de solvència
+          o aplica de manera arbitrària una clàusula del plec, aquesta exclusió pot ser objecte de recurs especial
+          si el contracte es troba dins del seu àmbit d’aplicació.
+        </p>
+      </div>
+
+      <p>
+        Estan legitimades per interposar-lo totes les persones físiques o jurídiques els drets o interessos legítims
+        de les quals es vegin afectats per l’acte impugnat. Això inclou, naturalment, els licitadors, però també altres
+        subjectes que acreditin una afectació directa i suficient. En alguns casos, fins i tot organitzacions sindicals
+        poden estar legitimades quan l’acte impugnat incideix en obligacions socials o laborals vinculades al contracte.
+      </p>
+
+      <p>
+        El termini general d’interposició és de <strong>quinze dies hàbils</strong>, comptats des de l’endemà de la
+        notificació o publicació de l’acte, segons la seva naturalesa. Aquesta brevetat respon a la finalitat pròpia
+        del recurs: permetre una reacció ràpida abans que el contracte es formalitzi o es consolidi una situació
+        difícilment reversible.
+      </p>
+    </section>
+
+    <section id="organs" class="section">
+      <h2>4. Òrgans competents per resoldre el recurs especial</h2>
+
+      <p>
+        Una de les grans singularitats del recurs especial és que no el resol l’òrgan de contractació que ha dictat
+        l’acte impugnat, sinó <strong>òrgans administratius independents i especialitzats</strong>. Aquesta opció
+        reforça la imparcialitat del sistema i evita que el control quedi condicionat per la mateixa estructura
+        jeràrquica que ha produït la decisió recurrida.
+      </p>
+
+      <p>
+        Aquests òrgans es caracteritzen per la seva especialització tècnica i jurídica en contractació pública.
+        Els seus membres són, amb caràcter general, funcionaris de carrera amb experiència acreditada, i el seu
+        règim de designació i mandat pretén garantir la independència funcional i la coherència doctrinal de les resolucions.
+      </p>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Àmbit estatal</h3>
+          <p>
+            En l’àmbit de l’Administració General de l’Estat, l’òrgan competent és el
+            <strong>Tribunal Administratiu Central de Recursos Contractuals (TACRC)</strong>.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Àmbit català</h3>
+          <p>
+            A Catalunya, la competència correspon al
+            <strong>Tribunal Català de Contractes del Sector Públic (TCCSP)</strong>,
+            òrgan col·legiat independent que coneix dels recursos especials en l’àmbit català.
+          </p>
+        </article>
+      </div>
+
+      <p>
+        Les comunitats autònomes poden crear els seus propis òrgans equivalents o bé atribuir la competència al
+        tribunal estatal mitjançant els mecanismes previstos legalment. En el cas de Catalunya, l’existència del
+        TCCSP és especialment rellevant per a la Generalitat, les administracions locals catalanes i els ens del
+        seu sector públic.
+      </p>
+
+      <div class="note">
+        <div class="label">Garantia d’imparcialitat</div>
+        <p>
+          El control del recurs especial queda separat de l’òrgan contractant per assegurar una revisió
+          <strong>objectiva, especialitzada i independent</strong> dels actes impugnats.
+        </p>
+      </div>
+
+      <p>
+        Això converteix aquests tribunals administratius en una peça central de la seguretat jurídica en la contractació,
+        ja que contribueixen a crear criteris interpretatius estables i a professionalitzar el control dels procediments de licitació.
+      </p>
+    </section>
+
+    <section id="efectes" class="section">
+      <h2>5. Efectes del recurs en el procediment de contractació</h2>
+
+      <p>
+        El recurs especial no és només un mecanisme de revisió, sinó també un instrument preventiu capaç d’evitar que
+        el procediment contractual arribi a un punt de no retorn. El seu efecte més destacat és la possibilitat de
+        <strong>paralitzar temporalment el procediment</strong> o determinats actes quan aquesta mesura és necessària
+        per garantir l’efectivitat de la resolució.
+      </p>
+
+      <p>
+        Quan el recurs s’interposa contra l’<strong>acte d’adjudicació</strong>, es produeix, amb caràcter general,
+        un <strong>efecte suspensiu automàtic</strong> respecte de la formalització del contracte. Aquesta suspensió
+        és especialment important, perquè evita que el recurs es converteixi en una simple declaració teòrica quan
+        el contracte ja s’ha formalitzat i l’execució ha començat.
+      </p>
+
+      <p>
+        A més, el recurrent pot sol·licitar <strong>mesures cautelars</strong> en altres supòsits per impedir que
+        l’acte impugnat produeixi efectes irreparables durant la tramitació del recurs. D’aquesta manera, el sistema
+        protegeix de forma real i efectiva els drets dels licitadors i la correcció del procediment.
+      </p>
+
+      <div class="summary-box">
+        <div class="label">Efecte essencial</div>
+        <p>
+          El recurs especial no només revisa la legalitat: també pot
+          <strong>evitar els fets consumats</strong> mitjançant la suspensió de l’adjudicació o altres mesures cautelars.
+        </p>
+      </div>
+
+      <p>
+        La resolució del tribunal ha de ser <strong>motivada</strong> i pot acordar diverses conseqüències:
+        anul·lar l’acte impugnat, eliminar clàusules il·legals o discriminatòries, ordenar la retroacció d’actuacions
+        o mantenir la validesa de la decisió recorreguda. Un cop dictada, és directament executiva i vincula
+        immediatament l’òrgan de contractació.
+      </p>
+
+      <p>
+        Contra aquesta resolució no hi ha un nou recurs administratiu, de manera que només resta oberta la via
+        <strong>contenciosa administrativa</strong>. Això reforça el caràcter especialitzat i definitiu del recurs
+        especial dins de la via administrativa.
+      </p>
+    </section>
+
+    <section id="importancia" class="section">
+      <h2>6. Importància del règim de recursos en la contractació pública</h2>
+
+      <p>
+        El règim de recursos és una de les peces més importants del sistema de contractació pública contemporani.
+        Sense aquests mecanismes de control, els principis de publicitat, concurrència i igualtat quedarien en gran
+        part desprotegits davant eventuals errors, arbitrarietats o desviacions dels òrgans de contractació.
+      </p>
+
+      <p>
+        En primer lloc, aquest sistema garanteix la <strong>legalitat del procediment</strong>, ja que qualsevol acte
+        contrari a la normativa o als plecs pot ser revisat per un òrgan independent. En segon lloc, protegeix la
+        <strong>competència efectiva entre empreses</strong>, evitant favoritismes i assegurant que la contractació
+        es basi en criteris objectius i verificables.
+      </p>
+
+      <p>
+        També reforça la <strong>confiança dels operadors econòmics</strong> en el mercat públic. Les empreses participen
+        amb més seguretat en les licitacions quan saben que disposen d’un mecanisme ràpid, gratuït i especialitzat per
+        defensar els seus drets davant possibles irregularitats.
+      </p>
+
+      <div class="warning-box">
+        <div class="label">Idea de fons</div>
+        <p>
+          El règim de recursos no és només una garantia processal; és un
+          <strong>instrument de transparència, integritat i bona administració</strong> en la contractació pública.
+        </p>
+      </div>
+
+      <p>
+        En definitiva, aquest sistema contribueix a una contractació més professional, més transparent i més sotmesa
+        al dret. Protegeix l’erari públic, evita decisions arbitràries i reforça la qualitat democràtica de la gestió
+        contractual de la Generalitat i del conjunt del sector públic català.
+      </p>
+    </section>
+
+    <section class="footer-box">
+      <h2>Idea final per memoritzar</h2>
+      <p>
+        <strong>El règim de recursos en matèria de contractació és el sistema de control dels actes contractuals de l’Administració</strong>,
+        especialment a través del recurs especial, que permet impugnar ràpidament plecs, adjudicacions, exclusions i altres actes rellevants
+        davant òrgans independents com el Tribunal Català de Contractes del Sector Públic, amb l’objectiu de garantir la legalitat,
+        la igualtat entre licitadors i la transparència del procediment.
+      </p>
     </section>
   </main>
 </body>
