@@ -1,0 +1,226 @@
+{
+  "lawId": "estatut",
+  "lawTitle": "Estatut d'Autonomia de Catalunya",
+  "questions": [
+    {
+      "id": "estatut-01",
+      "question": "Segons Estatut d'Autonomia de Catalunya, quina afirmacio descriu millor institucions de la Generalitat? (Q1)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "estatut-02",
+      "question": "D'acord amb Estatut d'Autonomia de Catalunya, quin principi guia competencies exclusives? (Q2)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "estatut-03",
+      "question": "En relacio amb financament autonomic, quin enunciat encaixa amb Estatut d'Autonomia de Catalunya? (Q3)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "estatut-04",
+      "question": "Quina opcio es mes coherent amb Estatut d'Autonomia de Catalunya sobre drets lingueistics? (Q4)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "estatut-05",
+      "question": "Segons Estatut d'Autonomia de Catalunya, quina afirmacio descriu millor relacions amb l'Estat? (Q5)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "estatut-06",
+      "question": "D'acord amb Estatut d'Autonomia de Catalunya, quin principi guia institucions de la Generalitat? (Q6)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "estatut-07",
+      "question": "En relacio amb competencies exclusives, quin enunciat encaixa amb Estatut d'Autonomia de Catalunya? (Q7)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "estatut-08",
+      "question": "Quina opcio es mes coherent amb Estatut d'Autonomia de Catalunya sobre financament autonomic? (Q8)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "estatut-09",
+      "question": "Segons Estatut d'Autonomia de Catalunya, quina afirmacio descriu millor drets lingueistics? (Q9)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "estatut-10",
+      "question": "D'acord amb Estatut d'Autonomia de Catalunya, quin principi guia relacions amb l'Estat? (Q10)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "estatut-11",
+      "question": "En relacio amb institucions de la Generalitat, quin enunciat encaixa amb Estatut d'Autonomia de Catalunya? (Q11)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "estatut-12",
+      "question": "Quina opcio es mes coherent amb Estatut d'Autonomia de Catalunya sobre competencies exclusives? (Q12)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "estatut-13",
+      "question": "Segons Estatut d'Autonomia de Catalunya, quina afirmacio descriu millor financament autonomic? (Q13)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "estatut-14",
+      "question": "D'acord amb Estatut d'Autonomia de Catalunya, quin principi guia drets lingueistics? (Q14)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "estatut-15",
+      "question": "En relacio amb relacions amb l'Estat, quin enunciat encaixa amb Estatut d'Autonomia de Catalunya? (Q15)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "estatut-16",
+      "question": "Quina opcio es mes coherent amb Estatut d'Autonomia de Catalunya sobre institucions de la Generalitat? (Q16)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "estatut-17",
+      "question": "Segons Estatut d'Autonomia de Catalunya, quina afirmacio descriu millor competencies exclusives? (Q17)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "estatut-18",
+      "question": "D'acord amb Estatut d'Autonomia de Catalunya, quin principi guia financament autonomic? (Q18)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "estatut-19",
+      "question": "En relacio amb drets lingueistics, quin enunciat encaixa amb Estatut d'Autonomia de Catalunya? (Q19)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "estatut-20",
+      "question": "Quina opcio es mes coherent amb Estatut d'Autonomia de Catalunya sobre relacions amb l'Estat? (Q20)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

@@ -1,0 +1,226 @@
+{
+  "lawId": "constitucio",
+  "lawTitle": "Constitucio espanyola",
+  "questions": [
+    {
+      "id": "constitucio-01",
+      "question": "Segons Constitucio espanyola, quina afirmacio descriu millor principis constitucionals? (Q1)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "constitucio-02",
+      "question": "D'acord amb Constitucio espanyola, quin principi guia drets fonamentals? (Q2)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "constitucio-03",
+      "question": "En relacio amb Corts Generals, quin enunciat encaixa amb Constitucio espanyola? (Q3)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "constitucio-04",
+      "question": "Quina opcio es mes coherent amb Constitucio espanyola sobre Govern i Administracio? (Q4)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "constitucio-05",
+      "question": "Segons Constitucio espanyola, quina afirmacio descriu millor organitzacio territorial? (Q5)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "constitucio-06",
+      "question": "D'acord amb Constitucio espanyola, quin principi guia principis constitucionals? (Q6)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "constitucio-07",
+      "question": "En relacio amb drets fonamentals, quin enunciat encaixa amb Constitucio espanyola? (Q7)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "constitucio-08",
+      "question": "Quina opcio es mes coherent amb Constitucio espanyola sobre Corts Generals? (Q8)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "constitucio-09",
+      "question": "Segons Constitucio espanyola, quina afirmacio descriu millor Govern i Administracio? (Q9)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "constitucio-10",
+      "question": "D'acord amb Constitucio espanyola, quin principi guia organitzacio territorial? (Q10)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "constitucio-11",
+      "question": "En relacio amb principis constitucionals, quin enunciat encaixa amb Constitucio espanyola? (Q11)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "constitucio-12",
+      "question": "Quina opcio es mes coherent amb Constitucio espanyola sobre drets fonamentals? (Q12)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "constitucio-13",
+      "question": "Segons Constitucio espanyola, quina afirmacio descriu millor Corts Generals? (Q13)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "constitucio-14",
+      "question": "D'acord amb Constitucio espanyola, quin principi guia Govern i Administracio? (Q14)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "constitucio-15",
+      "question": "En relacio amb organitzacio territorial, quin enunciat encaixa amb Constitucio espanyola? (Q15)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "constitucio-16",
+      "question": "Quina opcio es mes coherent amb Constitucio espanyola sobre principis constitucionals? (Q16)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "constitucio-17",
+      "question": "Segons Constitucio espanyola, quina afirmacio descriu millor drets fonamentals? (Q17)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "constitucio-18",
+      "question": "D'acord amb Constitucio espanyola, quin principi guia Corts Generals? (Q18)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "constitucio-19",
+      "question": "En relacio amb Govern i Administracio, quin enunciat encaixa amb Constitucio espanyola? (Q19)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "constitucio-20",
+      "question": "Quina opcio es mes coherent amb Constitucio espanyola sobre organitzacio territorial? (Q20)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

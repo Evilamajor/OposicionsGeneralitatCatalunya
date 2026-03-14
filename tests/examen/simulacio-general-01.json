@@ -1,0 +1,1106 @@
+{
+  "simulationId": "simulacio-general-01",
+  "title": "Simulacio oficial 01",
+  "questions": [
+    {
+      "id": "sim-01-001",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 1)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-002",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 2)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-003",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 3)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-004",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 4)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-005",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 5)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-006",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 6)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-007",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 7)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-008",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 8)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-009",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 9)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-010",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 10)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-011",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 11)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-012",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 12)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-013",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 13)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-014",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 14)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-015",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 15)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-016",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 16)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-017",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 17)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-018",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 18)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-019",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 19)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-020",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 20)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-021",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 21)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-022",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 22)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-023",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 23)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-024",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 24)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-025",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 25)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-026",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 26)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-027",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 27)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-028",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 28)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-029",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 29)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-030",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 30)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-031",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 31)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-032",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 32)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-033",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 33)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-034",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 34)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-035",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 35)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-036",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 36)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-037",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 37)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-038",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 38)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-039",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 39)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-040",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 40)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-041",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 41)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-042",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 42)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-043",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 43)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-044",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 44)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-045",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 45)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-046",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 46)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-047",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 47)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-048",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 48)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-049",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 49)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-050",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 50)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-051",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 51)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-052",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 52)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-053",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 53)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-054",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 54)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-055",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 55)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-056",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 56)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-057",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 57)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-058",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 58)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-059",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 59)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-060",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 60)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-061",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 61)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-062",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 62)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-063",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 63)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-064",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 64)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-065",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 65)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-066",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 66)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-067",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 67)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-068",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 68)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-069",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 69)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-070",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 70)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-071",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 71)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-072",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 72)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-073",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 73)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-074",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 74)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-075",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 75)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-076",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 76)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-077",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 77)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-078",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 78)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-079",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 79)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-080",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 80)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-081",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 81)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-082",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 82)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-083",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 83)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-084",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 84)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-085",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 85)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-086",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 86)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-087",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 87)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-088",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 88)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-089",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 89)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-090",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 90)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-091",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 91)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-092",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 92)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-093",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 93)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-094",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 94)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-095",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 95)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-096",
+      "question": "Quin principi exigeix que l'Administracio actuI amb plena submissio a la llei i al dret? (Pregunta 96)",
+      "options": [
+        "Jerarquia normativa",
+        "Legalitat",
+        "Delegacio tacita",
+        "Desconcentracio"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-097",
+      "question": "En procediment administratiu, que implica una notificacio valida? (Pregunta 97)",
+      "options": [
+        "Sempre publicacio al BOE",
+        "Comunicacio que permet coneixer el contingut i recursos",
+        "Trucada telefonica informal",
+        "Comunicacio sense data"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-098",
+      "question": "A la contractacio publica, quin principi afavoreix la concurrencia? (Pregunta 98)",
+      "options": [
+        "Publicitat i transparencia",
+        "Secret absolut",
+        "Reserva de mercat general",
+        "Negociacio sense criteris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sim-01-099",
+      "question": "En proteccio de dades, quina base legitima un tractament? (Pregunta 99)",
+      "options": [
+        "Interes economic intern",
+        "Consentiment o habilitacio legal",
+        "Costum administratiu",
+        "Voluntat unilateral del gestor"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "sim-01-100",
+      "question": "Segons l'EBEP, que forma part dels deures de l'empleat public? (Pregunta 100)",
+      "options": [
+        "Actuar amb objectivitat i imparcialitat",
+        "Acceptar ordres il·legals",
+        "Prioritzar interessos personals",
+        "Negar-se a formar-se"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

@@ -1,0 +1,226 @@
+{
+  "lawId": "llei40",
+  "lawTitle": "Llei 40/2015 Regim juridic del sector public",
+  "questions": [
+    {
+      "id": "llei40-01",
+      "question": "Segons Llei 40/2015 Regim juridic del sector public, quina afirmacio descriu millor organes administratius? (Q1)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei40-02",
+      "question": "D'acord amb Llei 40/2015 Regim juridic del sector public, quin principi guia competencia administrativa? (Q2)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "llei40-03",
+      "question": "En relacio amb convenis i encarrecs, quin enunciat encaixa amb Llei 40/2015 Regim juridic del sector public? (Q3)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei40-04",
+      "question": "Quina opcio es mes coherent amb Llei 40/2015 Regim juridic del sector public sobre relacions interadministratives? (Q4)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "llei40-05",
+      "question": "Segons Llei 40/2015 Regim juridic del sector public, quina afirmacio descriu millor responsabilitat patrimonial? (Q5)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei40-06",
+      "question": "D'acord amb Llei 40/2015 Regim juridic del sector public, quin principi guia organes administratius? (Q6)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "llei40-07",
+      "question": "En relacio amb competencia administrativa, quin enunciat encaixa amb Llei 40/2015 Regim juridic del sector public? (Q7)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei40-08",
+      "question": "Quina opcio es mes coherent amb Llei 40/2015 Regim juridic del sector public sobre convenis i encarrecs? (Q8)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "llei40-09",
+      "question": "Segons Llei 40/2015 Regim juridic del sector public, quina afirmacio descriu millor relacions interadministratives? (Q9)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei40-10",
+      "question": "D'acord amb Llei 40/2015 Regim juridic del sector public, quin principi guia responsabilitat patrimonial? (Q10)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "llei40-11",
+      "question": "En relacio amb organes administratius, quin enunciat encaixa amb Llei 40/2015 Regim juridic del sector public? (Q11)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei40-12",
+      "question": "Quina opcio es mes coherent amb Llei 40/2015 Regim juridic del sector public sobre competencia administrativa? (Q12)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "llei40-13",
+      "question": "Segons Llei 40/2015 Regim juridic del sector public, quina afirmacio descriu millor convenis i encarrecs? (Q13)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei40-14",
+      "question": "D'acord amb Llei 40/2015 Regim juridic del sector public, quin principi guia relacions interadministratives? (Q14)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "llei40-15",
+      "question": "En relacio amb responsabilitat patrimonial, quin enunciat encaixa amb Llei 40/2015 Regim juridic del sector public? (Q15)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei40-16",
+      "question": "Quina opcio es mes coherent amb Llei 40/2015 Regim juridic del sector public sobre organes administratius? (Q16)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "llei40-17",
+      "question": "Segons Llei 40/2015 Regim juridic del sector public, quina afirmacio descriu millor competencia administrativa? (Q17)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei40-18",
+      "question": "D'acord amb Llei 40/2015 Regim juridic del sector public, quin principi guia convenis i encarrecs? (Q18)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "llei40-19",
+      "question": "En relacio amb relacions interadministratives, quin enunciat encaixa amb Llei 40/2015 Regim juridic del sector public? (Q19)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei40-20",
+      "question": "Quina opcio es mes coherent amb Llei 40/2015 Regim juridic del sector public sobre responsabilitat patrimonial? (Q20)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

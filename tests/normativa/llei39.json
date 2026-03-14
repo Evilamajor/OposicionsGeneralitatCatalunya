@@ -1,0 +1,226 @@
+{
+  "lawId": "llei39",
+  "lawTitle": "Llei 39/2015 Procediment administratiu comu",
+  "questions": [
+    {
+      "id": "llei39-01",
+      "question": "Segons Llei 39/2015 Procediment administratiu comu, quina afirmacio descriu millor drets de les persones interessades? (Q1)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei39-02",
+      "question": "D'acord amb Llei 39/2015 Procediment administratiu comu, quin principi guia registre electronic? (Q2)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "llei39-03",
+      "question": "En relacio amb actes administratius, quin enunciat encaixa amb Llei 39/2015 Procediment administratiu comu? (Q3)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei39-04",
+      "question": "Quina opcio es mes coherent amb Llei 39/2015 Procediment administratiu comu sobre terminis administratius? (Q4)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "llei39-05",
+      "question": "Segons Llei 39/2015 Procediment administratiu comu, quina afirmacio descriu millor recursos administratius? (Q5)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei39-06",
+      "question": "D'acord amb Llei 39/2015 Procediment administratiu comu, quin principi guia drets de les persones interessades? (Q6)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "llei39-07",
+      "question": "En relacio amb registre electronic, quin enunciat encaixa amb Llei 39/2015 Procediment administratiu comu? (Q7)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei39-08",
+      "question": "Quina opcio es mes coherent amb Llei 39/2015 Procediment administratiu comu sobre actes administratius? (Q8)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "llei39-09",
+      "question": "Segons Llei 39/2015 Procediment administratiu comu, quina afirmacio descriu millor terminis administratius? (Q9)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei39-10",
+      "question": "D'acord amb Llei 39/2015 Procediment administratiu comu, quin principi guia recursos administratius? (Q10)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "llei39-11",
+      "question": "En relacio amb drets de les persones interessades, quin enunciat encaixa amb Llei 39/2015 Procediment administratiu comu? (Q11)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei39-12",
+      "question": "Quina opcio es mes coherent amb Llei 39/2015 Procediment administratiu comu sobre registre electronic? (Q12)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "llei39-13",
+      "question": "Segons Llei 39/2015 Procediment administratiu comu, quina afirmacio descriu millor actes administratius? (Q13)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei39-14",
+      "question": "D'acord amb Llei 39/2015 Procediment administratiu comu, quin principi guia terminis administratius? (Q14)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "llei39-15",
+      "question": "En relacio amb recursos administratius, quin enunciat encaixa amb Llei 39/2015 Procediment administratiu comu? (Q15)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei39-16",
+      "question": "Quina opcio es mes coherent amb Llei 39/2015 Procediment administratiu comu sobre drets de les persones interessades? (Q16)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "llei39-17",
+      "question": "Segons Llei 39/2015 Procediment administratiu comu, quina afirmacio descriu millor registre electronic? (Q17)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei39-18",
+      "question": "D'acord amb Llei 39/2015 Procediment administratiu comu, quin principi guia actes administratius? (Q18)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "llei39-19",
+      "question": "En relacio amb terminis administratius, quin enunciat encaixa amb Llei 39/2015 Procediment administratiu comu? (Q19)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "llei39-20",
+      "question": "Quina opcio es mes coherent amb Llei 39/2015 Procediment administratiu comu sobre recursos administratius? (Q20)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

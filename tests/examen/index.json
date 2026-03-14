@@ -1,0 +1,10 @@
+{
+  "simulations": [
+    {
+      "id": "simulacio-general-01",
+      "title": "Simulacio oficial 01",
+      "description": "Model base de 100 preguntes per entrenar ritme i precisio.",
+      "file": "simulacio-general-01.json"
+    }
+  ]
+}
