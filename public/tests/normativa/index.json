@@ -1,0 +1,52 @@
+{
+  "laws": [
+    {
+      "id": "constitucio",
+      "title": "Constitucio espanyola",
+      "description": "Fonaments constitucionals, drets i organitzacio de l'Estat.",
+      "file": "constitucio.json"
+    },
+    {
+      "id": "estatut",
+      "title": "Estatut d'Autonomia de Catalunya",
+      "description": "Competencies, institucions i drets reconeguts a Catalunya.",
+      "file": "estatut.json"
+    },
+    {
+      "id": "llei39",
+      "title": "Llei 39/2015 Procediment administratiu comu",
+      "description": "Actes, termini, notificacions i recursos en via administrativa.",
+      "file": "llei39.json"
+    },
+    {
+      "id": "llei40",
+      "title": "Llei 40/2015 Regim juridic del sector public",
+      "description": "Organitzacio, funcionament i responsabilitat del sector public.",
+      "file": "llei40.json"
+    },
+    {
+      "id": "llei9",
+      "title": "Llei 9/2017 Contractes del sector public",
+      "description": "Preparacio, adjudicacio i execucio de contractes publics.",
+      "file": "llei9_2017.json"
+    },
+    {
+      "id": "transparencia",
+      "title": "Llei de transparencia",
+      "description": "Publicitat activa, dret d'acces i bon govern.",
+      "file": "transparencia.json"
+    },
+    {
+      "id": "rgpd",
+      "title": "RGPD i proteccio de dades",
+      "description": "Principis, bases juridiques i drets de les persones.",
+      "file": "rgpd.json"
+    },
+    {
+      "id": "ebep",
+      "title": "EBEP (Estatut Basic de l'Empleat Public)",
+      "description": "Classes de personal, carrera professional i regim disciplinari.",
+      "file": "ebep.json"
+    }
+  ]
+}

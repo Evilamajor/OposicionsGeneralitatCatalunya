@@ -12,11 +12,13 @@ describe('HomeSidebar', () => {
 
     expect(screen.getByRole('heading', { name: /oposicions administratiu generalitat/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /convocatòria 2026/i })).toHaveAttribute('href', '/generalitat');
-  expect(screen.queryByRole('link', { name: /administratiu generalitat/i })).not.toBeInTheDocument();
-  expect(screen.queryByRole('link', { name: /administratiu ics/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /administratiu generalitat/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /administratiu ics/i })).not.toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /annexos/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /català jurídic i administratiu/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /català nivell c/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /notícies per l’opositor/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /test de normativa/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /test examen/i })).toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /català nivell c/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /notícies per l.?opositor/i })).not.toBeInTheDocument();
   });
 });

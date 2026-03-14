@@ -110,16 +110,16 @@ export const annexos = [
     description: 'Llengua catalana aplicada a l\'àmbit jurídic i administratiu',
   },
   {
-    id: 'catala-nivell-c',
-    title: 'Català nivell C',
-    description: 'Preparació progressiva per assolir el nivell C de català',
-    route: '/annexos/catala-nivell-c',
+    id: 'test-normativa',
+    title: 'Test de normativa',
+    description: 'Tests per llei amb preguntes de normativa clau per a l\'oposició',
+    route: '/annexos/test-normativa',
   },
   {
-    id: 'autoavaluacions',
-    title: 'Autoavaluacions',
-    description: 'Espai de pràctica i seguiment de l\'aprenentatge',
-    route: '/autoavaluacions',
+    id: 'test-examen',
+    title: 'Test examen',
+    description: 'Simulacres complets de 100 preguntes tipus examen',
+    route: '/annexos/test-examen',
   },
 ];
 

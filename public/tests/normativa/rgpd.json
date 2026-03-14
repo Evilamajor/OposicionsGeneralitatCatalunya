@@ -1,0 +1,226 @@
+{
+  "lawId": "rgpd",
+  "lawTitle": "RGPD i proteccio de dades",
+  "questions": [
+    {
+      "id": "rgpd-01",
+      "question": "Segons RGPD i proteccio de dades, quina afirmacio descriu millor principi de minimitzacio? (Q1)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "rgpd-02",
+      "question": "D'acord amb RGPD i proteccio de dades, quin principi guia licitud del tractament? (Q2)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "rgpd-03",
+      "question": "En relacio amb drets ARSOPOL, quin enunciat encaixa amb RGPD i proteccio de dades? (Q3)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "rgpd-04",
+      "question": "Quina opcio es mes coherent amb RGPD i proteccio de dades sobre registre d'activitats? (Q4)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "rgpd-05",
+      "question": "Segons RGPD i proteccio de dades, quina afirmacio descriu millor violacions de seguretat? (Q5)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "rgpd-06",
+      "question": "D'acord amb RGPD i proteccio de dades, quin principi guia principi de minimitzacio? (Q6)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "rgpd-07",
+      "question": "En relacio amb licitud del tractament, quin enunciat encaixa amb RGPD i proteccio de dades? (Q7)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "rgpd-08",
+      "question": "Quina opcio es mes coherent amb RGPD i proteccio de dades sobre drets ARSOPOL? (Q8)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "rgpd-09",
+      "question": "Segons RGPD i proteccio de dades, quina afirmacio descriu millor registre d'activitats? (Q9)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "rgpd-10",
+      "question": "D'acord amb RGPD i proteccio de dades, quin principi guia violacions de seguretat? (Q10)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "rgpd-11",
+      "question": "En relacio amb principi de minimitzacio, quin enunciat encaixa amb RGPD i proteccio de dades? (Q11)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "rgpd-12",
+      "question": "Quina opcio es mes coherent amb RGPD i proteccio de dades sobre licitud del tractament? (Q12)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "rgpd-13",
+      "question": "Segons RGPD i proteccio de dades, quina afirmacio descriu millor drets ARSOPOL? (Q13)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "rgpd-14",
+      "question": "D'acord amb RGPD i proteccio de dades, quin principi guia registre d'activitats? (Q14)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "rgpd-15",
+      "question": "En relacio amb violacions de seguretat, quin enunciat encaixa amb RGPD i proteccio de dades? (Q15)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "rgpd-16",
+      "question": "Quina opcio es mes coherent amb RGPD i proteccio de dades sobre principi de minimitzacio? (Q16)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "rgpd-17",
+      "question": "Segons RGPD i proteccio de dades, quina afirmacio descriu millor licitud del tractament? (Q17)",
+      "options": [
+        "S'aplica unicament a l'Administracio local sense excepcions.",
+        "Defineix un marc general que obliga l'Administracio en la seva actuacio.",
+        "Nomes s'aplica quan hi ha delegacio expressa del Parlament.",
+        "Es una recomanacio sense efectes juridics."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "rgpd-18",
+      "question": "D'acord amb RGPD i proteccio de dades, quin principi guia drets ARSOPOL? (Q18)",
+      "options": [
+        "Arbitrarietat administrativa.",
+        "Publicitat limitada per defecte.",
+        "Seguretat juridica i eficacia en el servei public.",
+        "Reserva absoluta d'informacio."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": "rgpd-19",
+      "question": "En relacio amb registre d'activitats, quin enunciat encaixa amb RGPD i proteccio de dades? (Q19)",
+      "options": [
+        "Les obligacions no son exigibles si no hi ha desenvolupament reglamentari.",
+        "L'Administracio ha d'actuar amb objectivitat i sotmesa a la llei.",
+        "La tramitacio sempre es verbal i sense registre.",
+        "Les persones interessades no poden presentar recursos."
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "rgpd-20",
+      "question": "Quina opcio es mes coherent amb RGPD i proteccio de dades sobre violacions de seguretat? (Q20)",
+      "options": [
+        "L'actuacio administrativa s'ha de motivar quan afecta drets o interessos.",
+        "No cal cap motivacio en cap decisio.",
+        "Nomes es valida la notificacio oral.",
+        "Els terminis mai es poden suspendre."
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

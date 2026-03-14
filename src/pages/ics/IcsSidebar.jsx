@@ -112,25 +112,18 @@ export default function IcsSidebar({ collapsed, onToggle }) {
           </li>
           <li className="sidebar-block">
             <div className="bloc-header">
-              <NavLink to="/ics/annexos/catala-nivell-c">
-                <span className="bloc-title">Català nivell C</span>
-              </NavLink>
-            </div>
-          </li>
-          <li className="sidebar-block">
-            <div className="bloc-header">
-              <NavLink to="/ics/annexos/autoavaluacions">
-                <span className="bloc-title">Autoavaluacions</span>
+              <NavLink to="/ics/annexos/test-normativa">
+                <span className="bloc-title">Test de normativa</span>
               </NavLink>
             </div>
           </li>
           <li className="sidebar-block">
             <div className="bloc-header">
               <NavLink
-                to="/ics/annexos/noticies"
+                to="/ics/annexos/test-examen"
                 onClick={() => { if (onToggle && !collapsed) onToggle(); }}
               >
-                <span className="bloc-title">Notícies</span>
+                <span className="bloc-title">Test examen</span>
               </NavLink>
             </div>
           </li>

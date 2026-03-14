@@ -38,16 +38,16 @@ export default function HomeSidebar() {
 
           <li className="sidebar-block">
             <div className="bloc-header">
-              <NavLink to="/generalitat/annexos/catala-nivell-c" className={({ isActive }) => (isActive ? 'active' : '')}>
-                <span className="bloc-title">Català nivell C</span>
+              <NavLink to="/generalitat/annexos/test-normativa" className={({ isActive }) => (isActive ? 'active' : '')}>
+                <span className="bloc-title">Test de normativa</span>
               </NavLink>
             </div>
           </li>
 
           <li className="sidebar-block">
             <div className="bloc-header">
-              <NavLink to="/generalitat/noticies" className={({ isActive }) => (isActive ? 'active' : '')}>
-                <span className="bloc-title">Notícies per l’opositor</span>
+              <NavLink to="/generalitat/annexos/test-examen" className={({ isActive }) => (isActive ? 'active' : '')}>
+                <span className="bloc-title">Test examen</span>
               </NavLink>
             </div>
           </li>

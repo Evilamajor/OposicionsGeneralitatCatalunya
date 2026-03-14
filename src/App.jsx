@@ -16,8 +16,8 @@ const FullscreenDiagramViewer = lazy(() => import('./components/FullscreenDiagra
 const QuizRoutePage = lazy(() => import('./components/QuizRoutePage'));
 const ExplicacioStandalone = lazy(() => import('./pages/ExplicacioStandalone'));
 const AutoavaluacioPage = lazy(() => import('./pages/AutoavaluacioPage'));
-const NoticiesPage = lazy(() => import('./pages/NoticiesPage'));
-const CatalaNivellCPage = lazy(() => import('./pages/CatalaNivellCPage'));
+const TestNormativaPage = lazy(() => import('./pages/TestNormativaPage'));
+const TestExamenPage = lazy(() => import('./pages/TestExamenPage'));
 const CulturaCatalanaPage = lazy(() => import('./pages/CulturaCatalanaPage'));
 const HistoriaCatalanaPage = lazy(() => import('./pages/HistoriaCatalanaPage'));
 const LiteraturaCatalanaPage = lazy(() => import('./pages/LiteraturaCatalanaPage'));
@@ -48,9 +48,9 @@ function buildGeneralitatRoutes(prefix = '') {
     <Route key={`${prefix}-bloc-tema-seccio`} path={`${prefix}/bloc/:blocId/:temaId/:seccio`} element={<BlocPage />} />,
     <Route key={`${prefix}-bloc-root`} path={`${prefix}/bloc/:blocId`} element={<BlocPage />} />,
     <Route key={`${prefix}-annex`} path={`${prefix}/annex/:annexId`} element={<AnnexPage />} />,
-    <Route key={`${prefix}-catala-nivell-c`} path={`${prefix}/annexos/catala-nivell-c`} element={<CatalaNivellCPage />} />,
+    <Route key={`${prefix}-test-normativa`} path={`${prefix}/annexos/test-normativa`} element={<TestNormativaPage />} />,
+    <Route key={`${prefix}-test-examen`} path={`${prefix}/annexos/test-examen`} element={<TestExamenPage />} />,
     <Route key={`${prefix}-autoavaluacions`} path={`${prefix}/autoavaluacions`} element={<AutoavaluacioPage />} />,
-    <Route key={`${prefix}-noticies`} path={`${prefix}/noticies`} element={<NoticiesPage />} />,
     <Route key={`${prefix}-cultura`} path={`${prefix}/annexos/cultura-catalana`} element={<CulturaCatalanaPage />} />,
     <Route key={`${prefix}-historia`} path={`${prefix}/annexos/cultura-catalana/historia`} element={<HistoriaCatalanaPage />} />,
     <Route key={`${prefix}-literatura`} path={`${prefix}/annexos/cultura-catalana/literatura`} element={<LiteraturaCatalanaPage />} />,
@@ -58,7 +58,7 @@ function buildGeneralitatRoutes(prefix = '') {
     <Route key={`${prefix}-agenda`} path={`${prefix}/annexos/cultura-catalana/agenda`} element={<AgendaCulturalPage />} />,
     <Route key={`${prefix}-be-practice`} path={`${prefix}/business-english/internal-correspondence/practice`} element={<InternalCorrespondencePractice />} />,
     <Route key={`${prefix}-be-context`} path={`${prefix}/business-english/internal-correspondence/context/:section/:id`} element={<InternalCorrespondenceContext />} />,
-    <Route key={`${prefix}-forum-redirect`} path={`${prefix}/forum`} element={<Navigate to={`${prefix}/noticies`} replace />} />,
+    <Route key={`${prefix}-forum-redirect`} path={`${prefix}/forum`} element={<Navigate to={`${prefix}/annexos/test-normativa`} replace />} />,
   ];
 }
 
@@ -83,9 +83,8 @@ export default function App() {
         <Route path="especific/:blocId" element={<IcsSpecificBlockPage />} />
         <Route path="especific/:blocId/:temaId" element={<IcsTopicPage section="especific" />} />
         <Route path="annexos/catala-juridic" element={<IcsCatalaJuridicPage />} />
-        <Route path="annexos/catala-nivell-c" element={<CatalaNivellCPage />} />
-        <Route path="annexos/autoavaluacions" element={<AutoavaluacioPage />} />
-        <Route path="annexos/noticies" element={<NoticiesPage />} />
+        <Route path="annexos/test-normativa" element={<TestNormativaPage />} />
+        <Route path="annexos/test-examen" element={<TestExamenPage />} />
         <Route path="*" element={<Navigate to="/ics" replace />} />
       </Route>
       <Route path="/generalitat" element={<Navigate to="/generalitat/bloc/bloc-1" replace />} />
