@@ -1,28 +1,587 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ca">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BLOC IV – TEMA 15 – PUNT 16</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Punt 16. Resolució del contracte</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a30;
+      --panel-alt: #0f172a;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-strong: #0ea5e9;
+      --border: #1e293b;
+      --quote: #1d4ed8;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 28%),
+        radial-gradient(circle at top right, rgba(14, 165, 233, 0.08), transparent 24%),
+        linear-gradient(180deg, #0b1020 0%, #0f172a 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.14), rgba(14, 165, 233, 0.06));
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      margin: 0;
+      max-width: 900px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .index {
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .index h2 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 1.2rem;
+    }
+
+    .index ul {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+
+    .index li {
+      margin: 0.4rem 0;
+    }
+
+    .index a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .index a:hover {
+      text-decoration: underline;
+    }
+
+    .section {
+      background: rgba(18, 26, 48, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .section h2 {
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 1.5rem;
+      line-height: 1.25;
+    }
+
+    .section p {
+      margin: 0 0 1rem;
+      color: #dbe4f0;
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .note,
+    .example,
+    .summary-box {
+      border-radius: 18px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+
+    .note {
+      background: rgba(29, 78, 216, 0.14);
+      border-left: 4px solid var(--quote);
+    }
+
+    .example {
+      background: rgba(34, 197, 94, 0.10);
+      border-left: 4px solid var(--success);
+    }
+
+    .summary-box {
+      background: rgba(245, 158, 11, 0.10);
+      border-left: 4px solid var(--warning);
+    }
+
+    .label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    ul.custom {
+      padding-left: 1.2rem;
+      margin: 0.75rem 0 1rem;
+    }
+
+    ul.custom li {
+      margin-bottom: 0.55rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    @media (min-width: 900px) {
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+      color: var(--accent);
+    }
+
+    .footer-box {
+      margin-top: 32px;
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.10), rgba(56, 189, 248, 0.06));
+      border: 1px solid rgba(56, 189, 248, 0.18);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .footer-box h2 {
+      margin-top: 0;
+    }
+
+    strong {
+      color: #f8fafc;
+    }
+
+    em {
+      color: #cbd5e1;
+    }
+  </style>
 </head>
 <body>
-  <main>
-    <h1>BLOC IV – TEMA 15 – PUNT 16</h1>
-    <p>Contingut pendent d'elaborar.</p>
+  <main class="container">
+    <header class="hero">
+      <div class="eyebrow">Bloc 4 · Contractació pública</div>
+      <h1>Tema 15 · Punt 16 — Resolució del contracte</h1>
+      <p class="subtitle">
+        La resolució del contracte és una forma d’extinció anticipada i anormal del vincle contractual
+        quan la continuïtat de l’execució deixa de ser compatible amb la legalitat, amb les obligacions
+        assumides o amb l’interès públic que justifica la contractació administrativa.
+      </p>
+    </header>
 
-    <section>
-      <h2>1. Context i definicions</h2>
-      <p>Apunts per completar.</p>
+    <nav class="index" aria-label="Índex del contingut">
+      <h2>Índex</h2>
+      <ul>
+        <li><a href="#concepte">1. Concepte i naturalesa jurídica de la resolució del contracte</a></li>
+        <li><a href="#causes">2. Causes de resolució del contracte</a></li>
+        <li><a href="#procediment">3. Procediment de resolució del contracte</a></li>
+        <li><a href="#efectes">4. Efectes de la resolució del contracte</a></li>
+        <li><a href="#imputable">5. Resolució per causa imputable al contractista i per causa imputable a l’Administració</a></li>
+        <li><a href="#importancia">6. Importància de la resolució contractual en el sistema de contractació pública</a></li>
+      </ul>
+    </nav>
+
+    <section id="concepte" class="section">
+      <h2>1. Concepte i naturalesa jurídica de la resolució del contracte</h2>
+
+      <p>
+        Dins del règim jurídic dels contractes del sector públic, l’extinció del vincle contractual es pot
+        produir per dues vies clarament diferenciades: el <strong>compliment</strong> i la
+        <strong>resolució</strong>. Mentre que el compliment constitueix la forma natural i ordinària
+        d’acabament del contracte —quan el contractista executa íntegrament la prestació convinguda i
+        aquesta és rebuda de conformitat per l’Administració—, la resolució es configura com una
+        <strong>modalitat d’extinció anticipada i anormal</strong>.
+      </p>
+
+      <p>
+        Aquesta figura implica la ruptura del vincle obligacional abans del venciment del termini pactat o
+        abans de l’execució completa de l’objecte contractual, com a conseqüència de l’aparició de
+        circumstàncies o incompliments que fan inviable, inadequada o innecessària la continuïtat de la
+        relació jurídica. No es tracta, per tant, d’un final ordinari del contracte, sinó d’un mecanisme
+        excepcional que opera quan desapareixen les condicions que justificaven la seva subsistència.
+      </p>
+
+      <p>
+        La naturalesa jurídica de la resolució s’explica per la posició institucional de l’Administració en
+        els contractes administratius. L’òrgan de contractació disposa de prerrogatives específiques per
+        garantir que el contracte continuï orientat a la satisfacció de l’interès general. Entre aquestes
+        prerrogatives hi ha la possibilitat d’acordar unilateralment la resolució del contracte i determinar-ne
+        els efectes, però aquesta facultat no és discrecional en sentit lliure: està sotmesa a
+        <strong>causes legals taxades</strong>, a un <strong>procediment reglat</strong> i a la necessitat
+        d’una <strong>motivació suficient</strong>.
+      </p>
+
+      <div class="note">
+        <div class="label">Idea clau</div>
+        <p>
+          La resolució del contracte no té una finalitat punitiva en si mateixa. La seva funció principal és
+          <strong>restablir la legalitat contractual</strong> i <strong>protegir l’interès públic</strong>
+          quan la continuïtat del contracte deixa de ser viable o convenient.
+        </p>
+      </div>
+
+      <p>
+        En aquest sentit, la resolució és una eina de garantia del correcte funcionament del sistema de
+        contractació pública. Permet evitar que l’Administració resti vinculada a un contracte que ja no pot
+        complir la seva finalitat, sigui per causes imputables al contractista, sigui per circumstàncies
+        sobrevingudes vinculades a les necessitats públiques o a l’objecte contractual mateix.
+      </p>
     </section>
 
-    <section>
-      <h2>2. Desenvolupament</h2>
-      <p>Apunts per completar.</p>
+    <section id="causes" class="section">
+      <h2>2. Causes de resolució del contracte</h2>
+
+      <p>
+        La LCSP estableix un règim de causes de resolució que respon a una lògica de protecció del servei
+        públic, de la viabilitat del contracte i de la seguretat jurídica. Aquestes causes no són obertes ni
+        genèriques, sinó que constitueixen un <strong>llistat legal tancat</strong>, complementat, si escau,
+        per les obligacions essencials definides als plecs.
+      </p>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Causes vinculades al contractista</h3>
+          <ul class="custom">
+            <li>Mort o incapacitat sobrevinguda de l’empresari individual.</li>
+            <li>Extinció o dissolució de la personalitat jurídica de la societat contractista.</li>
+            <li>Situacions d’insolvència o concurs que comprometin l’execució correcta del contracte.</li>
+            <li>Demora en el compliment dels terminis contractuals.</li>
+            <li>Incompliment de l’obligació principal o d’obligacions qualificades com a essencials.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Causes vinculades a l’interès públic o a l’objecte</h3>
+          <ul class="custom">
+            <li>Mutu acord entre les parts, quan hi concorrin raons d’interès públic.</li>
+            <li>Impossibilitat material d’executar la prestació en els termes pactats.</li>
+            <li>Supressió de la necessitat administrativa que justificava el contracte.</li>
+            <li>Rescat de la concessió o decisió d’assumir directament la gestió.</li>
+            <li>Alteracions contractuals o circumstàncies que facin improcedent la continuïtat del contracte.</li>
+          </ul>
+        </article>
+      </div>
+
+      <p>
+        Entre les causes de caràcter subjectiu destaquen la mort o incapacitat del contractista individual i
+        la desaparició de la persona jurídica contractista. En aquests casos, la qüestió essencial és si la
+        prestació pot continuar de manera compatible amb l’interès general i amb les exigències de solvència,
+        identitat i continuïtat de l’execució. L’Administració no queda obligada a mantenir el contracte si
+        la transformació subjectiva altera de manera rellevant les garanties de compliment.
+      </p>
+
+      <p>
+        També constitueix una causa rellevant la situació de concurs o insolvència del contractista, en la
+        mesura que pot posar en risc la prestació del servei, l’obra o el subministrament. La lògica aquí és
+        preventiva: l’Administració ha d’evitar que una situació financera crítica desemboqui en una execució
+        defectuosa o en una paralització perjudicial per a l’interès públic.
+      </p>
+
+      <p>
+        D’altra banda, la resolució pot derivar d’incompliments contractuals. Té una especial importància la
+        <strong>demora en el compliment dels terminis</strong>, especialment quan el retard assoleix una
+        entitat suficient per comprometre la finalitat del contracte. Igualment, és causa de resolució
+        l’incompliment de l’obligació principal i de les obligacions que els plecs hagin qualificat
+        expressament com a essencials.
+      </p>
+
+      <div class="example">
+        <div class="label">Exemple pràctic</div>
+        <p>
+          Si una empresa adjudicatària d’un servei públic deixa d’abonar els salaris dels treballadors adscrits
+          al contracte o incompleix de manera greu les condicions laborals essencials exigides, aquest
+          incompliment pot justificar la resolució contractual per afectar no només el contractista, sinó també
+          la qualitat i regularitat del servei públic prestat.
+        </p>
+      </div>
+
+      <p>
+        Finalment, hi ha causes de resolució que no responen necessàriament a una culpa del contractista, sinó
+        a la impossibilitat objectiva de continuar el contracte o a un canvi sobrevingut en la necessitat
+        administrativa. Això passa, per exemple, quan l’objecte ja no es pot executar en els termes pactats i
+        no és jurídicament procedent acudir a una modificació contractual, o quan l’interès públic exigeix
+        posar fi a la relació i assumir directament la gestió.
+      </p>
     </section>
 
-    <section>
-      <h2>3. Idees clau</h2>
-      <p>Apunts per completar.</p>
+    <section id="procediment" class="section">
+      <h2>3. Procediment de resolució del contracte</h2>
+
+      <p>
+        L’exercici de la potestat de resolució exigeix la tramitació d’un <strong>procediment administratiu
+        reglat</strong>, que ha de conciliar dues exigències: d’una banda, la protecció de l’interès públic i,
+        de l’altra, la garantia dels drets del contractista. La resolució no es pot acordar de manera automàtica
+        ni informal; requereix expedient, acreditació de la causa i decisió motivada.
+      </p>
+
+      <p>
+        El procediment s’inicia normalment <strong>d’ofici</strong> per l’òrgan de contractació, quan detecta
+        la concurrència d’una causa legal de resolució. Tanmateix, també pot ser instat pel contractista quan
+        la causa invocada li sigui favorable, com pot succeir en supòsits de demora greu de l’Administració en
+        el compliment de les seves obligacions econòmiques.
+      </p>
+
+      <p>
+        Un tràmit essencial és el d’<strong>audiència al contractista</strong>. Aquest tràmit permet que la
+        part afectada al·legui el que consideri convenient, aporti documentació i contradigui els fets o la
+        qualificació jurídica proposada. No és una mera formalitat: és una garantia bàsica del principi de
+        defensa i del procediment degut.
+      </p>
+
+      <div class="note">
+        <div class="label">Garantia procedimental</div>
+        <p>
+          Sense audiència al contractista, la resolució contractual quedaria greument viciada, perquè
+          l’Administració ha d’adoptar la seva decisió després d’haver escoltat la part afectada i d’haver
+          valorat les seves al·legacions.
+        </p>
+      </div>
+
+      <p>
+        Durant la instrucció de l’expedient cal incorporar els informes tècnics i jurídics necessaris per
+        acreditar que la causa de resolució existeix realment i que la seva aplicació és proporcional i
+        jurídicament correcta. Quan el contractista s’oposa a la resolució, el procediment exigeix, en els
+        supòsits legalment previstos, el dictamen de l’òrgan consultiu corresponent abans d’adoptar l’acord
+        definitiu.
+      </p>
+
+      <p>
+        La decisió final correspon a l’òrgan de contractació, que ha de dictar una
+        <strong>resolució motivada</strong>, amb expressió clara dels fets, de la causa legal apreciada i dels
+        efectes que se’n deriven. Aquesta resolució posa fi a la via administrativa i és susceptible de control
+        jurisdiccional davant l’ordre contenciós administratiu.
+      </p>
+
+      <p>
+        Per tant, el procediment de resolució revela bé el caràcter propi de la contractació pública:
+        l’Administració disposa de potestats especials, però aquestes potestats només es poden exercir dins
+        d’un marc formal, motivat i plenament sotmès al dret.
+      </p>
+    </section>
+
+    <section id="efectes" class="section">
+      <h2>4. Efectes de la resolució del contracte</h2>
+
+      <p>
+        L’efecte immediat de la resolució és l’<strong>extinció anticipada del vincle contractual</strong>.
+        A partir d’aquest moment, el contracte deixa de desplegar els seus efectes ordinaris i s’obre la fase
+        de <strong>liquidació</strong>, en la qual s’han de determinar els saldos recíprocs entre les parts.
+      </p>
+
+      <p>
+        La liquidació implica valorar què s’ha executat efectivament fins al moment de la resolució, què ha
+        estat rebut de conformitat per l’Administració i quines quantitats s’han d’abonar, retenir, compensar
+        o reclamar. No tot el que s’hagi iniciat dona dret automàticament a cobrament: cal que la prestació
+        sigui útil, correcta i jurídicament assumible.
+      </p>
+
+      <p>
+        Un aspecte central és el règim de la <strong>garantia definitiva</strong>. L’acord de resolució s’ha de
+        pronunciar expressament sobre la seva devolució, cancel·lació o confiscació. Aquesta decisió depèn de
+        la causa de resolució i del grau d’imputabilitat de la conducta de cada part.
+      </p>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Efectes patrimonials</h3>
+          <ul class="custom">
+            <li>Liquidació econòmica del contracte.</li>
+            <li>Determinació d’indemnitzacions a favor d’una o altra part.</li>
+            <li>Devolució, cancel·lació o incautació de la garantia definitiva.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Efectes sobre l’execució</h3>
+          <ul class="custom">
+            <li>Cessament de l’execució ordinària per part del contractista.</li>
+            <li>Adopció de mesures imprescindibles per evitar perjudicis al servei públic.</li>
+            <li>Possibilitat d’iniciar una nova adjudicació o d’assumir la gestió directa.</li>
+          </ul>
+        </article>
+      </div>
+
+      <p>
+        La resolució també comporta, amb caràcter general, el <strong>cessament de l’execució material</strong>
+        per part del contractista. Tot i això, aquest pot quedar obligat temporalment a adoptar les mesures
+        mínimes indispensables per evitar riscos, danys o interrupcions greus del servei fins que
+        l’Administració articuli una solució alternativa.
+      </p>
+
+      <p>
+        Precisament per protegir la continuïtat de la prestació pública, l’òrgan de contractació pot preparar
+        paral·lelament una nova adjudicació o una fórmula transitòria de gestió. D’aquesta manera, la resolució
+        no es converteix en un buit de servei, sinó en un instrument jurídic per reconduir la situació i
+        minimitzar l’impacte sobre la ciutadania.
+      </p>
+    </section>
+
+    <section id="imputable" class="section">
+      <h2>5. Resolució per causa imputable al contractista i per causa imputable a l’Administració</h2>
+
+      <p>
+        La determinació de <strong>qui és responsable de la causa de resolució</strong> és decisiva, perquè en
+        depenen les principals conseqüències econòmiques i jurídiques de l’extinció anticipada. La LCSP no
+        tracta igual un contracte resolt per incompliment culpable del contractista que un contracte resolt per
+        causa atribuïble a l’Administració.
+      </p>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Quan la causa és imputable al contractista</h3>
+          <p>
+            Si la resolució deriva d’una demora culpable, d’un incompliment essencial o d’una conducta que
+            compromet greument l’execució del contracte, l’Administració pot acordar la
+            <strong>confiscació de la garantia definitiva</strong>.
+          </p>
+          <p>
+            A més, el contractista ha d’indemnitzar els danys i perjudicis causats en allò que excedeixi
+            l’import de la garantia. En determinats supòsits, aquesta conducta també pot donar lloc a una
+            eventual prohibició de contractar amb el sector públic.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Quan la causa és imputable a l’Administració</h3>
+          <p>
+            Si la resolució prové d’un incompliment de l’Administració, com ara una demora greu en el pagament
+            o una actuació que impedeixi l’execució en els termes pactats, el contractista té dret a la
+            <strong>devolució de la garantia definitiva</strong>.
+          </p>
+          <p>
+            Igualment, pot reclamar la indemnització dels danys i perjudicis efectivament soferts, incloent-hi,
+            en els casos previstos legalment, el benefici industrial corresponent a la part de prestació que
+            ja no podrà executar.
+          </p>
+        </article>
+      </div>
+
+      <p>
+        Existeixen també supòsits en què la resolució no és estrictament imputable a cap de les parts en sentit
+        culpable, sinó a circumstàncies objectives que fan impossible la continuïtat del contracte. En aquests
+        casos, la llei articula regles indemnitzatòries específiques per mantenir un
+        <strong>equilibri econòmic i jurídic raonable</strong> entre Administració i contractista.
+      </p>
+
+      <div class="summary-box">
+        <div class="label">Resum essencial</div>
+        <p>
+          La regla de fons és clara: <strong>qui provoca jurídicament la resolució n’assumeix les
+          conseqüències</strong>. Aquesta imputació evita l’enriquiment injust i preserva l’equilibri del
+          contracte administratiu.
+        </p>
+      </div>
+    </section>
+
+    <section id="importancia" class="section">
+      <h2>6. Importància de la resolució contractual en el sistema de contractació pública</h2>
+
+      <p>
+        La resolució contractual actua com una autèntica <strong>clàusula de seguretat del sistema de
+        contractació pública</strong>. Sense aquest mecanisme, l’Administració podria quedar atrapada en
+        relacions contractuals ineficaces, incomplertes o incompatibles amb les necessitats reals del servei
+        públic, la qual cosa perjudicaria directament l’interès general.
+      </p>
+
+      <p>
+        Des d’una perspectiva funcional, la resolució permet tancar ordenadament situacions patològiques del
+        contracte: incompliments greus, inviabilitat tècnica, desaparició de la necessitat pública o alteracions
+        que trenquen l’equilibri inicial de la relació contractual. En aquest sentit, no és un element marginal,
+        sinó una peça essencial del règim d’execució, modificació i extinció dels contractes públics.
+      </p>
+
+      <p>
+        També té una rellevància directa en relació amb els principis de
+        <strong>legalitat, eficiència, bona administració i protecció de l’erari públic</strong>. L’Administració
+        no contracta per quedar vinculada a qualsevol preu, sinó per satisfer finalitats públiques concretes.
+        Quan aquestes finalitats ja no es poden assolir per la via contractual establerta, la resolució ofereix
+        una sortida reglada, controlable i jurídicament garantista.
+      </p>
+
+      <p>
+        En definitiva, la resolució del contracte és l’última ràtio del sistema contractual públic: un
+        mecanisme excepcional, però imprescindible, per preservar la integritat del contracte administratiu i
+        assegurar que la contractació continua servint el bé comú i no es converteix en una càrrega contrària a
+        l’interès general.
+      </p>
+    </section>
+
+    <section class="footer-box">
+      <h2>Idea final per memoritzar</h2>
+      <p>
+        <strong>La resolució del contracte és la forma d’extinció anticipada i anormal del contracte públic</strong>
+        quan concorre una causa legal que fa inviable, incorrecta o innecessària la seva continuïtat. És una
+        potestat reglada de l’Administració, sotmesa a procediment, audiència i motivació, i els seus efectes
+        depenen de si la causa és imputable al contractista, a l’Administració o a circumstàncies objectives.
+      </p>
     </section>
   </main>
 </body>

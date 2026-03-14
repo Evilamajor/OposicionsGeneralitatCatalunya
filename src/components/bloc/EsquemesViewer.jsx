@@ -18,6 +18,7 @@ import { parseNormativeReferences } from '../../utils/normativeReferenceParser';
 import NormativePillHeader from './NormativePillHeader';
 import { createPointActions, applyExpVisibility } from './PointActionsManager';
 import { isDev } from '../../utils/env';
+import { getTopicPointTitles } from '../../constants/topicPointRegistry';
 
 // Editing features are available only in development
 // to prevent users from modifying content on the public site.
@@ -77,6 +78,98 @@ const parseExplanationHash = (hashValue = '') => {
   if (!match) return null;
 
   return String(Number.parseInt(match[1], 10));
+};
+
+const hasPointContainers = (htmlString = '') => /id=["']p\d{1,2}-(?:explicacio|diagrama|preguntes)["']/i.test(htmlString);
+
+const shouldHideGeneratedPointsTitle = (blocId, temaId) => {
+  if (blocId === 'bloc-5') {
+    return temaId === 'tema-16' || temaId === 'tema-17' || temaId === 'tema-18';
+  }
+
+  if (blocId === 'bloc-6') {
+    return temaId === 'tema-19' || temaId === 'tema-20' || temaId === 'tema-21';
+  }
+
+  if (blocId === 'bloc-7') {
+    return temaId === 'tema-22' || temaId === 'tema-23' || temaId === 'tema-24' || temaId === 'tema-25';
+  }
+
+  return false;
+};
+
+const shouldGenerateAuxPointSections = (blocId, temaId) => {
+  if (blocId === 'bloc-6') {
+    return temaId === 'tema-19' || temaId === 'tema-20' || temaId === 'tema-21';
+  }
+
+  if (blocId === 'bloc-7') {
+    return temaId === 'tema-22' || temaId === 'tema-23' || temaId === 'tema-24' || temaId === 'tema-25';
+  }
+
+  return false;
+};
+
+const buildGeneratedSchemaHtml = ({ blocId, temaId }) => {
+  const pointTitles = getTopicPointTitles(blocId, temaId);
+  if (!Array.isArray(pointTitles) || pointTitles.length === 0) return null;
+  const hidePointsTitle = shouldHideGeneratedPointsTitle(blocId, temaId);
+  const includeAuxSections = shouldGenerateAuxPointSections(blocId, temaId);
+
+  const frames = pointTitles
+    .map((title, index) => {
+      const pointId = String(index + 1);
+      return [
+        '<div class="frame">',
+        `  <h3>${index + 1}. ${title}</h3>`,
+        `  <div id="p${pointId}-explicacio" class="content">En construccio</div>`,
+        ...(includeAuxSections
+          ? [
+              `  <div id="p${pointId}-diagrama" class="content">En construccio</div>`,
+              `  <div id="p${pointId}-preguntes" class="content">En construccio</div>`,
+            ]
+          : []),
+        '</div>',
+      ].join('\n');
+    })
+    .join('\n');
+
+  return [
+    '<div class="explicacio esquema-modular">',
+    '  <style>',
+    '  .esquema-modular .frame {',
+    '    background: #fbfcff;',
+    '    padding: 20px;',
+    '    border-radius: 12px;',
+    '    margin-bottom: 16px;',
+    '    border: 1px solid #e7ebf2;',
+    '  }',
+    '  .esquema-modular h2 {',
+    '    margin: 0 0 14px;',
+    '  }',
+    '  .esquema-modular h3 {',
+    '    margin: 0;',
+    '  }',
+    '  .esquema-modular .content {',
+    '    display: none;',
+    '    margin-top: 10px;',
+    '    padding: 12px;',
+    '    background: #ffffff;',
+    '    border-left: 3px solid #1e4bd1;',
+    '    border-radius: 8px;',
+    '  }',
+    '  </style>',
+    ...(hidePointsTitle ? [] : ['  <h2>Punts del tema</h2>']),
+    frames,
+    '</div>',
+  ].join('\n');
+};
+
+const ensureSchemaHasPoints = (schemaHtml, { blocId, temaId }) => {
+  if (hasPointContainers(schemaHtml)) return schemaHtml;
+
+  const generatedSchema = buildGeneratedSchemaHtml({ blocId, temaId });
+  return generatedSchema || schemaHtml;
 };
 
 const INLINE_NORMATIVE_SKIP_SELECTOR = [
@@ -691,7 +784,9 @@ export default function EsquemesViewer({ blocId, temaId, schemaPath, active }) {
         setIsLoadingEsquemes(true);
         setEsquemesError('');
         const rawHtml = await fetchTextWithCache(schemaPath, { signal: controller.signal });
-        setEsquemesHtml(resolveRelativeUrls(rawHtml, schemaPath));
+        const resolvedHtml = resolveRelativeUrls(rawHtml, schemaPath);
+        const integratedHtml = ensureSchemaHasPoints(resolvedHtml, { blocId, temaId });
+        setEsquemesHtml(integratedHtml);
       } catch (error) {
         if (error.name === 'AbortError') return;
         setEsquemesError(error.message || 'Error carregant l\'esquema');

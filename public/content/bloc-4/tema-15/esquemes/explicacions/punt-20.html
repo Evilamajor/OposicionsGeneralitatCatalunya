@@ -1,28 +1,570 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ca">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BLOC IV – TEMA 15 – PUNT 20</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Punt 20. Període de garantia</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a30;
+      --panel-alt: #0f172a;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-strong: #0ea5e9;
+      --border: #1e293b;
+      --quote: #1d4ed8;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 28%),
+        radial-gradient(circle at top right, rgba(14, 165, 233, 0.08), transparent 24%),
+        linear-gradient(180deg, #0b1020 0%, #0f172a 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.14), rgba(14, 165, 233, 0.06));
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      margin: 0;
+      max-width: 930px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .index {
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .index h2 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 1.2rem;
+    }
+
+    .index ul {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+
+    .index li {
+      margin: 0.4rem 0;
+    }
+
+    .index a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .index a:hover {
+      text-decoration: underline;
+    }
+
+    .section {
+      background: rgba(18, 26, 48, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .section h2 {
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 1.5rem;
+      line-height: 1.25;
+    }
+
+    .section p {
+      margin: 0 0 1rem;
+      color: #dbe4f0;
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .note,
+    .example,
+    .summary-box,
+    .warning-box {
+      border-radius: 18px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+
+    .note {
+      background: rgba(29, 78, 216, 0.14);
+      border-left: 4px solid var(--quote);
+    }
+
+    .example {
+      background: rgba(34, 197, 94, 0.10);
+      border-left: 4px solid var(--success);
+    }
+
+    .summary-box {
+      background: rgba(245, 158, 11, 0.10);
+      border-left: 4px solid var(--warning);
+    }
+
+    .warning-box {
+      background: rgba(239, 68, 68, 0.10);
+      border-left: 4px solid var(--danger);
+    }
+
+    .label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    ul.custom {
+      padding-left: 1.2rem;
+      margin: 0.75rem 0 1rem;
+    }
+
+    ul.custom li {
+      margin-bottom: 0.55rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    @media (min-width: 900px) {
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+      color: var(--accent);
+    }
+
+    .footer-box {
+      margin-top: 32px;
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.10), rgba(56, 189, 248, 0.06));
+      border: 1px solid rgba(56, 189, 248, 0.18);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .footer-box h2 {
+      margin-top: 0;
+    }
+
+    strong {
+      color: #f8fafc;
+    }
+
+    em {
+      color: #cbd5e1;
+    }
+  </style>
 </head>
 <body>
-  <main>
-    <h1>BLOC IV – TEMA 15 – PUNT 20</h1>
-    <p>Contingut pendent d'elaborar.</p>
+  <main class="container">
+    <header class="hero">
+      <div class="eyebrow">Bloc 4 · Contractació pública</div>
+      <h1>Tema 15 · Punt 20 — Període de garantia</h1>
+      <p class="subtitle">
+        El període de garantia és la fase posterior a la recepció del contracte en què
+        l’Administració verifica que l’obra, el subministrament o el servei executat
+        manté la qualitat, funcionalitat i durabilitat exigides, i en què el contractista
+        continua responent dels defectes o vicis derivats d’una execució incorrecta.
+      </p>
+    </header>
 
-    <section>
-      <h2>1. Context i definicions</h2>
-      <p>Apunts per completar.</p>
+    <nav class="index" aria-label="Índex del contingut">
+      <h2>Índex</h2>
+      <ul>
+        <li><a href="#concepte">1. Concepte de període de garantia</a></li>
+        <li><a href="#durada">2. Durada del període de garantia</a></li>
+        <li><a href="#obligacions">3. Obligacions del contractista durant el període de garantia</a></li>
+        <li><a href="#facultats">4. Facultats de l’Administració durant el període de garantia</a></li>
+        <li><a href="#finalitzacio">5. Finalització del període de garantia</a></li>
+        <li><a href="#importancia">6. Importància del període de garantia en la contractació pública</a></li>
+      </ul>
+    </nav>
+
+    <section id="concepte" class="section">
+      <h2>1. Concepte de període de garantia</h2>
+
+      <p>
+        El <strong>període de garantia</strong> és una fase de caràcter cautelar i verificadora que
+        s’estén des de la <strong>recepció formal de la prestació</strong> fins al moment en què
+        s’extingeix la responsabilitat ordinària del contractista respecte de la qualitat tècnica,
+        funcionalitat i correcció de l’execució realitzada. No es tracta d’una continuació ordinària
+        de l’execució del contracte, sinó d’un període en què el resultat ja lliurat és sotmès a una
+        prova de funcionament, resistència i adequació a les exigències pactades.
+      </p>
+
+      <p>
+        Aquesta fase compleix una funció essencial: permet comprovar que l’objecte del contracte
+        —sigui una obra, un subministrament o un servei amb resultat material o funcional—
+        no només era correcte en el moment de la recepció, sinó que també es manté
+        <strong>útil, estable i conforme</strong> quan entra en ús real o quan transcorre un temps
+        raonable des del seu lliurament.
+      </p>
+
+      <p>
+        Des del punt de vista procedimental, el període de garantia se situa
+        <strong>després de la recepció o conformitat</strong>, que marca la fi de l’execució ordinària,
+        però abans de la <strong>liquidació definitiva</strong> i de la
+        <strong>devolució o cancel·lació de la garantia definitiva</strong>. Això vol dir que, encara
+        que la prestació ja hagi estat formalment acceptada, el contractista no queda immediatament
+        alliberat de tota responsabilitat.
+      </p>
+
+      <div class="note">
+        <div class="label">Idea clau</div>
+        <p>
+          El període de garantia actua com una <strong>condició de verificació posterior</strong>:
+          l’Administració accepta la prestació, però es reserva un temps addicional per comprovar
+          que no apareixen defectes, vicis ocults o disfuncions derivats d’una execució incorrecta.
+        </p>
+      </div>
+
+      <p>
+        En definitiva, aquesta institució protegeix l’interès públic evitant que l’Administració hagi
+        d’assumir immediatament els riscos econòmics d’una execució defectuosa que només es manifesta
+        amb l’ús o amb el pas del temps.
+      </p>
     </section>
 
-    <section>
-      <h2>2. Desenvolupament</h2>
-      <p>Apunts per completar.</p>
+    <section id="durada" class="section">
+      <h2>2. Durada del període de garantia</h2>
+
+      <p>
+        La durada del període de garantia no és uniforme per a tots els contractes del sector públic.
+        Correspon a l’òrgan de contractació fixar-la en el
+        <strong>plec de clàusules administratives particulars (PCAP)</strong>, atenent a criteris de
+        <strong>proporcionalitat</strong>, <strong>racionalitat</strong> i adequació a la naturalesa de
+        la prestació.
+      </p>
+
+      <p>
+        Això significa que el termini ha d’estar directament relacionat amb el tipus de contracte,
+        amb la seva complexitat tècnica i amb la probabilitat que els defectes d’execució es puguin
+        manifestar només després d’un cert temps d’ús. No tindria sentit imposar el mateix termini a
+        una obra pública d’elevada complexitat estructural que a un subministrament consumible o a
+        una prestació de caràcter immediat.
+      </p>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Criteris per fixar la durada</h3>
+          <ul class="custom">
+            <li>Naturalesa i finalitat de la prestació.</li>
+            <li>Complexitat tècnica del contracte.</li>
+            <li>Temps necessari perquè aflori un defecte latent.</li>
+            <li>Risc que la disfunció només es detecti amb l’ús continuat.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Rellevància especial</h3>
+          <ul class="custom">
+            <li>Especial importància en el contracte d’obres.</li>
+            <li>Possible adaptació en subministraments o serveis.</li>
+            <li>Excepcionalment, pot no establir-se si no és necessari.</li>
+            <li>La supressió ha de quedar justificada a l’expedient i als plecs.</li>
+          </ul>
+        </article>
+      </div>
+
+      <p>
+        En el <strong>contracte d’obres</strong>, aquest període adquireix una rellevància singular,
+        perquè les prestacions executades poden presentar problemes de solidesa, estabilitat o
+        funcionalitat que no siguin visibles en el mateix moment de la recepció. Per això, la LCSP
+        dota aquesta figura d’una importància especial en aquest tipus contractual i preveu, amb
+        caràcter general, un termini que permeti una observació suficient del comportament de l’obra.
+      </p>
+
+      <p>
+        En els contractes de <strong>subministrament</strong> o en determinats <strong>serveis</strong>,
+        la durada també pot ser significativa si el resultat lliurat necessita un temps de prova o
+        d’ús efectiu. En canvi, en contractes de naturalesa consumible o d’execució immediata,
+        pot no ser necessari establir un període de garantia, sempre que aquesta decisió estigui
+        expressament justificada.
+      </p>
+
+      <div class="warning-box">
+        <div class="label">Atenció d’examen</div>
+        <p>
+          La durada del període de garantia no és arbitrària: ha d’estar
+          <strong>justificada i adaptada a la naturalesa del contracte</strong>.
+        </p>
+      </div>
     </section>
 
-    <section>
-      <h2>3. Idees clau</h2>
-      <p>Apunts per completar.</p>
+    <section id="obligacions" class="section">
+      <h2>3. Obligacions del contractista durant el període de garantia</h2>
+
+      <p>
+        Durant el període de garantia, el contractista continua ocupant una posició jurídica de
+        <strong>responsable de la qualitat tècnica de la prestació executada</strong>. Encara que
+        l’obra, el bé o el servei ja hagi estat formalment rebut, l’adjudicatari no queda totalment
+        alliberat: ha de respondre dels defectes de construcció o execució, dels deterioraments derivats
+        d’una realització incorrecta i dels <strong>vicis ocults</strong> que es manifestin durant aquest temps.
+      </p>
+
+      <p>
+        Aquesta responsabilitat implica, en termes materials, l’obligació de
+        <strong>reparar els defectes detectats</strong>, <strong>substituir els elements inadequats</strong>
+        i <strong>corregir errors de funcionament</strong> que afectin el resultat del contracte.
+        Tot això s’ha de fer <strong>sense cap cost per a l’Administració</strong>, ja que no és una prestació nova,
+        sinó part del deure de compliment íntegre del contracte.
+      </p>
+
+      <p>
+        En conseqüència, el contractista no pot pretendre una nova retribució per aquestes actuacions
+        correctores. Si el defecte deriva d’una execució deficient, el seu cost recau sobre l’empresa
+        adjudicatària, d’acord amb el principi d’execució a risc i ventura.
+      </p>
+
+      <div class="example">
+        <div class="label">Exemple pràctic</div>
+        <p>
+          Si en una obra pública apareixen filtracions, esquerdes o problemes de funcionament
+          d’instal·lacions durant el període de garantia, el contractista ha d’assumir-ne la reparació.
+          De la mateixa manera, en un subministrament, si els equips lliurats presenten deficiències
+          tècniques o rendiment inadequat, ha de reposar-los o corregir-los al seu càrrec.
+        </p>
+      </div>
+
+      <p>
+        En el cas del contracte d’obres, aquesta responsabilitat pot ser encara més intensa, perquè
+        determinats vicis ocults especialment greus poden generar una responsabilitat legal que va
+        més enllà del període ordinari de garantia. Això mostra que el sistema de contractació pública
+        distingeix entre la responsabilitat ordinària pròpia del període de garantia i altres responsabilitats
+        especials vinculades a defectes estructurals o d’entitat excepcional.
+      </p>
+    </section>
+
+    <section id="facultats" class="section">
+      <h2>4. Facultats de l’Administració durant el període de garantia</h2>
+
+      <p>
+        L’Administració no manté una actitud passiva durant el període de garantia. Al contrari,
+        conserva un conjunt de <strong>potestats de control, inspecció i correcció</strong> per assegurar
+        que el resultat contractual continua responent als estàndards exigits pels plecs i per l’interès públic.
+      </p>
+
+      <p>
+        En primer lloc, l’òrgan de contractació, a través del responsable del contracte o de la direcció
+        facultativa, pot <strong>inspeccionar l’obra, el bé o el servei</strong> en condicions reals d’ús.
+        Aquesta inspecció serveix per detectar defectes que no havien aflorat en el moment de la recepció
+        o que només es manifesten un cop la prestació entra en funcionament efectiu.
+      </p>
+
+      <p>
+        Si es comprova l’existència de deficiències imputables al contractista, l’Administració pot
+        <strong>requerir formalment la reparació o esmena</strong>, fixant les actuacions que s’han de
+        dur a terme i el termini en què s’han d’executar. Aquest requeriment no és una mera recomanació,
+        sinó una exigència derivada de la responsabilitat contractual encara vigent.
+      </p>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Potestats de control</h3>
+          <ul class="custom">
+            <li>Inspecció de la prestació en condicions reals d’ús.</li>
+            <li>Verificació de defectes, vicis o disfuncions.</li>
+            <li>Requeriment formal de reparació o correcció.</li>
+            <li>Seguiment de l’execució de les esmenes exigides.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Mesures davant l’incompliment</h3>
+          <ul class="custom">
+            <li>Execució subsidiària de les reparacions.</li>
+            <li>Execució total o parcial de la garantia definitiva.</li>
+            <li>Reclamació de danys i perjudicis.</li>
+            <li>Depuració de responsabilitats contractuals.</li>
+          </ul>
+        </article>
+      </div>
+
+      <p>
+        Si el contractista no actua amb la diligència deguda o es nega a complir el requeriment,
+        l’Administració pot acudir a la <strong>execució subsidiària</strong>, fent les reparacions per
+        si mateixa o mitjançant tercers, però a càrrec de l’adjudicatari. Aquesta possibilitat evita que
+        l’interès públic quedi paralitzat per la inacció empresarial.
+      </p>
+
+      <p>
+        A més, aquestes actuacions permeten l’<strong>execució de la garantia definitiva</strong> per cobrir
+        les despeses d’esmena i, si escau, la reclamació addicional de responsabilitats. Així, el període de
+        garantia no només és un temps d’observació, sinó també un espai efectiu de protecció dels fons públics.
+      </p>
+    </section>
+
+    <section id="finalitzacio" class="section">
+      <h2>5. Finalització del període de garantia</h2>
+
+      <p>
+        La finalització del període de garantia es produeix quan expira el termini fixat en el contracte i
+        l’Administració comprova que <strong>no hi ha defectes pendents d’esmena ni responsabilitats per depurar</strong>.
+        Aquesta verificació final és imprescindible, perquè no n’hi ha prou amb el simple transcurs del temps:
+        cal una constatació administrativa favorable de l’estat de la prestació.
+      </p>
+
+      <p>
+        Amb aquesta finalitat, el responsable del contracte o, en el cas d’obres, el director facultatiu,
+        ha d’emetre un <strong>informe o acta final</strong> sobre l’estat de les prestacions. Si el resultat
+        és favorable, el contractista queda alliberat de la responsabilitat ordinària vinculada a l’execució
+        i s’obre la fase definitiva de tancament del contracte.
+      </p>
+
+      <p>
+        D’aquesta verificació final es deriven tres efectes jurídics principals:
+        <strong>l’aprovació de la liquidació definitiva</strong>, <strong>la devolució o cancel·lació de la garantia definitiva</strong>
+        i la <strong>extinció ordinària completa del vincle contractual</strong>. És en aquest moment quan el
+        contracte pot considerar-se plenament tancat, tant en el pla tècnic com en l’econòmic.
+      </p>
+
+      <div class="summary-box">
+        <div class="label">Seqüència final</div>
+        <p>
+          <strong>Recepció</strong> → <strong>període de garantia</strong> → <strong>informe favorable</strong> →
+          <strong>liquidació definitiva</strong> → <strong>devolució de la garantia</strong> → <strong>extinció total del contracte</strong>.
+        </p>
+      </div>
+
+      <p>
+        Si l’Administració es retarda indegudament en l’acord de devolució de la garantia definitiva, el
+        contractista pot tenir dret als interessos corresponents. Això reforça la idea que el tancament del
+        període de garantia també està sotmès a terminis i deures administratius concrets.
+      </p>
+
+      <p>
+        Cal recordar, tanmateix, que en determinats supòsits —especialment en obres— poden subsistir
+        responsabilitats legals especials per vicis ocults greus, les quals no depenen ja del període ordinari
+        de garantia, sinó d’un règim específic de responsabilitat posterior.
+      </p>
+    </section>
+
+    <section id="importancia" class="section">
+      <h2>6. Importància del període de garantia en la contractació pública</h2>
+
+      <p>
+        El període de garantia és una peça essencial del sistema de contractació pública perquè protegeix
+        directament l’<strong>interès públic</strong> i la correcta utilització dels recursos econòmics de la
+        Generalitat. Gràcies a aquest mecanisme, l’Administració no assumeix de manera immediata i definitiva
+        els riscos d’una execució incorrecta, sinó que disposa d’un temps addicional per comprovar-ne la
+        qualitat real.
+      </p>
+
+      <p>
+        També compleix una funció d’<strong>incentiu a l’execució diligent</strong>. El contractista sap que la
+        seva responsabilitat no s’esgota en el moment de la recepció i que la garantia definitiva no serà
+        alliberada fins que la prestació hagi superat un període de comprovació pràctica. Això afavoreix una
+        cultura de qualitat, rigor tècnic i compliment efectiu.
+      </p>
+
+      <p>
+        Des de la perspectiva pressupostària, el període de garantia evita que sigui l’erari públic qui hagi
+        d’assumir el cost de reparar defectes, substituir materials inadequats o corregir errors derivats
+        d’una mala execució. Per tant, és un instrument de
+        <strong>eficiència en la despesa pública</strong> i de protecció dels fons públics.
+      </p>
+
+      <div class="warning-box">
+        <div class="label">Idea de fons</div>
+        <p>
+          El període de garantia assegura que el resultat de la contractació no sigui només
+          <strong>formalment conforme en la recepció</strong>, sinó també
+          <strong>materialment útil, durador i funcional en el temps</strong>.
+        </p>
+      </div>
+
+      <p>
+        En definitiva, aquesta institució reforça la qualitat de la contractació pública i garanteix que
+        l’activitat contractual del sector públic no es limiti a un lliurament aparentment correcte, sinó
+        que produeixi un resultat efectivament apte per satisfer les necessitats públiques amb criteris de
+        legalitat, sostenibilitat i bona administració.
+      </p>
+    </section>
+
+    <section class="footer-box">
+      <h2>Idea final per memoritzar</h2>
+      <p>
+        <strong>El període de garantia és la fase posterior a la recepció en què el contractista continua
+        responent dels defectes i vicis de la prestació executada</strong>. Durant aquest temps,
+        l’Administració pot inspeccionar, exigir reparacions i executar la garantia definitiva, i només quan
+        el període finalitza favorablement es poden acordar la liquidació definitiva i la devolució de la garantia.
+      </p>
     </section>
   </main>
 </body>

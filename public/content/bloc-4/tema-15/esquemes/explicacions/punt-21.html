@@ -1,28 +1,551 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ca">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BLOC IV – TEMA 15 – PUNT 21</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Punt 21. Responsabilitats per vicis o defectes</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a30;
+      --panel-alt: #0f172a;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-strong: #0ea5e9;
+      --border: #1e293b;
+      --quote: #1d4ed8;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 28%),
+        radial-gradient(circle at top right, rgba(14, 165, 233, 0.08), transparent 24%),
+        linear-gradient(180deg, #0b1020 0%, #0f172a 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.14), rgba(14, 165, 233, 0.06));
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      margin: 0;
+      max-width: 930px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .index {
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .index h2 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 1.2rem;
+    }
+
+    .index ul {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+
+    .index li {
+      margin: 0.4rem 0;
+    }
+
+    .index a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .index a:hover {
+      text-decoration: underline;
+    }
+
+    .section {
+      background: rgba(18, 26, 48, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .section h2 {
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 1.5rem;
+      line-height: 1.25;
+    }
+
+    .section p {
+      margin: 0 0 1rem;
+      color: #dbe4f0;
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .note,
+    .example,
+    .summary-box,
+    .warning-box {
+      border-radius: 18px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+
+    .note {
+      background: rgba(29, 78, 216, 0.14);
+      border-left: 4px solid var(--quote);
+    }
+
+    .example {
+      background: rgba(34, 197, 94, 0.10);
+      border-left: 4px solid var(--success);
+    }
+
+    .summary-box {
+      background: rgba(245, 158, 11, 0.10);
+      border-left: 4px solid var(--warning);
+    }
+
+    .warning-box {
+      background: rgba(239, 68, 68, 0.10);
+      border-left: 4px solid var(--danger);
+    }
+
+    .label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    ul.custom {
+      padding-left: 1.2rem;
+      margin: 0.75rem 0 1rem;
+    }
+
+    ul.custom li {
+      margin-bottom: 0.55rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    @media (min-width: 900px) {
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+      color: var(--accent);
+    }
+
+    .footer-box {
+      margin-top: 32px;
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.10), rgba(56, 189, 248, 0.06));
+      border: 1px solid rgba(56, 189, 248, 0.18);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .footer-box h2 {
+      margin-top: 0;
+    }
+
+    strong {
+      color: #f8fafc;
+    }
+
+    em {
+      color: #cbd5e1;
+    }
+  </style>
 </head>
 <body>
-  <main>
-    <h1>BLOC IV – TEMA 15 – PUNT 21</h1>
-    <p>Contingut pendent d'elaborar.</p>
+  <main class="container">
+    <header class="hero">
+      <div class="eyebrow">Bloc 4 · Contractació pública</div>
+      <h1>Tema 15 · Punt 21 — Responsabilitats per vicis o defectes</h1>
+      <p class="subtitle">
+        El règim de responsabilitats per vicis o defectes obliga el contractista a respondre
+        de les anomalies, deficiències o errors de la prestació executada quan aquesta no
+        s’ajusta a les exigències tècniques, funcionals o de qualitat fixades en el contracte,
+        en els plecs i en l’interès públic que justifica la contractació.
+      </p>
+    </header>
 
-    <section>
-      <h2>1. Context i definicions</h2>
-      <p>Apunts per completar.</p>
+    <nav class="index" aria-label="Índex del contingut">
+      <h2>Índex</h2>
+      <ul>
+        <li><a href="#concepte">1. Concepte de responsabilitat per vicis o defectes</a></li>
+        <li><a href="#tipologia">2. Tipologia de defectes en l’execució contractual</a></li>
+        <li><a href="#garantia">3. Responsabilitat del contractista durant el període de garantia</a></li>
+        <li><a href="#vicis-ocults">4. Responsabilitat per vicis ocults en el contracte d’obres</a></li>
+        <li><a href="#facultats">5. Facultats de l’Administració davant defectes o vicis</a></li>
+        <li><a href="#importancia">6. Importància del règim de responsabilitats en la contractació pública</a></li>
+      </ul>
+    </nav>
+
+    <section id="concepte" class="section">
+      <h2>1. Concepte de responsabilitat per vicis o defectes</h2>
+
+      <p>
+        En el marc de la contractació del sector públic, la <strong>responsabilitat per vicis o defectes</strong>
+        és el règim jurídic que obliga el contractista a respondre per les anomalies, errors o deficiències
+        detectades en la prestació executada. Aquests vicis consisteixen en qualsevol desviació respecte de
+        les condicions tècniques, qualitats, materials o funcionalitats que havien estat exigides en el plec
+        de prescripcions tècniques, en els documents del contracte i en la finalitat pública que justificava la licitació.
+      </p>
+
+      <p>
+        El seu fonament és clar: el contractista no només ha d’executar formalment una prestació, sinó que
+        l’ha de lliurar de manera <strong>íntegra, correcta i útil</strong> per a l’Administració. Per tant,
+        si el resultat final presenta defectes que n’afecten la qualitat, el rendiment o la seguretat,
+        el compliment no es pot considerar plenament satisfactori.
+      </p>
+
+      <p>
+        Aquesta responsabilitat deriva directament del principi d’<strong>execució a risc i ventura del contractista</strong>.
+        Això significa que és l’empresari qui assumeix el risc tècnic i material de la correcta realització
+        del contracte. L’Administració paga per obtenir una prestació conforme, i no ha d’assumir el cost de
+        reparar errors o deficiències que corresponen a la manca de diligència del contractista.
+      </p>
+
+      <div class="note">
+        <div class="label">Idea clau</div>
+        <p>
+          La responsabilitat per vicis o defectes serveix per garantir que el resultat de la contractació
+          pública no sigui només formalment rebut, sinó <strong>materialment correcte, funcional i durador</strong>.
+        </p>
+      </div>
+
+      <p>
+        Aquest règim es desplega en diversos moments temporals. Hi ha defectes detectats
+        <strong>durant l’execució</strong>, que l’Administració pot ordenar corregir immediatament;
+        defectes detectats <strong>durant el període de garantia</strong>, un cop la prestació ja ha estat rebuda;
+        i, finalment, <strong>vicis ocults</strong>, que són aquelles deficiències no detectables en la recepció
+        ordinària però que afloren posteriorment i, per la seva gravetat, poden donar lloc a una responsabilitat prolongada.
+      </p>
     </section>
 
-    <section>
-      <h2>2. Desenvolupament</h2>
-      <p>Apunts per completar.</p>
+    <section id="tipologia" class="section">
+      <h2>2. Tipologia de defectes en l’execució contractual</h2>
+
+      <p>
+        Els defectes que poden aparèixer en un contracte públic són molt diversos i la seva transcendència jurídica
+        depèn tant de la seva naturalesa com de l’impacte que tenen sobre la prestació final. No tots els defectes
+        tenen la mateixa gravetat, però tots ells poden activar potestats de control i responsabilitat si afecten
+        la conformitat del resultat contractat.
+      </p>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Tipus principals de defectes</h3>
+          <ul class="custom">
+            <li>Defectes de construcció o execució.</li>
+            <li>Defectes de qualitat dels materials utilitzats.</li>
+            <li>Errors tècnics o funcionals.</li>
+            <li>Vicis ocults no detectables en la recepció.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Impacte sobre la prestació</h3>
+          <ul class="custom">
+            <li>Pèrdua de funcionalitat de l’obra o del servei.</li>
+            <li>Reducció de la durabilitat de la inversió pública.</li>
+            <li>Increment de costos de manteniment o reposició.</li>
+            <li>Risc per a la seguretat dels usuaris o de la infraestructura.</li>
+          </ul>
+        </article>
+      </div>
+
+      <p>
+        Un primer grup el formen els <strong>defectes de construcció o d’execució</strong>, que solen derivar
+        de la inobservança de les regles tècniques, de les instruccions del responsable del contracte o de la
+        direcció facultativa, o d’una execució material deficient. Aquests defectes són especialment visibles
+        en obres, però també poden aparèixer en serveis quan el nivell de qualitat prestat és inferior al compromès.
+      </p>
+
+      <p>
+        Un segon grup és el dels <strong>defectes de qualitat dels materials</strong>. Es produeixen quan el
+        contractista utilitza materials, components o subministraments que no reuneixen les especificacions
+        tècniques previstes en els plecs o no ofereixen les garanties de qualitat exigibles.
+      </p>
+
+      <p>
+        També hi ha <strong>errors tècnics o funcionals</strong>, especialment rellevants en contractes de serveis
+        intel·lectuals, d’enginyeria, d’assistència tècnica o d’elaboració de projectes. En aquests casos,
+        càlculs incorrectes, omissions essencials o solucions tècniques inadequades poden fer inútil tot o part
+        del treball executat.
+      </p>
+
+      <div class="warning-box">
+        <div class="label">Atenció d’examen</div>
+        <p>
+          Els defectes no tenen només una dimensió estètica o formal. El que els fa jurídicament rellevants és
+          que poden comprometre la <strong>funcionalitat, durabilitat o seguretat</strong> de la prestació pública.
+        </p>
+      </div>
+
+      <p>
+        Finalment, els <strong>vicis ocults</strong> són el supòsit més complex: es tracta de defectes que no poden
+        ser detectats en una comprovació ordinària en el moment de la recepció, però que es manifesten més tard i
+        posen en qüestió la qualitat o seguretat del resultat contractual.
+      </p>
     </section>
 
-    <section>
-      <h2>3. Idees clau</h2>
-      <p>Apunts per completar.</p>
+    <section id="garantia" class="section">
+      <h2>3. Responsabilitat del contractista durant el període de garantia</h2>
+
+      <p>
+        La recepció formal del contracte no comporta l’alliberament immediat i total del contractista. La LCSP
+        estableix un <strong>període de garantia</strong> durant el qual l’adjudicatari continua vinculat jurídicament
+        per respondre de les deficiències que es detectin en l’objecte contractual.
+      </p>
+
+      <p>
+        Aquest període funciona com un mecanisme de control posterior que permet a l’Administració comprovar
+        el comportament real de la prestació sota condicions d’ús efectiu. Si durant aquest temps apareixen
+        defectes, el contractista està obligat a <strong>reparar</strong>, <strong>substituir</strong> o
+        <strong>corregir</strong> les deficiències detectades.
+      </p>
+
+      <p>
+        Aquestes actuacions s’han de dur a terme <strong>sense cap cost per a l’Administració</strong>, ja que
+        formen part del deure de compliment correcte del contracte originari. L’Administració no ha de pagar dues
+        vegades per una prestació que ja havia estat adjudicada i retribuïda sota unes condicions de qualitat determinades.
+      </p>
+
+      <div class="example">
+        <div class="label">Exemple pràctic</div>
+        <p>
+          Si en un contracte de subministrament els equips lliurats presenten avaries o no compleixen el rendiment
+          tècnic esperat durant el període de garantia, el contractista ha de reparar-los o substituir-los al seu càrrec.
+          El mateix passa en obres o serveis si apareixen disfuncions atribuïbles a una execució deficient.
+        </p>
+      </div>
+
+      <p>
+        Durant aquesta fase, el <strong>responsable del contracte</strong> exerceix una funció essencial de supervisió:
+        detecta anomalies, formula requeriments i proposa les mesures correctores necessàries. Només quan el període
+        de garantia transcorre sense objeccions pendents, pot considerar-se extingida la responsabilitat ordinària del
+        contractista i acordar-se la devolució de la garantia definitiva.
+      </p>
+    </section>
+
+    <section id="vicis-ocults" class="section">
+      <h2>4. Responsabilitat per vicis ocults en el contracte d’obres</h2>
+
+      <p>
+        El contracte d’obres presenta un règim especialment reforçat de responsabilitat per la transcendència tècnica,
+        econòmica i patrimonial de les prestacions executades. Més enllà del període ordinari de garantia, la legislació
+        preveu una responsabilitat específica per <strong>vicis ocults de la construcció</strong>.
+      </p>
+
+      <p>
+        Aquesta responsabilitat cobreix defectes greus que afecten la pròpia essència estructural de l’obra, com ara
+        problemes de <strong>cimentació</strong>, <strong>resistència mecànica</strong>, <strong>estabilitat</strong>,
+        deteriorament prematur o altres anomalies que comprometin la funcionalitat o seguretat de la construcció.
+      </p>
+
+      <p>
+        La singularitat d’aquest règim és que la responsabilitat pot estendre’s durant un termini molt superior
+        al període ordinari de garantia. En determinats supòsits, la LCSP contempla una responsabilitat que pot arribar
+        a <strong>quinze anys des de la recepció</strong> quan els defectes estructurals són imputables a un incompliment
+        contractual i provoquen ruïna o deterioraments greus incompatibles amb la finalitat de l’obra.
+      </p>
+
+      <div class="summary-box">
+        <div class="label">Idea essencial</div>
+        <p>
+          En obres públiques, la responsabilitat no s’esgota necessàriament amb el període de garantia ordinari:
+          els <strong>vicis ocults greus</strong> poden generar una responsabilitat molt més llarga per protegir
+          la inversió pública i la seguretat col·lectiva.
+        </p>
+      </div>
+
+      <p>
+        Aquest règim respon a una lògica clara: les grans obres i infraestructures públiques tenen un impacte durador
+        sobre el patrimoni públic i sobre la ciutadania. Per això, l’ordenament no pot permetre que els defectes
+        estructurals greus quedin sense resposta només perquè no es van manifestar en la recepció o en el període ordinari
+        de garantia.
+      </p>
+    </section>
+
+    <section id="facultats" class="section">
+      <h2>5. Facultats de l’Administració davant defectes o vicis</h2>
+
+      <p>
+        L’Administració disposa de diverses potestats per assegurar que les responsabilitats per vicis o defectes
+        es facin efectives. La primera és la facultat d’<strong>exigir la reparació o correcció</strong> de les
+        deficiències detectades, mitjançant ordres motivades que el contractista està obligat a complir.
+      </p>
+
+      <p>
+        Si el contractista no actua amb la diligència exigible o es nega a reparar els defectes, l’Administració
+        pot acudir a la <strong>execució subsidiària</strong>, realitzant per si mateixa o a través de tercers les
+        reparacions necessàries, però repercutint-ne el cost a l’adjudicatari responsable.
+      </p>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Potestats principals</h3>
+          <ul class="custom">
+            <li>Exigir la reparació, correcció o substitució.</li>
+            <li>Requerir formalment l’esmena dels defectes.</li>
+            <li>Executar subsidiàriament les reparacions.</li>
+            <li>Reclamar indemnització per danys i perjudicis.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Instruments de garantia</h3>
+          <ul class="custom">
+            <li>Execució total o parcial de la garantia definitiva.</li>
+            <li>Intervenció del responsable del contracte.</li>
+            <li>Direcció facultativa en contractes d’obres.</li>
+            <li>Accions contra altres responsables, com el redactor del projecte, si escau.</li>
+          </ul>
+        </article>
+      </div>
+
+      <p>
+        Un instrument especialment rellevant és la <strong>garantia definitiva</strong>, que respon precisament
+        de l’existència de vicis o defectes durant el termini de garantia. Si les despeses de reparació o els
+        perjudicis causats superen l’import d’aquesta garantia, l’Administració pot reclamar una
+        <strong>indemnització complementària</strong>.
+      </p>
+
+      <p>
+        En aquest procés, el paper del <strong>responsable del contracte</strong> és fonamental, perquè és qui
+        supervisa l’execució, detecta les anomalies i impulsa les mesures correctores. En el contracte d’obres,
+        aquesta funció recau de manera especialment intensa en la <strong>direcció facultativa</strong>, que ha
+        de controlar l’adequació tècnica de la construcció i la seva correcció material.
+      </p>
+
+      <p>
+        A més, si els defectes deriven d’errors en el projecte redactat per un tercer, l’Administració pot repetir
+        contra aquest redactor en exercici de les accions de responsabilitat que corresponguin. Això mostra que el
+        sistema no només protegeix davant el contractista executor, sinó davant qualsevol agent responsable d’un
+        resultat defectuós.
+      </p>
+    </section>
+
+    <section id="importancia" class="section">
+      <h2>6. Importància del règim de responsabilitats en la contractació pública</h2>
+
+      <p>
+        El règim de responsabilitats per vicis o defectes és una peça essencial per assegurar l’eficàcia del sistema
+        de contractació pública. La seva existència incentiva una execució tècnica rigorosa, perquè el contractista
+        sap que no n’hi ha prou amb lliurar formalment la prestació: ha de garantir-ne la qualitat real i la durabilitat.
+      </p>
+
+      <p>
+        Aquest règim protegeix directament els <strong>recursos públics</strong>, ja que impedeix que sigui
+        l’Administració qui hagi d’assumir el cost de reparar, substituir o refer obres, serveis o subministraments
+        defectuosos que ja havien estat pagats.
+      </p>
+
+      <p>
+        També reforça la confiança en el sistema de contractació pública. En exigir als contractistes que assumeixin
+        el risc tècnic de la seva actuació, s’envia al mercat un missatge de serietat, rigor i exigència en el
+        compliment de les prescripcions tècniques i funcionals dels contractes públics.
+      </p>
+
+      <div class="warning-box">
+        <div class="label">Idea de fons</div>
+        <p>
+          Aquest mecanisme evita que els defectes d’execució acabin sent suportats per l’Administració i garanteix
+          que la col·laboració amb els particulars es tradueixi en <strong>prestacions públiques de qualitat real i duradora</strong>.
+        </p>
+      </div>
+
+      <p>
+        En definitiva, la responsabilitat per vicis o defectes assegura que la contractació pública serveixi de veritat
+        a l’interès general: no només adjudicant i executant contractes, sinó garantint que el resultat final sigui
+        conforme, útil, segur i eficient per a la ciutadania i per al patrimoni públic.
+      </p>
+    </section>
+
+    <section class="footer-box">
+      <h2>Idea final per memoritzar</h2>
+      <p>
+        <strong>La responsabilitat per vicis o defectes obliga el contractista a respondre de les anomalies de la prestació executada</strong>,
+        ja siguin detectades durant l’execució, en el període de garantia o, en casos greus, com a vicis ocults posteriors.
+        L’Administració pot exigir la reparació, executar la garantia definitiva i reclamar danys i perjudicis per protegir
+        la qualitat de la prestació i els recursos públics.
+      </p>
     </section>
   </main>
 </body>
