@@ -17,6 +17,7 @@
 
     "scan-normativa": "node scripts/scan-normativa.js",
     "generate-normativa": "node scripts/generate-normativa-files.js",
+    "audit:repository": "node scripts/auditRepository.js",
 
     "test": "vitest run",
     "test:watch": "vitest",
